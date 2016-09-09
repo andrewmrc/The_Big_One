@@ -27,7 +27,7 @@ public class BodyControlPower : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey (KeyCode.L)) {
+		if (Input.GetMouseButton (1)) {
 			RaycastHandler ();
 		} else {
 			cameraRig.transform.GetChild (0).GetChild (0).transform.localPosition = new Vector3 (0, 0, -1f);
