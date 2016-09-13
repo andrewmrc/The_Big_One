@@ -46,7 +46,7 @@ public class BodyControlPower : MonoBehaviour {
 		RaycastHit hit;
 
 		if (Physics.Raycast (ray, out hit, 100)) {
-			Debug.DrawLine (ray.origin, hit.point);
+			Debug.DrawLine (ray.origin, hit.point,Color.red );
 			Debug.Log (hit.collider.name + ", " + hit.collider.tag);
 			if (hit.collider.tag == "ControllableNPC") {
 				if (Input.GetKeyDown (KeyCode.Space)) {
@@ -54,12 +54,18 @@ public class BodyControlPower : MonoBehaviour {
 					this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
 					this.gameObject.transform.GetComponent<BodyControlPower> ().enabled = false;
 
+                    Animator animPlayer = GetComponent<Animator>();
+                    animPlayer.SetFloat("Forward", 0);
+                    
+
 					cameraRig.transform.GetComponent<AbstractTargetFollower> ().m_Target = null;
 					hit.collider.gameObject.tag = "Player";
 					hit.collider.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
 					hit.collider.transform.GetComponent<BodyControlPower> ().enabled = true;
 
-				}
+                    
+
+                }
 			}
 		}
 	}
