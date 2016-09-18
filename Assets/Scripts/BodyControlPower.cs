@@ -23,7 +23,6 @@ public class BodyControlPower : MonoBehaviour {
 		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
         refEnemy = FindObjectOfType<Enemy>();
 		dir = transform.TransformDirection(Vector3.forward);
-
 		// create a new RayHitComparer
 		m_RayHitComparer = new RayHitComparer();
 	}
@@ -39,7 +38,10 @@ public class BodyControlPower : MonoBehaviour {
 			mainCamera.transform.localPosition = new Vector3 (0.5f, -0.5f, -1f);
 			//cameraRig.transform.GetComponent<ProtectCameraFromWallClip> ().enabled = true;
         }*/
-
+		
+		if(Input.GetKeyDown(KeyCode.P)){
+			ReturnToYourBody ();
+		}
 	}
 
 	public void RaycastHandler ()
@@ -59,6 +61,8 @@ public class BodyControlPower : MonoBehaviour {
 			if (hit.collider.tag == "ControllableNPC")
             {
                 //refEnemy.HiglightedPower();
+				//Cambia emission brightness agli NPC quando puntati
+				//hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
 				if (Input.GetKeyDown (KeyCode.Space))
                 {
 					this.gameObject.tag = "ControllableNPC";
@@ -82,6 +86,28 @@ public class BodyControlPower : MonoBehaviour {
 			}
 		}
 	}
+
+
+	public void ReturnToYourBody () {
+		Debug.Log ("Return");
+		this.gameObject.tag = "ControllableNPC";
+		this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
+		this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
+		this.gameObject.transform.GetComponent<BodyControlPower> ().enabled = false;
+		this.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
+
+		Animator animPlayer = GetComponent<Animator>();
+		animPlayer.SetFloat("Forward", 0);
+
+		cameraRig.transform.GetComponent<AbstractTargetFollower> ().m_Target = null;
+		GameManager.Self.playerBody.gameObject.tag = "Player";
+		GameManager.Self.playerBody.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
+		GameManager.Self.playerBody.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = true;
+		GameManager.Self.playerBody.gameObject.transform.GetComponent<BodyControlPower> ().enabled = true;
+		GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
+		GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
+	}
+
 
 	// comparer for check distances in ray cast hits
 	public class RayHitComparer : IComparer
