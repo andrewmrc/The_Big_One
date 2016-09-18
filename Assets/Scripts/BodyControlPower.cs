@@ -8,6 +8,7 @@ public class BodyControlPower : MonoBehaviour {
 
 	public GameObject cameraRig;
 	public GameObject mainCamera;
+	public float zoom_Speed = 6f;
 	private Ray m_Ray;                        // the ray used in the lateupdate for casting between the player and his target
 	private RaycastHit[] m_Hits;              // the hits between the player and his target
 	private RaycastHit hitInfo;
@@ -29,21 +30,24 @@ public class BodyControlPower : MonoBehaviour {
 	
 	void Update ()
     {
-		if (Input.GetMouseButton(1))
-            RaycastHandler();
-
+		if (Input.GetMouseButton (1)) {
+			RaycastHandler ();
+		}/*
         else
         {
-            cameraRig.transform.GetChild (0).GetChild (0).transform.localPosition = new Vector3 (0, 0, -1f);
-			cameraRig.transform.GetComponent<ProtectCameraFromWallClip> ().enabled = true;
-        }
+			Debug.Log ("ZoomOut!");
+			mainCamera.transform.localPosition = new Vector3 (0.5f, -0.5f, -1f);
+			//cameraRig.transform.GetComponent<ProtectCameraFromWallClip> ().enabled = true;
+        }*/
 
 	}
 
 	public void RaycastHandler ()
     {
-        cameraRig.transform.GetComponent<ProtectCameraFromWallClip> ().enabled = false;
-		cameraRig.transform.GetChild (0).GetChild (0).transform.localPosition = new Vector3 (0.4f, 0.1f, -0.7f);
+		Debug.Log ("ZoomIn!");
+        //cameraRig.transform.GetComponent<ProtectCameraFromWallClip> ().enabled = false;
+		Vector3 zoomPos = new Vector3 (0.4f, -0.4f, -0.7f);
+		mainCamera.transform.localPosition = Vector3.MoveTowards (mainCamera.transform.localPosition, zoomPos, zoom_Speed * Time.deltaTime);
 		//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));;
 		RaycastHit hit;
@@ -59,7 +63,9 @@ public class BodyControlPower : MonoBehaviour {
                 {
 					this.gameObject.tag = "ControllableNPC";
 					this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
+					this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
 					this.gameObject.transform.GetComponent<BodyControlPower> ().enabled = false;
+					this.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
 
                     Animator animPlayer = GetComponent<Animator>();
                     animPlayer.SetFloat("Forward", 0);
@@ -67,7 +73,11 @@ public class BodyControlPower : MonoBehaviour {
 					cameraRig.transform.GetComponent<AbstractTargetFollower> ().m_Target = null;
 					hit.collider.gameObject.tag = "Player";
 					hit.collider.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
+					hit.collider.transform.GetComponent<ThirdPersonCharacter> ().enabled = true;
 					hit.collider.transform.GetComponent<BodyControlPower> ().enabled = true;
+					hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
+					hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
+
                 }
 			}
 		}
