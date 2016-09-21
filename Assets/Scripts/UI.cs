@@ -5,8 +5,9 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour {
 
     public Image cursorImage;
+    public Image powerImage;
 
-	void Start ()
+    void Start ()
     {
 
 	}

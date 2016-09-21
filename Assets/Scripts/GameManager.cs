@@ -14,12 +14,14 @@ public class GameManager : MonoBehaviour {
 			return _self;
 		}
 	}
-
+    public bool isAiming;
 	public GameObject playerBody;
 	public GameObject UI_Possession;
+    public GameObject UI_Power;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 		playerBody = GameObject.FindGameObjectWithTag ("Player");
 
 	}

@@ -17,10 +17,14 @@ public class BodyControlPower : MonoBehaviour {
 	public bool visualiseInEditor;            // toggle for visualising the algorithm through lines for the raycast in the editor
 	private bool onEnemy;
 
+    
+
 	Enemy refEnemy;
+    GameManager refGM;
 
 	void Start ()
     {
+        refGM = FindObjectOfType<GameManager>();
 		cameraRig = GameObject.FindGameObjectWithTag ("CameraRig");
 		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
         refEnemy = FindObjectOfType<Enemy>();
@@ -31,11 +35,15 @@ public class BodyControlPower : MonoBehaviour {
 	
 	void Update ()
     {
+        
 		if (Input.GetMouseButton (1)) {
 			RaycastHandler ();
+            
+
 		} else {
 			onEnemy = false;
-		}
+            
+        }
 
 		/*
         else
@@ -52,8 +60,10 @@ public class BodyControlPower : MonoBehaviour {
 
 		if (onEnemy) {
 			GameManager.Self.UI_Possession.SetActive (true);
-		} else {
-			GameManager.Self.UI_Possession.SetActive(false);
+            GameManager.Self.UI_Power.SetActive(true);
+        } else {
+            GameManager.Self.UI_Possession.SetActive(false);
+            GameManager.Self.UI_Power.SetActive(false);
 		}
 	}
 
@@ -76,6 +86,7 @@ public class BodyControlPower : MonoBehaviour {
 				//Cambia emission brightness agli NPC quando puntati
 				//hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
 				onEnemy = true;
+                
 				if (Input.GetKeyDown (KeyCode.Space)) {
 					this.gameObject.tag = "ControllableNPC";
 					this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
@@ -95,6 +106,11 @@ public class BodyControlPower : MonoBehaviour {
 					hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
 
 				}
+
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    hit.collider.transform.GetComponent<EnemyPath>().enabled = true;
+                }
 			} else {
 				onEnemy = false;
 			}
@@ -121,6 +137,11 @@ public class BodyControlPower : MonoBehaviour {
 		GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
 		GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
 	}
+
+    public void MoveNPC()
+    {
+
+    }
 
 
 	// comparer for check distances in ray cast hits
