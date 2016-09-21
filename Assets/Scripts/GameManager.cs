@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public GameObject playerBody;
+	public GameObject UI_Possession;
 
 	// Use this for initialization
 	void Start () {
