@@ -102,16 +102,36 @@ public class BodyControlPower : MonoBehaviour {
 					hit.collider.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
 					hit.collider.transform.GetComponent<ThirdPersonCharacter> ().enabled = true;
 					hit.collider.transform.GetComponent<BodyControlPower> ().enabled = true;
-					hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
+                    
+                    hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
 					hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
+                    if (hit.collider.transform.GetComponent<EnemyPath>())
+                    {
+                        hit.collider.transform.GetComponent<EnemyPath>().enabled = false;
+                        hit.collider.transform.GetComponent<NavMeshAgent>().enabled = false;
+                    }
+                    
 
-				}
+                }
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    hit.collider.transform.GetComponent<EnemyPath>().enabled = true;
+                    MoveNPC(hit,0);
                 }
-			} else {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    MoveNPC(hit, 1);
+                }
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    MoveNPC(hit, 2);
+                }
+                if (Input.GetKeyDown(KeyCode.T))
+                {
+                    MoveNPC(hit, 3);
+                }
+
+            } else {
 				onEnemy = false;
 			}
 		}
@@ -138,8 +158,11 @@ public class BodyControlPower : MonoBehaviour {
 		GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
 	}
 
-    public void MoveNPC()
+    public void MoveNPC(RaycastHit hitted,int arrayPosition)
     {
+        hitted.collider.transform.GetComponent<EnemyPath>().enabled = true;
+        hitted.collider.transform.GetComponent<NavMeshAgent>().enabled = true;
+        hitted.collider.transform.GetComponent<EnemyPath>().input = arrayPosition;
 
     }
 
