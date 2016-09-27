@@ -10,8 +10,11 @@ public class EnemyPath : MonoBehaviour {
     private float timeLeft;
     public Transform[] points = new Transform[4];
     bool ciao;
+    int nArray;
     
-    public int input;
+    public int input { set { nArray = value; } }
+
+    
 
     // Use this for initialization
     void Awake () {
@@ -25,8 +28,10 @@ public class EnemyPath : MonoBehaviour {
     void OnEnable()
     {
         timeLeft = 3.0f;
-        GoToPoint(input);
+        
+        GoToPoint(nArray);
         ciao = false;
+        
     }
 	
 	// Update is called once per frame
@@ -58,8 +63,10 @@ public class EnemyPath : MonoBehaviour {
 
     void GoToPoint(int _input)
     {
-
-        refNav.destination = points[input].position;
+        refNav.enabled = true;        
+        refNav.destination = points[nArray].position;
+        
+        
 
     }
 }

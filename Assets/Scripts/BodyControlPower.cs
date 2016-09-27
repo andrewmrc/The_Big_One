@@ -18,6 +18,7 @@ public class BodyControlPower : MonoBehaviour {
 	private bool onEnemy;
 
     
+    
 
 	Enemy refEnemy;
     GameManager refGM;
@@ -86,8 +87,24 @@ public class BodyControlPower : MonoBehaviour {
 				//Cambia emission brightness agli NPC quando puntati
 				//hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
 				onEnemy = true;
-                
-				if (Input.GetKeyDown (KeyCode.Space)) {
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    MoveNPC(hit, 0);
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    MoveNPC(hit, 1);
+                }
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    MoveNPC(hit, 2);
+                }
+                if (Input.GetKeyDown(KeyCode.T))
+                {
+                    MoveNPC(hit, 3);
+                }
+
+                if (Input.GetKeyDown (KeyCode.Space)) {
 					this.gameObject.tag = "ControllableNPC";
 					this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
 					this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
@@ -114,22 +131,7 @@ public class BodyControlPower : MonoBehaviour {
 
                 }
 
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    MoveNPC(hit,0);
-                }
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    MoveNPC(hit, 1);
-                }
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    MoveNPC(hit, 2);
-                }
-                if (Input.GetKeyDown(KeyCode.T))
-                {
-                    MoveNPC(hit, 3);
-                }
+               
 
             } else {
 				onEnemy = false;
@@ -160,9 +162,11 @@ public class BodyControlPower : MonoBehaviour {
 
     public void MoveNPC(RaycastHit hitted,int arrayPosition)
     {
-        hitted.collider.transform.GetComponent<EnemyPath>().enabled = true;
-        hitted.collider.transform.GetComponent<NavMeshAgent>().enabled = true;
+        Debug.Log(arrayPosition);
         hitted.collider.transform.GetComponent<EnemyPath>().input = arrayPosition;
+        hitted.collider.transform.GetComponent<EnemyPath>().enabled = true;
+        
+
 
     }
 
