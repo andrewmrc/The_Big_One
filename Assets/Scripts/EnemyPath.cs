@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class EnemyPath : MonoBehaviour {
 
     NavMeshAgent refNav;
     GameManager refGM;
-    public Transform position_one;
+    
     Vector3 initialPosition;
-    private float timeLeft;
+    public float timeLeft;
     public Transform[] points = new Transform[4];
-    bool ciao;
+    public bool isReached = false;
+    public bool isOnTime = false;
     int nArray;
     
     public int input { set { nArray = value; } }
@@ -18,46 +20,52 @@ public class EnemyPath : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        
         refNav = GetComponent<NavMeshAgent>();
         refGM = FindObjectOfType<GameManager>();
         initialPosition = this.transform.position;
-        
     }
 
     void OnEnable()
     {
-        timeLeft = 3.0f;
-        
+        isReached = false;
+        isOnTime = false;
         GoToPoint(nArray);
-        ciao = false;
-        
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
-        if (refNav.remainingDistance < 0.5f)
+
+
+        /*if (refNav.remainingDistance > refNav.stoppingDistance)
+            this.GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);*/
+        this.GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);
+        Debug.Log(Vector3.Distance(initialPosition, this.transform.position));
+
+
+        if (GetComponent<NavMeshAgent>().enabled && refNav.remainingDistance < refNav.stoppingDistance && !isOnTime)
         {
-            if (!ciao)
-            {
-                timeLeft = Time.time;
-                ciao = true;
-            }
+            Debug.LogWarning("ola");
+            StartCoroutine(Timer(timeLeft));
             
-            if (Time.time - timeLeft > 3)
-            {
-                ResetPosition();
-            }            
+        }
+        
+        if ((Vector3.Distance(initialPosition,this.transform.position)< refNav.stoppingDistance) && isReached)
+        {
+            isReached = false;
+
+            //this.GetComponent<ThirdPersonCharacter>().Move(Vector3.zero, false, false);
+            StartCoroutine(DisableComponents());
+            
         }
     }
 
     void ResetPosition()
     {
-        refNav.destination = initialPosition;
-        if (refNav.remainingDistance < 0.5f)
+        
+        if (refNav.remainingDistance < refNav.stoppingDistance)
         {
-            GetComponent<EnemyPath>().enabled = false;
+            refNav.destination = initialPosition;
+            isReached = true;
         }
     }
 
@@ -65,8 +73,29 @@ public class EnemyPath : MonoBehaviour {
     {
         refNav.enabled = true;        
         refNav.destination = points[nArray].position;
-        
-        
+        this.GetComponent<ThirdPersonCharacter>().enabled = true;
+    }
 
+    IEnumerator Timer(float seconds)
+    {
+        isOnTime = true;
+        yield return new WaitForSeconds(seconds);
+        ResetPosition();
+        
+    }
+    IEnumerator DisableComponents()
+    {
+        refNav.Stop();
+        GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<ThirdPersonCharacter>().enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        
+        
+        GetComponent<EnemyPath>().enabled = false;
+    }
+
+    public void Start()
+    {
+        
     }
 }

@@ -162,7 +162,7 @@ public class BodyControlPower : MonoBehaviour {
 
     public void MoveNPC(RaycastHit hitted,int arrayPosition)
     {
-        Debug.Log(arrayPosition);
+        
         hitted.collider.transform.GetComponent<EnemyPath>().input = arrayPosition;
         hitted.collider.transform.GetComponent<EnemyPath>().enabled = true;
         
