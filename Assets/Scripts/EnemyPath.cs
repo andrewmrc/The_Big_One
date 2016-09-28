@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityStandardAssets.Characters.ThirdPerson;
 
+[RequireComponent(typeof (NavMeshAgent))]
+
 public class EnemyPath : MonoBehaviour {
 
     NavMeshAgent refNav;
@@ -34,17 +36,14 @@ public class EnemyPath : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-
-        /*if (refNav.remainingDistance > refNav.stoppingDistance)
-            this.GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);*/
+        
         this.GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);
         Debug.Log(Vector3.Distance(initialPosition, this.transform.position));
 
 
         if (GetComponent<NavMeshAgent>().enabled && refNav.remainingDistance < refNav.stoppingDistance && !isOnTime)
         {
-            Debug.LogWarning("ola");
+           
             StartCoroutine(Timer(timeLeft));
             
         }
@@ -53,7 +52,7 @@ public class EnemyPath : MonoBehaviour {
         {
             isReached = false;
 
-            //this.GetComponent<ThirdPersonCharacter>().Move(Vector3.zero, false, false);
+
             StartCoroutine(DisableComponents());
             
         }
@@ -94,8 +93,5 @@ public class EnemyPath : MonoBehaviour {
         GetComponent<EnemyPath>().enabled = false;
     }
 
-    public void Start()
-    {
-        
-    }
+    
 }

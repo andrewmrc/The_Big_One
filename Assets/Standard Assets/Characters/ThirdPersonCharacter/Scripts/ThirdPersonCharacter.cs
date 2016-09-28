@@ -43,6 +43,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
         void OnEnable()
         {
+            m_Rigidbody = GetComponent<Rigidbody>();
             m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         }
 
