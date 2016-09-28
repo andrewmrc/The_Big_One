@@ -84,6 +84,17 @@ ModelImporter:
     100152: Riviste
     100154: Text
     100156: Text.001
+    100158: Cube.013
+    100160: Cube.014
+    100162: Cube.015
+    100164: Cube.016
+    100166: Cube.017
+    100168: Cube.018
+    100170: Plane.029
+    100172: Plane.030
+    100174: Plane.031
+    100176: Plane.032
+    100178: Plane.033
     400000: armadio ospedale
     400002: armadio ospedale.001
     400004: armadio ospedale.002
@@ -163,6 +174,17 @@ ModelImporter:
     400152: Riviste
     400154: Text
     400156: Text.001
+    400158: Cube.013
+    400160: Cube.014
+    400162: Cube.015
+    400164: Cube.016
+    400166: Cube.017
+    400168: Cube.018
+    400170: Plane.029
+    400172: Plane.030
+    400174: Plane.031
+    400176: Plane.032
+    400178: Plane.033
     2300000: armadio ospedale
     2300002: armadio ospedale.001
     2300004: armadio ospedale.002
@@ -241,6 +263,17 @@ ModelImporter:
     2300150: Riviste
     2300152: Text
     2300154: Text.001
+    2300156: Cube.013
+    2300158: Cube.014
+    2300160: Cube.015
+    2300162: Cube.016
+    2300164: Cube.017
+    2300166: Cube.018
+    2300168: Plane.029
+    2300170: Plane.030
+    2300172: Plane.031
+    2300174: Plane.032
+    2300176: Plane.033
     3300000: armadio ospedale
     3300002: armadio ospedale.001
     3300004: armadio ospedale.002
@@ -319,6 +352,17 @@ ModelImporter:
     3300150: Riviste
     3300152: Text
     3300154: Text.001
+    3300156: Cube.013
+    3300158: Cube.014
+    3300160: Cube.015
+    3300162: Cube.016
+    3300164: Cube.017
+    3300166: Cube.018
+    3300168: Plane.029
+    3300170: Plane.030
+    3300172: Plane.031
+    3300174: Plane.032
+    3300176: Plane.033
     4300000: Cube.012
     4300002: Text
     4300004: Cube.011
@@ -397,6 +441,17 @@ ModelImporter:
     4300150: Plane.001
     4300152: Plane.002
     4300154: Plane
+    4300156: Cube.018
+    4300158: Cube.017
+    4300160: Cube.016
+    4300162: Plane.033
+    4300164: Plane.032
+    4300166: Plane.031
+    4300168: Plane.030
+    4300170: Cube.015
+    4300172: Cube.014
+    4300174: Cube.013
+    4300176: Plane.029
   materials:
     importMaterials: 1
     materialName: 0
