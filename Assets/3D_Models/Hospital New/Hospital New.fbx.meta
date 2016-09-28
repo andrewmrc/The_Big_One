@@ -1,0 +1,463 @@
+fileFormatVersion: 2
+guid: 7515b794b65861746bd43f13a6c37a3c
+timeCreated: 1474906385
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: armadio ospedale
+    100002: armadio ospedale.001
+    100004: armadio ospedale.002
+    100006: armadio ospedale.003
+    100008: armadio ospedale001
+    100010: armadio ospedale001.001
+    100012: Circle
+    100014: Circle.001
+    100016: Circle.002
+    100018: Circle.003
+    100020: Circle.004
+    100022: Circle.005
+    100024: Circle.006
+    100026: comodino aperto
+    100028: comodino aperto.001
+    100030: Cube
+    100032: Cube.001
+    100034: Cube.002
+    100036: Cube.003
+    100038: Cube.004
+    100040: Cube.005
+    100042: Cube.006
+    100044: Cube.007
+    100046: Cube.008
+    100048: Cube.009
+    100050: Cube.010
+    100052: Cube.011
+    100054: Cube.012
+    100056: Divani
+    100058: gabinetto
+    100060: gabinetto.001
+    100062: gabinetto.002
+    100064: gabinetto.003
+    100066: gabinetto.004
+    100068: gabinetto.005
+    100070: //RootNode
+    100072: lavello
+    100074: lavello.001
+    100076: lavello.002
+    100078: lavello.003
+    100080: lavello.004
+    100082: lavello.005
+    100084: letto osp attach_1
+    100086: letto osp attach_1.001
+    100088: letto osp attach_1.002
+    100090: Libro
+    100092: Libro.001
+    100094: Plane
+    100096: Plane.001
+    100098: Plane.002
+    100100: Plane.003
+    100102: Plane.004
+    100104: Plane.005
+    100106: Plane.006
+    100108: Plane.007
+    100110: Plane.008
+    100112: Plane.009
+    100114: Plane.010
+    100116: Plane.011
+    100118: Plane.012
+    100120: Plane.013
+    100122: Plane.014
+    100124: Plane.015
+    100126: Plane.016
+    100128: Plane.017
+    100130: Plane.018
+    100132: Plane.019
+    100134: Plane.020
+    100136: Plane.021
+    100138: Plane.022
+    100140: Plane.023
+    100142: Plane.024
+    100144: Plane.025
+    100146: Plane.026
+    100148: Plane.027
+    100150: Plane.028
+    100152: Riviste
+    100154: Text
+    100156: Text.001
+    400000: armadio ospedale
+    400002: armadio ospedale.001
+    400004: armadio ospedale.002
+    400006: armadio ospedale.003
+    400008: armadio ospedale001
+    400010: armadio ospedale001.001
+    400012: Circle
+    400014: Circle.001
+    400016: Circle.002
+    400018: Circle.003
+    400020: Circle.004
+    400022: Circle.005
+    400024: Circle.006
+    400026: comodino aperto
+    400028: comodino aperto.001
+    400030: Cube
+    400032: Cube.001
+    400034: Cube.002
+    400036: Cube.003
+    400038: Cube.004
+    400040: Cube.005
+    400042: Cube.006
+    400044: Cube.007
+    400046: Cube.008
+    400048: Cube.009
+    400050: Cube.010
+    400052: Cube.011
+    400054: Cube.012
+    400056: Divani
+    400058: gabinetto
+    400060: gabinetto.001
+    400062: gabinetto.002
+    400064: gabinetto.003
+    400066: gabinetto.004
+    400068: gabinetto.005
+    400070: //RootNode
+    400072: lavello
+    400074: lavello.001
+    400076: lavello.002
+    400078: lavello.003
+    400080: lavello.004
+    400082: lavello.005
+    400084: letto osp attach_1
+    400086: letto osp attach_1.001
+    400088: letto osp attach_1.002
+    400090: Libro
+    400092: Libro.001
+    400094: Plane
+    400096: Plane.001
+    400098: Plane.002
+    400100: Plane.003
+    400102: Plane.004
+    400104: Plane.005
+    400106: Plane.006
+    400108: Plane.007
+    400110: Plane.008
+    400112: Plane.009
+    400114: Plane.010
+    400116: Plane.011
+    400118: Plane.012
+    400120: Plane.013
+    400122: Plane.014
+    400124: Plane.015
+    400126: Plane.016
+    400128: Plane.017
+    400130: Plane.018
+    400132: Plane.019
+    400134: Plane.020
+    400136: Plane.021
+    400138: Plane.022
+    400140: Plane.023
+    400142: Plane.024
+    400144: Plane.025
+    400146: Plane.026
+    400148: Plane.027
+    400150: Plane.028
+    400152: Riviste
+    400154: Text
+    400156: Text.001
+    2300000: armadio ospedale
+    2300002: armadio ospedale.001
+    2300004: armadio ospedale.002
+    2300006: armadio ospedale.003
+    2300008: armadio ospedale001
+    2300010: armadio ospedale001.001
+    2300012: Circle
+    2300014: Circle.001
+    2300016: Circle.002
+    2300018: Circle.003
+    2300020: Circle.004
+    2300022: Circle.005
+    2300024: Circle.006
+    2300026: comodino aperto
+    2300028: comodino aperto.001
+    2300030: Cube
+    2300032: Cube.001
+    2300034: Cube.002
+    2300036: Cube.003
+    2300038: Cube.004
+    2300040: Cube.005
+    2300042: Cube.006
+    2300044: Cube.007
+    2300046: Cube.008
+    2300048: Cube.009
+    2300050: Cube.010
+    2300052: Cube.011
+    2300054: Cube.012
+    2300056: Divani
+    2300058: gabinetto
+    2300060: gabinetto.001
+    2300062: gabinetto.002
+    2300064: gabinetto.003
+    2300066: gabinetto.004
+    2300068: gabinetto.005
+    2300070: lavello
+    2300072: lavello.001
+    2300074: lavello.002
+    2300076: lavello.003
+    2300078: lavello.004
+    2300080: lavello.005
+    2300082: letto osp attach_1
+    2300084: letto osp attach_1.001
+    2300086: letto osp attach_1.002
+    2300088: Libro
+    2300090: Libro.001
+    2300092: Plane
+    2300094: Plane.001
+    2300096: Plane.002
+    2300098: Plane.003
+    2300100: Plane.004
+    2300102: Plane.005
+    2300104: Plane.006
+    2300106: Plane.007
+    2300108: Plane.008
+    2300110: Plane.009
+    2300112: Plane.010
+    2300114: Plane.011
+    2300116: Plane.012
+    2300118: Plane.013
+    2300120: Plane.014
+    2300122: Plane.015
+    2300124: Plane.016
+    2300126: Plane.017
+    2300128: Plane.018
+    2300130: Plane.019
+    2300132: Plane.020
+    2300134: Plane.021
+    2300136: Plane.022
+    2300138: Plane.023
+    2300140: Plane.024
+    2300142: Plane.025
+    2300144: Plane.026
+    2300146: Plane.027
+    2300148: Plane.028
+    2300150: Riviste
+    2300152: Text
+    2300154: Text.001
+    3300000: armadio ospedale
+    3300002: armadio ospedale.001
+    3300004: armadio ospedale.002
+    3300006: armadio ospedale.003
+    3300008: armadio ospedale001
+    3300010: armadio ospedale001.001
+    3300012: Circle
+    3300014: Circle.001
+    3300016: Circle.002
+    3300018: Circle.003
+    3300020: Circle.004
+    3300022: Circle.005
+    3300024: Circle.006
+    3300026: comodino aperto
+    3300028: comodino aperto.001
+    3300030: Cube
+    3300032: Cube.001
+    3300034: Cube.002
+    3300036: Cube.003
+    3300038: Cube.004
+    3300040: Cube.005
+    3300042: Cube.006
+    3300044: Cube.007
+    3300046: Cube.008
+    3300048: Cube.009
+    3300050: Cube.010
+    3300052: Cube.011
+    3300054: Cube.012
+    3300056: Divani
+    3300058: gabinetto
+    3300060: gabinetto.001
+    3300062: gabinetto.002
+    3300064: gabinetto.003
+    3300066: gabinetto.004
+    3300068: gabinetto.005
+    3300070: lavello
+    3300072: lavello.001
+    3300074: lavello.002
+    3300076: lavello.003
+    3300078: lavello.004
+    3300080: lavello.005
+    3300082: letto osp attach_1
+    3300084: letto osp attach_1.001
+    3300086: letto osp attach_1.002
+    3300088: Libro
+    3300090: Libro.001
+    3300092: Plane
+    3300094: Plane.001
+    3300096: Plane.002
+    3300098: Plane.003
+    3300100: Plane.004
+    3300102: Plane.005
+    3300104: Plane.006
+    3300106: Plane.007
+    3300108: Plane.008
+    3300110: Plane.009
+    3300112: Plane.010
+    3300114: Plane.011
+    3300116: Plane.012
+    3300118: Plane.013
+    3300120: Plane.014
+    3300122: Plane.015
+    3300124: Plane.016
+    3300126: Plane.017
+    3300128: Plane.018
+    3300130: Plane.019
+    3300132: Plane.020
+    3300134: Plane.021
+    3300136: Plane.022
+    3300138: Plane.023
+    3300140: Plane.024
+    3300142: Plane.025
+    3300144: Plane.026
+    3300146: Plane.027
+    3300148: Plane.028
+    3300150: Riviste
+    3300152: Text
+    3300154: Text.001
+    4300000: Cube.012
+    4300002: Text
+    4300004: Cube.011
+    4300006: Cube.010
+    4300008: Cube.009
+    4300010: Circle.006
+    4300012: Circle.005
+    4300014: Circle.004
+    4300016: Libro.001
+    4300018: Libro
+    4300020: Riviste
+    4300022: Plane.026
+    4300024: lavello.005
+    4300026: lavello.004
+    4300028: lavello.003
+    4300030: Cube.008
+    4300032: Cube.007
+    4300034: armadio ospedale001.001
+    4300036: armadio ospedale001
+    4300038: Plane.020
+    4300040: Plane.004
+    4300042: Circle.003
+    4300044: Circle.002
+    4300046: Circle.001
+    4300048: Circle
+    4300050: armadio ospedale.003
+    4300052: armadio ospedale.002
+    4300054: armadio ospedale.001
+    4300056: armadio ospedale
+    4300058: comodino aperto.001
+    4300060: comodino aperto
+    4300062: letto osp attach_1.002
+    4300064: letto osp attach_1.001
+    4300066: letto osp attach_1
+    4300068: Plane.028
+    4300070: Text.001
+    4300072: Plane.027
+    4300074: Plane.025
+    4300076: Divani
+    4300078: Cube.006
+    4300080: Cube.005
+    4300082: Plane.024
+    4300084: Plane.023
+    4300086: Cube.004
+    4300088: Plane.022
+    4300090: Cube.003
+    4300092: Plane.021
+    4300094: Cube.002
+    4300096: Cube.001
+    4300098: Plane.019
+    4300100: Plane.018
+    4300102: gabinetto.005
+    4300104: Plane.017
+    4300106: Plane.016
+    4300108: gabinetto.004
+    4300110: Plane.015
+    4300112: Plane.014
+    4300114: gabinetto.003
+    4300116: Plane.013
+    4300118: Plane.012
+    4300120: gabinetto.002
+    4300122: Plane.011
+    4300124: Plane.008
+    4300126: gabinetto.001
+    4300128: Plane.007
+    4300130: Plane.010
+    4300132: lavello.002
+    4300134: lavello.001
+    4300136: Plane.009
+    4300138: gabinetto
+    4300140: lavello
+    4300142: Plane.006
+    4300144: Plane.005
+    4300146: Cube
+    4300148: Plane.003
+    4300150: Plane.001
+    4300152: Plane.002
+    4300154: Plane
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
