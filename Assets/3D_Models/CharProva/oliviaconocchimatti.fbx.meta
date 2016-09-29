@@ -1,0 +1,128 @@
+fileFormatVersion: 2
+guid: 165d9668faff52c45bb4606b94860f67
+timeCreated: 1475157509
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bottoni.002
+    100002: Capelli.002
+    100004: Cintura.002
+    100006: Colletto.002
+    100008: Corpo.002
+    100010: Fibia.002
+    100012: Gambe.002
+    100014: Occhi
+    100016: //RootNode
+    100018: Orecchie.002
+    100020: Piedi.002
+    100022: Volto  .002
+    400000: Bottoni.002
+    400002: Capelli.002
+    400004: Cintura.002
+    400006: Colletto.002
+    400008: Corpo.002
+    400010: Fibia.002
+    400012: Gambe.002
+    400014: Occhi
+    400016: //RootNode
+    400018: Orecchie.002
+    400020: Piedi.002
+    400022: Volto  .002
+    2300000: Bottoni.002
+    2300002: Capelli.002
+    2300004: Cintura.002
+    2300006: Colletto.002
+    2300008: Corpo.002
+    2300010: Fibia.002
+    2300012: Gambe.002
+    2300014: Occhi
+    2300016: Orecchie.002
+    2300018: Piedi.002
+    2300020: Volto  .002
+    3300000: Bottoni.002
+    3300002: Capelli.002
+    3300004: Cintura.002
+    3300006: Colletto.002
+    3300008: Corpo.002
+    3300010: Fibia.002
+    3300012: Gambe.002
+    3300014: Occhi
+    3300016: Orecchie.002
+    3300018: Piedi.002
+    3300020: Volto  .002
+    4300000: Volto  .002
+    4300002: Orecchie.002
+    4300004: Piedi.002
+    4300006: Capelli.002
+    4300008: Bottoni.002
+    4300010: Gambe.002
+    4300012: Cintura.002
+    4300014: Fibia.002
+    4300016: Corpo.002
+    4300018: Colletto.002
+    4300020: Occhi
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 1
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
