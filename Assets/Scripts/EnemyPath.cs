@@ -90,7 +90,7 @@ public class EnemyPath : MonoBehaviour {
     IEnumerator DisableComponents()
     {
         refNav.Stop();
-        GetComponent<NavMeshAgent>().enabled = false;
+        //GetComponent<NavMeshAgent>().enabled = false;
         //GetComponent<ThirdPersonCharacter>().enabled = false;
         yield return new WaitForSeconds(0.5f);
         
