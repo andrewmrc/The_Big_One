@@ -26,11 +26,17 @@ public class ReturnInPosition : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);
-        if ((Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance))
+        if (refNav.remainingDistance > refNav.stoppingDistance)
         {
+            GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);
+        }
+        else
+        {
+            GetComponent<ThirdPersonCharacter>().Move(Vector3.zero, false, false);
+            StartCoroutine(DisableComponents());
             
         }
+        
     }
 
     void OnEnable()
@@ -42,14 +48,20 @@ public class ReturnInPosition : MonoBehaviour {
     public void MyPosition()
     {
         refNav.enabled = true;
-
+        this.GetComponent<ThirdPersonCharacter>().enabled = true;
         Debug.LogWarning(Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance);
         if (Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance)
         {
             Debug.LogWarning("Sono distante");
+            
             GetComponent<ReturnInPosition>().enabled = true;
             refNav.destination = initialPosition;
             
         }
+    }
+    IEnumerator DisableComponents()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<ReturnInPosition>().enabled = false;
     }
 }

@@ -109,7 +109,7 @@ public class BodyControlPower : MonoBehaviour {
 
                 if (Input.GetKeyDown (KeyCode.Space)) {
 
-                    MyPosition();
+                    
 
                     this.gameObject.tag = "ControllableNPC";
 					this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
@@ -126,6 +126,7 @@ public class BodyControlPower : MonoBehaviour {
 					hit.collider.transform.GetComponent<ThirdPersonCharacter> ().enabled = true;
 					hit.collider.transform.GetComponent<BodyControlPower> ().enabled = true;
                     
+
                     hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
 					hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
                     if (hit.collider.transform.GetComponent<EnemyPath>())
@@ -133,8 +134,9 @@ public class BodyControlPower : MonoBehaviour {
                         hit.collider.transform.GetComponent<EnemyPath>().enabled = false;
                         hit.collider.transform.GetComponent<NavMeshAgent>().enabled = false;
                     }
+                    MyPosition();
 
-                    
+
 
                 }
 
@@ -150,13 +152,14 @@ public class BodyControlPower : MonoBehaviour {
 	public void ReturnToYourBody () {
 		Debug.Log ("Return");
 
-        MyPosition();
+        
 
 		this.gameObject.tag = "ControllableNPC";
 		this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
 		this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
 		this.gameObject.transform.GetComponent<BodyControlPower> ().enabled = false;
-		this.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
+        
+        this.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
 
 		Animator animPlayer = GetComponent<Animator>();
 		animPlayer.SetFloat("Forward", 0);
@@ -168,7 +171,8 @@ public class BodyControlPower : MonoBehaviour {
 		GameManager.Self.playerBody.gameObject.transform.GetComponent<BodyControlPower> ().enabled = true;
 		GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
 		GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
-	}
+        MyPosition();
+    }
 
     public void MoveNPC(RaycastHit hitted,int arrayPosition)
     {
