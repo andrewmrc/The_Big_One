@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
+using UnityEngine.Events;
 
 public class BodyControlPower : MonoBehaviour {
 
@@ -17,10 +18,10 @@ public class BodyControlPower : MonoBehaviour {
 	public bool visualiseInEditor;            // toggle for visualising the algorithm through lines for the raycast in the editor
 	private bool onEnemy;
 
-    
-    
+    public UnityEvent returnEvent;
 
-	Enemy refEnemy;
+
+    Enemy refEnemy;
     GameManager refGM;
 
 	void Start ()
@@ -41,7 +42,9 @@ public class BodyControlPower : MonoBehaviour {
 			RaycastHandler ();
             
 
-		} else {
+
+
+        } else {
 			onEnemy = false;
             
         }
@@ -105,7 +108,10 @@ public class BodyControlPower : MonoBehaviour {
                 }
 
                 if (Input.GetKeyDown (KeyCode.Space)) {
-					this.gameObject.tag = "ControllableNPC";
+
+                    MyPosition();
+
+                    this.gameObject.tag = "ControllableNPC";
 					this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
 					this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
 					this.gameObject.transform.GetComponent<BodyControlPower> ().enabled = false;
@@ -127,6 +133,7 @@ public class BodyControlPower : MonoBehaviour {
                         hit.collider.transform.GetComponent<EnemyPath>().enabled = false;
                         hit.collider.transform.GetComponent<NavMeshAgent>().enabled = false;
                     }
+
                     
 
                 }
@@ -142,6 +149,9 @@ public class BodyControlPower : MonoBehaviour {
 
 	public void ReturnToYourBody () {
 		Debug.Log ("Return");
+
+        MyPosition();
+
 		this.gameObject.tag = "ControllableNPC";
 		this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
 		this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
@@ -179,4 +189,9 @@ public class BodyControlPower : MonoBehaviour {
 			return ((RaycastHit) x).distance.CompareTo(((RaycastHit) y).distance);
 		}
 	}
+
+    void MyPosition()
+    {
+        returnEvent.Invoke();
+    }
 }

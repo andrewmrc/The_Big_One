@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityStandardAssets.Characters.ThirdPerson;
+using UnityEngine.Events;
 
-[RequireComponent(typeof (NavMeshAgent))]
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(ReturnInPosition))]
+
 
 public class EnemyPath : MonoBehaviour {
 
@@ -15,6 +18,8 @@ public class EnemyPath : MonoBehaviour {
     public bool isReached = false;
     public bool isOnTime = false;
     int nArray;
+
+    public UnityEvent returnEvent;
     
     public int input { set { nArray = value; } }
 
@@ -93,5 +98,9 @@ public class EnemyPath : MonoBehaviour {
         GetComponent<EnemyPath>().enabled = false;
     }
 
-    
+    void OnDisable()
+    {
+        
+        //returnEvent.Invoke();
+    }
 }
