@@ -5,6 +5,8 @@ using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(FieldOfView))]
+
 public class BodyControlPower : MonoBehaviour {
 
 	public GameObject cameraRig;
@@ -80,12 +82,12 @@ public class BodyControlPower : MonoBehaviour {
 		//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));;
 		RaycastHit hit;
-
+        
 		if (Physics.Raycast (ray, out hit, 100))
         {
 			Debug.DrawLine (ray.origin, hit.point,Color.red );
 			Debug.Log (hit.collider.name + ", " + hit.collider.tag);
-			if (hit.collider.tag == "ControllableNPC") {
+			if (hit.collider.tag == "ControllableNPC" && !hit.collider.gameObject.GetComponent<FieldOfView>().visibleTargets.Contains(this.gameObject.transform)) {
 				//refEnemy.HiglightedPower();
 				//Cambia emission brightness agli NPC quando puntati
 				//hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
