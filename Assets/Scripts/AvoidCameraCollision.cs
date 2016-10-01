@@ -23,13 +23,11 @@ public class AvoidCameraCollision : MonoBehaviour {
 			m_Pivot = transform.parent.transform;
 		}
 
-
 		//create camSpot
 		camSpot = new GameObject();
 		camSpot.transform.name = "CameraSpot";
 		camSpot.transform.parent = transform.parent;
-		camSpot.transform.position = transform.position;
-        
+		camSpot.transform.position = transform.position;        
         
 		//create camFollow
 		camFollow = new GameObject();
