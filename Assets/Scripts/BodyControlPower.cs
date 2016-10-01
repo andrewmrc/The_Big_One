@@ -4,7 +4,7 @@ using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(FieldOfView))]
+//[RequireComponent(typeof(FieldOfView))]
 public class BodyControlPower : MonoBehaviour
 {
 
@@ -22,6 +22,8 @@ public class BodyControlPower : MonoBehaviour
     private RayHitComparer m_RayHitComparer;  // variable to compare raycast hit distances
     private Vector3 dir;
     private bool onEnemy;
+	//GameObject npcTarget;
+	public float powerRange = 10;
 
     void Start()
     {
@@ -36,10 +38,23 @@ public class BodyControlPower : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(1))
-            RaycastHandler();
-        else
-            onEnemy = false;
+		if (Input.GetMouseButton (1)) {
+			this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
+			this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
+			this.GetComponent<Animator>().SetFloat ("Forward", 0);
+			this.GetComponent<Animator>().SetFloat ("Turn", 0);
+			RaycastHandler ();
+		} else {
+			this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
+			this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = true;
+			onEnemy = false;
+			/*
+			if (npcTarget != null) {
+				npcTarget.transform.GetComponent<FieldOfView> ().checkVisible = false;
+				//Destroy(npcTarget.gameObject.GetComponent <FieldOfView>());
+				npcTarget = null;
+			}*/
+		}
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -61,73 +76,72 @@ public class BodyControlPower : MonoBehaviour
     public void RaycastHandler()
     {
         Debug.Log("ZoomIn!");
-        //cameraRig.transform.GetComponent<ProtectCameraFromWallClip> ().enabled = false;
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); ;
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 100))
+        if (Physics.Raycast(ray, out hit, powerRange))
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red);
             Debug.Log(hit.collider.name + ", " + hit.collider.tag);
-            if (hit.collider.tag == "ControllableNPC" &&
-                (hit.collider.gameObject == null || hit.collider.gameObject.GetComponent<FieldOfView>() == null ||
-                hit.collider.gameObject != null && hit.collider.gameObject.GetComponent<FieldOfView>() != null &&
-                !hit.collider.gameObject.GetComponent<FieldOfView>().visibleTargets.Contains(this.gameObject.transform)))
+
+			//Prima controlliamo se stiamo mirando ad un personaggio controllabile
+			if (hit.collider.tag == "ControllableNPC") 
             {
-                //refEnemy.HiglightedPower();
-                //Cambia emission brightness agli NPC quando puntati
-                //hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
-                onEnemy = true;
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    MoveNPC(hit, 0);
-                }
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    MoveNPC(hit, 1);
-                }
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    MoveNPC(hit, 2);
-                }
-                if (Input.GetKeyDown(KeyCode.T))
-                {
-                    MoveNPC(hit, 3);
-                }
+				//Controlliamo se il personaggio mirato abbia il componente Field Of View e in caso lo aggiungiamo
+				if(hit.collider.transform.GetComponent<FieldOfView>() == null){
+					Debug.Log ("Add Component Field of View");
+					hit.collider.gameObject.AddComponent <FieldOfView>();
+				}				
 
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    this.gameObject.tag = "ControllableNPC";
-                    this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
-                    this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
-                    this.gameObject.transform.GetComponent<BodyControlPower>().enabled = false;
-                    this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+				//A questo punto controlliamo se siamo nel Field Of View del personaggio. In caso negativo possiamo usare il potere.
+				if (!hit.collider.gameObject.GetComponent<FieldOfView> ().visibleTargets.Contains (this.gameObject.transform)) {
+					//refEnemy.HiglightedPower();
+					//Cambia emission brightness agli NPC quando puntati
+					//hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
+					onEnemy = true;
+					if (Input.GetKeyDown (KeyCode.Q)) {
+						MoveNPC (hit, 0);
+					} /* Per adesso non li useremo
+					if (Input.GetKeyDown (KeyCode.E)) {
+						MoveNPC (hit, 1);
+					}
+					if (Input.GetKeyDown (KeyCode.F)) {
+						MoveNPC (hit, 2);
+					}
+					if (Input.GetKeyDown (KeyCode.T)) {
+						MoveNPC (hit, 3);
+					}*/
 
-                    Animator animPlayer = GetComponent<Animator>();
-                    animPlayer.SetFloat("Forward", 0);
+					if (Input.GetKeyDown (KeyCode.Space)) {
+						this.gameObject.tag = "ControllableNPC";
+						this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
+						this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
+						this.gameObject.transform.GetComponent<BodyControlPower> ().enabled = false;
+						this.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
+						this.GetComponent<Animator>().SetFloat ("Forward", 0);
+						this.GetComponent<Animator>().SetFloat ("Turn", 0);
 
-                    cameraRig.transform.GetComponent<AbstractTargetFollower>().m_Target = null;
-                    hit.collider.gameObject.tag = "Player";
-                    hit.collider.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
-                    hit.collider.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
-                    hit.collider.transform.GetComponent<BodyControlPower>().enabled = true;
+						cameraRig.transform.GetComponent<AbstractTargetFollower> ().m_Target = null;
+						hit.collider.gameObject.tag = "Player";
+						hit.collider.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
+						hit.collider.transform.GetComponent<ThirdPersonCharacter> ().enabled = true;
+						hit.collider.transform.GetComponent<BodyControlPower> ().enabled = true;
 
-                    hit.collider.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                    hit.collider.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-                    if (hit.collider.transform.GetComponent<EnemyPath>())
-                    {
-                        hit.collider.transform.GetComponent<EnemyPath>().enabled = false;
-                        hit.collider.transform.GetComponent<NavMeshAgent>().enabled = false;
-                    }
-                    MyPosition();
-                }
+						hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
+						hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
+
+						if (hit.collider.transform.GetComponent<EnemyPath> ()) {
+							hit.collider.transform.GetComponent<EnemyPath> ().enabled = false;
+							hit.collider.transform.GetComponent<NavMeshAgent> ().enabled = false;
+						}
+						MyPosition ();
+					}
+				}
             }
             else
             {
                 onEnemy = false;
             }
-
         }
     }
 
@@ -140,9 +154,8 @@ public class BodyControlPower : MonoBehaviour
         this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
         this.gameObject.transform.GetComponent<BodyControlPower>().enabled = false;
         this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-
-        Animator animPlayer = GetComponent<Animator>();
-        animPlayer.SetFloat("Forward", 0);
+		this.GetComponent<Animator>().SetFloat ("Forward", 0);
+		this.GetComponent<Animator>().SetFloat ("Turn", 0);
 
         cameraRig.transform.GetComponent<AbstractTargetFollower>().m_Target = null;
         GameManager.Self.playerBody.gameObject.tag = "Player";

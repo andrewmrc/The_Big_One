@@ -30,6 +30,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		bool m_Crouching;
 
 
+		void OnEnable()
+		{
+			m_Rigidbody = GetComponent<Rigidbody>();
+			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+		}
+
+
 		void Start()
 		{
 			m_Animator = GetComponent<Animator>();
@@ -41,11 +48,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
 		}
-        void OnEnable()
-        {
-            m_Rigidbody = GetComponent<Rigidbody>();
-            m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-        }
 
 
 		public void Move(Vector3 move, bool crouch, bool jump)

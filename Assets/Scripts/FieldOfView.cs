@@ -4,31 +4,36 @@ using System.Collections.Generic;
 
 public class FieldOfView : MonoBehaviour
 {
-
-    public float viewRadius;
+	[Range(0, 60)]
+    public float viewRadius = 5;
     [Range(0, 360)]
-    public float viewAngle;
+    public float viewAngle = 190;
 
-    public LayerMask targetMask;
+	public LayerMask targetMask = -1;
     public LayerMask obstacleMask;
+
+	public bool checkVisible = false;
 
     //[HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
 
+
     void Start()
     {
+		Debug.Log(LayerMask.LayerToName(8));
         StartCoroutine("FindTargetsWithDelay", .2f);
     }
 
 
     IEnumerator FindTargetsWithDelay(float delay)
     {
-        while (true)
+		while (true)
         {
             yield return new WaitForSeconds(delay);
-            FindVisibleTargets();
+			FindVisibleTargets ();
         }
     }
+
 
     void FindVisibleTargets()
     {

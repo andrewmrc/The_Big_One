@@ -14,16 +14,25 @@ public class GameManager : MonoBehaviour {
 			return _self;
 		}
 	}
+
     public bool isAiming;
+
 	public GameObject playerBody;
+	public GameObject cameraRig;
+	public GameObject mainCamera;
+
+	public GameObject UI_PowerBar;
 	public GameObject UI_Possession;
     public GameObject UI_Power;
 
+	public float powerQuantity = 100f;
+	public bool outOfYourBody = false;
 
     // Use this for initialization
     void Start () {
 		playerBody = GameObject.FindGameObjectWithTag ("Player");
-
+		cameraRig = GameObject.FindGameObjectWithTag ("CameraRig");
+		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
 	}
 	
 	// Update is called once per frame
