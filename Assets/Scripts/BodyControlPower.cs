@@ -4,6 +4,8 @@ using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(FieldOfView))]
+
 public class BodyControlPower : MonoBehaviour {
 
 	public GameObject cameraRig;
@@ -56,6 +58,7 @@ public class BodyControlPower : MonoBehaviour {
     {
         Debug.Log("ZoomIn!");
         //cameraRig.transform.GetComponent<ProtectCameraFromWallClip> ().enabled = false;
+<<<<<<< HEAD
         //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); ;
         RaycastHit hit;
@@ -70,6 +73,23 @@ public class BodyControlPower : MonoBehaviour {
                 //Cambia emission brightness agli NPC quando puntati
                 //hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
                 onEnemy = true;
+=======
+		Vector3 zoomPos = new Vector3 (0.4f, -0.4f, -0.7f);
+		mainCamera.transform.localPosition = Vector3.MoveTowards (mainCamera.transform.localPosition, zoomPos, zoom_Speed * Time.deltaTime);
+		//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));;
+		RaycastHit hit;
+        
+		if (Physics.Raycast (ray, out hit, 100))
+        {
+			Debug.DrawLine (ray.origin, hit.point,Color.red );
+			Debug.Log (hit.collider.name + ", " + hit.collider.tag);
+			if (hit.collider.tag == "ControllableNPC" && !hit.collider.gameObject.GetComponent<FieldOfView>().visibleTargets.Contains(this.gameObject.transform)) {
+				//refEnemy.HiglightedPower();
+				//Cambia emission brightness agli NPC quando puntati
+				//hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
+				onEnemy = true;
+>>>>>>> 708ad2ffac7ff0011d080d7bde8bd725aa22e1dd
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     MoveNPC(hit, 0);
