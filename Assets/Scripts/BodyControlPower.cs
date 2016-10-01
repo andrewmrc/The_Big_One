@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 using System.Collections;
 using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
@@ -9,20 +8,18 @@ public class BodyControlPower : MonoBehaviour {
 
 	public GameObject cameraRig;
 	public GameObject mainCamera;
-	public float zoom_Speed = 6f;
-	private Ray m_Ray;                        // the ray used in the lateupdate for casting between the player and his target
+    public bool visualiseInEditor;            // toggle for visualising the algorithm through lines for the raycast in the editor
+    public UnityEvent returnEvent;
+
+    Enemy refEnemy;
+    GameManager refGM;
+
+    private Ray m_Ray;                        // the ray used in the lateupdate for casting between the player and his target
 	private RaycastHit[] m_Hits;              // the hits between the player and his target
 	private RaycastHit hitInfo;
 	private RayHitComparer m_RayHitComparer;  // variable to compare raycast hit distances
 	private Vector3 dir;
-	public bool visualiseInEditor;            // toggle for visualising the algorithm through lines for the raycast in the editor
-	private bool onEnemy;
-
-    public UnityEvent returnEvent;
-
-
-    Enemy refEnemy;
-    GameManager refGM;
+    private bool onEnemy;
 
 	void Start ()
     {
@@ -37,30 +34,14 @@ public class BodyControlPower : MonoBehaviour {
 	
 	void Update ()
     {
-        
-		if (Input.GetMouseButton (1)) {
+        if (Input.GetMouseButton (1))
 			RaycastHandler ();
-            
-
-
-
-        } else {
+        else 
 			onEnemy = false;
-            
-        }
 
-		/*
-        else
-        {
-			Debug.Log ("ZoomOut!");
-			mainCamera.transform.localPosition = new Vector3 (0.5f, -0.5f, -1f);
-			//cameraRig.transform.GetComponent<ProtectCameraFromWallClip> ().enabled = true;
-        }*/
-		
 		if (Input.GetKeyDown (KeyCode.R)) {
 			ReturnToYourBody ();
 		}
-
 
 		if (onEnemy) {
 			GameManager.Self.UI_Possession.SetActive (true);
@@ -71,25 +52,24 @@ public class BodyControlPower : MonoBehaviour {
 		}
 	}
 
-	public void RaycastHandler ()
+    public void RaycastHandler()
     {
-		Debug.Log ("ZoomIn!");
+        Debug.Log("ZoomIn!");
         //cameraRig.transform.GetComponent<ProtectCameraFromWallClip> ().enabled = false;
-		Vector3 zoomPos = new Vector3 (0.4f, -0.4f, -0.7f);
-		mainCamera.transform.localPosition = Vector3.MoveTowards (mainCamera.transform.localPosition, zoomPos, zoom_Speed * Time.deltaTime);
-		//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));;
-		RaycastHit hit;
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); ;
+        RaycastHit hit;
 
-		if (Physics.Raycast (ray, out hit, 100))
+        if (Physics.Raycast(ray, out hit, 100))
         {
-			Debug.DrawLine (ray.origin, hit.point,Color.red );
-			Debug.Log (hit.collider.name + ", " + hit.collider.tag);
-			if (hit.collider.tag == "ControllableNPC") {
-				//refEnemy.HiglightedPower();
-				//Cambia emission brightness agli NPC quando puntati
-				//hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
-				onEnemy = true;
+            Debug.DrawLine(ray.origin, hit.point, Color.red);
+            Debug.Log(hit.collider.name + ", " + hit.collider.tag);
+            if (hit.collider.tag == "ControllableNPC")
+            {
+                //refEnemy.HiglightedPower();
+                //Cambia emission brightness agli NPC quando puntati
+                //hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
+                onEnemy = true;
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     MoveNPC(hit, 0);
@@ -107,58 +87,47 @@ public class BodyControlPower : MonoBehaviour {
                     MoveNPC(hit, 3);
                 }
 
-                if (Input.GetKeyDown (KeyCode.Space)) {
-
-                    
-
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
                     this.gameObject.tag = "ControllableNPC";
-					this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
-					this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
-					this.gameObject.transform.GetComponent<BodyControlPower> ().enabled = false;
-					this.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
+                    this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
+                    this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+                    this.gameObject.transform.GetComponent<BodyControlPower>().enabled = false;
+                    this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
-					Animator animPlayer = GetComponent<Animator> ();
-					animPlayer.SetFloat ("Forward", 0);
-                    
-					cameraRig.transform.GetComponent<AbstractTargetFollower> ().m_Target = null;
-					hit.collider.gameObject.tag = "Player";
-					hit.collider.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
-					hit.collider.transform.GetComponent<ThirdPersonCharacter> ().enabled = true;
-					hit.collider.transform.GetComponent<BodyControlPower> ().enabled = true;
-                    
+                    Animator animPlayer = GetComponent<Animator>();
+                    animPlayer.SetFloat("Forward", 0);
 
-                    hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
-					hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
+                    cameraRig.transform.GetComponent<AbstractTargetFollower>().m_Target = null;
+                    hit.collider.gameObject.tag = "Player";
+                    hit.collider.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
+                    hit.collider.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
+                    hit.collider.transform.GetComponent<BodyControlPower>().enabled = true;
+
+                    hit.collider.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    hit.collider.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                     if (hit.collider.transform.GetComponent<EnemyPath>())
                     {
                         hit.collider.transform.GetComponent<EnemyPath>().enabled = false;
                         hit.collider.transform.GetComponent<NavMeshAgent>().enabled = false;
                     }
                     MyPosition();
-
-
-
                 }
-
-               
-
-            } else {
-				onEnemy = false;
-			}
-		}
-	}
+            }
+            else
+            {
+                onEnemy = false;
+            }
+        }
+    }
 
 
 	public void ReturnToYourBody () {
 		Debug.Log ("Return");
-
-        
-
-		this.gameObject.tag = "ControllableNPC";
+   		this.gameObject.tag = "ControllableNPC";
 		this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
 		this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
-		this.gameObject.transform.GetComponent<BodyControlPower> ().enabled = false;
-        
+		this.gameObject.transform.GetComponent<BodyControlPower> ().enabled = false;        
         this.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
 
 		Animator animPlayer = GetComponent<Animator>();
@@ -176,12 +145,8 @@ public class BodyControlPower : MonoBehaviour {
 
     public void MoveNPC(RaycastHit hitted,int arrayPosition)
     {
-        
         hitted.collider.transform.GetComponent<EnemyPath>().input = arrayPosition;
         hitted.collider.transform.GetComponent<EnemyPath>().enabled = true;
-        
-
-
     }
 
 

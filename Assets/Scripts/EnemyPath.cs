@@ -43,7 +43,7 @@ public class EnemyPath : MonoBehaviour {
 	void Update () {
         
         this.GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);
-        Debug.Log(Vector3.Distance(initialPosition, this.transform.position));
+        //Debug.Log(Vector3.Distance(initialPosition, this.transform.position));
 
 
         if (GetComponent<NavMeshAgent>().enabled && refNav.remainingDistance < refNav.stoppingDistance && !isOnTime)

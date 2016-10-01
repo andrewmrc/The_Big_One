@@ -29,7 +29,8 @@ public class AvoidCameraCollision : MonoBehaviour {
 		camSpot.transform.name = "CameraSpot";
 		camSpot.transform.parent = transform.parent;
 		camSpot.transform.position = transform.position;
-
+        
+        
 		//create camFollow
 		camFollow = new GameObject();
 		camFollow.transform.name = "CameraFollow";
@@ -82,8 +83,17 @@ public class AvoidCameraCollision : MonoBehaviour {
 			}	
 		}
 		else {
-			//ease camera back to camSpot
-			transform.position = Vector3.MoveTowards(transform.position, camSpot.transform.position, returnTime * Time.deltaTime);
-		}
+            //ease camera back to camSpot
+            if (Input.GetMouseButton(1))
+            {
+                transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(0.4f, -0.4f, -0.7f), 6 * Time.deltaTime);
+                
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, camSpot.transform.position, returnTime * Time.deltaTime);
+
+            }
+        }
 	}
 }
