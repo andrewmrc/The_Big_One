@@ -70,7 +70,10 @@ public class BodyControlPower : MonoBehaviour
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red);
             Debug.Log(hit.collider.name + ", " + hit.collider.tag);
-            if (hit.collider.tag == "ControllableNPC" && !hit.collider.gameObject.GetComponent<FieldOfView>().visibleTargets.Contains(this.gameObject.transform))
+            if (hit.collider.tag == "ControllableNPC" &&
+                (hit.collider.gameObject == null || hit.collider.gameObject.GetComponent<FieldOfView>() == null ||
+                hit.collider.gameObject != null && hit.collider.gameObject.GetComponent<FieldOfView>() != null &&
+                !hit.collider.gameObject.GetComponent<FieldOfView>().visibleTargets.Contains(this.gameObject.transform)))
             {
                 //refEnemy.HiglightedPower();
                 //Cambia emission brightness agli NPC quando puntati
@@ -124,6 +127,7 @@ public class BodyControlPower : MonoBehaviour
             {
                 onEnemy = false;
             }
+
         }
     }
 
