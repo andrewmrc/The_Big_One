@@ -4,6 +4,7 @@ using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(FieldOfView))]
 public class BodyControlPower : MonoBehaviour
 {
 
@@ -69,7 +70,7 @@ public class BodyControlPower : MonoBehaviour
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red);
             Debug.Log(hit.collider.name + ", " + hit.collider.tag);
-            if (hit.collider.tag == "ControllableNPC")
+            if (hit.collider.tag == "ControllableNPC" && !hit.collider.gameObject.GetComponent<FieldOfView>().visibleTargets.Contains(this.gameObject.transform))
             {
                 //refEnemy.HiglightedPower();
                 //Cambia emission brightness agli NPC quando puntati
