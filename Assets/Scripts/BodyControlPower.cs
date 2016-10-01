@@ -4,12 +4,11 @@ using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(FieldOfView))]
+public class BodyControlPower : MonoBehaviour
+{
 
-public class BodyControlPower : MonoBehaviour {
-
-	public GameObject cameraRig;
-	public GameObject mainCamera;
+    public GameObject cameraRig;
+    public GameObject mainCamera;
     public bool visualiseInEditor;            // toggle for visualising the algorithm through lines for the raycast in the editor
     public UnityEvent returnEvent;
 
@@ -17,48 +16,51 @@ public class BodyControlPower : MonoBehaviour {
     GameManager refGM;
 
     private Ray m_Ray;                        // the ray used in the lateupdate for casting between the player and his target
-	private RaycastHit[] m_Hits;              // the hits between the player and his target
-	private RaycastHit hitInfo;
-	private RayHitComparer m_RayHitComparer;  // variable to compare raycast hit distances
-	private Vector3 dir;
+    private RaycastHit[] m_Hits;              // the hits between the player and his target
+    private RaycastHit hitInfo;
+    private RayHitComparer m_RayHitComparer;  // variable to compare raycast hit distances
+    private Vector3 dir;
     private bool onEnemy;
 
-	void Start ()
+    void Start()
     {
         refGM = FindObjectOfType<GameManager>();
-		cameraRig = GameObject.FindGameObjectWithTag ("CameraRig");
-		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
+        cameraRig = GameObject.FindGameObjectWithTag("CameraRig");
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         refEnemy = FindObjectOfType<Enemy>();
-		dir = transform.TransformDirection(Vector3.forward);
-		// create a new RayHitComparer
-		m_RayHitComparer = new RayHitComparer();
-	}
-	
-	void Update ()
+        dir = transform.TransformDirection(Vector3.forward);
+        // create a new RayHitComparer
+        m_RayHitComparer = new RayHitComparer();
+    }
+
+    void Update()
     {
-        if (Input.GetMouseButton (1))
-			RaycastHandler ();
-        else 
-			onEnemy = false;
+        if (Input.GetMouseButton(1))
+            RaycastHandler();
+        else
+            onEnemy = false;
 
-		if (Input.GetKeyDown (KeyCode.R)) {
-			ReturnToYourBody ();
-		}
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ReturnToYourBody();
+        }
 
-		if (onEnemy) {
-			GameManager.Self.UI_Possession.SetActive (true);
+        if (onEnemy)
+        {
+            GameManager.Self.UI_Possession.SetActive(true);
             GameManager.Self.UI_Power.SetActive(true);
-        } else {
+        }
+        else
+        {
             GameManager.Self.UI_Possession.SetActive(false);
             GameManager.Self.UI_Power.SetActive(false);
-		}
-	}
+        }
+    }
 
     public void RaycastHandler()
     {
         Debug.Log("ZoomIn!");
         //cameraRig.transform.GetComponent<ProtectCameraFromWallClip> ().enabled = false;
-<<<<<<< HEAD
         //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); ;
         RaycastHit hit;
@@ -73,23 +75,6 @@ public class BodyControlPower : MonoBehaviour {
                 //Cambia emission brightness agli NPC quando puntati
                 //hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
                 onEnemy = true;
-=======
-		Vector3 zoomPos = new Vector3 (0.4f, -0.4f, -0.7f);
-		mainCamera.transform.localPosition = Vector3.MoveTowards (mainCamera.transform.localPosition, zoomPos, zoom_Speed * Time.deltaTime);
-		//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));;
-		RaycastHit hit;
-        
-		if (Physics.Raycast (ray, out hit, 100))
-        {
-			Debug.DrawLine (ray.origin, hit.point,Color.red );
-			Debug.Log (hit.collider.name + ", " + hit.collider.tag);
-			if (hit.collider.tag == "ControllableNPC" && !hit.collider.gameObject.GetComponent<FieldOfView>().visibleTargets.Contains(this.gameObject.transform)) {
-				//refEnemy.HiglightedPower();
-				//Cambia emission brightness agli NPC quando puntati
-				//hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
-				onEnemy = true;
->>>>>>> 708ad2ffac7ff0011d080d7bde8bd725aa22e1dd
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     MoveNPC(hit, 0);
@@ -142,42 +127,43 @@ public class BodyControlPower : MonoBehaviour {
     }
 
 
-	public void ReturnToYourBody () {
-		Debug.Log ("Return");
-   		this.gameObject.tag = "ControllableNPC";
-		this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
-		this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
-		this.gameObject.transform.GetComponent<BodyControlPower> ().enabled = false;        
-        this.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
+    public void ReturnToYourBody()
+    {
+        Debug.Log("Return");
+        this.gameObject.tag = "ControllableNPC";
+        this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
+        this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+        this.gameObject.transform.GetComponent<BodyControlPower>().enabled = false;
+        this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
-		Animator animPlayer = GetComponent<Animator>();
-		animPlayer.SetFloat("Forward", 0);
+        Animator animPlayer = GetComponent<Animator>();
+        animPlayer.SetFloat("Forward", 0);
 
-		cameraRig.transform.GetComponent<AbstractTargetFollower> ().m_Target = null;
-		GameManager.Self.playerBody.gameObject.tag = "Player";
-		GameManager.Self.playerBody.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
-		GameManager.Self.playerBody.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = true;
-		GameManager.Self.playerBody.gameObject.transform.GetComponent<BodyControlPower> ().enabled = true;
-		GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
-		GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
+        cameraRig.transform.GetComponent<AbstractTargetFollower>().m_Target = null;
+        GameManager.Self.playerBody.gameObject.tag = "Player";
+        GameManager.Self.playerBody.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
+        GameManager.Self.playerBody.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
+        GameManager.Self.playerBody.gameObject.transform.GetComponent<BodyControlPower>().enabled = true;
+        GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         MyPosition();
     }
 
-    public void MoveNPC(RaycastHit hitted,int arrayPosition)
+    public void MoveNPC(RaycastHit hitted, int arrayPosition)
     {
         hitted.collider.transform.GetComponent<EnemyPath>().input = arrayPosition;
         hitted.collider.transform.GetComponent<EnemyPath>().enabled = true;
     }
 
 
-	// comparer for check distances in ray cast hits
-	public class RayHitComparer : IComparer
-	{
-		public int Compare(object x, object y)
-		{
-			return ((RaycastHit) x).distance.CompareTo(((RaycastHit) y).distance);
-		}
-	}
+    // comparer for check distances in ray cast hits
+    public class RayHitComparer : IComparer
+    {
+        public int Compare(object x, object y)
+        {
+            return ((RaycastHit)x).distance.CompareTo(((RaycastHit)y).distance);
+        }
+    }
 
     void MyPosition()
     {
