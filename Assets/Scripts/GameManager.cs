@@ -43,6 +43,10 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		//Quando il potere si esaurisce rimandiamo il giocatore nel suo corpo automaticamente
+		if (powerQuantity <= 1 && outOfYourBody) {
+			outOfYourBody = false;
+			GameObject.FindGameObjectWithTag("Player").GetComponent<PowerController> ().ReturnToYourBody ();
+		}
 	}
 }

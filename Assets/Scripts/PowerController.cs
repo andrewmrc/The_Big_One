@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 //[RequireComponent(typeof(FieldOfView))]
-public class BodyControlPower : MonoBehaviour
+public class PowerController : MonoBehaviour
 {
 
     public GameObject cameraRig;
@@ -25,6 +25,8 @@ public class BodyControlPower : MonoBehaviour
     private bool onEnemy;
 	//GameObject npcTarget;
 	public float powerRange = 10;
+	public int controlBodyCost = 20;
+	public int mentalPowerCost = 10;
 
     void Start()
     {
@@ -76,12 +78,14 @@ public class BodyControlPower : MonoBehaviour
 
 		//Controlliamo se questo è il corpo della protagonista oppure no e in caso attiviamo la UI e il tasto per permettere di tornare nel suo corpo
 		if (this.gameObject != GameManager.Self.playerBody) {
+			GameManager.Self.outOfYourBody = true;
 			GameManager.Self.UI_Return.SetActive (true);
 			if (Input.GetKeyDown (KeyCode.R)) {
 				ReturnToYourBody ();
 			}
 		} else {
 			GameManager.Self.UI_Return.SetActive (false);
+			GameManager.Self.outOfYourBody = false;
 		}
 
 
@@ -131,7 +135,8 @@ public class BodyControlPower : MonoBehaviour
 					//Potere di dare ordini mentali. Facciamo prima un controllo così attiviamo la UI relativa solo se necessario.
 					if (hit.collider.transform.GetComponent<EnemyPath> () != null) {
 						GameManager.Self.UI_Power.SetActive(true);
-						if (Input.GetKeyDown (KeyCode.Q)) {
+						if (Input.GetKeyDown (KeyCode.Q) && GameManager.Self.powerQuantity >= mentalPowerCost) {
+							GameManager.Self.powerQuantity -= mentalPowerCost;
 							MoveNPC (hit, 0);
 						} /* Per adesso non li useremo
 						if (Input.GetKeyDown (KeyCode.E)) {
@@ -159,20 +164,21 @@ public class BodyControlPower : MonoBehaviour
 
 
 					//Potere di controllare fisicamente gli NPC
-					if (Input.GetKeyDown (KeyCode.Space)) {
+					if (Input.GetKeyDown (KeyCode.Space) && GameManager.Self.powerQuantity >= controlBodyCost) {
+						GameManager.Self.powerQuantity -= controlBodyCost;
 						this.gameObject.tag = "ControllableNPC";
 						this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
 						this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
-						this.gameObject.transform.GetComponent<BodyControlPower> ().enabled = false;
+						this.gameObject.transform.GetComponent<PowerController> ().enabled = false;
 						this.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
-						this.GetComponent<Animator>().SetFloat ("Forward", 0);
-						this.GetComponent<Animator>().SetFloat ("Turn", 0);
+						this.GetComponent<Animator> ().SetFloat ("Forward", 0);
+						this.GetComponent<Animator> ().SetFloat ("Turn", 0);
 
 						cameraRig.transform.GetComponent<AbstractTargetFollower> ().m_Target = null;
 						hit.collider.gameObject.tag = "Player";
 						hit.collider.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
 						hit.collider.transform.GetComponent<ThirdPersonCharacter> ().enabled = true;
-						hit.collider.transform.GetComponent<BodyControlPower> ().enabled = true;
+						hit.collider.transform.GetComponent<PowerController> ().enabled = true;
 
 						hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
 						hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
@@ -182,6 +188,9 @@ public class BodyControlPower : MonoBehaviour
 							hit.collider.transform.GetComponent<NavMeshAgent> ().enabled = false;
 						}
 						MyPosition ();
+					} else {
+						//Feedback all'utente che non ha abbastanza energia residua
+
 					}
 				}
             }
@@ -199,7 +208,7 @@ public class BodyControlPower : MonoBehaviour
         this.gameObject.tag = "ControllableNPC";
         this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
         this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
-        this.gameObject.transform.GetComponent<BodyControlPower>().enabled = false;
+        this.gameObject.transform.GetComponent<PowerController>().enabled = false;
         this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 		this.GetComponent<Animator>().SetFloat ("Forward", 0);
 		this.GetComponent<Animator>().SetFloat ("Turn", 0);
@@ -208,7 +217,7 @@ public class BodyControlPower : MonoBehaviour
         GameManager.Self.playerBody.gameObject.tag = "Player";
         GameManager.Self.playerBody.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
         GameManager.Self.playerBody.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
-        GameManager.Self.playerBody.gameObject.transform.GetComponent<BodyControlPower>().enabled = true;
+        GameManager.Self.playerBody.gameObject.transform.GetComponent<PowerController>().enabled = true;
         GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         MyPosition();

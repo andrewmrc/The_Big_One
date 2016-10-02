@@ -16,7 +16,7 @@ public class ReturnInPosition : MonoBehaviour {
         refNav = GetComponent<NavMeshAgent>();
         GetComponent<ReturnInPosition>().enabled = false;
         initialPosition = this.transform.position;
-        BodyControlPower bodyControlHandle = GetComponent<BodyControlPower>();
+		PowerController bodyControlHandle = GetComponent<PowerController>();
         bodyControlHandle.returnEvent.AddListener(MyPosition);
     }
     // Use this for initialization

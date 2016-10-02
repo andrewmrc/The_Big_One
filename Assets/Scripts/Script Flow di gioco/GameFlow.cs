@@ -66,7 +66,7 @@ public class GameFlow : MonoBehaviour {
     {
         for(int i = 0; i < items.Count; i++)
         {
-            BodyControlPower isBodyControlled = items[i].GetComponent<BodyControlPower>();
+			PowerController isBodyControlled = items[i].GetComponent<PowerController>();
             if(isBodyControlled && isBodyControlled.isActiveAndEnabled)
             {
                 sequency[i] = true;
@@ -79,7 +79,7 @@ public class GameFlow : MonoBehaviour {
     {
         if(progress < items.Count)
         {
-            BodyControlPower isBodyControlled = items[progress].GetComponent<BodyControlPower>();
+			PowerController isBodyControlled = items[progress].GetComponent<PowerController>();
             if (isBodyControlled != null && isBodyControlled.isActiveAndEnabled)
             {
                 sequency[progress++] = true;
