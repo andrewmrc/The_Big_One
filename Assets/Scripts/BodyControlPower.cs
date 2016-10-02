@@ -3,6 +3,7 @@ using System.Collections;
 using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 //[RequireComponent(typeof(FieldOfView))]
 public class BodyControlPower : MonoBehaviour
@@ -38,6 +39,8 @@ public class BodyControlPower : MonoBehaviour
 
     void Update()
     {
+		//Tasto per attivare la mira. Quando si mira blocchiamo i movimenti del personaggio 
+		//BISOGNA CREARE E POI ATTIVARE QUI IL SISTEMA DI CAMERA PER CUI SARA' POSSIBILE RUOTARE LA VISUALE MIRANDO ENTRO UN CERTO ANGOLO
 		if (Input.GetMouseButton (1)) {
 			this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
 			this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
@@ -56,21 +59,46 @@ public class BodyControlPower : MonoBehaviour
 			}*/
 		}
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ReturnToYourBody();
-        }
-
+        
+		//Se puntiamo su NPC attiviamo la UI relativa ai poteri
         if (onEnemy)
         {
             GameManager.Self.UI_Possession.SetActive(true);
-            GameManager.Self.UI_Power.SetActive(true);
         }
         else
         {
             GameManager.Self.UI_Possession.SetActive(false);
             GameManager.Self.UI_Power.SetActive(false);
+			GameManager.Self.UI_Memory.SetActive(false);
+
         }
+
+
+		//Controlliamo se questo è il corpo della protagonista oppure no e in caso attiviamo la UI e il tasto per permettere di tornare nel suo corpo
+		if (this.gameObject != GameManager.Self.playerBody) {
+			GameManager.Self.UI_Return.SetActive (true);
+			if (Input.GetKeyDown (KeyCode.R)) {
+				ReturnToYourBody ();
+			}
+		} else {
+			GameManager.Self.UI_Return.SetActive (false);
+		}
+
+
+		//Potere di leggere un ricordo quando si è nel corpo di un NPC
+		if (this.gameObject.transform.GetComponent<MemoryContainer> () != null) {
+			GameManager.Self.UI_Hack.SetActive (true);
+			if (Input.GetKey (KeyCode.F)) {
+				GameManager.Self.MemoryImageUI.GetComponent<Image> ().sprite = this.gameObject.transform.GetComponent<MemoryContainer> ().memoryImage;
+				GameManager.Self.MemoryImageUI.SetActive (true);
+			} else {
+				GameManager.Self.MemoryImageUI.GetComponent<Image> ().sprite = null;
+				GameManager.Self.MemoryImageUI.SetActive (false);
+			}
+		} else {
+			GameManager.Self.UI_Hack.SetActive (false);
+		}
+
     }
 
     public void RaycastHandler()
@@ -99,19 +127,38 @@ public class BodyControlPower : MonoBehaviour
 					//Cambia emission brightness agli NPC quando puntati
 					//hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
 					onEnemy = true;
-					if (Input.GetKeyDown (KeyCode.Q)) {
-						MoveNPC (hit, 0);
-					} /* Per adesso non li useremo
-					if (Input.GetKeyDown (KeyCode.E)) {
-						MoveNPC (hit, 1);
-					}
-					if (Input.GetKeyDown (KeyCode.F)) {
-						MoveNPC (hit, 2);
-					}
-					if (Input.GetKeyDown (KeyCode.T)) {
-						MoveNPC (hit, 3);
-					}*/
 
+					//Potere di dare ordini mentali. Facciamo prima un controllo così attiviamo la UI relativa solo se necessario.
+					if (hit.collider.transform.GetComponent<EnemyPath> () != null) {
+						GameManager.Self.UI_Power.SetActive(true);
+						if (Input.GetKeyDown (KeyCode.Q)) {
+							MoveNPC (hit, 0);
+						} /* Per adesso non li useremo
+						if (Input.GetKeyDown (KeyCode.E)) {
+							MoveNPC (hit, 1);
+						}
+						if (Input.GetKeyDown (KeyCode.F)) {
+							MoveNPC (hit, 2);
+						}
+						if (Input.GetKeyDown (KeyCode.T)) {
+							MoveNPC (hit, 3);
+						}*/
+					}
+
+					//Potere di leggere un ricordo nella mente degli NPC. Facciamo prima un controllo così attiviamo la UI relativa solo se necessario.
+					if (hit.collider.transform.GetComponent<MemoryContainer> () != null) {
+						GameManager.Self.UI_Memory.SetActive(true);
+						if (Input.GetKey (KeyCode.F)) {
+							GameManager.Self.MemoryImageUI.GetComponent<Image> ().sprite = hit.collider.transform.GetComponent<MemoryContainer> ().memoryImage;
+							GameManager.Self.MemoryImageUI.SetActive (true);
+						} else {
+							GameManager.Self.MemoryImageUI.GetComponent<Image> ().sprite = null;
+							GameManager.Self.MemoryImageUI.SetActive (false);
+						}
+					}
+
+
+					//Potere di controllare fisicamente gli NPC
 					if (Input.GetKeyDown (KeyCode.Space)) {
 						this.gameObject.tag = "ControllableNPC";
 						this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;

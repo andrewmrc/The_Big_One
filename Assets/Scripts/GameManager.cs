@@ -24,9 +24,15 @@ public class GameManager : MonoBehaviour {
 	public GameObject UI_PowerBar;
 	public GameObject UI_Possession;
     public GameObject UI_Power;
+	public GameObject UI_Memory;
+	public GameObject UI_Hack;
+	public GameObject UI_Return;
+
+	public GameObject MemoryImageUI;
 
 	public float powerQuantity = 100f;
 	public bool outOfYourBody = false;
+	public int nBodyChanged = 0;
 
     // Use this for initialization
     void Start () {
