@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class ExaminableObject : MonoBehaviour {
     [Range(0,60)]
-    public float radius = 5f;
+    public float radius = 1f;
 
     public Sprite memorySprite;
 
@@ -13,13 +13,14 @@ public class ExaminableObject : MonoBehaviour {
 
     UI refUI;
 
-    // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         refUI = FindObjectOfType<UI>();
     }
 	
-	// Update is called once per frame
-	void Update () {
+
+	void Update ()
+    {
         
         hitTargets.Clear();
         Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, radius);
@@ -28,12 +29,12 @@ public class ExaminableObject : MonoBehaviour {
         {
             if (hit.GetComponent<Collider>().tag == "Player")
             {
-                refUI.ExaminableText(memorySprite, true);
+                refUI.ExaminableText(memorySprite);
                  
             }
             else
             {
-                refUI.ExaminableText(memorySprite, false);
+                // cercare un modo di disattivare ExaminableText in UI
             }
             
         }

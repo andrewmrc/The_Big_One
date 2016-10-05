@@ -105,18 +105,13 @@ public class PowerController : MonoBehaviour
 			if (Input.GetKey (KeyCode.F))
             {
                 refUI.memoryImageUI.GetComponent<Image>().sprite = this.gameObject.transform.GetComponent<MemoryContainer>().memoryImage;
-                //GameManager.Self.MemoryImageUI.GetComponent<Image> ().sprite = this.gameObject.transform.GetComponent<MemoryContainer> ().memoryImage;
                 refUI.MemoryImageUIHand(true);
-                //GameManager.Self.MemoryImageUI.SetActive (true);
 			}
 
             else
             {
                 refUI.memoryImageUI.GetComponent<Image>().sprite = null;
-
-                //GameManager.Self.MemoryImageUI.GetComponent<Image> ().sprite = null;
                 refUI.MemoryImageUIHand(false);
-                //GameManager.Self.MemoryImageUI.SetActive (false);
 			}
 		}
 
@@ -155,6 +150,7 @@ public class PowerController : MonoBehaviour
                     //Cambia emission brightness agli NPC quando puntati
                     //hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
                     onEnemy = true;
+                    refUI.cursor.GetComponent<Image>().color = Color.green;
 
                     //Potere di dare ordini mentali. Facciamo prima un controllo così attiviamo la UI relativa solo se necessario.
                     if (hit.collider.transform.GetComponent<EnemyPath>() != null)
@@ -183,17 +179,15 @@ public class PowerController : MonoBehaviour
                         if (Input.GetKey(KeyCode.F))
                         {
                             refUI.memoryImageUI.GetComponent<Image>().sprite = hit.collider.transform.GetComponent<MemoryContainer>().memoryImage;
-                            //GameManager.Self.MemoryImageUI.GetComponent<Image>().sprite = hit.collider.transform.GetComponent<MemoryContainer>().memoryImage;
                             refUI.MemoryImageUIHand(true);
-                            //GameManager.Self.MemoryImageUI.SetActive(true);
+
                         }
 
                         else
                         {
                             refUI.memoryImageUI.GetComponent<Image>().sprite = null;
-                            //GameManager.Self.MemoryImageUI.GetComponent<Image>().sprite = null;
                             refUI.MemoryImageUIHand(false);
-                            //GameManager.Self.MemoryImageUI.SetActive(false);
+
                         }
                     }
 
@@ -237,10 +231,14 @@ public class PowerController : MonoBehaviour
             else
             {
                 onEnemy = false;
+                refUI.cursor.GetComponent<Image>().color = Color.white;
             }
         }
         else
+        {
             onEnemy = false;
+        }
+            
     }
 
 

@@ -25,11 +25,11 @@ public class GameManager : MonoBehaviour {
     public GameObject UI_Hack;
     public GameObject UI_Possession;
     public GameObject UI_Power;		
-	public GameObject UI_Return;*/
+	public GameObject UI_Return;
 
     public GameObject UI_Memory;
 
-	public GameObject MemoryImageUI;
+	public GameObject MemoryImageUI;*/
 
 	public float powerQuantity = 100f;
 	public bool outOfYourBody = false;

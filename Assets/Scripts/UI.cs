@@ -32,6 +32,7 @@ public class UI : MonoBehaviour {
         {
             cursor.SetActive(false);
         }
+            
     }
 
     public void PossessionUI(bool on)
@@ -69,10 +70,10 @@ public class UI : MonoBehaviour {
         memoryImageUI.SetActive(on);
     }
 
-    public void ExaminableText(Sprite memorySprite, bool on)
+    public void ExaminableText(Sprite memorySprite)
     {
         memoryImageUI.GetComponent<Image>().sprite = memorySprite;
-        memoryImageUI.SetActive(on);
+        memoryImageUI.SetActive(true);
         
     }
 }
