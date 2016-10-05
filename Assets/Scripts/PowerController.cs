@@ -104,14 +104,19 @@ public class PowerController : MonoBehaviour
 
 			if (Input.GetKey (KeyCode.F))
             {
-				GameManager.Self.MemoryImageUI.GetComponent<Image> ().sprite = this.gameObject.transform.GetComponent<MemoryContainer> ().memoryImage;
-				GameManager.Self.MemoryImageUI.SetActive (true);
+                refUI.memoryImageUI.GetComponent<Image>().sprite = this.gameObject.transform.GetComponent<MemoryContainer>().memoryImage;
+                //GameManager.Self.MemoryImageUI.GetComponent<Image> ().sprite = this.gameObject.transform.GetComponent<MemoryContainer> ().memoryImage;
+                refUI.MemoryImageUIHand(true);
+                //GameManager.Self.MemoryImageUI.SetActive (true);
 			}
 
             else
             {
-				GameManager.Self.MemoryImageUI.GetComponent<Image> ().sprite = null;
-				GameManager.Self.MemoryImageUI.SetActive (false);
+                refUI.memoryImageUI.GetComponent<Image>().sprite = null;
+
+                //GameManager.Self.MemoryImageUI.GetComponent<Image> ().sprite = null;
+                refUI.MemoryImageUIHand(false);
+                //GameManager.Self.MemoryImageUI.SetActive (false);
 			}
 		}
 
@@ -177,12 +182,18 @@ public class PowerController : MonoBehaviour
                         refUI.MemoryUI(true);
                         if (Input.GetKey(KeyCode.F))
                         {
-                            GameManager.Self.MemoryImageUI.GetComponent<Image>().sprite = hit.collider.transform.GetComponent<MemoryContainer>().memoryImage;
-                            GameManager.Self.MemoryImageUI.SetActive(true);
+                            refUI.memoryImageUI.GetComponent<Image>().sprite = hit.collider.transform.GetComponent<MemoryContainer>().memoryImage;
+                            //GameManager.Self.MemoryImageUI.GetComponent<Image>().sprite = hit.collider.transform.GetComponent<MemoryContainer>().memoryImage;
+                            refUI.MemoryImageUIHand(true);
+                            //GameManager.Self.MemoryImageUI.SetActive(true);
                         }
-                        else {
-                            GameManager.Self.MemoryImageUI.GetComponent<Image>().sprite = null;
-                            GameManager.Self.MemoryImageUI.SetActive(false);
+
+                        else
+                        {
+                            refUI.memoryImageUI.GetComponent<Image>().sprite = null;
+                            //GameManager.Self.MemoryImageUI.GetComponent<Image>().sprite = null;
+                            refUI.MemoryImageUIHand(false);
+                            //GameManager.Self.MemoryImageUI.SetActive(false);
                         }
                     }
 

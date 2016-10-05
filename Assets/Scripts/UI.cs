@@ -11,6 +11,7 @@ public class UI : MonoBehaviour {
     public GameObject UI_Return;
     public GameObject UI_Hack;
     public GameObject UI_PowerBar;
+    public GameObject memoryImageUI;
 
     PowerController refPC;
 
@@ -61,5 +62,17 @@ public class UI : MonoBehaviour {
     public void PowerBarUI(bool on)
     {
         UI_PowerBar.SetActive(on);
+    }
+
+    public void MemoryImageUIHand(bool on)
+    {
+        memoryImageUI.SetActive(on);
+    }
+
+    public void ExaminableText(Sprite memorySprite, bool on)
+    {
+        memoryImageUI.GetComponent<Image>().sprite = memorySprite;
+        memoryImageUI.SetActive(on);
+        
     }
 }
