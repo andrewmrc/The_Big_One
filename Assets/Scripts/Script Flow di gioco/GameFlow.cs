@@ -11,7 +11,19 @@ public class GameFlow : MonoBehaviour {
 
     private List<bool> sequency;
     private int progress;
-    public int num; //non neccessario
+    
+    #region inspector add-on
+    [Space(50)]
+    public string addNote = "Aggiungi nota";
+    [Tooltip("This is THE VALUE!")]
+    [ContextMenuItem("reset", "resetTheValue")]    
+    public int num;
+    private void resetTheValue()
+    {
+        num = 0;
+    }
+    #endregion
+
 
     //having messo solo condizione ipotetica in cui dobbiamo raccogliere oggetti
     public enum MyEvent { being, having, speaking};
