@@ -4,21 +4,62 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour {
 
-    public Image cursorImage;
-    public Image powerImage;
+    public GameObject cursor;
+    public GameObject UI_Possession;
+    public GameObject UI_Power;
+    public GameObject UI_Memory;
+    public GameObject UI_Return;
+    public GameObject UI_Hack;
+    public GameObject UI_PowerBar;
 
-    void Start ()
+    PowerController refPC;
+
+	void Start ()
     {
-
-	}
+        refPC = FindObjectOfType<PowerController>();
+    }
 	
 
 	void Update ()
     {
-        if (Input.GetKey(KeyCode.Mouse1))
-            cursorImage.gameObject.SetActive(true);
+        if (Input.GetMouseButton(1))
+        {
+            cursor.SetActive(true);
+        }
 
         else
-            cursorImage.gameObject.SetActive(false);
+        {
+            cursor.SetActive(false);
+        }
+    }
+
+    public void PossessionUI(bool on)
+    {
+        UI_Possession.SetActive(on);
+    }
+
+    public void PowerUI(bool on)
+    {
+        UI_Power.SetActive(on);
+    }
+
+    public void MemoryUI(bool on)
+    {
+        UI_Memory.SetActive(on);
+    }
+
+    public void ReturnUI(bool on)
+    {
+        UI_Return.SetActive(on);
+    }
+
+    public void HackUI(bool on)
+    {
+        UI_Hack.SetActive(on);
+    }
+
+    public void PowerBarUI(bool on)
+    {
+        UI_PowerBar.SetActive(on);
     }
 }

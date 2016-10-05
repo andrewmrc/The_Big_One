@@ -16,13 +16,14 @@ public class PowerController : MonoBehaviour
 
     Enemy refEnemy;
     GameManager refGM;
+    UI refUI;
 
     private Ray m_Ray;                        // the ray used in the lateupdate for casting between the player and his target
     private RaycastHit[] m_Hits;              // the hits between the player and his target
     private RaycastHit hitInfo;
     private RayHitComparer m_RayHitComparer;  // variable to compare raycast hit distances
     private Vector3 dir;
-    private bool onEnemy;
+    public bool onEnemy;
 	//GameObject npcTarget;
 	public float powerRange = 10;
 	public int controlBodyCost = 20;
@@ -31,6 +32,7 @@ public class PowerController : MonoBehaviour
     void Start()
     {
         refGM = FindObjectOfType<GameManager>();
+        refUI = FindObjectOfType<UI>();
         cameraRig = GameObject.FindGameObjectWithTag("CameraRig");
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         refEnemy = FindObjectOfType<Enemy>();
@@ -41,18 +43,34 @@ public class PowerController : MonoBehaviour
 
     void Update()
     {
-		//Tasto per attivare la mira. Quando si mira blocchiamo i movimenti del personaggio 
-		//BISOGNA CREARE E POI ATTIVARE QUI IL SISTEMA DI CAMERA PER CUI SARA' POSSIBILE RUOTARE LA VISUALE MIRANDO ENTRO UN CERTO ANGOLO
-		if (Input.GetMouseButton (1)) {
+        if (onEnemy)
+        {
+            refUI.PossessionUI(true);
+        }
+        else
+        {
+            refUI.PossessionUI(false);
+            refUI.PowerUI(false);
+            refUI.MemoryUI(false);
+            refUI.HackUI(false);
+        }
+
+        //Tasto per attivare la mira. Quando si mira blocchiamo i movimenti del personaggio 
+        //BISOGNA CREARE E POI ATTIVARE QUI IL SISTEMA DI CAMERA PER CUI SARA' POSSIBILE RUOTARE LA VISUALE MIRANDO ENTRO UN CERTO ANGOLO
+        if (Input.GetMouseButton (1))
+        {
 			this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
 			this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
 			this.GetComponent<Animator>().SetFloat ("Forward", 0);
 			this.GetComponent<Animator>().SetFloat ("Turn", 0);
 			RaycastHandler ();
-		} else {
+		}
+
+        else
+        {
 			this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
 			this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = true;
-			onEnemy = false;
+            onEnemy = false;
 			/*
 			if (npcTarget != null) {
 				npcTarget.transform.GetComponent<FieldOfView> ().checkVisible = false;
@@ -61,46 +79,45 @@ public class PowerController : MonoBehaviour
 			}*/
 		}
 
-        
-		//Se puntiamo su NPC attiviamo la UI relativa ai poteri
-        if (onEnemy)
+        //Controlliamo se questo è il corpo della protagonista oppure no e in caso attiviamo la UI e il tasto per permettere di tornare nel suo corpo
+        if (this.gameObject != GameManager.Self.playerBody)
         {
-            GameManager.Self.UI_Possession.SetActive(true);
-        }
-        else
-        {
-            GameManager.Self.UI_Possession.SetActive(false);
-            GameManager.Self.UI_Power.SetActive(false);
-			GameManager.Self.UI_Memory.SetActive(false);
-
-        }
-
-
-		//Controlliamo se questo è il corpo della protagonista oppure no e in caso attiviamo la UI e il tasto per permettere di tornare nel suo corpo
-		if (this.gameObject != GameManager.Self.playerBody) {
 			GameManager.Self.outOfYourBody = true;
-			GameManager.Self.UI_Return.SetActive (true);
-			if (Input.GetKeyDown (KeyCode.R)) {
+            refUI.ReturnUI(true);
+			if (Input.GetKeyDown (KeyCode.R))
+            {
 				ReturnToYourBody ();
 			}
-		} else {
-			GameManager.Self.UI_Return.SetActive (false);
+		}
+
+        else
+        {
+            refUI.ReturnUI(false);
 			GameManager.Self.outOfYourBody = false;
 		}
 
 
 		//Potere di leggere un ricordo quando si è nel corpo di un NPC
-		if (this.gameObject.transform.GetComponent<MemoryContainer> () != null) {
-			GameManager.Self.UI_Hack.SetActive (true);
-			if (Input.GetKey (KeyCode.F)) {
+		if (this.gameObject.transform.GetComponent<MemoryContainer> () != null)
+        {
+            refUI.HackUI(true);
+
+			if (Input.GetKey (KeyCode.F))
+            {
 				GameManager.Self.MemoryImageUI.GetComponent<Image> ().sprite = this.gameObject.transform.GetComponent<MemoryContainer> ().memoryImage;
 				GameManager.Self.MemoryImageUI.SetActive (true);
-			} else {
+			}
+
+            else
+            {
 				GameManager.Self.MemoryImageUI.GetComponent<Image> ().sprite = null;
 				GameManager.Self.MemoryImageUI.SetActive (false);
 			}
-		} else {
-			GameManager.Self.UI_Hack.SetActive (false);
+		}
+
+        else
+        {
+            refUI.HackUI(false);
 		}
 
     }
@@ -116,29 +133,33 @@ public class PowerController : MonoBehaviour
             Debug.DrawLine(ray.origin, hit.point, Color.red);
             Debug.Log(hit.collider.name + ", " + hit.collider.tag);
 
-			//Prima controlliamo se stiamo mirando ad un personaggio controllabile
-			if (hit.collider.tag == "ControllableNPC") 
+            //Prima controlliamo se stiamo mirando ad un personaggio controllabile
+            if (hit.collider.tag == "ControllableNPC")
             {
-				//Controlliamo se il personaggio mirato abbia il componente Field Of View e in caso lo aggiungiamo
-				if(hit.collider.transform.GetComponent<FieldOfView>() == null){
-					Debug.Log ("Add Component Field of View");
-					hit.collider.gameObject.AddComponent <FieldOfView>();
-				}				
+                //Controlliamo se il personaggio mirato abbia il componente Field Of View e in caso lo aggiungiamo
+                if (hit.collider.transform.GetComponent<FieldOfView>() == null)
+                {
+                    Debug.Log("Add Component Field of View");
+                    hit.collider.gameObject.AddComponent<FieldOfView>();
+                }
 
-				//A questo punto controlliamo se siamo nel Field Of View del personaggio. In caso negativo possiamo usare il potere.
-				if (!hit.collider.gameObject.GetComponent<FieldOfView> ().visibleTargets.Contains (this.gameObject.transform)) {
-					//refEnemy.HiglightedPower();
-					//Cambia emission brightness agli NPC quando puntati
-					//hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
-					onEnemy = true;
+                //A questo punto controlliamo se siamo nel Field Of View del personaggio. In caso negativo possiamo usare il potere.
+                if (!hit.collider.gameObject.GetComponent<FieldOfView>().visibleTargets.Contains(this.gameObject.transform))
+                {
+                    //refEnemy.HiglightedPower();
+                    //Cambia emission brightness agli NPC quando puntati
+                    //hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
+                    onEnemy = true;
 
-					//Potere di dare ordini mentali. Facciamo prima un controllo così attiviamo la UI relativa solo se necessario.
-					if (hit.collider.transform.GetComponent<EnemyPath> () != null) {
-						GameManager.Self.UI_Power.SetActive(true);
-						if (Input.GetKeyDown (KeyCode.Q) && GameManager.Self.powerQuantity >= mentalPowerCost) {
-							GameManager.Self.powerQuantity -= mentalPowerCost;
-							MoveNPC (hit, 0);
-						} /* Per adesso non li useremo
+                    //Potere di dare ordini mentali. Facciamo prima un controllo così attiviamo la UI relativa solo se necessario.
+                    if (hit.collider.transform.GetComponent<EnemyPath>() != null)
+                    {
+                        refUI.PowerUI(true);
+                        if (Input.GetKeyDown(KeyCode.Q) && GameManager.Self.powerQuantity >= mentalPowerCost)
+                        {
+                            GameManager.Self.powerQuantity -= mentalPowerCost;
+                            MoveNPC(hit, 0);
+                        } /* Per adesso non li useremo
 						if (Input.GetKeyDown (KeyCode.E)) {
 							MoveNPC (hit, 1);
 						}
@@ -148,57 +169,67 @@ public class PowerController : MonoBehaviour
 						if (Input.GetKeyDown (KeyCode.T)) {
 							MoveNPC (hit, 3);
 						}*/
-					}
+                    }
 
-					//Potere di leggere un ricordo nella mente degli NPC. Facciamo prima un controllo così attiviamo la UI relativa solo se necessario.
-					if (hit.collider.transform.GetComponent<MemoryContainer> () != null) {
-						GameManager.Self.UI_Memory.SetActive(true);
-						if (Input.GetKey (KeyCode.F)) {
-							GameManager.Self.MemoryImageUI.GetComponent<Image> ().sprite = hit.collider.transform.GetComponent<MemoryContainer> ().memoryImage;
-							GameManager.Self.MemoryImageUI.SetActive (true);
-						} else {
-							GameManager.Self.MemoryImageUI.GetComponent<Image> ().sprite = null;
-							GameManager.Self.MemoryImageUI.SetActive (false);
-						}
-					}
+                    //Potere di leggere un ricordo nella mente degli NPC. Facciamo prima un controllo così attiviamo la UI relativa solo se necessario.
+                    if (hit.collider.transform.GetComponent<MemoryContainer>() != null)
+                    {
+                        refUI.MemoryUI(true);
+                        if (Input.GetKey(KeyCode.F))
+                        {
+                            GameManager.Self.MemoryImageUI.GetComponent<Image>().sprite = hit.collider.transform.GetComponent<MemoryContainer>().memoryImage;
+                            GameManager.Self.MemoryImageUI.SetActive(true);
+                        }
+                        else {
+                            GameManager.Self.MemoryImageUI.GetComponent<Image>().sprite = null;
+                            GameManager.Self.MemoryImageUI.SetActive(false);
+                        }
+                    }
 
 
-					//Potere di controllare fisicamente gli NPC
-					if (Input.GetKeyDown (KeyCode.Space) && GameManager.Self.powerQuantity >= controlBodyCost) {
-						GameManager.Self.powerQuantity -= controlBodyCost;
-						this.gameObject.tag = "ControllableNPC";
-						this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
-						this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
-						this.gameObject.transform.GetComponent<PowerController> ().enabled = false;
-						this.gameObject.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
-						this.GetComponent<Animator> ().SetFloat ("Forward", 0);
-						this.GetComponent<Animator> ().SetFloat ("Turn", 0);
+                    //Potere di controllare fisicamente gli NPC
+                    if (Input.GetKeyDown(KeyCode.Space) && GameManager.Self.powerQuantity >= controlBodyCost)
+                    {
+                        GameManager.Self.powerQuantity -= controlBodyCost;
+                        this.gameObject.tag = "ControllableNPC";
+                        this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
+                        this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+                        this.gameObject.transform.GetComponent<PowerController>().enabled = false;
+                        this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                        this.GetComponent<Animator>().SetFloat("Forward", 0);
+                        this.GetComponent<Animator>().SetFloat("Turn", 0);
 
-						cameraRig.transform.GetComponent<AbstractTargetFollower> ().m_Target = null;
-						hit.collider.gameObject.tag = "Player";
-						hit.collider.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
-						hit.collider.transform.GetComponent<ThirdPersonCharacter> ().enabled = true;
-						hit.collider.transform.GetComponent<PowerController> ().enabled = true;
+                        cameraRig.transform.GetComponent<AbstractTargetFollower>().m_Target = null;
+                        hit.collider.gameObject.tag = "Player";
+                        hit.collider.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
+                        hit.collider.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
+                        hit.collider.transform.GetComponent<PowerController>().enabled = true;
 
-						hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
-						hit.collider.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
+                        hit.collider.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                        hit.collider.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
-						if (hit.collider.transform.GetComponent<EnemyPath> ()) {
-							hit.collider.transform.GetComponent<EnemyPath> ().enabled = false;
-							hit.collider.transform.GetComponent<NavMeshAgent> ().enabled = false;
-						}
-						MyPosition ();
-					} else {
-						//Feedback all'utente che non ha abbastanza energia residua
+                        if (hit.collider.transform.GetComponent<EnemyPath>())
+                        {
+                            hit.collider.transform.GetComponent<EnemyPath>().enabled = false;
+                            hit.collider.transform.GetComponent<NavMeshAgent>().enabled = false;
+                        }
+                        MyPosition();
+                    }
+                    else
+                    {
+                        //Feedback all'utente che non ha abbastanza energia residua
 
-					}
-				}
+                    }
+                }
             }
+
             else
             {
                 onEnemy = false;
             }
         }
+        else
+            onEnemy = false;
     }
 
 

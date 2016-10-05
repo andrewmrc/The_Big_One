@@ -21,12 +21,13 @@ public class GameManager : MonoBehaviour {
 	public GameObject cameraRig;
 	public GameObject mainCamera;
 
-	public GameObject UI_PowerBar;
-	public GameObject UI_Possession;
-    public GameObject UI_Power;
-	public GameObject UI_Memory;
-	public GameObject UI_Hack;
-	public GameObject UI_Return;
+    /*public GameObject UI_PowerBar;
+    public GameObject UI_Hack;
+    public GameObject UI_Possession;
+    public GameObject UI_Power;		
+	public GameObject UI_Return;*/
+
+    public GameObject UI_Memory;
 
 	public GameObject MemoryImageUI;
 
