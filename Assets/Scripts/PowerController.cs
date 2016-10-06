@@ -223,7 +223,6 @@ public class PowerController : MonoBehaviour
                     else
                     {
                         //Feedback all'utente che non ha abbastanza energia residua
-
                     }
                 }
             }
@@ -237,6 +236,7 @@ public class PowerController : MonoBehaviour
         else
         {
             onEnemy = false;
+            refUI.cursor.GetComponent<Image>().color = Color.white;
         }
             
     }

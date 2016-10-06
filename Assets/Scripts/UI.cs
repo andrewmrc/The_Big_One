@@ -12,6 +12,7 @@ public class UI : MonoBehaviour {
     public GameObject UI_Hack;
     public GameObject UI_PowerBar;
     public GameObject memoryImageUI;
+    public Text ExaminTextUI;
 
     PowerController refPC;
 
@@ -70,10 +71,15 @@ public class UI : MonoBehaviour {
         memoryImageUI.SetActive(on);
     }
 
-    public void ExaminableText(Sprite memorySprite)
+    public void ExamineMemory(Sprite memorySprite, bool on)
     {
         memoryImageUI.GetComponent<Image>().sprite = memorySprite;
-        memoryImageUI.SetActive(true);
-        
+        memoryImageUI.SetActive(on);        
+    }
+
+    public void ExaminableText(bool on)
+    {
+        ExaminTextUI.text = "Premi E per esaminare";
+        ExaminTextUI.gameObject.SetActive(on);
     }
 }
