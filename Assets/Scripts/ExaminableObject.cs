@@ -4,12 +4,11 @@ using System.Collections.Generic;
 
 
 public class ExaminableObject : MonoBehaviour {
-    [Range(0,60)]
-    public float radius = 1f;
+
 
     public Sprite memorySprite;
 
-    public List<Transform> hitTargets = new List<Transform>();
+
 
     UI refUI;
 
@@ -27,7 +26,7 @@ public class ExaminableObject : MonoBehaviour {
 
 	void Update ()
     {
-        ChangeMaterial(isIn);
+        
         /*
         hitTargets.Clear();
         Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, radius);
@@ -52,13 +51,11 @@ public class ExaminableObject : MonoBehaviour {
         if (player.tag == "Player")
         {
             isIn = true;
-            StartCoroutine(ClickMe(0.2f));
-            
-        }
-        else
-        {
-            isIn = false;
-        }
+            StartCoroutine(ClickMe(0.1f));
+            ChangeMaterial(isIn);
+
+        }       
+        
     }
 
     void OnTriggerExit(Collider player)
@@ -70,9 +67,10 @@ public class ExaminableObject : MonoBehaviour {
             Debug.LogWarning("sono uscito");
             refUI.ExaminableText(isIn);
             refUI.ExamineMemory(null, false);
+            ChangeMaterial(isIn);
 
         }
-        //Debug.LogWarning("Luca gay2");
+       
     }
     
     IEnumerator ClickMe(float delay)
