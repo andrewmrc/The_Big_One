@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour {
 
@@ -12,7 +13,7 @@ public class UI : MonoBehaviour {
     public GameObject UI_Hack;
     public GameObject UI_PowerBar;
     public GameObject memoryImageUI;
-    public Text ExaminTextUI;
+    public Text ExaminTextUI, textToShowUI;
 
     PowerController refPC;
 
@@ -32,7 +33,7 @@ public class UI : MonoBehaviour {
         else
         {
             cursor.SetActive(false);
-        }
+        }       
             
     }
 
@@ -79,7 +80,14 @@ public class UI : MonoBehaviour {
 
     public void ExaminableText(bool on)
     {
-        ExaminTextUI.text = "Premi E per esaminare";
+        ExaminTextUI.text = "Premi F per esaminare";
         ExaminTextUI.gameObject.SetActive(on);
     }
+
+    public void TextToShow(string textMemory, bool on)
+    {
+        textToShowUI.text = textMemory;
+        textToShowUI.gameObject.SetActive(on);
+    }
+    
 }
