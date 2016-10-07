@@ -125,7 +125,7 @@ public class PowerController : MonoBehaviour
     public void RaycastHandler()
     {
         Debug.Log("ZoomIn!");
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); ;
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, powerRange))
