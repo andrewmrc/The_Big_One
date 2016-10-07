@@ -195,6 +195,8 @@ public class PowerController : MonoBehaviour
                     //Potere di controllare fisicamente gli NPC
                     if (Input.GetKeyDown(KeyCode.Space) && GameManager.Self.powerQuantity >= controlBodyCost)
                     {
+                        MyGlobal.ChangeBody(hit.collider.gameObject);
+
                         GameManager.Self.powerQuantity -= controlBodyCost;
                         this.gameObject.tag = "ControllableNPC";
                         this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
@@ -244,6 +246,7 @@ public class PowerController : MonoBehaviour
 
     public void ReturnToYourBody()
     {
+        MyGlobal.ChangeBody(GameManager.Self.playerBody.gameObject);
         Debug.Log("Return");
         this.gameObject.tag = "ControllableNPC";
         this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;

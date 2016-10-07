@@ -88,25 +88,22 @@ public class GameFlow : MonoBehaviour {
     }
 
     private void CheckBeingOrdered()
-    {
-        if(progress < items.Count)
+    
         {
-			PowerController isBodyControlled = items[progress].GetComponent<PowerController>();
+            print("uno");
+            PowerController isBodyControlled = items[progress].GetComponent<PowerController>();
             if (isBodyControlled != null && isBodyControlled.isActiveAndEnabled)
             {
-                sequency[progress++] = true;
+                if (progress == 0 || MyGlobal.oldBody == items[progress - 1])
+                {
+                    print("Tre");
+                    sequency[progress++] = true;
+                }
             }
+            End();
         }
-        //print("ultimo controllato:" + (progress - 1));
-        if (progress == sequency.Count)
-        {
-            //print("azione eseguita " + num);
-            this.enabled = false;
-        }
-        End();
-    }
     #endregion
-    #region dialoghi
+        #region dialoghi
     private void CheckSpokedList()
     {
         for (int i = 0; i < items.Count; i++)
