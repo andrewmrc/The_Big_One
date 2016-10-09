@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour {
 		playerBody = GameObject.FindGameObjectWithTag ("Player");
 		cameraRig = GameObject.FindGameObjectWithTag ("CameraRig");
 		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
+        MyGlobal.myBody = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame

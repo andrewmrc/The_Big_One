@@ -4,16 +4,18 @@ using System.Collections.Generic;
 
 public class GameFlow : MonoBehaviour {
 
+    public List<GameObject> players;
+    public List<GameObject> avaiableTarget;
     public List<GameObject> items;
-
     private List<Speaking> spokedList;
     private List<Analizing> analizedList;
 
     private List<bool> sequency;
     private int progress;
-    
+
+    public int numberOfSequence;
+
     #region inspector add-on
-    [Space(50)]
     public string addNote = "Aggiungi nota";
     [Tooltip("This is THE VALUE!")]
     [ContextMenuItem("reset", "resetTheValue")]    
@@ -36,8 +38,9 @@ public class GameFlow : MonoBehaviour {
         spokedList = new List<Speaking>();
         progress = 0;
         
-        DeleteNullOgbjects();
-        sequency = new List<bool>(); for (int i = 0; i < items.Count; i++)
+        DeleteNullObjects();
+        sequency = new List<bool>();
+        for(int i = 0; i < items.Count; i++)
         {
             sequency.Add(false);
         }
@@ -62,7 +65,7 @@ public class GameFlow : MonoBehaviour {
                 case MyEvent.speaking:
                     if (inOrder)
                     {
-
+                        CheckSpokedListOrdered();
                     }
                     else
                     {
@@ -88,24 +91,21 @@ public class GameFlow : MonoBehaviour {
     }
 
     private void CheckBeingOrdered()
-    
-        {
-            print("uno");
-            PowerController isBodyControlled = items[progress].GetComponent<PowerController>();
-            if (isBodyControlled != null && isBodyControlled.isActiveAndEnabled)
-            {
-                if (progress == 0 || MyGlobal.oldBody == items[progress - 1])
-                {
-                    print("Tre");
-                    sequency[progress++] = true;
-                }
-            }
-            End();
-        }
-    #endregion
-        #region dialoghi
-    private void CheckSpokedList()
     {
+        PowerController isBodyControlled = items[progress].GetComponent<PowerController>();
+        if (isBodyControlled != null && isBodyControlled.isActiveAndEnabled)
+        {
+            if (progress == 0 || MyGlobal.oldBody == items[progress - 1])
+            {
+                sequency[progress++] = true;
+            }
+        }
+        End();
+    }
+    #endregion
+    #region dialoghi
+    private void CheckSpokedList()
+    {   //in disordine e senza controllo di chi è che parla
         for (int i = 0; i < items.Count; i++)
         {
             Speaking s = items[i].GetComponent<Speaking>();
@@ -123,7 +123,24 @@ public class GameFlow : MonoBehaviour {
         End();
     }
     private void CheckSpokedListOrdered()
-    {
+    {   //in ordine con controllo degli interlocutori
+        Speaking s = avaiableTarget[progress].GetComponent<Speaking>();
+        
+        foreach (Speaking q in spokedList)
+        {
+            if (s == q) //PERICOLO!!!
+            {
+                if (MyGlobal.myBody == players[progress])
+                {
+                    progress++;
+                    break;
+                }
+            }
+        }
+        if(progress == avaiableTarget.Count)
+        {
+            Destroy(this);
+        }
     }
     public void AddSpokenObject(Speaking s)
     {
@@ -142,7 +159,7 @@ public class GameFlow : MonoBehaviour {
         }
     }
 
-    private void DeleteNullOgbjects()
+    private void DeleteNullObjects()
     {
         int i = 0;
         while (i < items.Count)
