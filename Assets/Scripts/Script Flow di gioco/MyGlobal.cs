@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 public class MyGlobal
 {
-    public static string pathDialogue = @"C:\Users\pc\Desktop\Dialogues.csv";
+    public static string pathDialogue = Application.dataPath + "/Resources/Dialogues/Dialogues.csv";
     public static char separator = ';';
     public static GameObject myBody;
     public static GameObject oldBody;
