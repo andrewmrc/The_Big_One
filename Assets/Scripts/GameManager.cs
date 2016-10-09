@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject playerBody;
 	public GameObject cameraRig;
 	public GameObject mainCamera;
+	public GameObject canvasUI;
 
     /*public GameObject UI_PowerBar;
     public GameObject UI_Hack;
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		canvasUI = FindObjectOfType<UI> ().gameObject;
 		playerBody = GameObject.FindGameObjectWithTag ("Player");
 		cameraRig = GameObject.FindGameObjectWithTag ("CameraRig");
 		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");

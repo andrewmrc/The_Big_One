@@ -13,7 +13,7 @@ public class UI : MonoBehaviour {
     public GameObject UI_Hack;
     public GameObject UI_PowerBar;
     public GameObject memoryImageUI;
-    public Text ExaminTextUI, textToShowUI;
+    public Text ExaminTextUI, textToShowUI, VariousDescriptionUI;
 
     PowerController refPC;
 
