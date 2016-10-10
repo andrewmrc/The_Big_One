@@ -25,7 +25,7 @@ public class UI : MonoBehaviour {
 
 	void Update ()
     {
-        if (Input.GetMouseButton(1))
+		if (Input.GetMouseButton(1) || (Input.GetAxis ("LeftTriggerJoystick") >= 0.001))
         {
             cursor.SetActive(true);
         }
