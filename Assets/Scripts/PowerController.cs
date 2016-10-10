@@ -102,16 +102,24 @@ public class PowerController : MonoBehaviour
         {
             refUI.HackUI(true);
 
-			if (Input.GetKey (KeyCode.F))
+			if (Input.GetKeyDown (KeyCode.F))
             {
                 refUI.memoryImageUI.GetComponent<Image>().sprite = this.gameObject.transform.GetComponent<MemoryContainer>().memoryImage;
                 refUI.MemoryImageUIHand(true);
+				this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
+				this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
+				//Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
+
 			}
 
             else
             {
                 refUI.memoryImageUI.GetComponent<Image>().sprite = null;
                 refUI.MemoryImageUIHand(false);
+				this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
+				this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = true;
+				//Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
+
 			}
 		}
 

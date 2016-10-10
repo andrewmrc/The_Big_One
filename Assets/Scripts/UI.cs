@@ -80,7 +80,7 @@ public class UI : MonoBehaviour {
 
     public void ExaminableText(bool on)
     {
-        ExaminTextUI.text = "Premi F per esaminare";
+        ExaminTextUI.text = "Premi E per esaminare";
         ExaminTextUI.gameObject.SetActive(on);
     }
 

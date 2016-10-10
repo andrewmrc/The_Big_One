@@ -82,7 +82,7 @@ public class ExaminableObject : MonoBehaviour {
                     refUI.ExamineMemory(null, false);
                     isLooking = true;
                     
-                    if (Input.GetKeyDown(KeyCode.F))
+					if (Input.GetKeyDown(KeyCode.E))
                     {
                         isClicked = true;
                         isLooking = false;
@@ -99,7 +99,7 @@ public class ExaminableObject : MonoBehaviour {
                    
                     
                 }
-                else if (Input.GetKeyDown(KeyCode.F) && isClicked)
+				else if (Input.GetKeyDown(KeyCode.E) && isClicked)
                 {
                     isClicked = false;
                     isLooking = true;

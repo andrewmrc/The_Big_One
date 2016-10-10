@@ -20,7 +20,7 @@ public class MenuController : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (SceneManager.GetActiveScene().name == "Hospital_David_Scene")
+            if (SceneManager.GetActiveScene().name == "TestAngelo")
             {
                 PanelExit.SetActive(true);
                 Time.timeScale = 0;
@@ -36,7 +36,8 @@ public class MenuController : MonoBehaviour {
 
     public void Exit()
     {
-        SceneManager.LoadScene(0);
+		Application.Quit ();
+        //SceneManager.LoadScene(0);
     }
 
     public void Resume()
