@@ -28,7 +28,6 @@ public class PowerController : MonoBehaviour
 	public float powerRange = 10;
 	public int controlBodyCost = 20;
 	public int mentalPowerCost = 10;
-
     void Start()
     {
         refGM = FindObjectOfType<GameManager>();
@@ -39,6 +38,7 @@ public class PowerController : MonoBehaviour
         dir = transform.TransformDirection(Vector3.forward);
         // create a new RayHitComparer
         m_RayHitComparer = new RayHitComparer();
+
     }
 
     void Update()
