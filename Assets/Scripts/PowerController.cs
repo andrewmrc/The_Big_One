@@ -57,7 +57,7 @@ public class PowerController : MonoBehaviour
 
         //Tasto per attivare la mira. Quando si mira blocchiamo i movimenti del personaggio 
         //BISOGNA CREARE E POI ATTIVARE QUI IL SISTEMA DI CAMERA PER CUI SARA' POSSIBILE RUOTARE LA VISUALE MIRANDO ENTRO UN CERTO ANGOLO
-        if (Input.GetMouseButton (1))
+		if (Input.GetMouseButton (1)|| (Input.GetAxis ("LeftTriggerJoystick") >= 0.001))
         {
 			this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
 			this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
@@ -84,7 +84,7 @@ public class PowerController : MonoBehaviour
         {
 			GameManager.Self.outOfYourBody = true;
             refUI.ReturnUI(true);
-			if (Input.GetKeyDown (KeyCode.R))
+			if (Input.GetKeyDown (KeyCode.R) || Input.GetButtonDown ("Return"))
             {
 				ReturnToYourBody ();
 			}
@@ -102,7 +102,7 @@ public class PowerController : MonoBehaviour
         {
             refUI.HackUI(true);
 
-			if (Input.GetKeyDown (KeyCode.F))
+			if (Input.GetKeyDown (KeyCode.F) || Input.GetButton ("Hack"))
             {
                 refUI.memoryImageUI.GetComponent<Image>().sprite = this.gameObject.transform.GetComponent<MemoryContainer>().memoryImage;
                 refUI.MemoryImageUIHand(true);
@@ -163,7 +163,7 @@ public class PowerController : MonoBehaviour
                     {
                         MyGlobal.rayCastHit = hit.collider.gameObject;
                         refUI.PowerUI(true);
-                        if (Input.GetKeyDown(KeyCode.Q) && GameManager.Self.powerQuantity >= mentalPowerCost)
+						if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown ("Idea") && GameManager.Self.powerQuantity >= mentalPowerCost)
                         {
                             GameManager.Self.powerQuantity -= mentalPowerCost;
                             MoveNPC(hit, 0);
@@ -183,7 +183,7 @@ public class PowerController : MonoBehaviour
                     if (hit.collider.transform.GetComponent<MemoryContainer>() != null)
                     {
                         refUI.MemoryUI(true);
-                        if (Input.GetKey(KeyCode.F))
+						if (Input.GetKey(KeyCode.F) || Input.GetButton ("Hack"))
                         {
                             refUI.memoryImageUI.GetComponent<Image>().sprite = hit.collider.transform.GetComponent<MemoryContainer>().memoryImage;
                             refUI.MemoryImageUIHand(true);
@@ -200,7 +200,7 @@ public class PowerController : MonoBehaviour
 
 
                     //Potere di controllare fisicamente gli NPC
-                    if (Input.GetKeyDown(KeyCode.Space) && GameManager.Self.powerQuantity >= controlBodyCost)
+					if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown ("Possession") && GameManager.Self.powerQuantity >= controlBodyCost)
                     {
                         MyGlobal.ChangeBody(hit.collider.gameObject);
 

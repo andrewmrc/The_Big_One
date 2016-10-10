@@ -82,7 +82,7 @@ public class AvoidCameraCollision : MonoBehaviour {
 		}
 		else {
             //ease camera back to camSpot
-            if (Input.GetMouseButton(1))
+			if (Input.GetMouseButton(1) || (Input.GetAxis ("LeftTriggerJoystick") >= 0.001))
             {
                 transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(0.4f, -0.4f, -0.7f), 6 * Time.deltaTime);
                 
