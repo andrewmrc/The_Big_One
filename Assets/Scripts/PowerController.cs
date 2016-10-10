@@ -124,8 +124,7 @@ public class PowerController : MonoBehaviour
 
     public void RaycastHandler()
     {
-        Debug.Log("ZoomIn!");
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); ;
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, powerRange))
@@ -139,7 +138,6 @@ public class PowerController : MonoBehaviour
                 //Controlliamo se il personaggio mirato abbia il componente Field Of View e in caso lo aggiungiamo
                 if (hit.collider.transform.GetComponent<FieldOfView>() == null)
                 {
-                    Debug.Log("Add Component Field of View");
                     hit.collider.gameObject.AddComponent<FieldOfView>();
                 }
 
@@ -155,6 +153,7 @@ public class PowerController : MonoBehaviour
                     //Potere di dare ordini mentali. Facciamo prima un controllo così attiviamo la UI relativa solo se necessario.
                     if (hit.collider.transform.GetComponent<EnemyPath>() != null)
                     {
+                        MyGlobal.rayCastHit = hit.collider.gameObject;
                         refUI.PowerUI(true);
                         if (Input.GetKeyDown(KeyCode.Q) && GameManager.Self.powerQuantity >= mentalPowerCost)
                         {
@@ -221,6 +220,14 @@ public class PowerController : MonoBehaviour
                             hit.collider.transform.GetComponent<NavMeshAgent>().enabled = false;
                         }
                         MyPosition();
+                    }
+                    if (Input.GetKeyDown(KeyCode.S))
+                    {
+                        Speaking s = hit.collider.gameObject.GetComponent<Speaking>();
+                        if (s)
+                        {
+                            s.Speak(GameObject.Find("GameManager").GetComponent<GameFlow>());
+                        }
                     }
                     else
                     {

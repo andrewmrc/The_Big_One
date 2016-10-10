@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
 
 public class Speaking : MonoBehaviour {
-    
+
+    public int numberOfSentence;
     private GameFlow refGameFlow;
-
-    void Start()
+    public Text dialogo;
+    public void Speak(GameFlow refGameFlow)
     {
-        if (!refGameFlow)
-            refGameFlow = GameObject.Find("GameManager").GetComponent<GameFlow>();
-    }
-    void Update()
-    {
-        if (Input.anyKeyDown)
+        refGameFlow.AddSpokenObject(this);
+        //CsvFileReader
+        print("parli con: " + gameObject.name);
+        string[] sentences = CsvFileReader.ReadSpecificRow(MyGlobal.pathDialogue, 0, gameObject.name);
+        if (sentences != null)
         {
-            refGameFlow.AddSpokenObject(this);
-            ///qui andrebbe fatta la funzione del dialogo fuori dall'update
-
+            string dialogue = sentences[refGameFlow.numberOfSequence].Split(MyGlobal.separator)[numberOfSentence++];
+            print(dialogue);
+            dialogo.text = dialogue;
         }
     }
+
 }

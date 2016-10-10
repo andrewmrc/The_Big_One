@@ -7,7 +7,7 @@ public class ReturnInPosition : MonoBehaviour {
 
     NavMeshAgent refNav;
     GameManager refGM;
-    
+	public float waitTime;
 
     Vector3 initialPosition;
 
@@ -19,6 +19,8 @@ public class ReturnInPosition : MonoBehaviour {
 		PowerController bodyControlHandle = GetComponent<PowerController>();
         bodyControlHandle.returnEvent.AddListener(MyPosition);
     }
+
+
     // Use this for initialization
     void Start () {
          
@@ -39,26 +41,31 @@ public class ReturnInPosition : MonoBehaviour {
         
     }
 
-    void OnEnable()
-    {
-        
-        
-    }
 
     public void MyPosition()
     {
-        refNav.enabled = true;
-        this.GetComponent<ThirdPersonCharacter>().enabled = true;
-        Debug.LogWarning(Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance);
-        if (Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance)
-        {
-            Debug.LogWarning("Sono distante");
-            
-            GetComponent<ReturnInPosition>().enabled = true;
-            refNav.destination = initialPosition;
-            
-        }
+		StartCoroutine(BackToMyPlace());
     }
+
+
+	//aggiungiamo un delay prima di rimandare il personaggio al suo posto
+	IEnumerator BackToMyPlace () {
+		yield return new WaitForSeconds (waitTime);
+		refNav.enabled = true;
+		this.GetComponent<ThirdPersonCharacter>().enabled = true;
+		Debug.LogWarning(Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance);
+		if (Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance)
+		{
+			Debug.LogWarning("Sono distante");
+
+			GetComponent<ReturnInPosition>().enabled = true;
+			refNav.destination = initialPosition;
+
+
+		}
+	}
+
+
     IEnumerator DisableComponents()
     {
         yield return new WaitForSeconds(0.5f);
