@@ -11,13 +11,13 @@ public class Speaking : MonoBehaviour {
     {
         refGameFlow.AddSpokenObject(this);
         //CsvFileReader
-        print("parli con: " + gameObject.name);
+        //print("parli con: " + gameObject.name);
         string[] sentences = CsvFileReader.ReadSpecificRow(MyGlobal.pathDialogue, 0, gameObject.name);
         if (sentences != null)
         {
             string dialogue = sentences[refGameFlow.numberOfSequence].Split(MyGlobal.separator)[numberOfSentence++];
-            print(dialogue);
-            dialogo.text = dialogue;
+            //print(dialogue);
+            dialogo.text = gameObject.name + ": " + dialogue;
         }
     }
 
