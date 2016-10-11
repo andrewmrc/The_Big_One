@@ -28,7 +28,7 @@ public class ReturnInPosition : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (refNav.remainingDistance > refNav.stoppingDistance)
+		if (refNav.enabled && refNav.remainingDistance > refNav.stoppingDistance)
         {
             GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);
         }
