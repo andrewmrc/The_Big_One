@@ -65,7 +65,6 @@ public class PowerController : MonoBehaviour
 			this.GetComponent<Animator>().SetFloat ("Turn", 0);
 			RaycastHandler ();
 		}
-
         else
         {
 			this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
@@ -100,33 +99,25 @@ public class PowerController : MonoBehaviour
 		//Potere di leggere un ricordo quando si è nel corpo di un NPC
 		if (this.gameObject.transform.GetComponent<MemoryContainer> () != null)
         {
+			Debug.Log ("MemoryCheck");
             refUI.HackUI(true);
 
-			if (Input.GetKeyDown (KeyCode.F) || Input.GetButton ("Hack"))
+			if (Input.GetKey (KeyCode.F) || Input.GetButton ("Hack"))
             {
                 refUI.memoryImageUI.GetComponent<Image>().sprite = this.gameObject.transform.GetComponent<MemoryContainer>().memoryImage;
                 refUI.MemoryImageUIHand(true);
 				this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
 				this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
-				//Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
+				Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
 
-			}
-
-            else
+			} else
             {
                 refUI.memoryImageUI.GetComponent<Image>().sprite = null;
                 refUI.MemoryImageUIHand(false);
-				this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
-				this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = true;
-				//Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
+				Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
 
 			}
-		}
-
-        else
-        {
-            refUI.HackUI(false);
-		}
+		} 
 
     }
 
@@ -264,9 +255,9 @@ public class PowerController : MonoBehaviour
         MyGlobal.ChangeBody(GameManager.Self.playerBody.gameObject);
         Debug.Log("Return");
         this.gameObject.tag = "ControllableNPC";
+		this.gameObject.transform.GetComponent<PowerController>().enabled = false;
         this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
         this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
-        this.gameObject.transform.GetComponent<PowerController>().enabled = false;
         this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 		this.GetComponent<Animator>().SetFloat ("Forward", 0);
 		this.GetComponent<Animator>().SetFloat ("Turn", 0);

@@ -54,21 +54,28 @@ public class ReturnInPosition : MonoBehaviour {
 		refNav.enabled = true;
 		this.GetComponent<ThirdPersonCharacter>().enabled = true;
 		Debug.LogWarning(Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance);
-		if (Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance)
-		{
-			Debug.LogWarning("Sono distante");
+		if (Vector3.Distance (initialPosition, this.transform.position) > refNav.stoppingDistance) {
+			Debug.LogWarning ("Sono distante");
 
-			GetComponent<ReturnInPosition>().enabled = true;
+			GetComponent<ReturnInPosition> ().enabled = true;
 			refNav.destination = initialPosition;
 
 
+		} else {
+			StartCoroutine(DisableComponents());
 		}
 	}
 
 
     IEnumerator DisableComponents()
     {
-        yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.5f);
         GetComponent<ReturnInPosition>().enabled = false;
+		GetComponent<NavMeshAgent>().enabled = false;
+		this.GetComponent<ThirdPersonCharacter>().enabled = false;
+		this.GetComponent<ThirdPersonUserControl>().enabled = false;
+
+		this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
     }
 }
