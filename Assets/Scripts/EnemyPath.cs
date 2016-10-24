@@ -34,6 +34,7 @@ public class EnemyPath : MonoBehaviour {
 
     void OnEnable()
     {
+        GetComponent<ReturnInPosition>().isWaiting = false;
         isReached = false;
         isOnTime = false;
         GoToPoint(nArray);
@@ -60,6 +61,12 @@ public class EnemyPath : MonoBehaviour {
 
             StartCoroutine(DisableComponents());
             
+        }
+
+        if (GetComponent<FSMLogic>().enabled)
+        {
+            refNav.enabled = false;
+            GetComponent<EnemyPath>().enabled = false;
         }
     }
 
@@ -100,7 +107,7 @@ public class EnemyPath : MonoBehaviour {
 
     void OnDisable()
     {
-        
+        GetComponent<ReturnInPosition>().isWaiting = true;
         
     }
 }

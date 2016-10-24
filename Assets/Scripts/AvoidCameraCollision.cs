@@ -81,13 +81,28 @@ public class AvoidCameraCollision : MonoBehaviour {
 			}	
 		}
 		else {
-            //ease camera back to camSpot
-			if (Input.GetMouseButton(1) || (Input.GetAxis ("LeftTriggerJoystick") >= 0.001))
+            bool isShowMemory = false;
+            if (GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>())
             {
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(0.4f, -0.4f, -0.7f), 6 * Time.deltaTime);
-                
+                isShowMemory = GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().isShowMemory;
+
             }
-            else
+            //ease camera back to camSpot
+            if (Input.GetMouseButton(1) || (Input.GetAxis ("LeftTriggerJoystick") >= 0.001) )
+            {
+                if (!isShowMemory)
+                {
+                    transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(0.4f, -0.4f, -0.7f), 6 * Time.deltaTime);
+
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, camSpot.transform.position, returnTime * Time.deltaTime);
+
+                }
+
+            }
+            else 
             {
                 transform.position = Vector3.MoveTowards(transform.position, camSpot.transform.position, returnTime * Time.deltaTime);
 

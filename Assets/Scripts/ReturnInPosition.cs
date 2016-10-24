@@ -11,12 +11,14 @@ public class ReturnInPosition : MonoBehaviour {
 
     Vector3 initialPosition;
 
+    public bool isWaiting = true;
+
     void Awake()
     {
         refNav = GetComponent<NavMeshAgent>();
         GetComponent<ReturnInPosition>().enabled = false;
         initialPosition = this.transform.position;
-		PowerController bodyControlHandle = GetComponent<PowerController>();
+		State_ControlBody bodyControlHandle = GetComponent<State_ControlBody>();
         bodyControlHandle.returnEvent.AddListener(MyPosition);
     }
 
@@ -28,17 +30,34 @@ public class ReturnInPosition : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (refNav.enabled && refNav.remainingDistance > refNav.stoppingDistance)
+
+
+        if (!GetComponent<FSMLogic>().enabled)
         {
-            GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);
+            if (refNav.enabled && refNav.remainingDistance > refNav.stoppingDistance)
+            {
+                GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);
+            }
+            else
+            {
+                GetComponent<ThirdPersonCharacter>().Move(Vector3.zero, false, false);
+                StartCoroutine(DisableComponents());
+
+            }
         }
-        else
+
+        if (GetComponent<FSMLogic>().enabled)
         {
-            GetComponent<ThirdPersonCharacter>().Move(Vector3.zero, false, false);
-            StartCoroutine(DisableComponents());
-            
+            refNav.enabled = false;
+            GetComponent<ReturnInPosition>().enabled = false;
+
         }
         
+        
+
+        
+		
+         
     }
 
 
@@ -51,19 +70,21 @@ public class ReturnInPosition : MonoBehaviour {
 	//aggiungiamo un delay prima di rimandare il personaggio al suo posto
 	IEnumerator BackToMyPlace () {
 		yield return new WaitForSeconds (waitTime);
-		refNav.enabled = true;
-		this.GetComponent<ThirdPersonCharacter>().enabled = true;
-		Debug.LogWarning(Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance);
-		if (Vector3.Distance (initialPosition, this.transform.position) > refNav.stoppingDistance) {
-			Debug.LogWarning ("Sono distante");
-
-			GetComponent<ReturnInPosition> ().enabled = true;
-			refNav.destination = initialPosition;
-
-
-		} else {
-			StartCoroutine(DisableComponents());
-		}
+        if (isWaiting)
+        {
+            refNav.enabled = true;
+            this.GetComponent<ThirdPersonCharacter>().enabled = true;
+            if (Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance)
+            {
+                GetComponent<ReturnInPosition>().enabled = true;
+                refNav.destination = initialPosition;
+            }
+            else
+            {
+                StartCoroutine(DisableComponents());
+            }
+        }
+		
 	}
 
 
