@@ -43,6 +43,8 @@ public class State_PowerControl : State {
         refUI.ReturnUI(false);
         this.GetComponent<Animator>().SetFloat("Forward", 0);
         this.GetComponent<Animator>().SetFloat("Turn", 0);
+        this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
+        this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
 
         // Controlliamo se l'NPC è distante
         if (Physics.Raycast(ray, out hit, 1000))

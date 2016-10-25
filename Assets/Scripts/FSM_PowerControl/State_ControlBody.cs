@@ -15,7 +15,8 @@ public class State_ControlBody : State {
     public override void StateUpdate()
     {
         Debug.LogWarning("Non premi il tasto destro");
-
+        this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = enabled;
+        this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = enabled;
         #region Player Control check
         //Controlliamo se questo è il corpo della protagonista oppure no e in caso attiviamo la UI e il tasto per permettere di tornare nel suo corpo
         if (this.gameObject != GameManager.Self.playerBody)
