@@ -92,7 +92,7 @@ public class State_PowerControl : State {
                     #endregion
 
                     // Logica per effettuare i movimenti in posti precisi agli NPC
-                    if (hit.collider.transform.GetComponent<EnemyPath>() != null)
+                    if (hit.collider.transform.GetComponent<FSM_EnemyPath>() != null)
                     {
                         refUI.PowerUI(true);
                         if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Idea") && GameManager.Self.powerQuantity >= mentalPowerCost)
@@ -126,8 +126,8 @@ public class State_PowerControl : State {
 
     public void MoveNPC(RaycastHit hitted, int arrayPosition)
     {
-        hitted.collider.transform.GetComponent<EnemyPath>().input = arrayPosition;
-        hitted.collider.transform.GetComponent<EnemyPath>().enabled = true;
+        hitted.collider.transform.GetComponent<FSM_EnemyPath>().input = arrayPosition;
+        hitted.collider.transform.GetComponent<FSM_EnemyPath>().enabled = true;
     }
 
     
