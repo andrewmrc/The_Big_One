@@ -17,6 +17,9 @@ public class State_PowerControl : State {
     public int controlBodyCost = 20;
     public int mentalPowerCost = 10;
 
+    public Sprite cursorPoint;
+    public Sprite cursorFar;
+
 
 
     UI refUI;
@@ -26,14 +29,17 @@ public class State_PowerControl : State {
         refUI = FindObjectOfType<UI>();
         cameraRig = GameObject.FindGameObjectWithTag("CameraRig");
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        cursorPoint = Resources.Load("CursorPoint") as Sprite;
+        cursorFar = Resources.Load("CursorFar") as Sprite;
     }
 
     public override void StateUpdate()
     {
+        
         Debug.LogWarning("Premi il tasto destro");
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
-
+        refUI.memoryImageUI.GetComponent<CanvasGroup>().alpha = 0;
         refUI.ReturnUI(false);
         this.GetComponent<Animator>().SetFloat("Forward", 0);
         this.GetComponent<Animator>().SetFloat("Turn", 0);
@@ -44,18 +50,25 @@ public class State_PowerControl : State {
             if (hit.collider.tag == "ControllableNPC")
             {
                 isNear = false;
+                refUI.cursorFar.SetActive(true);
 
             }
+            else
+            {
+                refUI.cursorFar.SetActive(false);
+            }
         }
+        
         // Se l'NPC è vicino al powerRange
         if (Physics.Raycast(ray, out hit, powerRange))
         {
-
+            refUI.cursorFar.SetActive(false);
             //Prima controlliamo se stiamo mirando ad un personaggio controllabile
             if (hit.collider.tag == "ControllableNPC")
             {
                 GetComponent<FSMLogic>().onEnemy = false;
                 isNear = true;
+                
                 //Controlliamo se il personaggio mirato abbia il componente Field Of View e in caso lo aggiungiamo
                 if (hit.collider.transform.GetComponent<FieldOfView>() == null)
                 {
@@ -128,6 +141,18 @@ public class State_PowerControl : State {
     {
         hitted.collider.transform.GetComponent<FSM_EnemyPath>().input = arrayPosition;
         hitted.collider.transform.GetComponent<FSM_EnemyPath>().enabled = true;
+    }
+
+    void TooFarFeedback()
+    {
+        if (!isNear)
+        {
+            refUI.cursor.GetComponent<Image>().sprite = cursorPoint;
+        }
+        else
+        {
+            refUI.cursor.GetComponent<Image>().sprite = cursorFar;
+        }
     }
 
     

@@ -49,7 +49,7 @@ public class FSM_ReturnInPosition : MonoBehaviour {
         if (GetComponent<FSMLogic>().enabled)
         {
             refNav.enabled = false;
-            GetComponent<ReturnInPosition>().enabled = false;
+            GetComponent<FSM_ReturnInPosition>().enabled = false;
 
         }
         
