@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.Cameras;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class FSMLogic : MonoBehaviour {
 
-    public float powerRange;
+    public float powerRange = Mathf.Infinity;
     public bool isShowMemory = false;
     public bool isAiming = false;
 
+    public Sprite imageSprite;
 
 
     public bool onEnemy = false;
@@ -53,6 +56,9 @@ public class FSMLogic : MonoBehaviour {
         {
             sm.HandleInput(InputTransition.UnshowMemory);
             isShowMemory = false;
+            this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
+            this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
+            Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
         }
 
         
@@ -74,18 +80,26 @@ public class FSMLogic : MonoBehaviour {
             if (hit.collider.tag == "ControllableNPC")
             {
                 #region Memory condition
-                if (hit.collider.GetComponent<State_ShowMemory>())
+                if (hit.collider.GetComponent<MemoryContainer>())
                 {
                     refUI.MemoryUI(true);
                     if (Input.GetKeyDown(KeyCode.F) && !isShowMemory)
                     {
                         sm.HandleInput(InputTransition.ShowMemory);
+                        imageSprite = hit.collider.GetComponent<MemoryContainer>().memoryImage;
                         isShowMemory = true;
+                        this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
+                        this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+                        Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
                     }
                     else if (Input.GetKeyDown(KeyCode.F) && isShowMemory)
                     {
                         sm.HandleInput(InputTransition.UnshowMemory);
+                        this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
+                        this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
+                        Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
                         isShowMemory = false;
+                        
                     }
 
                 }
