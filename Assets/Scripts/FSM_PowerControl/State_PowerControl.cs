@@ -102,7 +102,22 @@ public class State_PowerControl : State {
                         hit.collider.transform.GetComponent<FSMLogic>().enabled = true;
                         hit.collider.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                         hit.collider.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-                        
+
+						//Controlliamo se il corpo dove stiamo entrando è quello della protagonista oppure no e in caso attiviamo la UI e il tasto per permettere di tornare nel suo corpo
+						if (hit.collider.gameObject != GameManager.Self.playerBody)
+						{
+							GameManager.Self.outOfYourBody = true;
+							refUI.ReturnUI(true);
+
+							//Consuma l'energia solo se sta entrando nel corpo di un altro personaggio e non nel suo
+							GameManager.Self.powerQuantity -= controlBodyCost;
+						}
+						else
+						{
+							refUI.ReturnUI(false);
+							GameManager.Self.outOfYourBody = false;
+						}
+
                     }
                     #endregion
 
