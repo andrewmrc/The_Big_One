@@ -4,10 +4,10 @@ using UnityStandardAssets.Characters.ThirdPerson;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(ReturnInPosition))]
+[RequireComponent(typeof(FSM_ReturnInPosition))]
 
 
-public class EnemyPath : MonoBehaviour {
+public class FSM_EnemyPath : MonoBehaviour {
 
     NavMeshAgent refNav;
     GameManager refGM;
@@ -34,7 +34,7 @@ public class EnemyPath : MonoBehaviour {
 
     void OnEnable()
     {
-        GetComponent<ReturnInPosition>().isWaiting = false;
+		GetComponent<FSM_ReturnInPosition>().isWaiting = false;
         isReached = false;
         isOnTime = false;
         GoToPoint(nArray);
@@ -66,7 +66,7 @@ public class EnemyPath : MonoBehaviour {
         if (GetComponent<FSMLogic>().enabled)
         {
             refNav.enabled = false;
-            GetComponent<EnemyPath>().enabled = false;
+            GetComponent<FSM_EnemyPath>().enabled = false;
         }
     }
 
@@ -102,12 +102,12 @@ public class EnemyPath : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         
         
-        GetComponent<EnemyPath>().enabled = false;
+        GetComponent<FSM_EnemyPath>().enabled = false;
     }
 
     void OnDisable()
     {
-        GetComponent<ReturnInPosition>().isWaiting = true;
+		GetComponent<FSM_ReturnInPosition>().isWaiting = true;
         
     }
 }

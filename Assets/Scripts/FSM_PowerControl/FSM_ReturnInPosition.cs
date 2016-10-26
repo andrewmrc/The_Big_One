@@ -3,7 +3,7 @@ using System.Collections;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 
-public class ReturnInPosition : MonoBehaviour {
+public class FSM_ReturnInPosition : MonoBehaviour {
 
     NavMeshAgent refNav;
     GameManager refGM;
@@ -16,9 +16,9 @@ public class ReturnInPosition : MonoBehaviour {
     void Awake()
     {
         refNav = GetComponent<NavMeshAgent>();
-        GetComponent<ReturnInPosition>().enabled = false;
+        GetComponent<FSM_ReturnInPosition>().enabled = false;
         initialPosition = this.transform.position;
-		PowerController bodyControlHandle = GetComponent<PowerController>();
+		State_ControlBody bodyControlHandle = GetComponent<State_ControlBody>();
         bodyControlHandle.returnEvent.AddListener(MyPosition);
     }
 
@@ -31,17 +31,32 @@ public class ReturnInPosition : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (refNav.enabled && refNav.remainingDistance > refNav.stoppingDistance)
+
+        if (!GetComponent<FSMLogic>().enabled)
         {
-            GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);
+            if (refNav.enabled && refNav.remainingDistance > refNav.stoppingDistance)
+            {
+                GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);
+            }
+            else
+            {
+                GetComponent<ThirdPersonCharacter>().Move(Vector3.zero, false, false);
+                StartCoroutine(DisableComponents());
+
+            }
         }
-        else
+
+        if (GetComponent<FSMLogic>().enabled)
         {
-            GetComponent<ThirdPersonCharacter>().Move(Vector3.zero, false, false);
-            StartCoroutine(DisableComponents());
+            refNav.enabled = false;
+            GetComponent<FSM_ReturnInPosition>().enabled = false;
 
         }
-				
+        
+        
+
+        
+		
          
     }
 
@@ -61,7 +76,7 @@ public class ReturnInPosition : MonoBehaviour {
             this.GetComponent<ThirdPersonCharacter>().enabled = true;
             if (Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance)
             {
-                GetComponent<ReturnInPosition>().enabled = true;
+                GetComponent<FSM_ReturnInPosition>().enabled = true;
                 refNav.destination = initialPosition;
             }
             else
@@ -76,7 +91,7 @@ public class ReturnInPosition : MonoBehaviour {
     IEnumerator DisableComponents()
     {
 		yield return new WaitForSeconds(0.5f);
-        GetComponent<ReturnInPosition>().enabled = false;
+        GetComponent<FSM_ReturnInPosition>().enabled = false;
 		GetComponent<NavMeshAgent>().enabled = false;
 		this.GetComponent<ThirdPersonCharacter>().enabled = false;
 		this.GetComponent<ThirdPersonUserControl>().enabled = false;
