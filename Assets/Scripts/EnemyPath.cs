@@ -63,7 +63,7 @@ public class EnemyPath : MonoBehaviour {
             
         }
 
-        if (GetComponent<FSMLogic>().enabled)
+		if (GetComponent<FSMLogic>() && GetComponent<FSMLogic>().enabled)
         {
             refNav.enabled = false;
             GetComponent<EnemyPath>().enabled = false;
