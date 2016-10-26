@@ -35,7 +35,7 @@ public class Movement : MonoBehaviour {
             playerAnim.SetFloat("Forward", 0f);
         }
 
-        /*if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             StartCoroutine(MoveLateral(1));
             playerAnim.SetFloat("Forward", 0.5f);
@@ -50,7 +50,7 @@ public class Movement : MonoBehaviour {
             this.transform.Rotate(transform.up, 200 * Time.deltaTime, Space.World);
             playerAnim.SetFloat("Forward", 0.5f);
             isMoving = true;
-        }*/
+        }
 
         if (Input.GetKey(KeyCode.S))
         {
