@@ -5,7 +5,7 @@ public class Movement : MonoBehaviour {
 
     Animator playerAnim;
     float mouseX;
-    bool isMoving;
+    public bool isMoving;
 
 	void Start ()
     {
@@ -17,39 +17,64 @@ public class Movement : MonoBehaviour {
     {
         mouseX = Input.GetAxis("Mouse X");
 
-
         if (isMoving)
-        {
-            transform.Rotate(Vector3.up, mouseX * 100f * Time.deltaTime, Space.World);
-            //transform.forward = Camera.main.transform.forward;
-        }
+            transform.Rotate(Vector3.up, mouseX * 50f * Time.deltaTime, Space.World);
         else
-        {
             transform.Rotate(Vector3.up * 0f);
-        }
-
 
         if (Input.GetKey(KeyCode.W))
         {
-            playerAnim.SetFloat("Forward", 1f);
+            StartCoroutine(StartMove(-1));
+            playerAnim.SetFloat("Forward", 0.5f);
             isMoving = true;
         }
 
         else
         {
-            playerAnim.SetFloat("Forward", 0.5f);
             isMoving = false;
+            playerAnim.SetFloat("Forward", 0f);
         }
 
+        /*if (Input.GetKey(KeyCode.A))
+        {
+            StartCoroutine(MoveLateral(1));
+            playerAnim.SetFloat("Forward", 0.5f);
+            this.transform.Rotate(transform.up, -200 * Time.deltaTime, Space.World);
+            isMoving = true;
 
-        if (Input.GetKey(KeyCode.A))
-            this.transform.Rotate(transform.up, -100 * Time.deltaTime, Space.World);
+        }
 
         if (Input.GetKey(KeyCode.D))
-            this.transform.Rotate(transform.up, 100 * Time.deltaTime, Space.World);
+        {
+            StartCoroutine(MoveLateral(-1));
+            this.transform.Rotate(transform.up, 200 * Time.deltaTime, Space.World);
+            playerAnim.SetFloat("Forward", 0.5f);
+            isMoving = true;
+        }*/
 
         if (Input.GetKey(KeyCode.S))
         {
+            StartCoroutine(StartMove(1));
+            playerAnim.SetFloat("Forward", 0.5f);
+            isMoving = true;
+        }
+    }
+
+    IEnumerator StartMove (sbyte dir)
+    {
+        if (!isMoving)
+        {
+            transform.forward = GameObject.FindGameObjectWithTag("CameraRig").transform.forward * dir;
+            yield return null;
+        }
+    }
+
+    IEnumerator MoveLateral (sbyte dir)
+    {
+        if (!isMoving)
+        {
+            transform.forward = GameObject.FindGameObjectWithTag("CameraRig").transform.right * dir;
+            yield return null;
         }
     }
 }
