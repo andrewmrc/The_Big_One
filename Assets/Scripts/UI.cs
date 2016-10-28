@@ -69,7 +69,7 @@ public class UI : MonoBehaviour {
         UI_PowerBar.SetActive(on);
     }
 
-    public void MemoryImageUIHand(bool on)
+    public void MemoryImageUI(bool on)
     {
         memoryImageUI.SetActive(on);
     }

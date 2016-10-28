@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour {
 	public float powerQuantity = 100f;
 	public bool outOfYourBody = false;
 	public int nBodyChanged = 0;
+	public bool isShowMemory = false;
 
     // Use this for initialization
     void Start () {

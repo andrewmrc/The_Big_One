@@ -111,7 +111,7 @@ public class PowerController : MonoBehaviour
 
 						showMemory = true;
 						refUI.memoryImageUI.GetComponent<Image> ().sprite = this.gameObject.transform.GetComponent<MemoryContainer> ().memoryImage;
-						refUI.MemoryImageUIHand (true);
+						refUI.MemoryImageUI (true);
 						this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
 						this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
 						Camera.main.GetComponentInParent<FreeLookCam> ().enabled = false;
@@ -120,7 +120,7 @@ public class PowerController : MonoBehaviour
 						Debug.Log ("Spegni");
 						showMemory = false;
 						refUI.memoryImageUI.GetComponent<Image> ().sprite = null;
-						refUI.MemoryImageUIHand (false);
+						refUI.MemoryImageUI (false);
 						Camera.main.GetComponentInParent<FreeLookCam> ().enabled = true;
 					}
 				}
@@ -196,7 +196,7 @@ public class PowerController : MonoBehaviour
 						{
 							showMemory = true;
 							refUI.memoryImageUI.GetComponent<Image>().sprite = hit.collider.transform.GetComponent<MemoryContainer>().memoryImage;
-							refUI.MemoryImageUIHand(true);
+							refUI.MemoryImageUI(true);
 							this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
 							this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
 							Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
@@ -206,7 +206,7 @@ public class PowerController : MonoBehaviour
 					else if ((Input.GetKeyDown (KeyCode.F) || Input.GetButtonDown ("Hack") && showMemory)) {
 						showMemory = false;
 						refUI.memoryImageUI.GetComponent<Image>().sprite = null;
-						refUI.MemoryImageUIHand(false);
+						refUI.MemoryImageUI(false);
 						Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
 					}
 
@@ -329,7 +329,7 @@ public class PowerController : MonoBehaviour
 			refUI.PowerUI(false);
 			refUI.MemoryUI(false);
 			refUI.HackUI(false);
-			refUI.MemoryImageUIHand(false);
+			refUI.MemoryImageUI(false);
 
 		}
 	}

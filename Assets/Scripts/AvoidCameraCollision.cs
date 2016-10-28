@@ -84,7 +84,8 @@ public class AvoidCameraCollision : MonoBehaviour {
             bool isShowMemory = false;
             if (GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>())
             {
-                isShowMemory = GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().isShowMemory;
+                //isShowMemory = GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().isShowMemory;
+				isShowMemory = GameManager.Self.isShowMemory;
 
             }
             //ease camera back to camSpot

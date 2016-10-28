@@ -6,15 +6,19 @@ using UnityEngine.UI;
 public class State_ShowMemory : State {
     UI refUI;
     
-    
+	public Sprite memoryImage;
 
     public override void StateUpdate()
     {
         
         Debug.LogWarning("Sto vedendo la memoria");
+
+		refUI.HackUI (false);
+		refUI.ReturnUI (false);
+
         refUI.cursor.GetComponent<Image>().color = Color.clear;
-        refUI.MemoryImageUIHand(true);
-        refUI.memoryImageUI.GetComponent<Image>().sprite = GetComponent<FSMLogic>().imageSprite;
+        refUI.MemoryImageUI(true);
+		refUI.memoryImageUI.GetComponent<Image>().sprite = memoryImage;
         refUI.memoryImageUI.GetComponent<CanvasGroup>().alpha += Time.deltaTime / 2;
 
 

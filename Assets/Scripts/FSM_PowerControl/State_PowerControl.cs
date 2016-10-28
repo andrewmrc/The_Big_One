@@ -41,11 +41,13 @@ public class State_PowerControl : State {
         RaycastHit hit;
         refUI.memoryImageUI.GetComponent<CanvasGroup>().alpha = 0;
         refUI.ReturnUI(false);
+		refUI.HackUI (false);
         this.GetComponent<Animator>().SetFloat("Forward", 0);
         this.GetComponent<Animator>().SetFloat("Turn", 0);
         this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
         this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
         refUI.cursorFar.SetActive(false);
+
         // Controlliamo se l'NPC è distante
         if (Physics.Raycast(ray, out hit, 1000))
         {

@@ -18,30 +18,37 @@ public class State_ControlBody : State {
         this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = enabled;
         this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = enabled;
         refUI.cursorFar.SetActive(false);
-        #region Player Control check
-        //Controlliamo se questo è il corpo della protagonista oppure no e in caso attiviamo la UI e il tasto per permettere di tornare nel suo corpo
-        if (this.gameObject != GameManager.Self.playerBody)
-        {
-            GameManager.Self.outOfYourBody = true;
-            refUI.ReturnUI(true);
-            if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Return"))
-            {
-                ReturnToYourBody();
-            }
-        }
-        else
-        {
-            refUI.ReturnUI(false);
-            GameManager.Self.outOfYourBody = false;
-        }
+
+		#region Player Control check
+		//Controlliamo se questo è il corpo della protagonista oppure no e in caso attiviamo la UI e il tasto per permettere di tornare nel suo corpo
+		if (GameManager.Self.outOfYourBody)
+		{
+			refUI.ReturnUI(true);
+			if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Return"))
+			{
+				ReturnToYourBody();
+			}
+		}
         #endregion
+
+		#region Memory check
+		if (this.gameObject.GetComponent<State_ShowMemory> ()) {
+			refUI.HackUI (true);
+
+		} else {
+			refUI.HackUI (false);
+
+		}
+		#endregion
     }
+
 
     // Use this for initialization
     void Start () {
         refUI = FindObjectOfType<UI>();
         cameraRig = GameObject.FindGameObjectWithTag("CameraRig");
     }
+
 
     public void ReturnToYourBody()
     {
@@ -62,15 +69,18 @@ public class State_ControlBody : State {
         GameManager.Self.playerBody.gameObject.transform.GetComponent<FSMLogic>().enabled = true;
         GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        MyPosition();
+		GameManager.Self.outOfYourBody = false;
+		refUI.ReturnUI(false);
+
+		MyPosition();
+
     }
+
 
     void MyPosition()
     {
         
         returnEvent.Invoke();
-
         
-                 
     }
 }

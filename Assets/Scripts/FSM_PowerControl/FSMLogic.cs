@@ -6,16 +6,16 @@ using UnityStandardAssets.Characters.ThirdPerson;
 public class FSMLogic : MonoBehaviour {
 
     public float powerRange = Mathf.Infinity;
-    public bool isShowMemory = false;
+    //public bool isShowMemory = false;
     public bool isAiming = false;
 
-    public Sprite imageSprite;
+    //public Sprite imageSprite;
 
 
     public bool onEnemy = false;
     UI refUI;
 
-    private StateMachine sm;
+	private StateMachine sm;
 
 	// Use this for initialization
 	void Start () {
@@ -36,13 +36,14 @@ public class FSMLogic : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        if (Input.GetKey(KeyCode.Mouse1) && !isShowMemory)
+		if (Input.GetKey(KeyCode.Mouse1) && !GameManager.Self.isShowMemory)
         {
-            RaycastHandle();
+            //RaycastHandler();
             sm.HandleInput(InputTransition.MouseButtonOneDown);
             
             isAiming = true;
-            
+			UIActivator();
+
         }
         else
         {
@@ -52,16 +53,24 @@ public class FSMLogic : MonoBehaviour {
             UIActivator();
 
         }
-        if (!isAiming && isShowMemory && Input.GetKeyDown(KeyCode.F))
-        {
-            sm.HandleInput(InputTransition.UnshowMemory);
-            isShowMemory = false;
-            this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
-            this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
-            Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
-        }
+			
 
-        
+		if (!isAiming && GameManager.Self.isShowMemory && Input.GetKeyDown(KeyCode.F))
+		{
+			Debug.Log ("Smetti Ricordo");
+			UnShowMem ();
+		}
+		else if (GameManager.Self.outOfYourBody && this.gameObject.GetComponent<State_ShowMemory> () && !GameManager.Self.isShowMemory && !Input.GetKey(KeyCode.Mouse1)) 
+		{
+			if (Input.GetKeyDown (KeyCode.F) && !GameManager.Self.isShowMemory) {
+				Debug.Log ("Guarda Ricordo");
+				ShowMem ();
+
+			}
+			UIActivator ();
+		} 
+
+
 
         sm.StateUpdate();
 
@@ -69,7 +78,7 @@ public class FSMLogic : MonoBehaviour {
 	}
 
 
-    public void RaycastHandle()
+    public void RaycastHandler()
     {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
@@ -83,23 +92,13 @@ public class FSMLogic : MonoBehaviour {
                 if (hit.collider.GetComponent<MemoryContainer>())
                 {
                     refUI.MemoryUI(true);
-                    if (Input.GetKeyDown(KeyCode.F) && !isShowMemory)
+					if (Input.GetKeyDown(KeyCode.F) && !GameManager.Self.isShowMemory)
                     {
-                        sm.HandleInput(InputTransition.ShowMemory);
-                        imageSprite = hit.collider.GetComponent<MemoryContainer>().memoryImage;
-                        isShowMemory = true;
-                        this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
-                        this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
-                        Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
+						ShowMem ();
                     }
-                    else if (Input.GetKeyDown(KeyCode.F) && isShowMemory)
+					else if (Input.GetKeyDown(KeyCode.F) && GameManager.Self.isShowMemory)
                     {
-                        sm.HandleInput(InputTransition.UnshowMemory);
-                        this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
-                        this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
-                        Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
-                        isShowMemory = false;
-                        
+						UnShowMem ();
                     }
 
                 }
@@ -114,6 +113,30 @@ public class FSMLogic : MonoBehaviour {
         }
     }
 
+
+
+	public void ShowMem (){
+		sm.HandleInput(InputTransition.ShowMemory);
+		//imageSprite = hit.collider.GetComponent<MemoryContainer>().memoryImage;
+		GameManager.Self.isShowMemory = true;
+		this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
+		this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+		this.GetComponent<Animator>().SetFloat("Forward", 0);
+		this.GetComponent<Animator>().SetFloat("Turn", 0);
+		Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
+	}
+
+
+	public void UnShowMem (){
+		sm.HandleInput(InputTransition.UnshowMemory);
+		this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
+		this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
+
+		Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
+		GameManager.Self.isShowMemory = false;
+
+	}
+
     //Metodo per attivare e disattivare la UI
     void UIActivator()
     {
@@ -126,8 +149,8 @@ public class FSMLogic : MonoBehaviour {
             refUI.PossessionUI(false);
             refUI.PowerUI(false);
             refUI.MemoryUI(false);
-            refUI.HackUI(false);
-            refUI.MemoryImageUIHand(false);
+            //refUI.HackUI(false);
+            refUI.MemoryImageUI(false);
 
         }
     }

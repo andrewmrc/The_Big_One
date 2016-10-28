@@ -39,10 +39,10 @@ public class StateMachine
         transitionList = new List<Transition>();
         transitionList.Add(new Transition(stateControlBody, InputTransition.MouseButtonOneDown, statePowerControl));
         transitionList.Add(new Transition(statePowerControl, InputTransition.MouseButtonOneUp, stateControlBody));
-        transitionList.Add(new Transition(statePowerControl, InputTransition.ShowMemory, stateShowMemory));
+        //transitionList.Add(new Transition(statePowerControl, InputTransition.ShowMemory, stateShowMemory));
         transitionList.Add(new Transition(stateShowMemory, InputTransition.UnshowMemory, statePowerControl));
         transitionList.Add(new Transition(stateShowMemory, InputTransition.UnshowMemory, stateControlBody));
-
+		transitionList.Add(new Transition(stateControlBody, InputTransition.ShowMemory, stateShowMemory));
 
     }
 
