@@ -44,8 +44,10 @@ public class State_PowerControl : State {
 		refUI.HackUI (false);
         this.GetComponent<Animator>().SetFloat("Forward", 0);
         this.GetComponent<Animator>().SetFloat("Turn", 0);
-        this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
-        this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+        //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
+        //this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+		this.gameObject.transform.GetComponent<CharController>().enabled = false;
+
         refUI.cursorFar.SetActive(false);
 
         // Controlliamo se l'NPC è distante
@@ -90,8 +92,10 @@ public class State_PowerControl : State {
                     {
                         Debug.LogWarning("Premi Spazio per entrare");
                         this.gameObject.tag = "ControllableNPC";
-                        this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
-                        this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+                        //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
+                        //this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+						this.gameObject.transform.GetComponent<CharController>().enabled = false;
+
                         this.gameObject.transform.GetComponent<FSMLogic>().enabled = false;
                         this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                         this.GetComponent<Animator>().SetFloat("Forward", 0);
@@ -99,8 +103,10 @@ public class State_PowerControl : State {
 
                         cameraRig.transform.GetComponent<AbstractTargetFollower>().m_Target = null;
                         hit.collider.gameObject.tag = "Player";
-                        hit.collider.transform.GetComponent<ThirdPersonUserControl>().enabled = true;                        
-                        hit.collider.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
+                        //hit.collider.transform.GetComponent<ThirdPersonUserControl>().enabled = true;                        
+                        //hit.collider.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
+						hit.collider.transform.GetComponent<CharController>().enabled = true;
+
                         hit.collider.transform.GetComponent<FSMLogic>().enabled = true;
                         hit.collider.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                         hit.collider.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;

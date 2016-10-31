@@ -15,8 +15,10 @@ public class State_ControlBody : State {
     public override void StateUpdate()
     {
         Debug.LogWarning("Non premi il tasto destro");
-        this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = enabled;
-        this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = enabled;
+        //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = enabled;
+        //this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = enabled;
+		this.gameObject.transform.GetComponent<CharController>().enabled = enabled;
+
         refUI.cursorFar.SetActive(false);
 
 		#region Player Control check
@@ -56,16 +58,22 @@ public class State_ControlBody : State {
         Debug.Log("Return");
         this.gameObject.tag = "ControllableNPC";
         this.gameObject.transform.GetComponent<FSMLogic>().enabled = false;
-        this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
-        this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+        //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
+       // this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+
+		this.gameObject.transform.GetComponent<CharController>().enabled = false;
+
         this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         this.GetComponent<Animator>().SetFloat("Forward", 0);
         this.GetComponent<Animator>().SetFloat("Turn", 0);
 
         cameraRig.transform.GetComponent<AbstractTargetFollower>().m_Target = null;
         GameManager.Self.playerBody.gameObject.tag = "Player";
-        GameManager.Self.playerBody.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
-        GameManager.Self.playerBody.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
+        //GameManager.Self.playerBody.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
+        //GameManager.Self.playerBody.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
+
+		GameManager.Self.playerBody.gameObject.transform.GetComponent<CharController>().enabled = true;
+
         GameManager.Self.playerBody.gameObject.transform.GetComponent<FSMLogic>().enabled = true;
         GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
