@@ -43,7 +43,7 @@ public class FSM_EnemyPath : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        this.GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);
+		this.GetComponent<CharController>().Move(refNav.desiredVelocity, false);
         //Debug.Log(Vector3.Distance(initialPosition, this.transform.position));
 
 
@@ -84,7 +84,7 @@ public class FSM_EnemyPath : MonoBehaviour {
     {
         refNav.enabled = true;        
         refNav.destination = points[nArray].position;
-        this.GetComponent<ThirdPersonCharacter>().enabled = true;
+		this.GetComponent<CharController>().enabled = true;
     }
 
     IEnumerator Timer(float seconds)
@@ -98,7 +98,9 @@ public class FSM_EnemyPath : MonoBehaviour {
     {
         refNav.Stop();
         GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<ThirdPersonCharacter>().enabled = false;
+		GetComponent<CharController>().enabled = false;
+		this.transform.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
+
         yield return new WaitForSeconds(0.5f);
         
         
