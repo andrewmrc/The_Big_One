@@ -18,6 +18,6 @@ public class FadeMaterialAlpha : MonoBehaviour {
 		color.a = lerpAmt;
 		renderer.material.color = color;
 
-		Debug.Log(string.Format("Distance = {0} \t(range = {1} to {2})\t LerpAmt = {3}", distance, minRange, maxRange, lerpAmt));
+		//Debug.Log(string.Format("Distance = {0} \t(range = {1} to {2})\t LerpAmt = {3}", distance, minRange, maxRange, lerpAmt));
 	}
 }
