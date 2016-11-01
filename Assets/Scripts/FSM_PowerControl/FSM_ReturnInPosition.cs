@@ -36,11 +36,15 @@ public class FSM_ReturnInPosition : MonoBehaviour {
         {
             if (refNav.enabled && refNav.remainingDistance > refNav.stoppingDistance)
             {
-                GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);
+                //GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);
+				GetComponent<CharController>().Move(refNav.desiredVelocity, false);
+
             }
             else
             {
-                GetComponent<ThirdPersonCharacter>().Move(Vector3.zero, false, false);
+                //GetComponent<ThirdPersonCharacter>().Move(Vector3.zero, false, false);
+				GetComponent<CharController>().Move(refNav.desiredVelocity, false);
+
                 StartCoroutine(DisableComponents());
 
             }
@@ -52,11 +56,6 @@ public class FSM_ReturnInPosition : MonoBehaviour {
             GetComponent<FSM_ReturnInPosition>().enabled = false;
 
         }
-        
-        
-
-        
-		
          
     }
 
@@ -73,7 +72,9 @@ public class FSM_ReturnInPosition : MonoBehaviour {
         if (isWaiting)
         {
             refNav.enabled = true;
-            this.GetComponent<ThirdPersonCharacter>().enabled = true;
+            //this.GetComponent<ThirdPersonCharacter>().enabled = true;
+			this.GetComponent<CharController>().enabled = true;
+
             if (Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance)
             {
                 GetComponent<FSM_ReturnInPosition>().enabled = true;
@@ -93,8 +94,9 @@ public class FSM_ReturnInPosition : MonoBehaviour {
 		yield return new WaitForSeconds(0.5f);
         GetComponent<FSM_ReturnInPosition>().enabled = false;
 		GetComponent<NavMeshAgent>().enabled = false;
-		this.GetComponent<ThirdPersonCharacter>().enabled = false;
-		this.GetComponent<ThirdPersonUserControl>().enabled = false;
+		//this.GetComponent<ThirdPersonCharacter>().enabled = false;
+		//this.GetComponent<ThirdPersonUserControl>().enabled = false;
+		this.GetComponent<CharController>().enabled = false;
 
 		this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 

@@ -3,6 +3,10 @@ using System.Collections;
 using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
 
+
+//[RequireComponent(typeof(State_PowerControl))]
+//[RequireComponent(typeof(State_ControlBody))]
+//[RequireComponent(typeof(State_ShowMemory))]
 public class FSMLogic : MonoBehaviour {
 
     public float powerRange = Mathf.Infinity;
@@ -119,18 +123,21 @@ public class FSMLogic : MonoBehaviour {
 		sm.HandleInput(InputTransition.ShowMemory);
 		//imageSprite = hit.collider.GetComponent<MemoryContainer>().memoryImage;
 		GameManager.Self.isShowMemory = true;
-		this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
-		this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+		//this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
+		//this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+		this.gameObject.transform.GetComponent<CharController>().enabled = false;
+
 		this.GetComponent<Animator>().SetFloat("Forward", 0);
-		this.GetComponent<Animator>().SetFloat("Turn", 0);
+		//this.GetComponent<Animator>().SetFloat("Turn", 0);
 		Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
 	}
 
 
 	public void UnShowMem (){
 		sm.HandleInput(InputTransition.UnshowMemory);
-		this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
-		this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
+		//this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
+		//this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
+		this.gameObject.transform.GetComponent<CharController>().enabled = true;
 
 		Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
 		GameManager.Self.isShowMemory = false;

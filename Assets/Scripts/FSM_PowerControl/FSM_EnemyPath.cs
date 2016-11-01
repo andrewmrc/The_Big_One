@@ -3,8 +3,8 @@ using System.Collections;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(FSM_ReturnInPosition))]
+//[RequireComponent(typeof(NavMeshAgent))]
+//[RequireComponent(typeof(FSM_ReturnInPosition))]
 
 
 public class FSM_EnemyPath : MonoBehaviour {
@@ -13,7 +13,7 @@ public class FSM_EnemyPath : MonoBehaviour {
     GameManager refGM;
     
     Vector3 initialPosition;
-    public float timeLeft;
+    public float timeLeft = 5f;
     public Transform[] points = new Transform[4];
     public bool isReached = false;
     public bool isOnTime = false;
