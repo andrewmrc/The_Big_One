@@ -183,28 +183,7 @@ public class NPC_Configurator : EditorWindow {
 	}
 
 
-	// Validate the menu item defined by the functions above.
-	// The menu item will be disabled if this function returns false.
-	[MenuItem ("Andre's Tools/NPC Configurator/Standard Configuration &1", true)]
-	static bool ValidateSelectTransform1 () {
-		// Return false if no transform is selected.
-		return Selection.activeTransform != null;
-	}
-
-	[MenuItem ("Andre's Tools/NPC Configurator/Minimal Configuration &2", true)]
-	static bool ValidateSelectTransform2 () {
-		// Return false if no transform is selected.
-		return Selection.activeTransform != null;
-	}
-
-	[MenuItem ("Andre's Tools/NPC Configurator/Full Configuration &3", true)]
-	static bool ValidateSelectTransform3 () {
-		// Return false if no transform is selected.
-		return Selection.activeTransform != null;
-	}
-
-
-	[MenuItem ("Andre's Tools/NPC Configurator/Remove Components")]
+    [MenuItem ("Andre's Tools/NPC Configurator/Remove Components")]
 	static void RemoveComponents () {
 		foreach (var comp in Selection.activeTransform.GetComponents<Component>())
 		{
@@ -226,6 +205,39 @@ public class NPC_Configurator : EditorWindow {
 			}
 		}
 	}
+
+
+    // Validate the menu item defined by the functions above.
+    // The menu item will be disabled if this function returns false.
+    [MenuItem("Andre's Tools/NPC Configurator/Minimal Configuration &1", true)]
+    static bool ValidateSelectTransform1()
+    {
+        // Return false if no transform is selected.
+        return Selection.activeTransform != null;
+    }
+
+
+    [MenuItem("Andre's Tools/NPC Configurator/Standard Configuration &2", true)]
+    static bool ValidateSelectTransform2()
+    {
+        // Return false if no transform is selected.
+        return Selection.activeTransform != null;
+    }
+
+
+    [MenuItem("Andre's Tools/NPC Configurator/Full Configuration &3", true)]
+    static bool ValidateSelectTransform3()
+    {
+        // Return false if no transform is selected.
+        return Selection.activeTransform != null;
+    }
+
+    [MenuItem("Andre's Tools/NPC Configurator/Remove Components", true)]
+    static bool ValidateSelectTransform4()
+    {
+        // Return false if no transform is selected.
+        return Selection.activeTransform != null;
+    }
 
 
 }
