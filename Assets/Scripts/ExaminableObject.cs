@@ -92,6 +92,9 @@ public class ExaminableObject : MonoBehaviour {
                         Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
                         GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonUserControl>().enabled = false;
                         GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonCharacter>().enabled = false;
+
+						//GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>().enabled = false;
+
                         GameObject.FindGameObjectWithTag("Player").GetComponent<PowerController>().enabled = false;
                         GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
                         GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Turn", 0);
@@ -108,6 +111,9 @@ public class ExaminableObject : MonoBehaviour {
                     Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
                     GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonUserControl>().enabled = true;
                     GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonCharacter>().enabled = true;
+
+					//GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>().enabled = true;
+
                     GameObject.FindGameObjectWithTag("Player").GetComponent<PowerController>().enabled = true;
                 }
                 refUI.ExaminableText(isLooking);

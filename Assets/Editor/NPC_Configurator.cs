@@ -52,6 +52,13 @@ public class NPC_Configurator : EditorWindow {
 		} else {
 			Debug.Log ("NavMeshAgent already added!");
 		}
+
+
+		if (!Selection.activeGameObject.GetComponent<FieldOfView> ()) {
+			Undo.AddComponent<FieldOfView> (Selection.activeGameObject).enabled = false;
+		} else {
+			Debug.Log ("FieldOfView already added!");
+		}
 	}
 
 
@@ -99,6 +106,13 @@ public class NPC_Configurator : EditorWindow {
 
 		} else {
 			Debug.Log ("NavMeshAgent already added!");
+		}
+
+
+		if (!Selection.activeGameObject.GetComponent<FieldOfView> ()) {
+			Undo.AddComponent<FieldOfView> (Selection.activeGameObject).enabled = false;
+		} else {
+			Debug.Log ("FieldOfView already added!");
 		}
 
 
@@ -156,6 +170,13 @@ public class NPC_Configurator : EditorWindow {
 
 		} else {
 			Debug.Log ("NavMeshAgent already added!");
+		}
+
+
+		if (!Selection.activeGameObject.GetComponent<FieldOfView> ()) {
+			Undo.AddComponent<FieldOfView> (Selection.activeGameObject).enabled = false;
+		} else {
+			Debug.Log ("FieldOfView already added!");
 		}
 
 
