@@ -128,7 +128,6 @@ namespace ConversationHandler
             Dictionary<string, object> convs = conv["Conversation"] as Dictionary<string, object>;
             Dictionary<string, object> convField = convs["Fields"] as Dictionary<string, object>;
             Dictionary<string, object> dialogentries = convs["DialogEntries"] as Dictionary<string, object>;
-            //Dictionary<string, object> fields = dialogentries["Fields"] as Dictionary<string, object>;
             ID = Convert.ToInt16(convs["ID"]);
 
             List<object> convFields = convField["Field"] as List<object>;
@@ -141,22 +140,20 @@ namespace ConversationHandler
             }
 
             List<object> dialogentry = dialogentries["DialogEntry"] as List<object>;
-            //List<Dictionary<string, object>> lst = new List<Dictionary<string, object>>();
 
             //scorre tutti i dialoghi nel JSON
             foreach (Dictionary<string, object> dialog in dialogentry)
             {
                 int dialogID = Convert.ToInt16(dialog["ID"]);
-                //Debug.Log("ID:" + dialogID);
                 Dictionary<string, object> dialogFields = dialog["Fields"] as Dictionary<string, object>;
                 List<object> dialogFieldList = dialogFields["Field"] as List<object>;
+
                 //Crea un nuovo dialogo da aggiungere al dizionario
                 Dialogue actualDialogue = new Dialogue(dialogID);
 
                 //scorre tutti i campi field nel JSON per ogni dialogo
                 foreach (Dictionary<string, object> f in dialogFieldList)
                 {
-                    //Debug.Log("Type, Title, Value: "+(string)f["Type"] + "," +(string)f["Title"]+ "," +(string)f["Value"]);
                     string actualDialogTitle = (string)f["Title"];
                     string actualDialogValue = (string)f["Value"];
                     if (actualDialogValue != null)
@@ -182,13 +179,14 @@ namespace ConversationHandler
                                 break;
                         }
                 }
+
                 //Controlla gli Outgoing Links (figli)
                 Dictionary<string, object> dialogOutLinks = dialog["OutgoingLinks"] as Dictionary<string, object>;
                 try
                 {
                     if (dialogOutLinks["Link"] is IList)
                     {
-                        Debug.Log("una lista di figli ;)");
+                        //Debug.Log("una lista di figli ;)");
                         List<object> outGoingLinks = dialogOutLinks["Link"] as List<object>;
                         foreach (Dictionary<string, object> link in outGoingLinks)
                         {
@@ -198,7 +196,7 @@ namespace ConversationHandler
                     }
                     else
                     {
-                        Debug.Log("Non è una lista, ha solo un figlio :D");
+                        //Debug.Log("Non è una lista, ha solo un figlio :D");
                         Dictionary<string, object> outGoingLink = dialogOutLinks["Link"] as Dictionary<string, object>;
                         string destinationDialogID = (string)outGoingLink["DestinationDialogID"];
                         actualDialogue.InsertOutLinks(Convert.ToInt16(destinationDialogID));
@@ -211,22 +209,6 @@ namespace ConversationHandler
 
                 this.insertDialogue(actualDialogue);
             }
-
-            //List<object> field = fields["Field"] as List<object>;
-            //foreach (Dictionary<string, object> q in field)
-            //{
-            //    Debug.Log(q);
-            //}
-
-            /*for(int i = 0; i < lst.Count; i++)
-            {
-                List<object> speranza = lst[i]["Field"] as List<object>;
-                Debug.Log("inizio campo");
-                foreach(Dictionary<string, object> q in speranza)
-                {
-                    Debug.Log(q["Value"]);
-                }
-            }*/
         }
 
         public List<Dialogue> getChildren(Dialogue parentD)
@@ -252,8 +234,6 @@ namespace ConversationHandler
             }
             return children_list;
         }
-
-
 
         public void debugDialogues()
         {

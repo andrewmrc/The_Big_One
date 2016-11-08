@@ -24,30 +24,27 @@ public class DialogueManager : MonoBehaviour
     public Text dialogue;
     public Text DisplayedName;
     public float letterPause = 0.2f;
-    private bool isDiagRunning;
+    public bool isDiagRunning;
     string message;
     Conversation cv = new Conversation("Inizio", "dialoghi iniziali di prova");
-
-
-
+    
     // Use this for initialization
     void Start()
     {
-
         cv.parseJSON("test.json");
         actualNode = cv.getDialogue(0);
         //cv.debugDialogues();
-
     }
 
-    // Update is called once per frame
+    // sistema improvvisato per debuggare i dialoghi 
     void Update()
     {
         actualCharacter = GameObject.FindGameObjectWithTag("Player").name;
         characterID = CharacterToID(actualCharacter);
         RaycastTarget();
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) && isDiagRunning == false)
         {
+
             actualDialogue = getNextDialogue();
 
             Debug.Log("charID, actorID; aimID, conversantID:" +
@@ -68,7 +65,6 @@ public class DialogueManager : MonoBehaviour
 
     public Dialogue getNextDialogue()
     {
-
         List<Dialogue> actualNode_children = cv.getChildrenWithSequence(actualNode);
         actualNode = actualNode_children[0];
         return actualNode;
@@ -85,24 +81,24 @@ public class DialogueManager : MonoBehaviour
         actualSeq = dialog_to_print.getSequence();
         actualOut = dialog_to_print.getOutput();
         DisplayedName.text = dialog_to_print.menu_text;
-        dialogue.text = dialog_to_print.text;
-        //starta coroutine che stampa dialogo a schermo
+        message = dialog_to_print.text;
+        StartCoroutine(TypeText());
         //correggere il fatto che scarta il dialogo precedente anche se parli con il nodo sbagliato incrementa il dialogo
     }
 
-    //IEnumerator TypeText()
-    //{
-    //    isDiagRunning = true;
-    //    Debug.Log(isDiagRunning);
-    //    foreach (char letter in message.ToCharArray())
-    //    {
-    //        dialogo.text += letter;
-    //        yield return new WaitForSeconds(letterPause);
-    //    }
-    //    yield return new WaitForSeconds(1);
-    //    dialogo.text = null;
-    //    isDiagRunning = false;
-    //}
+    IEnumerator TypeText()
+    {
+        isDiagRunning = true;
+        foreach (char letter in message.ToCharArray())
+        {
+            dialogue.text += letter;
+            yield return new WaitForSeconds(letterPause);
+        }
+        yield return new WaitForSeconds(1);
+        dialogue.text = null;
+        isDiagRunning = false;
+
+    }
     public int CharacterToID(string _actualCharacter)
     {
         int charID = 0;
@@ -133,8 +129,6 @@ public class DialogueManager : MonoBehaviour
                 actualTarget = hit.collider.name;
                 targetID = CharacterToID(actualTarget);
             }
-
         }
-
     }
 }
