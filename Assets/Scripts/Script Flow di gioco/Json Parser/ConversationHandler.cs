@@ -224,12 +224,13 @@ namespace ConversationHandler
 
         public List<Dialogue> getChildrenWithSequence(Dialogue parentD)
         {
+            //da fare il controllo sulle foglie
             List<Dialogue> children_list = new List<Dialogue>();
             List<int> children = parentD.getOutLink();
             foreach (int child in children)
             {
                 Dialogue child_dialogue = this.getDialogue(child);
-                if (child_dialogue.sequence.Contains("&") || child_dialogue.checkSequence(parentD.output) != null)
+                if (child_dialogue.sequence.Contains("&") || child_dialogue.sequence.Count == 0 || child_dialogue.checkSequence(parentD.output) != null)
                     children_list.Add(child_dialogue);
             }
             return children_list;

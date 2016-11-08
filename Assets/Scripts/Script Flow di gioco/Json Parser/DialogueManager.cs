@@ -8,13 +8,12 @@ using System;
 
 public class DialogueManager : MonoBehaviour
 {
-
     //debug var
     public string actualCharacter;
     public int characterID;
     public string actualTarget;
     public int targetID;
-    public int moveThroughNodes;
+    public int moveThroughNodes = 0;
     public Dialogue actualNode;
     public string actualSeq;
     public string actualOut;
@@ -28,15 +27,19 @@ public class DialogueManager : MonoBehaviour
     string message;
     Conversation cv = new Conversation("Inizio", "dialoghi iniziali di prova");
     
-    // Use this for initialization
+
     void Start()
     {
+
         cv.parseJSON("test.json");
-        actualNode = cv.getDialogue(0);
+        actualNode = cv.getDialogue(moveThroughNodes);
         //cv.debugDialogues();
+        //setting
+        //actualNode.output = new HashSet<string>();
+        //actualNode.InsertOutputs("Ciao");
     }
 
-    // sistema improvvisato per debuggare i dialoghi 
+
     void Update()
     {
         actualCharacter = GameObject.FindGameObjectWithTag("Player").name;
@@ -44,30 +47,53 @@ public class DialogueManager : MonoBehaviour
         RaycastTarget();
         if (Input.GetKeyDown(KeyCode.S) && isDiagRunning == false)
         {
-
-            actualDialogue = getNextDialogue();
-
-            Debug.Log("charID, actorID; aimID, conversantID:" +
-                characterID.ToString() + ", " +
-                actualDialogue.actor + "; " +
-                targetID.ToString() + ", " +
+            bool hasSpoken = false;
+            List<Dialogue> actual_children = getNextDialogue();
+            bool isMultipleChoice = (actual_children[0].sequence.Count == 0 &&
+                characterID.ToString().Equals(actual_children[0].actor) &&
+                targetID.ToString().Equals(actual_children[0].conversant));
+            /*Debug.Log("charID, actorID; aimID, conversantID:" + 
+                characterID.ToString() + ", " + 
+                actualDialogue.actor + "; " + 
+                targetID.ToString() + ", " + 
                 actualDialogue.conversant);
-
-            if (characterID.ToString().Equals(actualDialogue.actor) &&
-                targetID.ToString().Equals(actualDialogue.conversant))
+                */
+            if (isMultipleChoice)
             {
-                printDialogue(actualDialogue);
+                //TODO: Gestisci scelta multipla tra tutti gli actual_children
+            }
+            else
+            {
+                //Stampa un solo dialogo se è tra le persone giuste
+                foreach (Dialogue child in actual_children)
+                {
+                    if (characterID.ToString().Equals(child.actor) &&
+                       targetID.ToString().Equals(child.conversant))
+                    {
+                        actualNode = child;
+                        printDialogue(actualNode);
+                        hasSpoken = true;
+                        break;
+                    }
+                }
+            }
+            //Ristampa il vecchio dialogo se nessuno ha parlato e se è tra le persone giuste
+            if (!hasSpoken && characterID.ToString().Equals(actualNode.actor) &&
+                targetID.ToString().Equals(actualNode.conversant))
+            {
+                printDialogue(actualNode);
             }
         }
 
     }
 
 
-    public Dialogue getNextDialogue()
+    public List<Dialogue> getNextDialogue()
     {
+
         List<Dialogue> actualNode_children = cv.getChildrenWithSequence(actualNode);
-        actualNode = actualNode_children[0];
-        return actualNode;
+        //actualNode = actualNode_children[0];
+        return actualNode_children;
     }
 
     public void printDialogue(Dialogue dialog_to_print)
@@ -96,6 +122,7 @@ public class DialogueManager : MonoBehaviour
         }
         yield return new WaitForSeconds(1);
         dialogue.text = null;
+        DisplayedName.text = null;
         isDiagRunning = false;
 
     }
@@ -125,7 +152,7 @@ public class DialogueManager : MonoBehaviour
             if (hit.collider.tag == "ControllableNPC")
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.black);
-                Debug.Log(hit.collider.name + ", " + hit.collider.tag);
+                //Debug.Log(hit.collider.name + ", " + hit.collider.tag);
                 actualTarget = hit.collider.name;
                 targetID = CharacterToID(actualTarget);
             }
