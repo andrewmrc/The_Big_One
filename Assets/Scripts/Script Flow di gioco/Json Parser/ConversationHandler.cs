@@ -67,6 +67,26 @@ namespace ConversationHandler
             else
                 return null;
         }
+
+        public string getOutput()
+        {
+            string result = "";
+            foreach (String o in output)
+            {
+                result += ", " + o;
+            }
+            return result;
+        }
+
+        public string getSequence()
+        {
+            string result = "";
+            foreach (String s in sequence)
+            {
+                result += ", " + s;
+            }
+            return result;
+        }
     }
 
 

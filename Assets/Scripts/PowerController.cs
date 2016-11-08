@@ -241,14 +241,14 @@ public class PowerController : MonoBehaviour
                         }
                         MyPosition();
                     }
-                    if (Input.GetKeyDown(KeyCode.S))
-                    {
-                        Speaking s = hit.collider.gameObject.GetComponent<Speaking>();
-                        if (s)
-                        {
-                            s.Speak(GameObject.Find("GameManager").GetComponent<GameFlow>());
-                        }
-                    }
+                    //if (Input.GetKeyDown(KeyCode.S))
+                    //{
+                    //    Speaking s = hit.collider.gameObject.GetComponent<Speaking>();
+                    //    if (s)
+                    //    {
+                    //        s.Speak(GameObject.Find("GameManager").GetComponent<GameFlow>());
+                    //    }
+                    //}
                     else
                     {
                         //Feedback all'utente che non ha abbastanza energia residua
