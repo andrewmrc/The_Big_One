@@ -31,7 +31,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
 
-        cv.parseJSON("test.json");
+        cv.parseJSON("Prova1.json");
         actualNode = cv.getDialogue(moveThroughNodes);
         //cv.debugDialogues();
         //setting
