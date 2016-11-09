@@ -49,15 +49,25 @@ public class DialogueManager : MonoBehaviour
         {
             bool hasSpoken = false;
             List<Dialogue> actual_children = getNextDialogue();
-            bool isMultipleChoice = (actual_children[0].sequence.Count == 0 &&
-                characterID.ToString().Equals(actual_children[0].actor) &&
-                targetID.ToString().Equals(actual_children[0].conversant));
+            bool isMultipleChoice = (actual_children.Count > 0 && actual_children[0].sequence.Count == 0 &&
+                 characterID.ToString().Equals(actual_children[0].actor) &&
+                 targetID.ToString().Equals(actual_children[0].conversant));
+
+            //Debug per prendere il nome dei figli
+            foreach (Dialogue child in actual_children)
+            {
+                int child_id = Convert.ToInt16(child.actor);
+                string actor_name = cv.getActorName(child_id);
+                Debug.Log("Nome attore: " + actor_name);
+            }
+
             /*Debug.Log("charID, actorID; aimID, conversantID:" + 
                 characterID.ToString() + ", " + 
                 actualDialogue.actor + "; " + 
                 targetID.ToString() + ", " + 
                 actualDialogue.conversant);
                 */
+
             if (isMultipleChoice)
             {
                 //TODO: Gestisci scelta multipla tra tutti gli actual_children
@@ -77,6 +87,7 @@ public class DialogueManager : MonoBehaviour
                     }
                 }
             }
+
             //Ristampa il vecchio dialogo se nessuno ha parlato e se è tra le persone giuste
             if (!hasSpoken && characterID.ToString().Equals(actualNode.actor) &&
                 targetID.ToString().Equals(actualNode.conversant))
@@ -84,9 +95,7 @@ public class DialogueManager : MonoBehaviour
                 printDialogue(actualNode);
             }
         }
-
     }
-
 
     public List<Dialogue> getNextDialogue()
     {
@@ -126,6 +135,8 @@ public class DialogueManager : MonoBehaviour
         isDiagRunning = false;
 
     }
+
+    //da togliere dato che viene gestito tutto dalla nuova funzione
     public int CharacterToID(string _actualCharacter)
     {
         int charID = 0;

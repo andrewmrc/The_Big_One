@@ -93,14 +93,15 @@ namespace ConversationHandler
     //Classe per la conversazione globale
     public class Conversation
     {
-
         private Dictionary<int, Dialogue> dialogues;
+        private Dictionary<int, string> actor_names;
         public string title;
         public int ID;
 
         public Conversation(string title, string description)
         {
             this.dialogues = new Dictionary<int, Dialogue>();
+            this.actor_names = new Dictionary<int, string>();
         }
 
         private object ReadFromFile(string filename)
@@ -117,6 +118,11 @@ namespace ConversationHandler
         public Dialogue getDialogue(int id)
         {
             return dialogues[id];
+        }
+
+        public string getActorName(int id)
+        {
+            return actor_names[id];
         }
         //livelli di annidamento successivo
         //[] list object
@@ -206,7 +212,30 @@ namespace ConversationHandler
                 {
                     Debug.Log("Lista non trovata, non ci sono figli purtroppo! :(");
                 }
+                Dictionary<string, object> actors = assets["Actors"] as Dictionary<string, object>;
+                List<object> actor = actors["Actor"] as List<object>;
 
+                foreach (Dictionary<string, object> actual_actor in actor)
+                {
+                    int actual_actor_id = Convert.ToInt16((string)actual_actor["ID"]);
+                    if (!actor_names.ContainsKey(actual_actor_id))
+                    {
+                        string actual_actor_name = "";
+                        Dictionary<string, object> actual_actor_fields = actual_actor["Fields"] as Dictionary<string, object>;
+                        List<object> actual_actor_field = actual_actor_fields["Field"] as List<object>;
+                        foreach (Dictionary<string, object> aaf in actual_actor_field)
+                        {
+                            if (((string)aaf["Title"]).Equals("Name"))
+                            {
+                                actual_actor_name = (string)aaf["Value"];
+                                break;
+                            }
+                        }
+                        actor_names.Add(actual_actor_id, actual_actor_name);
+                    }
+
+                }
+                
                 this.insertDialogue(actualDialogue);
             }
         }
