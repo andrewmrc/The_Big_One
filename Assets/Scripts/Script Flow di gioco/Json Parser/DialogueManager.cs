@@ -45,7 +45,7 @@ public class DialogueManager : MonoBehaviour
         actualCharacter = GameObject.FindGameObjectWithTag("Player").name;
         characterID = CharacterToID(actualCharacter);
         RaycastTarget();
-        if (Input.GetKeyDown(KeyCode.S) && isDiagRunning == false)
+        if (Input.GetKeyDown(KeyCode.E) && isDiagRunning == false)
         {
             bool hasSpoken = false;
             List<Dialogue> actual_children = getNextDialogue();
@@ -131,13 +131,13 @@ public class DialogueManager : MonoBehaviour
         int charID = 0;
         switch (_actualCharacter)
         {
-            case "Olivia_Player":
+            case "Olivia_V3":
                 charID = 1;
                 break;
-            case "NPC_Receptionist":
+            case "NPC4":
                 charID = 2;
                 break;
-            case "NPC_Casual":
+            case "Character_Eyes":
                 charID = 3;
                 break;
         }
