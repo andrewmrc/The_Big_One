@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
 
     public bool isAiming;
 
+    public bool[] flowGameArray;
 	public GameObject playerBody;
 	public GameObject cameraRig;
 	public GameObject mainCamera;

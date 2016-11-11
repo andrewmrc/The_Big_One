@@ -3,15 +3,18 @@ using System.Collections;
 using UnityEngine.Events;
 using UnityEditor;
 
-public enum Condition {nothing, isTrigger, isConversation, quellochevuoi }
+
 
 public class ProvaFlow : MonoBehaviour {
-    public UnityEvent newEvent;
+    public enum Condition { nothing, isTrigger, isConversation, quellochevuoi }
+    public UnityEvent triggerEvent;
+    public UnityEvent quelloCheVuoiEvent;
     public string normalConversation;
-
+    public int positionInFlowArray;
     public bool isTrigger = false;
+
     //public bool isConversation = false;
-    public Condition wichCondition = Condition.isTrigger;
+    public Condition wichCondition;
 	// Use this for initialization
 	void Start () {
 	
@@ -24,19 +27,45 @@ public class ProvaFlow : MonoBehaviour {
 
     void OnTriggerEnter()
     {
-        if (wichCondition == Condition.isTrigger)
+        if (wichCondition == Condition.isTrigger && RightPosition())
         {
-            newEvent.Invoke();
+            triggerEvent.Invoke();
         }
     }
 
     void OnTriggerStay()
     {
-        if (wichCondition == Condition.isConversation)
+        if (wichCondition == Condition.quellochevuoi && RightPosition())
         {
-            Debug.LogWarning(normalConversation);
-          
+            quelloCheVuoiEvent.Invoke();
         }
+    }
+
+    void OnTriggerExit()
+    {
+
+    }
+
+    bool RightPosition()
+    {
+
+        if (positionInFlowArray == 0)
+        {
+            GameManager.Self.flowGameArray[positionInFlowArray] = true;
+            return true;
+            
+        }
+        else if (GameManager.Self.flowGameArray[positionInFlowArray-1] == true)
+        {
+            GameManager.Self.flowGameArray[positionInFlowArray] = true;
+            return true;
+        }
+        return false;
+    }
+
+    public void SetBool(bool asd)
+    {
+        GameManager.Self.flowGameArray[positionInFlowArray] = asd;
     }
 
     
