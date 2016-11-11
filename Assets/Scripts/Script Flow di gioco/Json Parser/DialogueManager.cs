@@ -31,7 +31,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
 
-        cv.parseJSON("ProvaAngelo.json");
+        cv.parseJSON("DialogoNuovo.json");
         actualNode = cv.getDialogue(moveThroughNodes);
         //cv.debugDialogues();
         //setting

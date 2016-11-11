@@ -1,0 +1,826 @@
+{
+  "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+  "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+  "EmphasisStyle3": "b--",
+  "EmphasisColor4Label": "Action",
+  "EmphasisColor3Label": "",
+  "EmphasisColor3": "#4688E6",
+  "EmphasisColor4": "#CCCCCC",
+  "EmphasisStyle4": "b--",
+  "Author": "Marius",
+  "EmphasisColor1Label": "Addresses",
+  "Title": "Cascadia Project",
+  "Version": "1.0.0.0",
+  "EmphasisColor1": "#E7955B",
+  "EmphasisColor2": "#44B634",
+  "EmphasisStyle2": "b--",
+  "EmphasisStyle1": "b--",
+  "EmphasisColor2Label": "",
+  "UserScript": null,
+  "Assets": {
+    "Conversations": {
+      "Conversation": {
+        "LockedMode": "Unlocked",
+        "ID": "1",
+        "NodeColor": "Red",
+        "Fields": {
+          "Field": [
+            {
+              "Type": "Text",
+              "Title": "Title",
+              "Value": "Default Conversation"
+            },
+            {
+              "Type": "Text",
+              "Title": "Description",
+              "Value": "A default conversation."
+            },
+            {
+              "Type": "Actor",
+              "Title": "Actor",
+              "Value": "1"
+            },
+            {
+              "Type": "Actor",
+              "Title": "Conversant",
+              "Value": "2"
+            }
+          ]
+        },
+        "DialogEntries": {
+          "DialogEntry": [
+            {
+              "ConditionPriority": "Normal",
+              "FalseCondtionAction": "Block",
+              "IsRoot": "true",
+              "ID": "0",
+              "IsGroup": "false",
+              "DelaySimStatus": "false",
+              "NodeColor": "White",
+              "Fields": {
+                "Field": [
+                  {
+                    "Type": "Text",
+                    "Title": "Title",
+                    "Value": "START"
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Actor",
+                    "Value": "1"
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Conversant",
+                    "Value": "1"
+                  }
+                ]
+              },
+              "OutgoingLinks": {
+                "Link": [
+                  {
+                    "OriginDialogID": "0",
+                    "DestinationDialogID": "1",
+                    "IsConnector": "false",
+                    "ConversationID": "0",
+                    "OriginConvoID": "0",
+                    "DestinationConvoID": "0"
+                  },
+                  {
+                    "OriginDialogID": "0",
+                    "DestinationDialogID": "2",
+                    "IsConnector": "false",
+                    "ConversationID": "0",
+                    "OriginConvoID": "0",
+                    "DestinationConvoID": "0"
+                  },
+                  {
+                    "OriginDialogID": "0",
+                    "DestinationDialogID": "7",
+                    "IsConnector": "false",
+                    "ConversationID": "0",
+                    "OriginConvoID": "0",
+                    "DestinationConvoID": "0"
+                  },
+                  {
+                    "OriginDialogID": "0",
+                    "DestinationDialogID": "10",
+                    "IsConnector": "false",
+                    "ConversationID": "0",
+                    "OriginConvoID": "0",
+                    "DestinationConvoID": "0"
+                  }
+                ]
+              },
+              "UserScript": null,
+              "ConditionsString": null
+            },
+            {
+              "FalseCondtionAction": "Block",
+              "IsRoot": "false",
+              "ID": "1",
+              "IsGroup": "false",
+              "DelaySimStatus": "false",
+              "NodeColor": "White",
+              "Fields": {
+                "Field": [
+                  {
+                    "Type": "Text",
+                    "Title": "Title",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Actor",
+                    "Value": "1"
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Conversant",
+                    "Value": "2"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Menu Text",
+                    "Value": "Olivia_V3"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Sequence",
+                    "Value": "&"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Output",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Dialogue Text",
+                    "Value": "Buongiorno signorina, mi potrebbe dire in che stanza è il sig. Smith?"
+                  }
+                ]
+              },
+              "OutgoingLinks": {
+                "Link": {
+                  "OriginDialogID": "1",
+                  "DestinationDialogID": "3",
+                  "IsConnector": "false",
+                  "ConversationID": "0",
+                  "OriginConvoID": "0",
+                  "DestinationConvoID": "0"
+                }
+              },
+              "UserScript": null,
+              "ConditionsString": null
+            },
+            {
+              "FalseCondtionAction": "Block",
+              "IsRoot": "false",
+              "ID": "2",
+              "IsGroup": "false",
+              "DelaySimStatus": "false",
+              "NodeColor": "White",
+              "Fields": {
+                "Field": [
+                  {
+                    "Type": "Text",
+                    "Title": "Title",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Actor",
+                    "Value": "1"
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Conversant",
+                    "Value": "3"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Menu Text",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Sequence",
+                    "Value": "&"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Output",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Dialogue Text",
+                    "Value": "Buongiorno signorina. Come mai si trova qua?"
+                  }
+                ]
+              },
+              "OutgoingLinks": {
+                "Link": {
+                  "OriginDialogID": "2",
+                  "DestinationDialogID": "4",
+                  "IsConnector": "false",
+                  "ConversationID": "0",
+                  "OriginConvoID": "0",
+                  "DestinationConvoID": "0"
+                }
+              },
+              "UserScript": null,
+              "ConditionsString": null
+            },
+            {
+              "FalseCondtionAction": "Block",
+              "IsRoot": "false",
+              "ID": "3",
+              "IsGroup": "false",
+              "DelaySimStatus": "false",
+              "NodeColor": "White",
+              "Fields": {
+                "Field": [
+                  {
+                    "Type": "Text",
+                    "Title": "Title",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Actor",
+                    "Value": "1"
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Conversant",
+                    "Value": "2"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Menu Text",
+                    "Value": "NPC4"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Sequence",
+                    "Value": "&"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Output",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Dialogue Text",
+                    "Value": "Mi dispiace, queste sono informazioni riservate."
+                  }
+                ]
+              },
+              "OutgoingLinks": {
+                "Link": {
+                  "OriginDialogID": "3",
+                  "DestinationDialogID": "2",
+                  "IsConnector": "true",
+                  "ConversationID": "0",
+                  "OriginConvoID": "0",
+                  "DestinationConvoID": "0"
+                }
+              },
+              "UserScript": null,
+              "ConditionsString": null
+            },
+            {
+              "FalseCondtionAction": "Block",
+              "IsRoot": "false",
+              "ID": "4",
+              "IsGroup": "false",
+              "DelaySimStatus": "false",
+              "NodeColor": "White",
+              "Fields": {
+                "Field": [
+                  {
+                    "Type": "Text",
+                    "Title": "Title",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Actor",
+                    "Value": "1"
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Conversant",
+                    "Value": "3"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Menu Text",
+                    "Value": "Character_Eyes"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Sequence",
+                    "Value": "&"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Output",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Dialogue Text",
+                    "Value": "Buongiorno, sa mio figlio è ricoverato in terapia intensiva, ma mi tolga una curiosita. Lei non è mica la giornalista, la signorina Morrison?"
+                  }
+                ]
+              },
+              "OutgoingLinks": {
+                "Link": {
+                  "OriginDialogID": "4",
+                  "DestinationDialogID": "5",
+                  "IsConnector": "false",
+                  "ConversationID": "0",
+                  "OriginConvoID": "0",
+                  "DestinationConvoID": "0"
+                }
+              },
+              "UserScript": null,
+              "ConditionsString": null
+            },
+            {
+              "FalseCondtionAction": "Block",
+              "IsRoot": "false",
+              "ID": "5",
+              "IsGroup": "false",
+              "DelaySimStatus": "false",
+              "NodeColor": "White",
+              "Fields": {
+                "Field": [
+                  {
+                    "Type": "Text",
+                    "Title": "Title",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Actor",
+                    "Value": "1"
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Conversant",
+                    "Value": "3"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Menu Text",
+                    "Value": "Olivia_V3"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Sequence",
+                    "Value": "&"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Output",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Dialogue Text",
+                    "Value": "Si sono io. Mi fa piacere che mi conosca, buona giornata signorina"
+                  }
+                ]
+              },
+              "OutgoingLinks": {
+                "Link": {
+                  "OriginDialogID": "5",
+                  "DestinationDialogID": "6",
+                  "IsConnector": "false",
+                  "ConversationID": "0",
+                  "OriginConvoID": "0",
+                  "DestinationConvoID": "0"
+                }
+              },
+              "UserScript": null,
+              "ConditionsString": null
+            },
+            {
+              "FalseCondtionAction": "Block",
+              "IsRoot": "false",
+              "ID": "6",
+              "IsGroup": "false",
+              "DelaySimStatus": "false",
+              "NodeColor": "White",
+              "Fields": {
+                "Field": [
+                  {
+                    "Type": "Text",
+                    "Title": "Title",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Actor",
+                    "Value": "1"
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Conversant",
+                    "Value": "3"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Menu Text",
+                    "Value": "Character_Eyes"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Sequence",
+                    "Value": "&"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Output",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Dialogue Text",
+                    "Value": "Buongiorno anche a lei"
+                  }
+                ]
+              },
+              "OutgoingLinks": {
+                "Link": {
+                  "OriginDialogID": "6",
+                  "DestinationDialogID": "1",
+                  "IsConnector": "true",
+                  "ConversationID": "0",
+                  "OriginConvoID": "0",
+                  "DestinationConvoID": "0"
+                }
+              },
+              "UserScript": null,
+              "ConditionsString": null
+            },
+            {
+              "FalseCondtionAction": "Block",
+              "IsRoot": "false",
+              "ID": "7",
+              "IsGroup": "false",
+              "DelaySimStatus": "false",
+              "NodeColor": "White",
+              "Fields": {
+                "Field": [
+                  {
+                    "Type": "Text",
+                    "Title": "Title",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Actor",
+                    "Value": "2"
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Conversant",
+                    "Value": "4"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Menu Text",
+                    "Value": "NPC4"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Sequence",
+                    "Value": "&"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Output",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Dialogue Text",
+                    "Value": "Sa dove è il dottore?"
+                  }
+                ]
+              },
+              "OutgoingLinks": {
+                "Link": {
+                  "OriginDialogID": "7",
+                  "DestinationDialogID": "8",
+                  "IsConnector": "false",
+                  "ConversationID": "0",
+                  "OriginConvoID": "0",
+                  "DestinationConvoID": "0"
+                }
+              },
+              "UserScript": null,
+              "ConditionsString": null
+            },
+            {
+              "FalseCondtionAction": "Block",
+              "IsRoot": "false",
+              "ID": "8",
+              "IsGroup": "false",
+              "DelaySimStatus": "false",
+              "NodeColor": "White",
+              "Fields": {
+                "Field": [
+                  {
+                    "Type": "Text",
+                    "Title": "Title",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Actor",
+                    "Value": "2"
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Conversant",
+                    "Value": "4"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Menu Text",
+                    "Value": "NPC4 (1)"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Sequence",
+                    "Value": "&"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Output",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Dialogue Text",
+                    "Value": "Dovrebbe essere nell'area fumatori"
+                  }
+                ]
+              },
+              "OutgoingLinks": {
+                "Link": {
+                  "OriginDialogID": "8",
+                  "DestinationDialogID": "9",
+                  "IsConnector": "false",
+                  "ConversationID": "0",
+                  "OriginConvoID": "0",
+                  "DestinationConvoID": "0"
+                }
+              },
+              "UserScript": null,
+              "ConditionsString": null
+            },
+            {
+              "FalseCondtionAction": "Block",
+              "IsRoot": "false",
+              "ID": "9",
+              "IsGroup": "false",
+              "DelaySimStatus": "false",
+              "NodeColor": "White",
+              "Fields": {
+                "Field": [
+                  {
+                    "Type": "Text",
+                    "Title": "Title",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Actor",
+                    "Value": "2"
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Conversant",
+                    "Value": "4"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Menu Text",
+                    "Value": "NPC4"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Sequence",
+                    "Value": "&"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Output",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Dialogue Text",
+                    "Value": "Grazie."
+                  }
+                ]
+              },
+              "OutgoingLinks": null,
+              "UserScript": null,
+              "ConditionsString": null
+            },
+            {
+              "FalseCondtionAction": "Block",
+              "IsRoot": "false",
+              "ID": "10",
+              "IsGroup": "false",
+              "DelaySimStatus": "false",
+              "NodeColor": "White",
+              "Fields": {
+                "Field": [
+                  {
+                    "Type": "Text",
+                    "Title": "Title",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Actor",
+                    "Value": "5"
+                  },
+                  {
+                    "Type": "Actor",
+                    "Title": "Conversant",
+                    "Value": "6"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Menu Text",
+                    "Value": "DoctroPrimario"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Sequence",
+                    "Value": "&"
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Output",
+                    "Value": null
+                  },
+                  {
+                    "Type": "Text",
+                    "Title": "Dialogue Text",
+                    "Value": "Lei cosa ci fà qua? Questo non è ilo suo piano di competenza"
+                  }
+                ]
+              },
+              "OutgoingLinks": null,
+              "UserScript": null,
+              "ConditionsString": null
+            }
+          ]
+        }
+      }
+    },
+    "UserVariables": {
+      "UserVariable": {
+        "Fields": {
+          "Field": [
+            {
+              "Type": "Text",
+              "Title": "Name",
+              "Value": "TestVar"
+            },
+            {
+              "Type": "Boolean",
+              "Title": "Initial Value",
+              "Value": "false"
+            },
+            {
+              "Type": "Text",
+              "Title": "Description",
+              "Value": null
+            }
+          ]
+        }
+      }
+    },
+    "Locations": null,
+    "Actors": {
+      "Actor": [
+        {
+          "ID": "1",
+          "Fields": {
+            "Field": [
+              {
+                "Type": "Text",
+                "Title": "Name",
+                "Value": "Olivia_V3"
+              },
+              {
+                "Type": "Files",
+                "Title": "Pictures",
+                "Value": null
+              },
+              {
+                "Type": "Boolean",
+                "Title": "IsPlayer",
+                "Value": "True"
+              }
+            ]
+          }
+        },
+        {
+          "ID": "2",
+          "Fields": {
+            "Field": [
+              {
+                "Title": "Name",
+                "Value": "NPC4"
+              },
+              {
+                "Type": "Boolean",
+                "Title": "IsPlayer",
+                "Value": "false"
+              }
+            ]
+          }
+        },
+        {
+          "ID": "3",
+          "Fields": {
+            "Field": [
+              {
+                "Title": "Name",
+                "Value": "Character_Eyes"
+              },
+              {
+                "Type": "Boolean",
+                "Title": "IsPlayer",
+                "Value": "false"
+              }
+            ]
+          }
+        },
+        {
+          "ID": "4",
+          "Fields": {
+            "Field": [
+              {
+                "Title": "Name",
+                "Value": "NPC4 (1)"
+              },
+              {
+                "Type": "Boolean",
+                "Title": "IsPlayer",
+                "Value": "false"
+              }
+            ]
+          }
+        },
+        {
+          "ID": "5",
+          "Fields": {
+            "Field": [
+              {
+                "Title": "Name",
+                "Value": "DoctorProva"
+              },
+              {
+                "Type": "Boolean",
+                "Title": "IsPlayer",
+                "Value": "false"
+              }
+            ]
+          }
+        },
+        {
+          "ID": "6",
+          "Fields": {
+            "Field": [
+              {
+                "Title": "Name",
+                "Value": "DoctorPrimario"
+              },
+              {
+                "Type": "Boolean",
+                "Title": "IsPlayer",
+                "Value": "false"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "Items": null
+  }
+}
