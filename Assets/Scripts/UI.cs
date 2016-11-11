@@ -91,5 +91,4 @@ public class UI : MonoBehaviour {
         textToShowUI.text = textMemory;
         textToShowUI.gameObject.SetActive(on);
     }
-    
 }
