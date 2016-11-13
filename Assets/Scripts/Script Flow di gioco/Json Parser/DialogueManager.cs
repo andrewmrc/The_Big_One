@@ -43,7 +43,8 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
         actualCharacter = GameObject.FindGameObjectWithTag("Player").name;
-        characterID = CharacterToID(actualCharacter);
+        //characterID = CharacterToID(actualCharacter);
+        characterID = cv.getActorId(actualCharacter);
         RaycastTarget();
         if (Input.GetKeyDown(KeyCode.E) && isDiagRunning == false)
         {
@@ -54,12 +55,12 @@ public class DialogueManager : MonoBehaviour
                  targetID.ToString().Equals(actual_children[0].conversant));
 
             //Debug per prendere il nome dei figli
-            foreach (Dialogue child in actual_children)
-            {
-                int child_id = Convert.ToInt16(child.actor);
-                string actor_name = cv.getActorName(child_id);
-                Debug.Log("Nome attore: " + actor_name);
-            }
+            //foreach (Dialogue child in actual_children)
+            //{
+            //    int child_id = Convert.ToInt16(child.actor);
+            //    string actor_name = cv.getActorName(child_id);
+            //    Debug.Log("Nome attore: " + actor_name);
+            //}
 
             /*Debug.Log("charID, actorID; aimID, conversantID:" + 
                 characterID.ToString() + ", " + 
@@ -137,23 +138,23 @@ public class DialogueManager : MonoBehaviour
     }
 
     //da togliere dato che viene gestito tutto dalla nuova funzione
-    public int CharacterToID(string _actualCharacter)
-    {
-        int charID = 0;
-        switch (_actualCharacter)
-        {
-            case "Olivia_V3":
-                charID = 1;
-                break;
-            case "NPC4":
-                charID = 2;
-                break;
-            case "Character_Eyes":
-                charID = 3;
-                break;
-        }
-        return charID;
-    }
+    //public int CharacterToID(string _actualCharacter)
+    //{
+    //    int charID = 0;
+    //    switch (_actualCharacter)
+    //    {
+    //        case "Olivia_V3":
+    //            charID = 1;
+    //            break;
+    //        case "NPC4":
+    //            charID = 2;
+    //            break;
+    //        case "Character_Eyes":
+    //            charID = 3;
+    //            break;
+    //    }
+    //    return charID;
+    //}
     public void RaycastTarget()
     {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -165,7 +166,8 @@ public class DialogueManager : MonoBehaviour
                 Debug.DrawLine(ray.origin, hit.point, Color.black);
                 //Debug.Log(hit.collider.name + ", " + hit.collider.tag);
                 actualTarget = hit.collider.name;
-                targetID = CharacterToID(actualTarget);
+                //targetID = CharacterToID(actualTarget);
+                targetID = cv.getActorId(actualTarget);
             }
         }
     }

@@ -94,14 +94,14 @@ namespace ConversationHandler
     public class Conversation
     {
         private Dictionary<int, Dialogue> dialogues;
-        private Dictionary<int, string> actor_names;
+        private Dictionary<string, int> actor_names;
         public string title;
         public int ID;
 
         public Conversation(string title, string description)
         {
             this.dialogues = new Dictionary<int, Dialogue>();
-            this.actor_names = new Dictionary<int, string>();
+            this.actor_names = new Dictionary<string, int>();
         }
 
         private object ReadFromFile(string filename)
@@ -120,9 +120,9 @@ namespace ConversationHandler
             return dialogues[id];
         }
 
-        public string getActorName(int id)
+        public int getActorId(string name)
         {
-            return actor_names[id];
+            return actor_names[name];
         }
         //livelli di annidamento successivo
         //[] list object
@@ -218,7 +218,7 @@ namespace ConversationHandler
                 foreach (Dictionary<string, object> actual_actor in actor)
                 {
                     int actual_actor_id = Convert.ToInt16((string)actual_actor["ID"]);
-                    if (!actor_names.ContainsKey(actual_actor_id))
+                    if (!actor_names.ContainsValue(actual_actor_id))
                     {
                         string actual_actor_name = "";
                         Dictionary<string, object> actual_actor_fields = actual_actor["Fields"] as Dictionary<string, object>;
@@ -231,7 +231,7 @@ namespace ConversationHandler
                                 break;
                             }
                         }
-                        actor_names.Add(actual_actor_id, actual_actor_name);
+                        actor_names.Add(actual_actor_name, actual_actor_id);
                     }
 
                 }
@@ -259,7 +259,12 @@ namespace ConversationHandler
             foreach (int child in children)
             {
                 Dialogue child_dialogue = this.getDialogue(child);
-                if (child_dialogue.sequence.Contains("&") || child_dialogue.sequence.Count == 0 || child_dialogue.checkSequence(parentD.output) != null)
+                if (child_dialogue.menu_text != null && child_dialogue.menu_text.Equals("@"))
+                {
+                    children_list = getChildrenWithSequence(child_dialogue);
+                    break;
+                }
+                else if (child_dialogue.sequence.Contains("&") || child_dialogue.sequence.Count == 0 || child_dialogue.checkSequence(parentD.output) != null)
                     children_list.Add(child_dialogue);
             }
             return children_list;
