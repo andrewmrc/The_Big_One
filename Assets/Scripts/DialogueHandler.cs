@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class DialogueHandler : MonoBehaviour {
 
@@ -10,6 +11,9 @@ public class DialogueHandler : MonoBehaviour {
 	public float distanceToTalk = 1f;
 	public float smoothSpeed = 1f;
 	public string mainPhrase;
+
+	public UnityEvent returnEvent;
+
 
 	// Use this for initialization
 	void Start () {
@@ -34,7 +38,7 @@ public class DialogueHandler : MonoBehaviour {
 					GameManager.Self.blockMovement = true;
 					GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>().enabled = false;
 					GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
-					StartCoroutine(DPrinter());
+					StartCoroutine(DPrinter2());
 				}
 			}
 		} else {
@@ -67,5 +71,26 @@ public class DialogueHandler : MonoBehaviour {
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = "";
 		GameManager.Self.blockMovement = false;
 
+	}
+
+
+	IEnumerator DPrinter2 () {
+		this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer> ().enabled = false;
+
+
+		//GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = mainPhrase;
+
+		for(int i = 0; i < dialogues.Count; i++) {
+			GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = dialogues[i];
+			yield return new WaitForSeconds (2f);
+
+		}
+
+		//yield return new WaitForSeconds (5f);
+		cantTalk = false;
+		this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer> ().enabled = true;
+		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = "";
+		GameManager.Self.blockMovement = false;
+		returnEvent.Invoke ();
 	}
 }

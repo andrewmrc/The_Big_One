@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityStandardAssets.CrossPlatformInput;
-
-
+using UnityEngine.Events;
 
 public class ObjectExaminator : MonoBehaviour {
 
@@ -22,7 +21,7 @@ public class ObjectExaminator : MonoBehaviour {
 
 	public string text;
 
-
+	public UnityEvent returnEvent;
 
 	void Start ()
 	{
@@ -99,6 +98,8 @@ public class ObjectExaminator : MonoBehaviour {
 						GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().enabled = false;
 						GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
 						//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Turn", 0);
+
+						returnEvent.Invoke ();
 					}
 
 

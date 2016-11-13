@@ -64,10 +64,11 @@ public class State_ControlBody : State {
        // this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
 
 		this.gameObject.transform.GetComponent<CharController>().enabled = false;
-
+		this.gameObject.transform.GetComponent<CharController>().stayThere = false;
         this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         this.GetComponent<Animator>().SetFloat("Forward", 0);
         this.GetComponent<Animator>().SetFloat("Turn", 0);
+		this.GetComponent<Animator>().SetBool ("Collision", false);
 
 		if(this.GetComponent<DialogueHandler>()){
 			this.GetComponent<DialogueHandler>().cantTalk = false;
