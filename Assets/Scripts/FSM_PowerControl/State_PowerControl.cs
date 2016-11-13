@@ -101,11 +101,20 @@ public class State_PowerControl : State {
                         this.GetComponent<Animator>().SetFloat("Forward", 0);
                         this.GetComponent<Animator>().SetFloat("Turn", 0);
 
+						if(this.GetComponent<DialogueHandler>()){
+							this.GetComponent<DialogueHandler>().cantTalk = false;
+						}
+
                         cameraRig.transform.GetComponent<AbstractTargetFollower>().m_Target = null;
                         hit.collider.gameObject.tag = "Player";
                         //hit.collider.transform.GetComponent<ThirdPersonUserControl>().enabled = true;                        
                         //hit.collider.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
+
 						hit.collider.transform.GetComponent<CharController>().enabled = true;
+
+						if(hit.collider.transform.GetComponent<DialogueHandler>()){
+							hit.collider.transform.GetComponent<DialogueHandler>().cantTalk = true;
+						}
 
                         hit.collider.transform.GetComponent<FSMLogic>().enabled = true;
                         hit.collider.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;

@@ -17,7 +17,9 @@ public class State_ControlBody : State {
         Debug.LogWarning("Non premi il tasto destro");
         //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = enabled;
         //this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = enabled;
-		this.gameObject.transform.GetComponent<CharController>().enabled = enabled;
+		if (!GameManager.Self.blockMovement) {
+			this.gameObject.transform.GetComponent<CharController> ().enabled = enabled;
+		}
 
         refUI.cursorFar.SetActive(false);
 
@@ -66,6 +68,10 @@ public class State_ControlBody : State {
         this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         this.GetComponent<Animator>().SetFloat("Forward", 0);
         this.GetComponent<Animator>().SetFloat("Turn", 0);
+
+		if(this.GetComponent<DialogueHandler>()){
+			this.GetComponent<DialogueHandler>().cantTalk = false;
+		}
 
         cameraRig.transform.GetComponent<AbstractTargetFollower>().m_Target = null;
         GameManager.Self.playerBody.gameObject.tag = "Player";

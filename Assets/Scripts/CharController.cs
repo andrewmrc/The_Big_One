@@ -138,12 +138,15 @@ public class CharController : MonoBehaviour {
 
 		//Serve a disattivare il parametro collision quando iniziamo un nuovo movimento. 
 		//Subito dopo controlliamo se in verità non siamo ancora contro una collision e in caso facciamo partire di nuovo la coroutine di blocco.
-		if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.D) || Input.GetKeyDown (KeyCode.S)) {
-			m_Animator.SetBool ("Collision", false);
-			if (stayThere) {
-				StartCoroutine (StopMove (0.5f));
+		if (this.gameObject.tag == "Player") {
+			if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.D) || Input.GetKeyDown (KeyCode.S)) {
+				m_Animator.SetBool ("Collision", false);
+				if (stayThere) {
+					StartCoroutine (StopMove (0.5f));
+				}
 			}
 		}
+
 	}
 
 
@@ -168,54 +171,58 @@ public class CharController : MonoBehaviour {
 
 
 	void OnCollisionEnter(Collision collision) {
+		if (this.gameObject.tag == "Player") {
+			
+			//Blocca il personaggio quando collide con qualsiasi cosa che non sia il pavimento così da evitare che continui a camminare contro una parete ad es.
+			if (collision.transform.name != "Floor") {
+				Debug.Log ("COLLISION");
+				StartCoroutine (StopMove (0.2f));
+				stayThere = true;
+			}
 
-		//Blocca il personaggio quando collide con qualsiasi cosa che non sia il pavimento così da evitare che continui a camminare contro una parete ad es.
-		if (collision.transform.name != "Floor") {
-			Debug.Log ("COLLISION");
-			StartCoroutine (StopMove (0.2f));
-			stayThere = true;
-		}
+			//Cambia i materiali dei collider quando collide con un NPC per evitare che i personaggi si spostino a vicenda o il player ci scivoli sopra andando verso l'alto
+			if (collision.transform.tag == "ControllableNPC") {
+				Debug.Log ("CHANGE MATERIAL ON COLLISION ENTER");
+				m_Rigidbody.isKinematic = true;
+				m_Rigidbody.Sleep ();
 
-		//Cambia i materiali dei collider quando collide con un NPC per evitare che i personaggi si spostino a vicenda o il player ci scivoli sopra andando verso l'alto
-		if (collision.transform.tag == "ControllableNPC") {
-			Debug.Log ("CHANGE MATERIAL ON COLLISION ENTER");
-			m_Rigidbody.isKinematic = true;
-			m_Rigidbody.Sleep();
+				this.transform.GetComponent<CapsuleCollider> ().material = zeroFriction;
+				collision.transform.GetComponent<CapsuleCollider> ().material = zeroFriction;
 
-			this.transform.GetComponent<CapsuleCollider> ().material = zeroFriction;
-			collision.transform.GetComponent<CapsuleCollider> ().material = zeroFriction;
+				m_Rigidbody.isKinematic = false;
+				m_Rigidbody.WakeUp ();
+			}
 
-			m_Rigidbody.isKinematic = false;
-			m_Rigidbody.WakeUp();
 		}
 
 	}
 
 
 	void OnCollisionExit(Collision collision) {
-		
-		if (collision.transform.name != "Floor") {
-			m_Animator.SetBool("Collision", false);
-			stayThere = false;
+		if (this.gameObject.tag == "Player") {
+			if (collision.transform.name != "Floor") {
+				m_Animator.SetBool ("Collision", false);
+				stayThere = false;
+			}
+
+			//Ripristina i materiali dei collider quando si finisce di collidere con un NPC per evitare che i personaggi scivolino dopo essersi mossi
+			if (collision.transform.tag == "ControllableNPC") {
+				Debug.Log ("CHANGE MATERIAL ON COLLISION EXIT");
+				m_Rigidbody.isKinematic = true;
+				m_Rigidbody.Sleep ();
+
+				this.transform.GetComponent<CapsuleCollider> ().material = maxFriction;
+				collision.transform.GetComponent<CapsuleCollider> ().material = maxFriction;
+
+				m_Rigidbody.isKinematic = false;
+				m_Rigidbody.WakeUp ();
+			}
 		}
-
-		//Ripristina i materiali dei collider quando si finisce di collidere con un NPC per evitare che i personaggi scivolino dopo essersi mossi
-		if (collision.transform.tag == "ControllableNPC") {
-			Debug.Log ("CHANGE MATERIAL ON COLLISION EXIT");
-			m_Rigidbody.isKinematic = true;
-			m_Rigidbody.Sleep();
-
-			this.transform.GetComponent<CapsuleCollider> ().material = maxFriction;
-			collision.transform.GetComponent<CapsuleCollider> ().material = maxFriction;
-
-			m_Rigidbody.isKinematic = false;
-			m_Rigidbody.WakeUp();
-		}
-
 	}
 
 
 	IEnumerator StopMove (float delay) {
+		
 		Debug.Log ("STOP MOVE");
 		yield return new WaitForSeconds (delay);
 		if (stayThere) {

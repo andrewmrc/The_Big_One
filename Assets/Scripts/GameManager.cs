@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour {
 	public bool outOfYourBody = false;
 	public int nBodyChanged = 0;
 	public bool isShowMemory = false;
+	public bool blockMovement;
 
     // Use this for initialization
     void Start () {
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour {
 		//Quando il potere si esaurisce rimandiamo il giocatore nel suo corpo automaticamente
 		if (powerQuantity <= 1 && outOfYourBody) {
 			outOfYourBody = false;
-			GameObject.FindGameObjectWithTag("Player").GetComponent<PowerController> ().ReturnToYourBody ();
+			GameObject.FindGameObjectWithTag("Player").GetComponent<State_ControlBody> ().ReturnToYourBody ();
 		}
 	}
 }
