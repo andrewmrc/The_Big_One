@@ -13,7 +13,7 @@ public class DialogueHandler : MonoBehaviour {
 	public string mainPhrase;
 
 	public UnityEvent returnEvent;
-
+	public List<DialogueItem> conversations;
 
 	// Use this for initialization
 	void Start () {
@@ -38,7 +38,7 @@ public class DialogueHandler : MonoBehaviour {
 					GameManager.Self.blockMovement = true;
 					GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>().enabled = false;
 					GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
-					StartCoroutine(DPrinter2());
+					StartCoroutine(DPrinter3());
 				}
 			}
 		} else {
@@ -77,20 +77,55 @@ public class DialogueHandler : MonoBehaviour {
 	IEnumerator DPrinter2 () {
 		this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer> ().enabled = false;
 
-
-		//GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = mainPhrase;
-
 		for(int i = 0; i < dialogues.Count; i++) {
 			GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = dialogues[i];
 			yield return new WaitForSeconds (2f);
 
 		}
 
-		//yield return new WaitForSeconds (5f);
 		cantTalk = false;
 		this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer> ().enabled = true;
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = "";
 		GameManager.Self.blockMovement = false;
 		returnEvent.Invoke ();
+	}
+
+
+	IEnumerator DPrinter3 () {
+		this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer> ().enabled = false;
+
+		for(int i = 0; i < conversations.Count; i++) {
+			if (conversations [i].npcSpeaker != null) {
+				if (conversations [i].npcSpeaker.name == GameObject.FindGameObjectWithTag ("Player").name) {
+					for (int j = 0; j < conversations [i].dialogues.Count; j++) {
+						Debug.Log ("i: " + i + ", j: " + j);
+
+						GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = conversations [i].dialogues [j];
+						yield return new WaitForSeconds (2f);
+
+					}
+					break;
+				} else {
+					Debug.Log ("NESSUN DIALOGO ASSEGNATO TROVATO");
+				}
+			} else {
+				for (int j = 0; j < conversations [i].dialogues.Count; j++) {
+					Debug.Log ("i: " + i + ", j: " + j);
+
+					GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = conversations [i].dialogues [j];
+					yield return new WaitForSeconds (2f);
+
+				}
+				break;
+			}
+
+		}
+
+		cantTalk = false;
+		this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer> ().enabled = true;
+		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = "";
+		GameManager.Self.blockMovement = false;
+		returnEvent.Invoke ();
+
 	}
 }
