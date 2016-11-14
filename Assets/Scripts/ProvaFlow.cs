@@ -1,23 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
-using UnityEditor;
+using System.Collections.Generic;
 
 
 
 public class ProvaFlow : MonoBehaviour {
-    public enum Condition { nothing, isTrigger, isConversation, quellochevuoi }
-    public UnityEvent triggerEvent;
-    public UnityEvent quelloCheVuoiEvent;
+    public enum Condition {triggerStay, triggerEnter,triggerExit }
+    public UnityEvent triggerEnterEvent;
+    public UnityEvent triggerStay;
+    public UnityEvent triggerExit;
     public string normalConversation;
     public int positionInFlowArray;
-    public bool isTrigger = false;
+
+
+    public int secondPosition = 0;
 
     //public bool isConversation = false;
     public Condition wichCondition;
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -27,40 +30,70 @@ public class ProvaFlow : MonoBehaviour {
 
     void OnTriggerEnter()
     {
-        if (wichCondition == Condition.isTrigger && RightPosition())
+
+        if (wichCondition == Condition.triggerEnter && RightPosition())
         {
-            triggerEvent.Invoke();
+            triggerEnterEvent.Invoke();
         }
     }
 
     void OnTriggerStay()
     {
-        if (wichCondition == Condition.quellochevuoi && RightPosition())
+        if (wichCondition == Condition.triggerStay && RightPosition())
         {
-            quelloCheVuoiEvent.Invoke();
+            if (CheckAllBool(positionInFlowArray))
+            {
+                triggerStay.Invoke();
+            }
+            
         }
     }
 
     void OnTriggerExit()
     {
+        if (wichCondition == Condition.triggerExit && RightPosition())
+        {
+            if (CheckAllBool(positionInFlowArray))
+            {
+                triggerExit.Invoke();
+            }
 
+        }
     }
 
     bool RightPosition()
     {
-
+        List<ArrayBool> tempArrayFlow = FlowManager.Self.flowGameArray;
         if (positionInFlowArray == 0)
         {
-            GameManager.Self.flowGameArray[positionInFlowArray] = true;
+            tempArrayFlow[positionInFlowArray].sequence[secondPosition] = true;            
             return true;
-            
         }
-        else if (GameManager.Self.flowGameArray[positionInFlowArray-1] == true)
+        else if (CheckAllBool(positionInFlowArray-1))
         {
-            GameManager.Self.flowGameArray[positionInFlowArray] = true;
+            tempArrayFlow[positionInFlowArray].sequence[secondPosition] = true;
             return true;
         }
         return false;
+    }
+
+    bool CheckAllBool(int positionInArray)
+    {
+        List<ArrayBool> tempArrayFlow = FlowManager.Self.flowGameArray;
+        bool temp = true;
+        
+        foreach (var item in tempArrayFlow[positionInArray].sequence)
+        {
+            
+            
+            if (!item)
+            {
+                temp = false;
+            }
+            
+        }
+        return temp;
+        
     }
 
     public void SetBool(bool asd)
@@ -68,5 +101,4 @@ public class ProvaFlow : MonoBehaviour {
         GameManager.Self.flowGameArray[positionInFlowArray] = asd;
     }
 
-    
 }
