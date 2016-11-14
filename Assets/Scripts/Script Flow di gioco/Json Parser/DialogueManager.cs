@@ -31,7 +31,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
 
-        cv.parseJSON("NodoFantasma.json");
+        cv.parseJSON("1411.json");
         actualNode = cv.getDialogue(moveThroughNodes);
         //cv.debugDialogues();
         //setting
