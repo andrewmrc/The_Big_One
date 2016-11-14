@@ -50,7 +50,7 @@ public class DialogueManager : MonoBehaviour
         {
             bool hasSpoken = false;
             List<Dialogue> actual_children = getNextDialogue();
-            bool isMultipleChoice = (actual_children.Count > 0 && actual_children[0].sequence.Count == 0 &&
+            bool isMultipleChoice = (actual_children.Count > 0 && actual_children[0].sequence.Contains("POLLO") && //da cambiare per la scelta multipla
                  characterID.ToString().Equals(actual_children[0].actor) &&
                  targetID.ToString().Equals(actual_children[0].conversant));
 
@@ -72,6 +72,12 @@ public class DialogueManager : MonoBehaviour
             if (isMultipleChoice)
             {
                 //TODO: Gestisci scelta multipla tra tutti gli actual_children
+                string multipleChoiceText = "Scegli tra i dialoghi: \n";
+                foreach (Dialogue child in actual_children)
+                {
+                    multipleChoiceText += "-" + child.text + "\n";
+                }
+                Debug.Log(multipleChoiceText);
             }
             else
             {

@@ -117,6 +117,8 @@ namespace ConversationHandler
 
         public Dialogue getDialogue(int id)
         {
+            if (!dialogues.ContainsKey(id))
+                return null;
             return dialogues[id];
         }
 
@@ -259,12 +261,15 @@ namespace ConversationHandler
             foreach (int child in children)
             {
                 Dialogue child_dialogue = this.getDialogue(child);
-                if (child_dialogue.menu_text != null && child_dialogue.menu_text.Equals("@"))
+                if (child_dialogue == null)
+                    continue;
+                if (child_dialogue.menu_text != null && child_dialogue.menu_text.Equals("@"))//cambiare per nodo fantasma nel tag
                 {
                     children_list = getChildrenWithSequence(child_dialogue);
                     break;
                 }
-                else if (child_dialogue.sequence.Contains("&") || child_dialogue.sequence.Count == 0 || child_dialogue.checkSequence(parentD.output) != null)
+                else if (child_dialogue.sequence.Contains("&") || child_dialogue.sequence.Contains("POLLO")/*cambiare per scelta multipla nel sequence*/
+                      || child_dialogue.checkSequence(parentD.output) != null)
                     children_list.Add(child_dialogue);
             }
             return children_list;
