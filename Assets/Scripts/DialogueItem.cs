@@ -8,6 +8,6 @@ public class DialogueItem {
 
 	public GameObject npcSpeaker;
 	public List<string> dialogues;
-
+	public List<AudioClip> audioSpeech;
 
 }

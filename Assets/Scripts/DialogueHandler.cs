@@ -7,13 +7,14 @@ using UnityEngine.Events;
 public class DialogueHandler : MonoBehaviour {
 
 	public bool cantTalk;
-	public List<string> dialogues;
+	//public List<string> dialogues;
 	public float distanceToTalk = 1f;
 	public float smoothSpeed = 1f;
-	public string mainPhrase;
+	//public string mainPhrase;
+
+	public List<DialogueItem> conversations;
 
 	public UnityEvent returnEvent;
-	public List<DialogueItem> conversations;
 
 	// Use this for initialization
 	void Start () {
@@ -61,7 +62,7 @@ public class DialogueHandler : MonoBehaviour {
 
 	}*/
 
-
+	/*
 	IEnumerator DPrinter () {
 		this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer> ().enabled = false;
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = mainPhrase;
@@ -88,7 +89,7 @@ public class DialogueHandler : MonoBehaviour {
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = "";
 		GameManager.Self.blockMovement = false;
 		returnEvent.Invoke ();
-	}
+	}*/
 
 
 	IEnumerator DPrinter3 () {
@@ -101,7 +102,18 @@ public class DialogueHandler : MonoBehaviour {
 						Debug.Log ("i: " + i + ", j: " + j);
 
 						GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = conversations [i].dialogues [j];
-						yield return new WaitForSeconds (2f);
+
+						//Play speech e quando finisce passare al prossimo quindi waitforsecond inserendo la durata dell'audio
+						if (conversations [i].audioSpeech.Count != 0 && conversations [i].audioSpeech [j] != null) {
+							AudioSource audioSource = this.gameObject.AddComponent<AudioSource> ();
+							audioSource.clip = conversations [i].audioSpeech [j];
+							audioSource.Play ();
+							float audioDuration = audioSource.clip.length;
+							yield return new WaitForSeconds (audioDuration);
+
+						} else {
+							yield return new WaitForSeconds (2f);
+						}
 
 					}
 					break;
