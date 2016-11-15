@@ -23,7 +23,7 @@ public class ObjectExaminator : MonoBehaviour {
 	public string text;
 
 	public UnityEvent returnEvent;
-
+	public SpawnEvent spawner;
 
 
 	void Start ()

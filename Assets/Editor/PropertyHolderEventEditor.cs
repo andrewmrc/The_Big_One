@@ -24,17 +24,18 @@ public class PropertyHolderEventEditor : Editor
 		animationName_Prop = serializedObject.FindProperty("animationName");
 		animationValueFloat_Prop = serializedObject.FindProperty("animationValueFloat");
 		animationValueBool_Prop = serializedObject.FindProperty("animationValueBool");
+
     }
 
 
     public override void OnInspectorGUI()
     {
        	serializedObject.Update();
-
        	EditorGUILayout.PropertyField(condition_Prop);
 
 		GameEvents.Condition whichEvent = (GameEvents.Condition)condition_Prop.enumValueIndex;
-  
+		Debug.Log ("SPAWNERMYEVENT");
+
 		switch (whichEvent)
         {
 		case GameEvents.Condition.Spawner:

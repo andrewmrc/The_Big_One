@@ -17,6 +17,7 @@ public class PropertyHolderEditor : Editor
 
     void OnEnable()
     {
+		
         // Setup the SerializedProperties
         condition_Prop = serializedObject.FindProperty("wichCondition");
         triggerEnterEvent_Prop = serializedObject.FindProperty("triggerEnterEvent");
@@ -37,7 +38,7 @@ public class PropertyHolderEditor : Editor
 
         EditorGUILayout.PropertyField(secondPosition_Prop);
         
-        
+
 
         
         switch (wichCondition)

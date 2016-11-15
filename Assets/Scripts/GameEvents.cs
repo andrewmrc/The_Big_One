@@ -5,6 +5,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 
+
+[Serializable]
+public class SpawnEvent : UnityEvent <GameObject, Transform> {}
+
 public class GameEvents : MonoBehaviour {
 
 
@@ -17,21 +21,24 @@ public class GameEvents : MonoBehaviour {
 	public float animationValueFloat;
 	public bool animationValueBool;
 
-	//public UnityEvent returnEvent;
+	public SpawnEvent spawner;
 
-	public void Spawner () {
+	public void Spawner (GameObject item, Transform pos) {
 		Instantiate (objectToUse).transform.position = new Vector3(positionToSpawn.position.x, positionToSpawn.position.y, positionToSpawn.position.z);
 		Debug.Log ("SPAWNA");
 	}
 
 	public void PlayAnimationFloat () {
 		objectToUse.GetComponent<Animator> ().SetFloat (animationName, animationValueFloat);
-		Debug.Log ("PLAYANIMFLOAT");
+		Debug.Log ("PLAYANIMFLOAT" + animationName + animationValueFloat);
 	}
 
 	public void PlayAnimationBool () {
 		objectToUse.GetComponent<Animator> ().SetBool (animationName, animationValueBool);
 		Debug.Log ("PLAYANIMBOOL");
 	}
+
+
+
 
 }
