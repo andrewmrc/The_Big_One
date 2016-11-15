@@ -7,24 +7,31 @@ using UnityEngine.Events;
 
 public class GameEvents : MonoBehaviour {
 
-	public void SetBool (bool asd) {
 
+	public enum Condition {Spawner, PlayAnimationFloat, PlayAnimationBool }
+	public Condition whichEvent;
+
+	public GameObject objectToUse;
+	public Transform positionToSpawn;
+	public string animationName;
+	public float animationValueFloat;
+	public bool animationValueBool;
+
+	//public UnityEvent returnEvent;
+
+	public void Spawner () {
+		Instantiate (objectToUse).transform.position = new Vector3(positionToSpawn.position.x, positionToSpawn.position.y, positionToSpawn.position.z);
+		Debug.Log ("SPAWNA");
 	}
 
-	public void SpawnerProva (GameObject itemToSpawn) {
-
+	public void PlayAnimationFloat () {
+		objectToUse.GetComponent<Animator> ().SetFloat (animationName, animationValueFloat);
+		Debug.Log ("PLAYANIMFLOAT");
 	}
 
-	public void Spawner (GameObject itemToSpawn, Transform spawnPosition) {
-		Instantiate (itemToSpawn).transform.position = new Vector3(spawnPosition.position.x, spawnPosition.position.y, spawnPosition.position.z);
-	}
-
-	public void PlayAnimationFloat (GameObject item, string animationName, float value) {
-		item.GetComponent<Animator> ().SetFloat (animationName, value);
-	}
-
-	public void PlayAnimationBool (GameObject item, string animationName, bool state) {
-		item.GetComponent<Animator> ().SetBool (animationName, state);
+	public void PlayAnimationBool () {
+		objectToUse.GetComponent<Animator> ().SetBool (animationName, animationValueBool);
+		Debug.Log ("PLAYANIMBOOL");
 	}
 
 }
