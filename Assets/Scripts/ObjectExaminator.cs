@@ -102,11 +102,12 @@ public class ObjectExaminator : MonoBehaviour {
 						GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
 						//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Turn", 0);
 
-						//returnEvent.Invoke ();
+						returnEvent.Invoke ();
 
+						/*
 						foreach (var action in Events.List) {
 							action.Execute ();
-						}
+						}*/
 
 					}
 

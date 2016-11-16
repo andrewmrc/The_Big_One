@@ -464,7 +464,7 @@ public class EventDelegateDrawer : PropertyDrawer
                             objProp.objectReferenceValue = obj;
 
                             if (obj == null)
-                                continue;
+                                break;
 
                             //show gameobject
                             GameObject selGO = null;

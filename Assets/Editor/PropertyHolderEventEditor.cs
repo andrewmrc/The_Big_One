@@ -12,6 +12,7 @@ public class PropertyHolderEventEditor : Editor
 		positionToSpawn_Prop,
 		animationName_Prop,
 		animationValueFloat_Prop,
+		int_Prop,
 		animationValueBool_Prop;
 
     void OnEnable()
@@ -23,6 +24,7 @@ public class PropertyHolderEventEditor : Editor
 		positionToSpawn_Prop = serializedObject.FindProperty("positionToSpawn");
 		animationName_Prop = serializedObject.FindProperty("animationName");
 		animationValueFloat_Prop = serializedObject.FindProperty("animationValueFloat");
+		int_Prop = serializedObject.FindProperty("i");
 		animationValueBool_Prop = serializedObject.FindProperty("animationValueBool");
 
     }
@@ -32,7 +34,7 @@ public class PropertyHolderEventEditor : Editor
     {
        	serializedObject.Update();
        	EditorGUILayout.PropertyField(condition_Prop);
-
+		//EditorGUILayout.PropertyField(int_Prop);
 		GameEvents.Condition whichEvent = (GameEvents.Condition)condition_Prop.enumValueIndex;
 		//Debug.Log ("SPAWNERMYEVENT");
 
