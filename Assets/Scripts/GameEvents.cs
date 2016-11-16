@@ -5,9 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 
-
+/*
 [Serializable]
-public class SpawnEvent : UnityEvent <GameObject, Transform> {}
+public class SpawnEvent : UnityEvent <GameObject, Transform> {}*/
 
 public class GameEvents : MonoBehaviour {
 
@@ -21,9 +21,9 @@ public class GameEvents : MonoBehaviour {
 	public float animationValueFloat;
 	public bool animationValueBool;
 
-	public SpawnEvent spawner;
+	//public SpawnEvent spawner;
 
-	public void Spawner (GameObject item, Transform pos) {
+	public void Spawner () {
 		Instantiate (objectToUse).transform.position = new Vector3(positionToSpawn.position.x, positionToSpawn.position.y, positionToSpawn.position.z);
 		Debug.Log ("SPAWNA");
 	}

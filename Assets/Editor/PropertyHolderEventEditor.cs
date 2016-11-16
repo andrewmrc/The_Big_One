@@ -34,7 +34,7 @@ public class PropertyHolderEventEditor : Editor
        	EditorGUILayout.PropertyField(condition_Prop);
 
 		GameEvents.Condition whichEvent = (GameEvents.Condition)condition_Prop.enumValueIndex;
-		Debug.Log ("SPAWNERMYEVENT");
+		//Debug.Log ("SPAWNERMYEVENT");
 
 		switch (whichEvent)
         {
