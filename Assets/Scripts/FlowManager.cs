@@ -7,7 +7,12 @@ using System;
 [Serializable]
 public class ArrayBool
 {
+	public string SequenceName;
     public bool[] sequence;
+	public GameObject call;
+	void Start(){
+		call.GetComponent<GameEvents> ().ExecuteNTimes (1);
+	}
     
 }
 public class FlowManager : MonoBehaviour
@@ -29,6 +34,10 @@ public class FlowManager : MonoBehaviour
 
     void Start()
     {
-
+		
     }
+
+
+
+
 }
