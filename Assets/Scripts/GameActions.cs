@@ -27,5 +27,10 @@ public class GameActions : MonoBehaviour {
 		Debug.Log ("PLAYANIMFLOAT" + animationName + animationValueBool);
 	}
 
+    public void RandomActionSequence (string sequenceName, int arrayPosition)
+    {
+        FlowManager.Self.ExecuteRandomEvent(sequenceName, arrayPosition);
+    }
+
 
 }

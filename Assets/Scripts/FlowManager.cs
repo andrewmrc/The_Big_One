@@ -10,15 +10,23 @@ public class ArrayBool
 	public string SequenceName;
     public bool[] sequence;
 	public GameObject call;
+    public bool executed;
 	void Start(){
 		call.GetComponent<GameEvents> ().ExecuteNTimes (1);
 	}
     
 }
+
+[Serializable]
+public class RandomArrayBool
+{
+    public string SequenceName;
+    public bool[] sequence;
+    
+
+}
 public class FlowManager : MonoBehaviour
 {
-
-   
     protected static FlowManager _self;
     public static FlowManager Self
     {
@@ -30,14 +38,45 @@ public class FlowManager : MonoBehaviour
         }
     }
     public List<ArrayBool> flowGameArray;
+    public ArrayBool[] flowRandomGameArray;
 
-
-    void Start()
+    public void ExecuteRandomEvent(string sequenceName, int arrayPosition)
     {
-		
+
+        
+        foreach (var randomArray in flowRandomGameArray)
+        {
+            if (sequenceName == randomArray.SequenceName)
+            {
+                randomArray.sequence[arrayPosition] = true;                
+            }
+        }
+        foreach (var randomArray in flowRandomGameArray)
+        {
+            if (sequenceName == randomArray.SequenceName)
+            {
+                if (CheckAllBool(sequenceName,randomArray.sequence) && !randomArray.executed)
+                {
+                    randomArray.call.GetComponent<GameEvents>().ExecuteNTimes(1);
+                    randomArray.executed = true;
+                }
+            }
+        }
+
+        
     }
 
+    bool CheckAllBool(string sequenceName, bool[] boolArray)
+    {
+        bool temp = true;
+        foreach (var item in boolArray)
+        {
+            if (!item)
+            {
+                temp = false;
+            }
 
-
-
+        }
+        return temp;
+    }
 }
