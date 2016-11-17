@@ -28,6 +28,7 @@ public class ObjectExaminator : MonoBehaviour {
 
 	void Start ()
 	{
+        text = text.Replace("__", "\n");
 		refUI = FindObjectOfType<UI>();
 		outline = Resources.Load("Outline") as Shader;
 		nullMaterial = Resources.Load("Null") as Shader;
