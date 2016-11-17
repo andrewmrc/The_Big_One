@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(ProvaFlow)), CanEditMultipleObjects]
+[CustomEditor(typeof(TriggerAction)), CanEditMultipleObjects]
 public class PropertyHolderEditor : Editor
 {
 
@@ -10,9 +10,7 @@ public class PropertyHolderEditor : Editor
         triggerEnterEvent_Prop,
         triggerExitEvent_Prop,
         triggerStayEvent_Prop,
-        controllable_Prop,
-        positionArray_Prop,
-        secondPosition_Prop;
+        controllable_Prop;
         
 
     void OnEnable()
@@ -24,47 +22,27 @@ public class PropertyHolderEditor : Editor
         triggerExitEvent_Prop = serializedObject.FindProperty("triggerExit");
         triggerStayEvent_Prop = serializedObject.FindProperty("triggerStay");
         controllable_Prop = serializedObject.FindProperty("controllable");
-        positionArray_Prop = serializedObject.FindProperty("positionInFlowArray");
-        secondPosition_Prop = serializedObject.FindProperty("secondPosition");
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
 
+
         EditorGUILayout.PropertyField(condition_Prop);
-        EditorGUILayout.PropertyField(positionArray_Prop);
-        ProvaFlow.Condition wichCondition = (ProvaFlow.Condition)condition_Prop.enumValueIndex;
-
-        EditorGUILayout.PropertyField(secondPosition_Prop);
-        
-
-
+        TriggerAction.Condition wichCondition = (TriggerAction.Condition)condition_Prop.enumValueIndex;
         
         switch (wichCondition)
         {
-            case ProvaFlow.Condition.triggerEnter:
+            case TriggerAction.Condition.triggerEnter:
                 EditorGUILayout.PropertyField(triggerEnterEvent_Prop, new GUIContent("triggerEnterEvent"));
-                //EditorGUILayout.PropertyField(controllable_Prop, new GUIContent("controllable"));
-                //EditorGUILayout.IntSlider(valForA_Prop, 0, 10, new GUIContent("valForA"));
-                //EditorGUILayout.IntSlider(valForAB_Prop, 0, 100, new GUIContent("valForAB"));
                 break;
-            case ProvaFlow.Condition.triggerExit:
+            case TriggerAction.Condition.triggerExit:
                 EditorGUILayout.PropertyField(triggerExitEvent_Prop, new GUIContent("triggerExit"));
                 break;
-            /*case PropertyHolder.Status.B:
-                EditorGUILayout.PropertyField(controllable_Prop, new GUIContent("controllable"));
-                EditorGUILayout.IntSlider(valForAB_Prop, 0, 100, new GUIContent("valForAB"));
-                break;
-
-            case PropertyHolder.Status.C:
-                EditorGUILayout.PropertyField(controllable_Prop, new GUIContent("controllable"));
-                EditorGUILayout.IntSlider(valForC_Prop, 0, 100, new GUIContent("valForC"));
-                break;*/
-            case ProvaFlow.Condition.triggerStay:                
+            case TriggerAction.Condition.triggerStay:                
                 EditorGUILayout.PropertyField(triggerStayEvent_Prop, new GUIContent("triggerStay"));
-                break;
-            
+                break;            
         }
 
 

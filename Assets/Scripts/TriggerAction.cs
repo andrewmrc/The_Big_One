@@ -5,44 +5,40 @@ using System.Collections.Generic;
 
 
 
-public class ProvaFlow : MonoBehaviour {
+public class TriggerAction : MonoBehaviour {
     public enum Condition {triggerStay, triggerEnter,triggerExit }
     public UnityEvent triggerEnterEvent;
     public UnityEvent triggerStay;
     public UnityEvent triggerExit;
     public string normalConversation;
     public int positionInFlowArray;
+    bool executed;
 
 
     public int secondPosition = 0;
 
     //public bool isConversation = false;
     public Condition wichCondition;
-	// Use this for initialization
-	void Start () {
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 
     void OnTriggerEnter()
     {
 
-        if (wichCondition == Condition.triggerEnter && RightPosition())
+        if (wichCondition == Condition.triggerEnter && !executed)
         {
+            executed = true;
             triggerEnterEvent.Invoke();
         }
     }
 
     void OnTriggerStay()
     {
-        if (wichCondition == Condition.triggerStay && RightPosition())
+        if (wichCondition == Condition.triggerStay && !executed)
         {
-            if (CheckAllBool(positionInFlowArray))
+            //if (CheckAllBool(positionInFlowArray))
             {
+                executed = true;
                 triggerStay.Invoke();
             }
             
@@ -51,10 +47,11 @@ public class ProvaFlow : MonoBehaviour {
 
     void OnTriggerExit()
     {
-        if (wichCondition == Condition.triggerExit && RightPosition())
+        if (wichCondition == Condition.triggerExit && !executed)
         {
-            if (CheckAllBool(positionInFlowArray))
+            //if (CheckAllBool(positionInFlowArray))
             {
+                executed = true;
                 triggerExit.Invoke();
             }
 
