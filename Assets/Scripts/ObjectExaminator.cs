@@ -16,6 +16,7 @@ public class ObjectExaminator : MonoBehaviour {
 
 	UI refUI;
 
+	RaycastHit hit;
 	public bool isIn = false;
 	Shader outline;
 	Shader nullMaterial;
@@ -24,7 +25,7 @@ public class ObjectExaminator : MonoBehaviour {
 
 	public UnityEvent returnEvent;
 
-	public ReorderableEventList Events;
+	//public ReorderableEventList Events;
 
 	void Start ()
 	{
@@ -41,6 +42,7 @@ public class ObjectExaminator : MonoBehaviour {
 		if (player.tag == "Player")
 		{
 			isIn = true;
+			//this.transform.GetChild(0).gameObject.SetActive(true);
 			StartCoroutine(ClickMe(0));
 			ChangeMaterial(isIn);
 
@@ -67,10 +69,56 @@ public class ObjectExaminator : MonoBehaviour {
 	}
 
 
+	IEnumerator LookMe(float delay)
+	{
+		while (isIn)
+		{
+			yield return new WaitForSeconds(delay);
+
+			if (!isClicked)
+			{
+				refUI.ExamineMemory(null, false);
+
+				if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown ("Examine"))
+				{
+					isClicked = true;
+					this.transform.GetChild(0).gameObject.SetActive(false);
+
+					refUI.ExamineMemory(memorySprite, true);
+					refUI.TextToShow(text, true);
+					Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
+					GameManager.Self.blockMovement = true;
+
+					GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>().enabled = false;
+
+					GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().enabled = false;
+					GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
+					returnEvent.Invoke ();
+
+				}
+
+
+			}
+			else if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown ("Examine") && isClicked)
+			{
+				isClicked = false;
+				this.transform.GetChild(0).gameObject.SetActive(isLooking);
+
+				refUI.ExamineMemory(memorySprite, false);
+				refUI.TextToShow(text, false);
+				Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
+				GameManager.Self.blockMovement = false;
+				GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().enabled = true;
+			}
+
+		}
+		this.transform.GetChild(0).gameObject.SetActive(false);
+		Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
+	}
+
+
 	IEnumerator ClickMe(float delay)
 	{
-
-		RaycastHit hit;
 		while (isIn)
 		{
 			isLooking = false;
@@ -85,13 +133,14 @@ public class ObjectExaminator : MonoBehaviour {
 					refUI.ExamineMemory(null, false);
 					isLooking = true;
 
-					if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown ("Examine"))
+					if (!isClicked && Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown ("Examine"))
 					{
+						Debug.Log ("Premo Esamina!");
 						isClicked = true;
 						isLooking = false;
 						refUI.ExamineMemory(memorySprite, true);
 						//refUI.ExaminableText(isLooking);
-						this.transform.GetChild(0).gameObject.SetActive(isLooking);
+						this.transform.GetChild(0).gameObject.SetActive(false);
 
 						refUI.TextToShow(text, true);
 						Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
@@ -109,7 +158,7 @@ public class ObjectExaminator : MonoBehaviour {
 						foreach (var action in Events.List) {
 							action.Execute ();
 						}*/
-
+	
 					}
 
 
@@ -117,7 +166,8 @@ public class ObjectExaminator : MonoBehaviour {
 				else if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown ("Examine") && isClicked)
 				{
 					isClicked = false;
-					isLooking = true;
+					//isLooking = true;
+					this.transform.GetChild(0).gameObject.SetActive(true);
 					refUI.ExamineMemory(memorySprite, false);
 					refUI.TextToShow(text, false);
 					Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
@@ -125,16 +175,17 @@ public class ObjectExaminator : MonoBehaviour {
 					GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().enabled = true;
 				}
 				//refUI.ExaminableText(isLooking);
-				this.transform.GetChild(0).gameObject.SetActive(isLooking);
 
 			}
 
+			this.transform.GetChild(0).gameObject.SetActive(isLooking);
 
 		}
 		//refUI.ExaminableText(false);
 		this.transform.GetChild(0).gameObject.SetActive(false);
 		Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
 	}
+
 
 	void ChangeMaterial(bool _isIn)
 	{
