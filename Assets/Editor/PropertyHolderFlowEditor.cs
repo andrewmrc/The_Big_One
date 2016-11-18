@@ -5,71 +5,95 @@ using UnityEngine;
 public class PropertyHolderFlowEditor : Editor
 {
 
+    //FlowManager t;
+    SerializedObject GetTarget;
     public SerializedProperty
-        condition_Prop,
+        randomArray_Prop,
+        sequenceArray_Prop,
+        asd;
+         
         //returnEvent_Prop,
-        objectToUse_Prop,
-        positionToSpawn_Prop,
-        animationName_Prop,
-        animationValueFloat_Prop,
-        int_Prop,
-        sequenceName_Prop,
-        positionArray_Prop,
-        animationValueBool_Prop;
+        
 
     void OnEnable()
     {
         // Setup the SerializedProperties
-        condition_Prop = serializedObject.FindProperty("whichEvent");
-        //returnEvent_Prop = serializedObject.FindProperty("returnEvent");
-        objectToUse_Prop = serializedObject.FindProperty("objectToUse");
-        positionToSpawn_Prop = serializedObject.FindProperty("positionToSpawn");
-        animationName_Prop = serializedObject.FindProperty("animationName");
-        animationValueFloat_Prop = serializedObject.FindProperty("animationValueFloat");
-        int_Prop = serializedObject.FindProperty("i");
-        positionArray_Prop = serializedObject.FindProperty("positionArray");
-        sequenceName_Prop = serializedObject.FindProperty("sequenceName");
-        animationValueBool_Prop = serializedObject.FindProperty("animationValueBool");
+        //t = (FlowManager)target;
+        
+        randomArray_Prop = serializedObject.FindProperty("flowRandomGameArray");
+        sequenceArray_Prop = serializedObject.FindProperty("flowGameArray");
+        asd = serializedObject.FindProperty("asd");
+        
 
     }
+
 
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        EditorGUILayout.PropertyField(condition_Prop);
-        //EditorGUILayout.PropertyField(int_Prop);
-        GameEvents.Condition whichEvent = (GameEvents.Condition)condition_Prop.enumValueIndex;
-        //Debug.Log ("SPAWNERMYEVENT");
-
-        switch (whichEvent)
-        {
-            case GameEvents.Condition.Spawner:
-                EditorGUILayout.PropertyField(objectToUse_Prop, new GUIContent("objectToUse"));
-                EditorGUILayout.PropertyField(positionToSpawn_Prop, new GUIContent("positionToSpawn"));
-                break;
-
-            case GameEvents.Condition.PlayAnimationBool:
-                EditorGUILayout.PropertyField(objectToUse_Prop, new GUIContent("objectToUse"));
-                EditorGUILayout.PropertyField(animationName_Prop, new GUIContent("animationName"));
-                EditorGUILayout.PropertyField(animationValueBool_Prop, new GUIContent("animationValueBool"));
-                break;
-
-            case GameEvents.Condition.PlayAnimationFloat:
-                EditorGUILayout.PropertyField(objectToUse_Prop, new GUIContent("objectToUse"));
-                EditorGUILayout.PropertyField(animationName_Prop, new GUIContent("animationName"));
-                EditorGUILayout.PropertyField(animationValueFloat_Prop, new GUIContent("animationValueFloat"));
-                break;
-
-            case GameEvents.Condition.RandomActionSequence:
-                EditorGUILayout.PropertyField(sequenceName_Prop, new GUIContent("sequenceName"));
-                EditorGUILayout.PropertyField(positionArray_Prop, new GUIContent("positionArray"));                
-                break;
-        }
-
-
-        //EditorGUILayout.PropertyField(returnEvent_Prop);
+        Show(serializedObject.FindProperty("flowRandomGameArray"));
+        
+        Show(serializedObject.FindProperty("flowGameArray"));
 
         serializedObject.ApplyModifiedProperties();
+
+    }
+
+    void Show (SerializedProperty list)
+    {
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PropertyField(list);
+        EditorGUILayout.PropertyField(list.FindPropertyRelative("Array.size"));
+        EditorGUILayout.EndHorizontal();
+        EditorGUI.indentLevel += 1;
+
+        if (list.isExpanded)
+        {
+            
+            for (int i = 0; i < list.arraySize; i++)
+            {
+                
+                EditorGUILayout.PropertyField(list.GetArrayElementAtIndex(i));
+                SerializedProperty MyListRef = list.GetArrayElementAtIndex(i);
+
+                //if (MyListRef.isExpanded)
+                
+
+
+                    SerializedProperty sequenceName = MyListRef.FindPropertyRelative("SequenceName");
+                    SerializedProperty callAction = MyListRef.FindPropertyRelative("call");
+                    SerializedProperty arrayBool = MyListRef.FindPropertyRelative("sequence");
+
+
+
+                    EditorGUILayout.PropertyField(sequenceName);
+                
+                    EditorGUILayout.PropertyField(callAction);
+                    EditorGUILayout.BeginHorizontal();
+                    //EditorGUILayout.PropertyField(arrayBool,GUIContent.none);
+                    arrayBool.arraySize = EditorGUILayout.IntSlider("N sequenze ", arrayBool.arraySize, 1, 10);
+                    //EditorGUILayout.PropertyField(arrayBool.FindPropertyRelative("Array.size"));
+                    EditorGUILayout.EndHorizontal();
+
+                    EditorGUILayout.BeginHorizontal();
+                    for (int a = 0; a < arrayBool.arraySize; a++)
+                    {
+
+                        arrayBool.GetArrayElementAtIndex(a).boolValue = EditorGUILayout.Toggle(arrayBool.GetArrayElementAtIndex(a).boolValue);
+
+
+                    }
+                
+
+                EditorGUILayout.EndHorizontal();
+
+
+            }
+            
+        }
+        EditorGUI.indentLevel -= 1;
+        
+
     }
 }

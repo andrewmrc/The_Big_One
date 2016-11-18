@@ -11,9 +11,7 @@ public class ArrayBool
     public bool[] sequence;
 	public GameObject call;
     public bool executed;
-	void Start(){
-		call.GetComponent<GameEvents> ().ExecuteNTimes (1);
-	}
+	
     
 }
 
@@ -39,6 +37,7 @@ public class FlowManager : MonoBehaviour
     }
     public List<ArrayBool> flowGameArray;
     public ArrayBool[] flowRandomGameArray;
+    public int[] asd = new int[2];
 
     public void ExecuteRandomEvent(string sequenceName, int arrayPosition)
     {
