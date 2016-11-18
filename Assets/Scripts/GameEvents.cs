@@ -46,7 +46,7 @@ public class GameEvents : MonoBehaviour
         Debug.Log("PLAYANIMBOOL");
     }
 
-    public void RandomActionSequence()
+    void RandomActionSequence()
     {
         FlowManager.Self.ExecuteRandomEvent(sequenceName, positionArray);
     }
