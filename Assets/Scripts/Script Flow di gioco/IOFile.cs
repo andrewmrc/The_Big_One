@@ -201,6 +201,29 @@ public class CsvFileReader : StreamReader
         }
         return result.ToArray();
     }
+    
+
+    public static string ReadDialogue(string path, string target1, string target2, string fase)
+    {
+        using (CsvFileReader reader = new CsvFileReader(path))
+        {
+            CsvRow row = new CsvRow();
+            while (reader.ReadRow(row))
+            {
+                if (row.LineText.Split(MyGlobal.separator)[0] == target1)
+                {
+                    if (row.LineText.Split(MyGlobal.separator)[1] == target2)
+                    {
+                        if (row.LineText.Split(MyGlobal.separator)[2] == fase)
+                        {
+                            return row.LineText;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
     //public static string ReadByID(string path, int id)
     //{
     //    int i = 0;

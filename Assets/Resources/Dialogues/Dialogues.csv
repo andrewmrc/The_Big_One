@@ -1,3 +1,4 @@
-NOME;FRASE 1;FRASE 2;FRASE 3;FRASE 4
-NPC4;sono una figa pazzesca ci credi?;questa cosa mi turba non poco;bbbbbbbbburababababababa;bababababababababa
-Olivia_V2;aaaaaaaaaaaaaaaaaaaaaaaaa;bbbbbbbbbbbbbbb;ccccccccccccccccccccccccccccccccccccc;ddddddddddddddddddddddddddddddddd
+NOME;BERSAGLIO;FASE;FRASE 1;FRASE 2;FRASE 3;FRASE 4
+Olivia_Player;NPC_Receptionist;1;sono una figa pazzesca ci credi?;questa cosa mi turba non poco;bbbbbbbbbura;fi;na;le;bababababababababa
+NPC_Receptionist;Olivia_Player;1;aaaaaaaaaaaaaaaaaaaaaaaaa;bbbbbbbbbbbbbbb;ccccccccccccccccccccccccccccccccccccc;ddddddddddddddddddddddddddddddddd
+NPC_Casual;NPC_Receptionist;1;ciao;ciao;come v??; bene & tu?; mi hanno rotto la macchina.
