@@ -99,7 +99,8 @@ public class State_PowerControl : State {
                         this.gameObject.transform.GetComponent<FSMLogic>().enabled = false;
                         this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                         this.GetComponent<Animator>().SetFloat("Forward", 0);
-                        this.GetComponent<Animator>().SetFloat("Turn", 0);
+                        //this.GetComponent<Animator>().SetFloat("Turn", 0);
+						this.gameObject.GetComponent<Animator> ().SetLayerWeight (1, 0f);
 
 						if(this.GetComponent<DialogueHandler>()){
 							this.GetComponent<DialogueHandler>().cantTalk = false;

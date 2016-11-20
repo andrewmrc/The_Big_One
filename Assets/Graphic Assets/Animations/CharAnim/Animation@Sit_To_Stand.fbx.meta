@@ -154,7 +154,18 @@ ModelImporter:
       might lower retargeting quality:\nNote: Activate translation DOF on avatar to
       improve retargeting quality.\n\t'mixamorig:Spine2' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip 'mixamo.com':\n\tRightLowerLeg
+      average position error 0.1 mm and maximum position error 1.5 mm at time 2: 8
+      (100.0%) Frame 68\n\tLeftUpperArm average position error 4.1 mm and maximum
+      position error 8.2 mm at time 0:22 (32.4%) Frame 22\n\tLeftLowerArm average
+      position error 3.4 mm and maximum position error 7.7 mm at time 0:21 (30.9%)
+      Frame 21\n\tLeftHand average position error 3.1 mm and maximum position error
+      8.1 mm at time 0:22 (32.4%) Frame 22\n\tRightUpperArm average position error
+      2.7 mm and maximum position error 6.8 mm at time 0:22 (32.4%) Frame 22\n\tRightLowerArm
+      average position error 2.8 mm and maximum position error 7.6 mm at time 0:22
+      (32.4%) Frame 22\n\tRightHand average position error 2.4 mm and maximum position
+      error 6.0 mm at time 0:21 (30.9%) Frame 21\n\tHead average position error 3.7
+      mm and maximum position error 8.6 mm at time 0:22 (32.4%) Frame 22\n"
     animationDoRetargetingWarnings: 1
     animationCompression: 3
     animationRotationError: 0.5
@@ -178,7 +189,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0

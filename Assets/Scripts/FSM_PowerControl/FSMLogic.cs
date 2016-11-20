@@ -47,7 +47,7 @@ public class FSMLogic : MonoBehaviour {
             
             isAiming = true;
 			UIActivator();
-
+			AnimationActivator ();
         }
         else
         {
@@ -55,7 +55,7 @@ public class FSMLogic : MonoBehaviour {
             isAiming = false;
             onEnemy = false;
             UIActivator();
-
+			AnimationActivator ();
         }
 			
 
@@ -161,4 +161,14 @@ public class FSMLogic : MonoBehaviour {
 
         }
     }
+
+
+	void AnimationActivator () {
+		//if(this.gameObject.GetComponent<Animator>().GetLayerIndex("BaseLayer").CompareTo
+		if (isAiming) {
+			this.gameObject.GetComponent<Animator> ().SetLayerWeight (1, 0.5f);
+		} else {
+			this.gameObject.GetComponent<Animator> ().SetLayerWeight (1, 0f);
+		}
+	}
 }
