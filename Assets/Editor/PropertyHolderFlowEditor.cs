@@ -65,9 +65,10 @@ public class PropertyHolderFlowEditor : Editor
                     SerializedProperty callAction = MyListRef.FindPropertyRelative("call");
                     SerializedProperty arrayBool = MyListRef.FindPropertyRelative("sequence");
                     SerializedProperty sequenceName = MyListRef.FindPropertyRelative("SequenceName");
+                    SerializedProperty asd = MyListRef.FindPropertyRelative("executed");
                     status = sequenceName.stringValue;
                     sequenceName.stringValue = EditorGUILayout.TextField("Nome ", sequenceName.stringValue);
-                    EditorGUILayout.PropertyField(callAction);
+                    callAction.objectReferenceValue = EditorGUILayout.ObjectField("Action to Call", callAction.objectReferenceValue, typeof(GameObject), true);
                     EditorGUILayout.BeginHorizontal();
                     arrayBool.arraySize = EditorGUILayout.IntSlider("N sequenze ", arrayBool.arraySize, 1, 10);
                     EditorGUILayout.EndHorizontal();
@@ -75,10 +76,14 @@ public class PropertyHolderFlowEditor : Editor
                     for (int a = 0; a < arrayBool.arraySize; a++)
                     {
                         arrayBool.GetArrayElementAtIndex(a).boolValue = EditorGUILayout.Toggle(arrayBool.GetArrayElementAtIndex(a).boolValue);
-                        
                     }
                     
                     EditorGUILayout.EndHorizontal();
+                    EditorGUILayout.Space();
+                    EditorGUILayout.Space();
+
+                    EditorGUILayout.PropertyField(asd);
+                    
                 }
             }
 

@@ -37,12 +37,11 @@ public class FlowManager : MonoBehaviour
     }
     public List<ArrayBool> flowGameArray;
     public ArrayBool[] flowRandomGameArray;
-    public int[] asd = new int[2];
 
+
+    #region Check and Execute Random Event
     public void ExecuteRandomEvent(string sequenceName, int arrayPosition)
     {
-
-        
         foreach (var randomArray in flowRandomGameArray)
         {
             if (sequenceName == randomArray.SequenceName)
@@ -54,18 +53,16 @@ public class FlowManager : MonoBehaviour
         {
             if (sequenceName == randomArray.SequenceName)
             {
-                if (CheckAllBool(sequenceName,randomArray.sequence) && !randomArray.executed)
+                if (CheckAllBool(randomArray.sequence) && !randomArray.executed)
                 {
                     randomArray.call.GetComponent<GameEvents>().ExecuteNTimes(1);
                     randomArray.executed = true;
                 }
             }
-        }
-
-        
+        }        
     }
 
-    bool CheckAllBool(string sequenceName, bool[] boolArray)
+    bool CheckAllBool(bool[] boolArray)
     {
         bool temp = true;
         foreach (var item in boolArray)
@@ -77,5 +74,60 @@ public class FlowManager : MonoBehaviour
 
         }
         return temp;
+    }
+    #endregion
+
+    public void ExecuteSequenceEvent(string sequenceName, int arrayPosition)
+    {
+        for (int i = 0; i < flowGameArray.Count; i++)
+        {
+            if (flowGameArray[i].SequenceName == sequenceName)
+            {
+                if (i == 0)
+                {
+                    
+                    if (arrayPosition == 0)
+                    {
+                        flowGameArray[i].sequence[arrayPosition] = true;
+                    }
+                    else
+                    {
+                        if(flowGameArray[i].sequence[arrayPosition-1])
+                        {
+                            flowGameArray[i].sequence[arrayPosition] = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (CheckAllBool(flowGameArray[i-1].sequence))
+                    {
+                        if (arrayPosition == 0)
+                        {
+                            flowGameArray[i].sequence[arrayPosition] = true;
+                        }
+                        else
+                        {
+                            if (flowGameArray[i].sequence[arrayPosition - 1])
+                            {
+                                flowGameArray[i].sequence[arrayPosition] = true;
+                            }
+                        }
+                    }
+                }
+            }    
+        }
+        foreach (var gameArray in flowGameArray)
+        {
+            if (sequenceName == gameArray.SequenceName)
+            {
+                if (CheckAllBool(gameArray.sequence) && !gameArray.executed)
+                {
+                    
+                    gameArray.call.GetComponent<GameEvents>().ExecuteNTimes(1);
+                    gameArray.executed = true;
+                }
+            }
+        }
     }
 }

@@ -13,7 +13,8 @@ public class GameEvents : MonoBehaviour
 {
 
 
-    public enum Condition { Spawner, PlayAnimationFloat, PlayAnimationBool, LoadScene, RandomActionSequence }
+    public enum Condition { Spawner, PlayAnimationFloat, PlayAnimationBool, LoadScene,
+                            RandomActionSequence,ActionSequence, Patroling }
     public Condition whichEvent;
 
     public GameObject objectToUse;
@@ -50,6 +51,10 @@ public class GameEvents : MonoBehaviour
     {
         FlowManager.Self.ExecuteRandomEvent(sequenceName, positionArray);
     }
+    void ActionSequence()
+    {
+        FlowManager.Self.ExecuteSequenceEvent(sequenceName,positionArray);
+    }
 
 
     IEnumerator SpawnerRoutine()
@@ -70,7 +75,6 @@ public class GameEvents : MonoBehaviour
         if (i < n)
         {
             i++;
-            Debug.Log(i);
             switch (whichEvent)
             {
 
@@ -88,6 +92,10 @@ public class GameEvents : MonoBehaviour
                     break;
                 case Condition.RandomActionSequence:
                     RandomActionSequence();
+                    break;
+                case Condition.ActionSequence:
+                    i = 0;
+                    ActionSequence();
                     break;
                 default:
                     break;

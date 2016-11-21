@@ -65,6 +65,10 @@ public class PropertyHolderEventEditor : Editor
                 EditorGUILayout.PropertyField(sequenceName_Prop, new GUIContent("sequenceName"));
                 EditorGUILayout.PropertyField(positionArray_Prop, new GUIContent("positionArray"));                
                 break;
+            case GameEvents.Condition.ActionSequence:
+                EditorGUILayout.PropertyField(sequenceName_Prop, new GUIContent("sequenceName"));
+                EditorGUILayout.PropertyField(positionArray_Prop, new GUIContent("positionArray"));
+                break;
         }
 
 
