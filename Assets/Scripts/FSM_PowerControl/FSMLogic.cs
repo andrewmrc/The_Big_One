@@ -15,6 +15,7 @@ public class FSMLogic : MonoBehaviour {
 
     //public Sprite imageSprite;
 
+	float currentWeight = 0f;
 
     public bool onEnemy = false;
     UI refUI;
@@ -166,9 +167,13 @@ public class FSMLogic : MonoBehaviour {
 	void AnimationActivator () {
 		//if(this.gameObject.GetComponent<Animator>().GetLayerIndex("BaseLayer").CompareTo
 		if (isAiming) {
-			this.gameObject.GetComponent<Animator> ().SetLayerWeight (1, 0.5f);
+			//this.gameObject.GetComponent<Animator> ().SetLayerWeight (1, 0.4f);
+			currentWeight = Mathf.Lerp(currentWeight, 0.5f, Time.deltaTime * 3f);
+			this.gameObject.GetComponent<Animator> ().SetLayerWeight(1, currentWeight);
 		} else {
-			this.gameObject.GetComponent<Animator> ().SetLayerWeight (1, 0f);
+			//this.gameObject.GetComponent<Animator> ().SetLayerWeight (1, 0f);
+			currentWeight = Mathf.Lerp(currentWeight, 0f, Time.deltaTime * 4f);
+			this.gameObject.GetComponent<Animator> ().SetLayerWeight(1, currentWeight);
 		}
 	}
 }

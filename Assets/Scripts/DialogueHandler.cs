@@ -105,7 +105,7 @@ public class DialogueHandler : MonoBehaviour {
 
 						GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = conversations [i].dialogues [j];
 
-						//Play speech e quando finisce passare al prossimo quindi waitforsecond inserendo la durata dell'audio
+						//Play speech e quando finisce passa al prossimo quindi waitforsecond inserendo la durata dell'audio
 						if (conversations [i].audioSpeech.Count != 0 && conversations [i].audioSpeech [j] != null) {
 							AudioSource audioSource = this.gameObject.AddComponent<AudioSource> ();
 							audioSource.clip = conversations [i].audioSpeech [j];
