@@ -31,27 +31,30 @@ public class FSM_ReturnInPosition : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
+		/*
         if (!GetComponent<FSMLogic>().enabled)
         {
-            if (refNav.enabled && refNav.remainingDistance > refNav.stoppingDistance)
+			Debug.Log ("remaining: " + refNav.remainingDistance);
+			Debug.Log (refNav.remainingDistance > refNav.stoppingDistance);
+            if (refNav.remainingDistance > refNav.stoppingDistance)
             {
                 //GetComponent<ThirdPersonCharacter>().Move(refNav.desiredVelocity, false, false);
 				GetComponent<CharController>().Move(refNav.desiredVelocity, false);
-
+				Debug.Log ("remaaaaa: " + refNav.remainingDistance);
             }
             else
             {
                 //GetComponent<ThirdPersonCharacter>().Move(Vector3.zero, false, false);
 				GetComponent<CharController>().Move(refNav.desiredVelocity, false);
-
+				Debug.Log ("ciaooooo: " + refNav.remainingDistance);
                 StartCoroutine(DisableComponents());
 
             }
-        }
+        }*/
 
         if (GetComponent<FSMLogic>().enabled)
         {
+			isWaiting = false;
             refNav.enabled = false;
             GetComponent<FSM_ReturnInPosition>().enabled = false;
 
@@ -69,7 +72,8 @@ public class FSM_ReturnInPosition : MonoBehaviour {
 	//aggiungiamo un delay prima di rimandare il personaggio al suo posto
 	IEnumerator BackToMyPlace () {
 		yield return new WaitForSeconds (waitTime);
-        if (isWaiting)
+		isWaiting = true;
+		while (isWaiting)
         {
             refNav.enabled = true;
             //this.GetComponent<ThirdPersonCharacter>().enabled = true;
@@ -79,11 +83,14 @@ public class FSM_ReturnInPosition : MonoBehaviour {
             {
                 GetComponent<FSM_ReturnInPosition>().enabled = true;
                 refNav.destination = initialPosition;
+				GetComponent<CharController>().Move(refNav.desiredVelocity, false);
             }
             else
             {
+				isWaiting = false;
                 StartCoroutine(DisableComponents());
             }
+			yield return null;
         }
 		
 	}
@@ -91,6 +98,7 @@ public class FSM_ReturnInPosition : MonoBehaviour {
 
     IEnumerator DisableComponents()
     {
+		Debug.Log ("CHIAMATA STRANA");
 		yield return new WaitForSeconds(0.5f);
         GetComponent<FSM_ReturnInPosition>().enabled = false;
 		GetComponent<NavMeshAgent>().enabled = false;
