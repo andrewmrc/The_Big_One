@@ -27,6 +27,9 @@ public class GameEvents : MonoBehaviour
 
     //Variabili Patroling
     public Transform[] patrolingTrans;
+    public GameObject patrolingObj;
+    public float speedObj;
+    public float delay;
 
     // Variabili utilizzate per l'esecuzione di N volte
     public int n;
@@ -61,7 +64,7 @@ public class GameEvents : MonoBehaviour
     }
     void StartPatroling()
     {
-
+        StartCoroutine(PatroingCO());
     }
 
 
@@ -74,8 +77,44 @@ public class GameEvents : MonoBehaviour
         Debug.Log("SPAWNA");
     }
 
+    IEnumerator PatroingCO()
+    {
+        NavMeshAgent objNav = patrolingObj.GetComponent<NavMeshAgent>();
+        
+        //objNav.enabled = true;
+        int k = 0;
+        while (true)
+        {
+            
 
 
+            while (Vector3.Distance(patrolingObj.transform.position, patrolingTrans[k].position) > 0.6f)
+            {
+                if (!patrolingObj.GetComponent<FSMLogic>().enabled)
+                {
+                    objNav.destination = patrolingTrans[k].position;
+                    
+                    objNav.GetComponent<FSM_ReturnInPosition>().isWaiting = false;
+                }
+                else
+                {
+                    objNav.enabled = false;
+                }
+
+                
+                yield return null;
+            }
+            k++;
+            if (k >= patrolingTrans.Length)
+            {
+                k = 0;
+            }
+
+            yield return new WaitForSeconds(delay);
+            
+        }
+
+    }
 
     public void ExecuteNTimes(int n)
     {
@@ -104,6 +143,9 @@ public class GameEvents : MonoBehaviour
                 case Condition.ActionSequence:
                     i = 0;
                     ActionSequence();
+                    break;
+                case Condition.Patroling:
+                    StartPatroling();
                     break;
                 default:
                     break;
