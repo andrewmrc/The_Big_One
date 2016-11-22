@@ -25,6 +25,10 @@ public class GameEvents : MonoBehaviour
     public string sequenceName;
     public int positionArray;
 
+    //Variabili Patroling
+    public Transform[] patrolingTrans;
+
+    // Variabili utilizzate per l'esecuzione di N volte
     public int n;
     public int i = 0;
     //public SpawnEvent spawner;
@@ -54,6 +58,10 @@ public class GameEvents : MonoBehaviour
     void ActionSequence()
     {
         FlowManager.Self.ExecuteSequenceEvent(sequenceName,positionArray);
+    }
+    void StartPatroling()
+    {
+
     }
 
 

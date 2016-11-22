@@ -15,6 +15,7 @@ public class PropertyHolderEventEditor : Editor
         int_Prop,
         sequenceName_Prop,
         positionArray_Prop,
+        patrolingTransArray_Prop,
         animationValueBool_Prop;
 
     void OnEnable()
@@ -30,6 +31,7 @@ public class PropertyHolderEventEditor : Editor
         positionArray_Prop = serializedObject.FindProperty("positionArray");
         sequenceName_Prop = serializedObject.FindProperty("sequenceName");
         animationValueBool_Prop = serializedObject.FindProperty("animationValueBool");
+        patrolingTransArray_Prop = serializedObject.FindProperty("patrolingTrans");
 
     }
 
@@ -68,6 +70,15 @@ public class PropertyHolderEventEditor : Editor
             case GameEvents.Condition.ActionSequence:
                 EditorGUILayout.PropertyField(sequenceName_Prop, new GUIContent("sequenceName"));
                 EditorGUILayout.PropertyField(positionArray_Prop, new GUIContent("positionArray"));
+                break;
+            case GameEvents.Condition.Patroling:
+                EditorGUILayout.PropertyField(patrolingTransArray_Prop);
+                if (patrolingTransArray_Prop.isExpanded)
+                {                   
+                    EditorGUILayout.PropertyField(patrolingTransArray_Prop.FindPropertyRelative("Array.size"));
+
+                }
+
                 break;
         }
 
