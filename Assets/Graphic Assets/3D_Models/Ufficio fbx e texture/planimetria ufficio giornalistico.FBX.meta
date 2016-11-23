@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: bb363d0755f775a45807143d108fed06
-timeCreated: 1479918491
+guid: d97f203db03723748ae013d953eaf6e7
+timeCreated: 1479929455
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -41,10 +41,11 @@ ModelImporter:
     100066: porta ufficio_005
     100068: porta ufficio_3
     100070: soffitto
-    100072: "veneziana gi\xF9"
-    100074: "veneziana gi\xF9001"
-    100076: veneziana su_1
-    100078: veneziana su_2
+    100072: soffitto001
+    100074: "veneziana gi\xF9"
+    100076: "veneziana gi\xF9001"
+    100078: veneziana su_1
+    100080: veneziana su_2
     400000: battiscopa
     400002: finestra boss_che si muove boss001
     400004: finestra boss_che si muove boss003
@@ -81,10 +82,11 @@ ModelImporter:
     400066: porta ufficio_005
     400068: porta ufficio_3
     400070: soffitto
-    400072: "veneziana gi\xF9"
-    400074: "veneziana gi\xF9001"
-    400076: veneziana su_1
-    400078: veneziana su_2
+    400072: soffitto001
+    400074: "veneziana gi\xF9"
+    400076: "veneziana gi\xF9001"
+    400078: veneziana su_1
+    400080: veneziana su_2
     2300000: battiscopa
     2300002: finestra boss_che si muove boss001
     2300004: finestra boss_che si muove boss003
@@ -120,10 +122,11 @@ ModelImporter:
     2300064: porta ufficio_005
     2300066: porta ufficio_3
     2300068: soffitto
-    2300070: "veneziana gi\xF9"
-    2300072: "veneziana gi\xF9001"
-    2300074: veneziana su_1
-    2300076: veneziana su_2
+    2300070: soffitto001
+    2300072: "veneziana gi\xF9"
+    2300074: "veneziana gi\xF9001"
+    2300076: veneziana su_1
+    2300078: veneziana su_2
     3300000: battiscopa
     3300002: finestra boss_che si muove boss001
     3300004: finestra boss_che si muove boss003
@@ -159,10 +162,11 @@ ModelImporter:
     3300064: porta ufficio_005
     3300066: porta ufficio_3
     3300068: soffitto
-    3300070: "veneziana gi\xF9"
-    3300072: "veneziana gi\xF9001"
-    3300074: veneziana su_1
-    3300076: veneziana su_2
+    3300070: soffitto001
+    3300072: "veneziana gi\xF9"
+    3300074: "veneziana gi\xF9001"
+    3300076: veneziana su_1
+    3300078: veneziana su_2
     4300000: Planimetria
     4300002: pavimento
     4300004: legno corridoio
@@ -202,6 +206,7 @@ ModelImporter:
     4300072: finestra boss_che si muove boss008
     4300074: porta ufficio_004
     4300076: porta ufficio_005
+    4300078: soffitto001
   materials:
     importMaterials: 1
     materialName: 0
