@@ -106,6 +106,11 @@ public class State_PowerControl : State {
 							this.GetComponent<DialogueHandler>().cantTalk = false;
 						}
 
+						//Fa tornare il personaggio al suo posto se non è il protagonista
+						if(this.gameObject != GameManager.Self.playerBody){
+							this.gameObject.GetComponent<State_ControlBody>().returnEvent.Invoke();
+						}
+
                         cameraRig.transform.GetComponent<AbstractTargetFollower>().m_Target = null;
                         hit.collider.gameObject.tag = "Player";
                         //hit.collider.transform.GetComponent<ThirdPersonUserControl>().enabled = true;                        
