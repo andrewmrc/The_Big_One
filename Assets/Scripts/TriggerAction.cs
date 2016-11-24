@@ -22,17 +22,19 @@ public class TriggerAction : MonoBehaviour {
 
 
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-
-        if (wichCondition == Condition.triggerEnter && !executed)
+        if (other.name != this.gameObject.name)
         {
-            executed = true;
-            triggerEnterEvent.Invoke();
+            if (wichCondition == Condition.triggerEnter && !executed)
+            {
+                executed = true;
+                triggerEnterEvent.Invoke();
+            }
         }
     }
 
-    void OnTriggerStay()
+    void OnTriggerStay(Collider other)
     {
         if (wichCondition == Condition.triggerStay && !executed)
         {
@@ -45,8 +47,9 @@ public class TriggerAction : MonoBehaviour {
         }
     }
 
-    void OnTriggerExit()
+    void OnTriggerExit(Collider other)
     {
+        
         if (wichCondition == Condition.triggerExit && !executed)
         {
             //if (CheckAllBool(positionInFlowArray))
