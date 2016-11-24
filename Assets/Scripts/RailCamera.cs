@@ -3,14 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityStandardAssets.CrossPlatformInput;
 
-namespace UnityStandardAssets.Cameras {
+namespace UnityStandardAssets.Cameras
+{
+
+    [System.Serializable]
+    public class RailContainer
+    {
+        public Transform targetA, targetB;
+        public Transform targetToLook;
+        [Tooltip("Mercuri è un coglione")]
+        public bool fadeIn, fadeOut;
+        public float timeExec, waitTime;
+    }
+
 
     public class RailCamera : MonoBehaviour {
+
+        public RailContainer[] moveCamera;
 
         private byte i = 0;
         public float distance = 1f;
         public float waitTime = 1f;
-        public float speed;
+        public float time;
+        [Range(0,1)]
+        public float speed = 0;
         public GameObject mainCamera;
         public List<Transform> cubeList = new List<Transform>(5);
         public List<Transform> listTarget = new List<Transform>();
@@ -18,9 +34,45 @@ namespace UnityStandardAssets.Cameras {
 
         void Start()
         {
-           
             refFader = FindObjectOfType<Fader>();
-            StartCoroutine(railCamera());
+            StartCoroutine(RailCameraCO());
+        }
+
+        private IEnumerator RailCameraCO()
+        {
+            mainCamera.GetComponent<FreeLookCam>().enabled = false;
+
+            for (int i = 0; i < moveCamera.Length; i++)
+            {
+                if (moveCamera[i].fadeOut)
+                {
+                    refFader.StartCoroutine(refFader.FadeOut());
+                    //yield return new WaitForSeconds(2);
+                }
+                
+                
+
+                while ((this.transform.position - moveCamera[i].targetB.position).magnitude >= distance)
+                {
+                    //Vector3 currentPos = this.transform.position;
+
+                    speed += Time.deltaTime;
+                    this.transform.position = Vector3.Lerp(moveCamera[i].targetA.position, moveCamera[i].targetB.position, speed / moveCamera[i].timeExec);
+                    //this.transform.rotation = Quaternion.Slerp(this.transform.rotation, cubeList[i].transform.rotation, speed / moveCamera[i].timeExec);
+                    this.transform.LookAt(moveCamera[i].targetToLook);
+                    yield return null;
+                }
+                if (moveCamera[i].fadeIn)
+                {
+                    refFader.StartCoroutine(refFader.FadeIn());
+                    //yield return new WaitForSeconds(2);
+                }
+                yield return new WaitForSeconds(moveCamera[i].waitTime);
+                speed = 0;
+            }
+            refFader.StartCoroutine(refFader.FadeOut());
+            mainCamera.GetComponent<FreeLookCam>().enabled = true;
+            this.gameObject.SetActive(false);
         }
 
         private IEnumerator railCamera()
@@ -30,8 +82,9 @@ namespace UnityStandardAssets.Cameras {
 
             while (true)
             {
-                this.transform.position = Vector3.Lerp(this.transform.position, cubeList[i].position, speed * 0.05f);
-                this.transform.rotation = Quaternion.Slerp(this.transform.rotation, cubeList[i].transform.rotation, speed * 0.05f);
+                speed += Time.deltaTime;
+                this.transform.position = Vector3.Lerp(currentPos, cubeList[i].position, speed / time);
+                this.transform.rotation = Quaternion.Slerp(this.transform.rotation, cubeList[i].transform.rotation, speed / time);
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -50,7 +103,9 @@ namespace UnityStandardAssets.Cameras {
                 else
                 {
                     yield return new WaitForSeconds(waitTime);
+                    currentPos = this.transform.position;
                     i++;
+                    speed = 0;
 
                     // Opzionale... Quando devo fare l'ultima transizione abbasso il tempo di attesa a 0
                     if (i == cubeList.Count -1)
@@ -59,7 +114,6 @@ namespace UnityStandardAssets.Cameras {
                     if (i >= cubeList.Count)
                     {
                         
-                        Debug.Log("Dovrebbe iniziare ORA");
                         // Esegue il FadeIn in Fader
                         refFader.StartCoroutine(refFader.FadeIn());
                         yield return new WaitForSeconds(2);
@@ -73,7 +127,10 @@ namespace UnityStandardAssets.Cameras {
                         yield break;
                     }
                 }
+
             }
         }     
+
+       
     }
 }
