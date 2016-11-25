@@ -114,27 +114,30 @@ public class CharController : MonoBehaviour {
 	// Fixed update is called in sync with physics
 	private void FixedUpdate()
 	{
-		// read inputs
-		float h = Input.GetAxis("Horizontal");
-		float v = Input.GetAxis("Vertical");
-		bool crouch = Input.GetKey(KeyCode.C);
+        if (this.gameObject.tag == "Player")
+        {
 
-		// calculate move direction to pass to character
-		if (m_Cam != null)
-		{
-			// calculate camera relative direction to move:
-			m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-			m_Move = v*m_CamForward + h*m_Cam.right;
-		}
-		else
-		{
-			// we use world-relative directions in the case of no main camera
-			m_Move = v*Vector3.forward + h*Vector3.right;
-		}
+            // read inputs
+            float h = Input.GetAxis("Horizontal");
+            float v = Input.GetAxis("Vertical");
+            bool crouch = Input.GetKey(KeyCode.C);
 
-		// pass all parameters to the character control script
-		Move(m_Move, crouch);
+            // calculate move direction to pass to character
+            if (m_Cam != null)
+            {
+                // calculate camera relative direction to move:
+                m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+                m_Move = v * m_CamForward + h * m_Cam.right;
+            }
+            else
+            {
+                // we use world-relative directions in the case of no main camera
+                m_Move = v * Vector3.forward + h * Vector3.right;
+            }
 
+            // pass all parameters to the character control script
+            Move(m_Move, crouch);
+        }
 
 		//Serve a disattivare il parametro collision quando iniziamo un nuovo movimento. 
 		//Subito dopo controlliamo se in verità non siamo ancora contro una collision e in caso facciamo partire di nuovo la coroutine di blocco.
@@ -221,7 +224,7 @@ public class CharController : MonoBehaviour {
 	}
 
 
-	IEnumerator StopMove (float delay) {
+	public IEnumerator StopMove (float delay) {
 		
 		Debug.Log ("STOP MOVE");
 		yield return new WaitForSeconds (delay);

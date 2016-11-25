@@ -12,7 +12,7 @@ public class SpawnEvent : UnityEvent <GameObject, Transform> {}*/
 public class GameEvents : MonoBehaviour
 {
 
-
+    PatrollingDB[] asd;
     public enum Condition { Spawner, PlayAnimationFloat, PlayAnimationBool, LoadScene,
                             RandomActionSequence,ActionSequence, Patroling }
     public Condition whichEvent;
@@ -64,7 +64,8 @@ public class GameEvents : MonoBehaviour
     }
     void StartPatroling()
     {
-        StartCoroutine(PatroingCO());
+        patrolingObj.GetComponent<Patrolling>().patrollingTransform = asd;
+        patrolingObj.GetComponent<Patrolling>().StartNStopPatrolling(true);
     }
 
 
@@ -113,6 +114,7 @@ public class GameEvents : MonoBehaviour
             yield return new WaitForSeconds(delay);
             
         }
+
 
     }
 

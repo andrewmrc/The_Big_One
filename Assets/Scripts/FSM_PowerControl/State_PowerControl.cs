@@ -110,6 +110,12 @@ public class State_PowerControl : State {
 						if(this.gameObject != GameManager.Self.playerBody){
 							this.gameObject.GetComponent<State_ControlBody>().returnEvent.Invoke();
 						}
+                        // controllo patrolling e isPatrolling è true allora fai partire coroutine
+                        if (this.gameObject.GetComponent<Patrolling>() && this.gameObject.GetComponent<Patrolling>().isPatrolling)
+                        {
+                            this.gameObject.GetComponent<Patrolling>().StartNStopPatrolling(true);
+                        }
+
 
                         cameraRig.transform.GetComponent<AbstractTargetFollower>().m_Target = null;
                         hit.collider.gameObject.tag = "Player";

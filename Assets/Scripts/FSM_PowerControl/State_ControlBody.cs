@@ -74,6 +74,12 @@ public class State_ControlBody : State {
 			this.GetComponent<DialogueHandler>().cantTalk = false;
 		}
 
+        // controllo patrolling e isPatrolling è true allora fai partire coroutine
+        if (this.gameObject.GetComponent<Patrolling>() && this.gameObject.GetComponent<Patrolling>().isPatrolling)
+        {
+            this.gameObject.GetComponent<Patrolling>().StartNStopPatrolling(true);
+        }
+
         cameraRig.transform.GetComponent<AbstractTargetFollower>().m_Target = null;
         GameManager.Self.playerBody.gameObject.tag = "Player";
         //GameManager.Self.playerBody.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = true;

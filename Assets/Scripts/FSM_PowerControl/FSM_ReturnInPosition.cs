@@ -65,7 +65,11 @@ public class FSM_ReturnInPosition : MonoBehaviour {
 
     public void MyPosition()
     {
-		StartCoroutine(BackToMyPlace());
+        if (GetComponent<Patrolling>() && !GetComponent<Patrolling>().isPatrolling)
+        {
+            StartCoroutine(BackToMyPlace());
+        }
+		
     }
 
 
