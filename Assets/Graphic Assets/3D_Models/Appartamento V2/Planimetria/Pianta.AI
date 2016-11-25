@@ -1,0 +1,101 @@
+%!PS-Adobe-3.0
+%%Creator: Rhinoceros
+%%Title: (P.)
+%%BoundingBox: 147 277 416 494
+%%DocumentProcessColors: Black
+%%DocumentNeededResources: procset Adobe_packedarray 2.0 0
+%%+ procset Adobe_cmykcolor 1.1 0
+%%+ procset Adobe_cshow 1.1 0
+%%+ procset Adobe_customcolor 1.0 0
+%%+ procset Adobe_typography_AI3 1.0 0
+%%+ procset Adobe_IllustratorA_AI3 1.0 0
+%AI3_ColorUsage: Color
+%AI3_TemplateBox: 288 384 288 384
+%AI3_TileBox: 0 0 576 768
+%AI3_DocumentPreview: None
+%%Template:
+%%PageOrigin:0 0
+%%EndComments
+%%BeginProlog
+%%IncludeResource: procset Adobe_packedarray 2.0 0
+Adobe_packedarray /initialize get exec
+%%IncludeResource: procset Adobe_cmykcolor 1.1 0
+%%IncludeResource: procset Adobe_cshow 1.1 0
+%%IncludeResource: procset Adobe_customcolor 1.0 0
+%%IncludeResource: procset Adobe_typography_AI3 1.0 0
+%%IncludeResource: procset Adobe_IllustratorA_AI3 1.0 0
+%%EndProlog
+%%BeginSetup
+Adobe_cmykcolor /initialize get exec
+Adobe_cshow /initialize get exec
+Adobe_customcolor /initialize get exec
+Adobe_typography_AI3 /initialize get exec
+Adobe_IllustratorA_AI3 /initialize get exec
+%%EndSetup
+%AI5_BeginLayer
+1 1 1 1 0 0 -1 0 0 0 Lb
+(Predefinito) Ln
+0 A
+0 R
+0.0000 0.0000 0.0000 XA
+0.0000 0.0000 0.0000 Xa
+0 i 1 J 1 j 1.0000 w 4 M []0 d
+0 D
+322.1387 456.8285 m
+318.5805 456.8285 L
+318.5805 486.6618 L
+308.7979 486.6618 L
+308.7979 493.3586 L
+415.9927 493.3586 L
+415.9927 278.3191 L
+148.1227 278.3191 L
+148.1227 493.3586 L
+284.2752 493.3586 L
+284.2752 486.6618 L
+275.8889 486.6618 L
+275.8889 405.4796 L
+245.0786 405.4796 L
+245.0786 409.0378 L
+272.3307 409.0378 L
+272.3307 486.6618 L
+217.0251 486.6618 L
+217.0251 409.0378 L
+222.6143 409.0378 L
+222.6143 405.4796 L
+184.8428 405.4796 L
+184.8428 409.0378 L
+213.4668 409.0378 L
+213.4668 486.6618 L
+154.8195 486.6618 L
+154.8195 409.0378 L
+161.6641 409.0378 L
+161.6641 405.4796 L
+154.8195 405.4796 L
+154.8195 365.0280 L
+162.4143 365.0280 L
+162.4143 361.4698 L
+154.8195 361.4698 L
+154.8195 285.0158 L
+272.3307 285.0158 L
+272.3307 361.4698 L
+184.7621 361.4698 L
+184.7621 365.0280 L
+275.8889 365.0280 L
+275.8889 285.0158 L
+409.2959 285.0158 L
+409.2959 486.6618 L
+322.1387 486.6618 L
+322.1387 456.8285 L
+s
+LB
+%AI5_EndLayer--
+%%PageTrailer
+gsave annotatepage grestore showpage
+%%Trailer
+Adobe_IllustratorA_AI3 /terminate get exec
+Adobe_typography_AI3 /terminate get exec
+Adobe_customcolor /terminate get exec
+Adobe_cshow /terminate get exec
+Adobe_cmykcolor /terminate get exec
+Adobe_packedarray /terminate get exec
+%%EOF
