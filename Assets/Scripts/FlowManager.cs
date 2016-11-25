@@ -10,9 +10,7 @@ public class ArrayBool
 	public string SequenceName;
     public bool[] sequence;
 	public GameObject call;
-    public bool executed;
-	
-    
+    public bool executed; 
 }
 
 [Serializable]
