@@ -65,10 +65,11 @@ public class FSM_ReturnInPosition : MonoBehaviour {
 
     public void MyPosition()
     {
-        if (GetComponent<Patrolling>() && !GetComponent<Patrolling>().isPatrolling)
-        {
-            StartCoroutine(BackToMyPlace());
-        }
+		if (GetComponent<Patrolling> () && !GetComponent<Patrolling> ().isPatrolling) {
+			StartCoroutine (BackToMyPlace ());
+		} else if (!GetComponent<Patrolling> ()) {
+			StartCoroutine (BackToMyPlace ());
+		}
 		
     }
 
@@ -102,14 +103,14 @@ public class FSM_ReturnInPosition : MonoBehaviour {
 
     IEnumerator DisableComponents()
     {
-		Debug.Log ("CHIAMATA STRANA");
+		//Debug.Log ("DISABLE COMPONENTS");
 		yield return new WaitForSeconds(0.5f);
         GetComponent<FSM_ReturnInPosition>().enabled = false;
 		GetComponent<NavMeshAgent>().enabled = false;
 		//this.GetComponent<ThirdPersonCharacter>().enabled = false;
 		//this.GetComponent<ThirdPersonUserControl>().enabled = false;
 		this.GetComponent<CharController>().enabled = false;
-
+		this.GetComponent<Animator>().SetFloat("Forward", 0);
 		this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
     }
