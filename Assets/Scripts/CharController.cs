@@ -9,6 +9,7 @@ public class CharController : MonoBehaviour {
 	[SerializeField] float m_RunCycleLegOffset = 0.2f; //specific to the character in sample assets, will need to be modified to work with others
 	[SerializeField] float m_MoveSpeedMultiplier = 1f;
 	[SerializeField] float m_AnimSpeedMultiplier = 1f;
+	[SerializeField] float jogSpeed = 1.5f;
 
 	private Transform m_Cam;                  // A reference to the main camera in the scenes transform
 	private Vector3 m_CamForward;             // The current forward direction of the camera
@@ -137,6 +138,19 @@ public class CharController : MonoBehaviour {
 
             // pass all parameters to the character control script
             Move(m_Move, crouch);
+
+			//serve a simulare un aumento di velocità (Jog)
+			if (Input.GetKey (KeyCode.LeftShift)) {
+				//m_Animator.SetBool ("Run", true);
+				m_AnimSpeedMultiplier = jogSpeed;
+				//m_MoveSpeedMultiplier = JogSpeed;
+			} else {
+				//m_Animator.SetBool ("Run", false);
+				m_AnimSpeedMultiplier = 1f;
+				//m_MoveSpeedMultiplier = 1f;
+
+			}
+
         }
 
 		//Serve a disattivare il parametro collision quando iniziamo un nuovo movimento. 
