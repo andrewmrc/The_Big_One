@@ -33,10 +33,6 @@ public class Patrolling : MonoBehaviour
     public GameObject obj;
 
 
-
-
-
-
     NavMeshAgent refNav;
     [Tooltip("Non toccare se non vuoi la console tempestata!!!")]
     public bool debug = false;
@@ -98,7 +94,7 @@ public class Patrolling : MonoBehaviour
                     StopAllCoroutines();
                     refNav.enabled = false;
                 }
-                Debug.LogError("ciao");
+                //Debug.Log("ciao");
                 yield return null;
             }
 
