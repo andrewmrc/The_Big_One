@@ -25,16 +25,19 @@ namespace UnityStandardAssets.Cameras
     public class RailCamera : MonoBehaviour {
 
         public RailContainer[] moveCamera;
-
+		public bool loop;
         public float distance = 1f;
         [Range(0,1)]
         public float speed = 0;
         public GameObject mainCamera;
-		
+		GameObject realMainCamera;
+
         Fader refFader;
 
-        void Start()
+        void OnEnable()
         {
+			GameObject pivot = mainCamera.transform.GetChild (0).gameObject;
+			realMainCamera = pivot.transform.GetChild (0).gameObject;
             refFader = FindObjectOfType<Fader>();
             StartCoroutine(RailCameraCO());
         }
@@ -42,6 +45,7 @@ namespace UnityStandardAssets.Cameras
         private IEnumerator RailCameraCO()
         {
             mainCamera.GetComponent<FreeLookCam>().enabled = false;
+			realMainCamera.SetActive (false);
 
             for (int i = 0; i < moveCamera.Length; i++)
             {
@@ -69,9 +73,24 @@ namespace UnityStandardAssets.Cameras
                 yield return new WaitForSeconds(moveCamera[i].waitTime);
                 speed = 0;
             }
-            refFader.StartCoroutine(refFader.FadeOut());
-            mainCamera.GetComponent<FreeLookCam>().enabled = true;
-            this.gameObject.SetActive(false);
+
+			AfterCinematic ();
+
         }
+
+
+		public void AfterCinematic () {
+			if (loop) {
+				Debug.Log ("LOOP ATTIVO");
+				StartCoroutine(RailCameraCO());
+			} else {
+				refFader.StartCoroutine (refFader.FadeOut ());
+				mainCamera.GetComponent<FreeLookCam> ().enabled = true;
+				realMainCamera.SetActive (true);
+				this.gameObject.SetActive (false);
+			}
+		}
+
+
     }
 }
