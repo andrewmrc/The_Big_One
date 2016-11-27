@@ -18,7 +18,7 @@ public class PropertyHolderEventEditor : Editor
         patrolingTransArray_Prop,
         patrolingObj_Prop,
         patrolingSpeed_Prop,
-        patrolingDelay_Prop,
+        patrolingStunWait_Prop,
         animationValueBool_Prop;
 
     void OnEnable()
@@ -36,8 +36,8 @@ public class PropertyHolderEventEditor : Editor
         animationValueBool_Prop = serializedObject.FindProperty("animationValueBool");
         patrolingObj_Prop = serializedObject.FindProperty("patrolingObj");
         patrolingSpeed_Prop = serializedObject.FindProperty("speedObj");
-        patrolingDelay_Prop = serializedObject.FindProperty("delay");
-        patrolingTransArray_Prop = serializedObject.FindProperty("patrolingTrans");
+        patrolingStunWait_Prop = serializedObject.FindProperty("stunWaiting");
+        patrolingTransArray_Prop = serializedObject.FindProperty("moveTransform");
 
     }
 
@@ -78,22 +78,31 @@ public class PropertyHolderEventEditor : Editor
                 EditorGUILayout.PropertyField(positionArray_Prop, new GUIContent("positionArray"));
                 break;
             case GameEvents.Condition.Patroling:
-                EditorGUILayout.PropertyField(patrolingTransArray_Prop);
-                
                 if (patrolingTransArray_Prop.isExpanded)
                 {                   
                     EditorGUILayout.PropertyField(patrolingTransArray_Prop.FindPropertyRelative("Array.size"));
                     EditorGUI.indentLevel += 1;
+
+                    
+
                     for (int i = 0; i < patrolingTransArray_Prop.arraySize; i++)
                     {
                         EditorGUILayout.PropertyField(patrolingTransArray_Prop.GetArrayElementAtIndex(i));
+                        if (patrolingTransArray_Prop.GetArrayElementAtIndex(i).isExpanded)
+                        {
+                            SerializedProperty target = patrolingTransArray_Prop.GetArrayElementAtIndex(i).FindPropertyRelative("target");
+                            SerializedProperty delay = patrolingTransArray_Prop.GetArrayElementAtIndex(i).FindPropertyRelative("delay");
+                            EditorGUILayout.PropertyField(target);
+                            EditorGUILayout.PropertyField(delay);
+                        }
+                        
                     }
                     EditorGUI.indentLevel -= 1;
                     
                 }
                 EditorGUILayout.PropertyField(patrolingObj_Prop);
                 EditorGUILayout.PropertyField(patrolingSpeed_Prop);
-                EditorGUILayout.PropertyField(patrolingDelay_Prop);
+                EditorGUILayout.PropertyField(patrolingStunWait_Prop);
                 break;
         }
 

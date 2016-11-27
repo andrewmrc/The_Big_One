@@ -12,7 +12,7 @@ public class SpawnEvent : UnityEvent <GameObject, Transform> {}*/
 public class GameEvents : MonoBehaviour
 {
 
-    PatrollingDB[] asd;
+    
     public enum Condition { Spawner, PlayAnimationFloat, PlayAnimationBool, LoadScene,
                             RandomActionSequence,ActionSequence, Patroling }
     public Condition whichEvent;
@@ -26,10 +26,10 @@ public class GameEvents : MonoBehaviour
     public int positionArray;
 
     //Variabili Patroling
-    public Transform[] patrolingTrans;
+    public PatrollingDB[] moveTransform;
     public GameObject patrolingObj;
     public float speedObj;
-    public float delay;
+    public float stunWaiting;
 
     // Variabili utilizzate per l'esecuzione di N volte
     public int n;
@@ -64,7 +64,9 @@ public class GameEvents : MonoBehaviour
     }
     void StartPatroling()
     {
-        patrolingObj.GetComponent<Patrolling>().patrollingTransform = asd;
+        patrolingObj.GetComponent<Patrolling>().patrollingTransform = moveTransform;
+        patrolingObj.GetComponent<Patrolling>().obj = patrolingObj;
+        patrolingObj.GetComponent<Patrolling>().delayStartPatrol = stunWaiting;
         patrolingObj.GetComponent<Patrolling>().StartNStopPatrolling(true);
     }
 
@@ -84,7 +86,7 @@ public class GameEvents : MonoBehaviour
         
         //objNav.enabled = true;
         int k = 0;
-        while (true)
+        /*while (true)
         {
             
 
@@ -113,8 +115,8 @@ public class GameEvents : MonoBehaviour
 
             yield return new WaitForSeconds(delay);
             
-        }
-
+        }*/
+        yield return null;
 
     }
 

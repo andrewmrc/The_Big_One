@@ -30,6 +30,8 @@ public class Patrolling : MonoBehaviour
     [HideInInspector]
     public bool isPatrolling = false;
     public bool startOnPlay = false;
+
+    [HideInInspector]
     public GameObject obj;
 
 
@@ -45,6 +47,7 @@ public class Patrolling : MonoBehaviour
     void Awake()
     {
         refNav = GetComponent<NavMeshAgent>();
+        obj = this.gameObject;
 
     }
 
@@ -125,6 +128,7 @@ public class Patrolling : MonoBehaviour
         if (isPatrolling)
         {
             StopAllCoroutines();
+            currentPoint = 0;
             StartCoroutine(PatrolingCO());
         }
 
