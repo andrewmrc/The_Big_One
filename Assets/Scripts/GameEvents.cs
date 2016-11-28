@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 /*
 [Serializable]
@@ -14,7 +15,7 @@ public class GameEvents : MonoBehaviour
 
     
     public enum Condition { Spawner, PlayAnimationFloat, PlayAnimationBool, LoadScene,
-                            RandomActionSequence,ActionSequence, Patroling }
+                            RandomActionSequence,ActionSequence, Patrolling }
     public Condition whichEvent;
 
     public GameObject objectToUse;
@@ -34,7 +35,11 @@ public class GameEvents : MonoBehaviour
     // Variabili utilizzate per l'esecuzione di N volte
     public int n;
     public int i = 0;
-    //public SpawnEvent spawner;
+    
+	//public SpawnEvent spawner;
+
+	//Nome scena da caricare
+	public string sceneName;
 
     void Spawner()
     {
@@ -42,11 +47,13 @@ public class GameEvents : MonoBehaviour
         //StartCoroutine (SpawnerRoutine ());
     }
 
+
     void PlayAnimationFloat()
     {
         objectToUse.GetComponent<Animator>().SetFloat(animationName, animationValueFloat);
         Debug.Log("PLAYANIMFLOAT" + animationName + animationValueFloat);
     }
+
 
     void PlayAnimationBool()
     {
@@ -54,14 +61,36 @@ public class GameEvents : MonoBehaviour
         Debug.Log("PLAYANIMBOOL");
     }
 
+
+	void LoadScene()
+	{
+		Debug.Log ("SceneName: " + sceneName);
+		Fader refFader;
+		refFader = FindObjectOfType<Fader>();
+		refFader.StartCoroutine(refFader.FadeIn());
+		StartCoroutine (LoadLevelCo (sceneName));
+		//SceneManager.LoadScene (sceneName);
+	}
+
+
+	IEnumerator LoadLevelCo (string levelName) {
+		yield return new WaitForSeconds (1.5f);
+		SceneManager.LoadScene (levelName);
+	}
+
+
     void RandomActionSequence()
     {
         FlowManager.Self.ExecuteRandomEvent(sequenceName, positionArray);
     }
-    void ActionSequence()
+    
+
+	void ActionSequence()
     {
         FlowManager.Self.ExecuteSequenceEvent(sequenceName,positionArray);
     }
+
+
     void StartPatroling()
     {
         patrolingObj.GetComponent<Patrolling>().patrollingTransform = moveTransform;
@@ -79,6 +108,7 @@ public class GameEvents : MonoBehaviour
         //objectToUse.GetComponent<CharController> ().enabled = false;
         Debug.Log("SPAWNA");
     }
+
 
     IEnumerator PatroingCO()
     {
@@ -139,7 +169,7 @@ public class GameEvents : MonoBehaviour
                     Spawner();
                     break;
                 case Condition.LoadScene:
-                    Spawner();
+					LoadScene();
                     break;
                 case Condition.RandomActionSequence:
                     RandomActionSequence();
@@ -148,7 +178,7 @@ public class GameEvents : MonoBehaviour
                     i = 0;
                     ActionSequence();
                     break;
-                case Condition.Patroling:
+                case Condition.Patrolling:
                     StartPatroling();
                     break;
                 default:
