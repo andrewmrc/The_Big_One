@@ -5,6 +5,12 @@ public class Fader : MonoBehaviour {
 
     public GameObject fade;
 
+	//Serve a fare un FadeOut all'inizio delle scene
+	void OnEnable() {
+		fade.GetComponent<CanvasGroup> ().alpha = 1;
+		StartCoroutine(FadeOut());
+	}
+
     public IEnumerator FadeIn()
     {
         while (fade.GetComponent<CanvasGroup>().alpha < 1)

@@ -9,8 +9,9 @@ public class DialogueHandler : MonoBehaviour {
 	public bool cantTalk;
 	//public List<string> dialogues;
 	public float distanceToTalk = 1f;
-	public float smoothSpeed = 1f;
+	//public float smoothSpeed = 1f;
 	//public string mainPhrase;
+	public float dialogueSpeed = 2f;
 
 	public List<DialogueItem> conversations;
 
@@ -114,7 +115,7 @@ public class DialogueHandler : MonoBehaviour {
 							yield return new WaitForSeconds (audioDuration);
 
 						} else {
-							yield return new WaitForSeconds (2f);
+							yield return new WaitForSeconds (dialogueSpeed);
 						}
 
 					}
@@ -127,7 +128,7 @@ public class DialogueHandler : MonoBehaviour {
 					Debug.Log ("i: " + i + ", j: " + j);
 
 					GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = conversations [i].dialogues [j];
-					yield return new WaitForSeconds (2f);
+					yield return new WaitForSeconds (dialogueSpeed);
 
 				}
 				break;
