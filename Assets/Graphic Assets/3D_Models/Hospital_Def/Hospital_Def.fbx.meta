@@ -340,6 +340,79 @@ ModelImporter:
     100664: Vetro
     100666: Vetro ingresso
     100668: Vetro2
+    100670: Circle.020
+    100672: Circle.021
+    100674: Circle.024
+    100676: Circle.025
+    100678: Circle.027
+    100680: Circle.028
+    100682: Circle.029
+    100684: Circle.030
+    100686: Circle.032
+    100688: Plane.171
+    100690: Plane.172
+    100692: Plane.173
+    100694: Plane.174
+    100696: Plane.175
+    100698: Plane.176
+    100700: Plane.177
+    100702: Plane.178
+    100704: Plane.180
+    100706: Plane.181
+    100708: Plane.182
+    100710: Plane.183
+    100712: Plane.184
+    100714: Plane.185
+    100716: Plane.186
+    100718: Plane.188
+    100720: Porta10.001
+    100722: Circle.031
+    100724: Circle.033
+    100726: Circle.034
+    100728: Circle.035
+    100730: Circle.036
+    100732: Circle.037
+    100734: Circle.038
+    100736: Circle.039
+    100738: Circle.040
+    100740: Circle.041
+    100742: Circle.042
+    100744: Circle.044
+    100746: Colline
+    100748: Cornici bianche esterne
+    100750: Cube.286
+    100752: Marciapiede
+    100754: Mura esterne
+    100756: Palazzi
+    100758: Paletti marciapiede
+    100760: Pali luce
+    100762: 'parcheggio '
+    100764: Plane.044_MeshPart0
+    100766: Plane.044_MeshPart1
+    100768: Plane.190
+    100770: Plane.191
+    100772: Plane.192
+    100774: Plane.195
+    100776: Plane.196
+    100778: Plane.197
+    100780: Plane.199
+    100782: Plane.199_MeshPart0
+    100784: Plane.199_MeshPart1
+    100786: Plane.199_MeshPart2
+    100788: Plane.199_MeshPart3
+    100790: Plane.199_MeshPart4
+    100792: Plane.199_MeshPart5
+    100794: Plane.203
+    100796: Plane.204
+    100798: Plane.205
+    100800: Plane.207
+    100802: Plane.208
+    100804: Plane.212
+    100806: Porta4.005
+    100808: Porta4.020
+    100810: Porta4.021
+    100812: Porta4.022
+    100814: Strada
     400000: armadio ospedale
     400002: armadio ospedale.001
     400004: armadio ospedale.002
@@ -675,6 +748,79 @@ ModelImporter:
     400664: Vetro
     400666: Vetro ingresso
     400668: Vetro2
+    400670: Circle.020
+    400672: Circle.021
+    400674: Circle.024
+    400676: Circle.025
+    400678: Circle.027
+    400680: Circle.028
+    400682: Circle.029
+    400684: Circle.030
+    400686: Circle.032
+    400688: Plane.171
+    400690: Plane.172
+    400692: Plane.173
+    400694: Plane.174
+    400696: Plane.175
+    400698: Plane.176
+    400700: Plane.177
+    400702: Plane.178
+    400704: Plane.180
+    400706: Plane.181
+    400708: Plane.182
+    400710: Plane.183
+    400712: Plane.184
+    400714: Plane.185
+    400716: Plane.186
+    400718: Plane.188
+    400720: Porta10.001
+    400722: Circle.031
+    400724: Circle.033
+    400726: Circle.034
+    400728: Circle.035
+    400730: Circle.036
+    400732: Circle.037
+    400734: Circle.038
+    400736: Circle.039
+    400738: Circle.040
+    400740: Circle.041
+    400742: Circle.042
+    400744: Circle.044
+    400746: Colline
+    400748: Cornici bianche esterne
+    400750: Cube.286
+    400752: Marciapiede
+    400754: Mura esterne
+    400756: Palazzi
+    400758: Paletti marciapiede
+    400760: Pali luce
+    400762: 'parcheggio '
+    400764: Plane.044_MeshPart0
+    400766: Plane.044_MeshPart1
+    400768: Plane.190
+    400770: Plane.191
+    400772: Plane.192
+    400774: Plane.195
+    400776: Plane.196
+    400778: Plane.197
+    400780: Plane.199
+    400782: Plane.199_MeshPart0
+    400784: Plane.199_MeshPart1
+    400786: Plane.199_MeshPart2
+    400788: Plane.199_MeshPart3
+    400790: Plane.199_MeshPart4
+    400792: Plane.199_MeshPart5
+    400794: Plane.203
+    400796: Plane.204
+    400798: Plane.205
+    400800: Plane.207
+    400802: Plane.208
+    400804: Plane.212
+    400806: Porta4.005
+    400808: Porta4.020
+    400810: Porta4.021
+    400812: Porta4.022
+    400814: Strada
     2300000: armadio ospedale
     2300002: armadio ospedale.001
     2300004: armadio ospedale.002
@@ -1009,6 +1155,78 @@ ModelImporter:
     2300662: Vetro
     2300664: Vetro ingresso
     2300666: Vetro2
+    2300668: Circle.020
+    2300670: Circle.021
+    2300672: Circle.024
+    2300674: Circle.025
+    2300676: Circle.027
+    2300678: Circle.028
+    2300680: Circle.029
+    2300682: Circle.030
+    2300684: Circle.032
+    2300686: Plane.171
+    2300688: Plane.172
+    2300690: Plane.173
+    2300692: Plane.174
+    2300694: Plane.175
+    2300696: Plane.176
+    2300698: Plane.177
+    2300700: Plane.178
+    2300702: Plane.180
+    2300704: Plane.181
+    2300706: Plane.182
+    2300708: Plane.183
+    2300710: Plane.184
+    2300712: Plane.185
+    2300714: Plane.186
+    2300716: Plane.188
+    2300718: Porta10.001
+    2300720: Circle.031
+    2300722: Circle.033
+    2300724: Circle.034
+    2300726: Circle.035
+    2300728: Circle.036
+    2300730: Circle.037
+    2300732: Circle.038
+    2300734: Circle.039
+    2300736: Circle.040
+    2300738: Circle.041
+    2300740: Circle.042
+    2300742: Circle.044
+    2300744: Colline
+    2300746: Cornici bianche esterne
+    2300748: Cube.286
+    2300750: Marciapiede
+    2300752: Mura esterne
+    2300754: Palazzi
+    2300756: Paletti marciapiede
+    2300758: Pali luce
+    2300760: 'parcheggio '
+    2300762: Plane.044_MeshPart0
+    2300764: Plane.044_MeshPart1
+    2300766: Plane.190
+    2300768: Plane.191
+    2300770: Plane.192
+    2300772: Plane.195
+    2300774: Plane.196
+    2300776: Plane.197
+    2300778: Plane.199_MeshPart0
+    2300780: Plane.199_MeshPart1
+    2300782: Plane.199_MeshPart2
+    2300784: Plane.199_MeshPart3
+    2300786: Plane.199_MeshPart4
+    2300788: Plane.199_MeshPart5
+    2300790: Plane.203
+    2300792: Plane.204
+    2300794: Plane.205
+    2300796: Plane.207
+    2300798: Plane.208
+    2300800: Plane.212
+    2300802: Porta4.005
+    2300804: Porta4.020
+    2300806: Porta4.021
+    2300808: Porta4.022
+    2300810: Strada
     3300000: armadio ospedale
     3300002: armadio ospedale.001
     3300004: armadio ospedale.002
@@ -1343,6 +1561,78 @@ ModelImporter:
     3300662: Vetro
     3300664: Vetro ingresso
     3300666: Vetro2
+    3300668: Circle.020
+    3300670: Circle.021
+    3300672: Circle.024
+    3300674: Circle.025
+    3300676: Circle.027
+    3300678: Circle.028
+    3300680: Circle.029
+    3300682: Circle.030
+    3300684: Circle.032
+    3300686: Plane.171
+    3300688: Plane.172
+    3300690: Plane.173
+    3300692: Plane.174
+    3300694: Plane.175
+    3300696: Plane.176
+    3300698: Plane.177
+    3300700: Plane.178
+    3300702: Plane.180
+    3300704: Plane.181
+    3300706: Plane.182
+    3300708: Plane.183
+    3300710: Plane.184
+    3300712: Plane.185
+    3300714: Plane.186
+    3300716: Plane.188
+    3300718: Porta10.001
+    3300720: Circle.031
+    3300722: Circle.033
+    3300724: Circle.034
+    3300726: Circle.035
+    3300728: Circle.036
+    3300730: Circle.037
+    3300732: Circle.038
+    3300734: Circle.039
+    3300736: Circle.040
+    3300738: Circle.041
+    3300740: Circle.042
+    3300742: Circle.044
+    3300744: Colline
+    3300746: Cornici bianche esterne
+    3300748: Cube.286
+    3300750: Marciapiede
+    3300752: Mura esterne
+    3300754: Palazzi
+    3300756: Paletti marciapiede
+    3300758: Pali luce
+    3300760: 'parcheggio '
+    3300762: Plane.044_MeshPart0
+    3300764: Plane.044_MeshPart1
+    3300766: Plane.190
+    3300768: Plane.191
+    3300770: Plane.192
+    3300772: Plane.195
+    3300774: Plane.196
+    3300776: Plane.197
+    3300778: Plane.199_MeshPart0
+    3300780: Plane.199_MeshPart1
+    3300782: Plane.199_MeshPart2
+    3300784: Plane.199_MeshPart3
+    3300786: Plane.199_MeshPart4
+    3300788: Plane.199_MeshPart5
+    3300790: Plane.203
+    3300792: Plane.204
+    3300794: Plane.205
+    3300796: Plane.207
+    3300798: Plane.208
+    3300800: Plane.212
+    3300802: Porta4.005
+    3300804: Porta4.020
+    3300806: Porta4.021
+    3300808: Porta4.022
+    3300810: Strada
     4300000: Cube.285
     4300002: Cube.284
     4300004: Cube.283
@@ -1677,6 +1967,78 @@ ModelImporter:
     4300662: Plane.047
     4300664: Plane.061
     4300666: Plane.060
+    4300668: Circle.032
+    4300670: Plane.188
+    4300672: Circle.030
+    4300674: Plane.186
+    4300676: Plane.185
+    4300678: Circle.029
+    4300680: Plane.184
+    4300682: Circle.028
+    4300684: Circle.027
+    4300686: Plane.183
+    4300688: Plane.182
+    4300690: Circle.025
+    4300692: Plane.181
+    4300694: Plane.180
+    4300696: Circle.024
+    4300698: Plane.178
+    4300700: Plane.177
+    4300702: Circle.021
+    4300704: Circle.020
+    4300706: Plane.176
+    4300708: Plane.175
+    4300710: Plane.174
+    4300712: Plane.173
+    4300714: Plane.172
+    4300716: Plane.171
+    4300718: Porta10.001
+    4300720: Plane.212
+    4300722: Circle.044
+    4300724: Circle.042
+    4300726: Plane.208
+    4300728: Plane.207
+    4300730: Circle.041
+    4300732: Plane.205
+    4300734: Plane.204
+    4300736: Plane.203
+    4300738: Circle.040
+    4300740: Circle.039
+    4300742: Circle.038
+    4300744: Plane.199_MeshPart0
+    4300746: Plane.199_MeshPart1
+    4300748: Plane.199_MeshPart2
+    4300750: Plane.199_MeshPart3
+    4300752: Plane.199_MeshPart4
+    4300754: Plane.199_MeshPart5
+    4300756: Circle.037
+    4300758: Circle.036
+    4300760: Plane.197
+    4300762: Plane.196
+    4300764: Plane.195
+    4300766: Circle.035
+    4300768: Circle.034
+    4300770: Circle.033
+    4300772: Plane.192
+    4300774: Plane.191
+    4300776: Plane.190
+    4300778: Circle.031
+    4300780: Cube.286
+    4300782: Porta4.022
+    4300784: Porta4.021
+    4300786: Porta4.020
+    4300788: Porta4.005
+    4300790: 'parcheggio '
+    4300792: Palazzi
+    4300794: Mura esterne
+    4300796: Pali luce
+    4300798: Paletti marciapiede
+    4300800: Cornici bianche esterne
+    4300802: Marciapiede
+    4300804: Plane.044_MeshPart0
+    4300806: Plane.044_MeshPart1
+    4300808: Colline
+    4300810: Strada
   materials:
     importMaterials: 1
     materialName: 0
