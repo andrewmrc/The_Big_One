@@ -38,6 +38,7 @@ namespace UnityStandardAssets.Cameras
         {
 			GameObject pivot = mainCamera.transform.GetChild (0).gameObject;
 			realMainCamera = pivot.transform.GetChild (0).gameObject;
+			mainCamera.SetActive (false);
             refFader = FindObjectOfType<Fader>();
             StartCoroutine(RailCameraCO());
         }
@@ -87,6 +88,7 @@ namespace UnityStandardAssets.Cameras
 				refFader.StartCoroutine (refFader.FadeOut ());
 				mainCamera.GetComponent<FreeLookCam> ().enabled = true;
 				realMainCamera.SetActive (true);
+				mainCamera.SetActive (true);
 				this.gameObject.SetActive (false);
 			}
 		}
