@@ -34,7 +34,7 @@ public class PropertyHolderEventEditor : Editor
         int_Prop = serializedObject.FindProperty("i");
         positionArray_Prop = serializedObject.FindProperty("positionArray");
         sequenceName_Prop = serializedObject.FindProperty("sequenceName");
-		sceneName_Prop = serializedObject.FindProperty("sequenceName");
+		sceneName_Prop = serializedObject.FindProperty("sceneName");
         animationValueBool_Prop = serializedObject.FindProperty("animationValueBool");
         patrolingObj_Prop = serializedObject.FindProperty("patrolingObj");
         patrolingSpeed_Prop = serializedObject.FindProperty("speedObj");
