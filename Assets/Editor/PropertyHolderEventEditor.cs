@@ -78,9 +78,10 @@ public class PropertyHolderEventEditor : Editor
                 EditorGUILayout.PropertyField(positionArray_Prop, new GUIContent("positionArray"));
                 break;
             case GameEvents.Condition.Patroling:
+                EditorGUILayout.PropertyField(patrolingTransArray_Prop.FindPropertyRelative("Array.size"));
                 if (patrolingTransArray_Prop.isExpanded)
                 {                   
-                    EditorGUILayout.PropertyField(patrolingTransArray_Prop.FindPropertyRelative("Array.size"));
+                    
                     EditorGUI.indentLevel += 1;
 
                     
