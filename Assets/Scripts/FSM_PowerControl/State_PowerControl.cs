@@ -139,7 +139,7 @@ public class State_PowerControl : State {
 							refUI.ReturnUI(true);
 
 							//Consuma l'energia solo se sta entrando nel corpo di un altro personaggio e non nel suo
-							GameManager.Self.powerQuantity -= controlBodyCost;
+							//GameManager.Self.powerQuantity -= controlBodyCost;
 						}
 						else
 						{
@@ -156,7 +156,7 @@ public class State_PowerControl : State {
                         refUI.PowerUI(true);
                         if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Idea") && GameManager.Self.powerQuantity >= mentalPowerCost)
                         {
-                            GameManager.Self.powerQuantity -= mentalPowerCost;
+                            //GameManager.Self.powerQuantity -= mentalPowerCost;
                             MoveNPC(hit, 0);
                         }
                     }
