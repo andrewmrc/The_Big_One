@@ -45,6 +45,7 @@ public class MenuController : MonoBehaviour
     public void Exit()
     {
         //Application.Quit ();
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
