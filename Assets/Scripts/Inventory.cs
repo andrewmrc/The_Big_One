@@ -5,7 +5,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public struct ItemContainer
 {
-    public GameObject item;
+    public Button poster;
     public bool isFound;
 }
 
@@ -15,17 +15,17 @@ public class Inventory : MonoBehaviour
     private bool isInInventory;
     public GameObject panelInventory;
 
-	void Update ()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.I) && !isInInventory)
         {
             for (int i = 0; i < designInventory.Length; i++)
             {
                 if (designInventory[i].isFound)
-                   designInventory[i].item.SetActive(true);
+                    designInventory[i].poster.gameObject.SetActive(true);
 
                 else
-                   designInventory[i].item.SetActive(false);
+                    designInventory[i].poster.gameObject.SetActive(false);
             }
 
             Time.timeScale = 0;
@@ -39,5 +39,5 @@ public class Inventory : MonoBehaviour
             isInInventory = false;
             panelInventory.SetActive(false);
         }
-	}
+    }
 }
