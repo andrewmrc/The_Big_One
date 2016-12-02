@@ -68,6 +68,8 @@ ModelImporter:
     100120: VENEZIANE001
     100122: VENEZIANE002
     100124: pavimento001
+    100126: "veneziana gi\xF9002"
+    100128: veneziana su_002
     400000: battiscopa
     400002: finestra
     400004: finestra boss_che si muove boss001
@@ -131,6 +133,8 @@ ModelImporter:
     400120: VENEZIANE001
     400122: VENEZIANE002
     400124: pavimento001
+    400126: "veneziana gi\xF9002"
+    400128: veneziana su_002
     2300000: battiscopa
     2300002: finestra
     2300004: finestra boss_che si muove boss001
@@ -192,6 +196,8 @@ ModelImporter:
     2300116: VENEZIANE001
     2300118: VENEZIANE002
     2300120: pavimento001
+    2300122: "veneziana gi\xF9002"
+    2300124: veneziana su_002
     3300000: battiscopa
     3300002: finestra
     3300004: finestra boss_che si muove boss001
@@ -253,6 +259,8 @@ ModelImporter:
     3300116: VENEZIANE001
     3300118: VENEZIANE002
     3300120: pavimento001
+    3300122: "veneziana gi\xF9002"
+    3300124: veneziana su_002
     4300000: finestra_1
     4300002: solo porta
     4300004: muro con legno
@@ -314,6 +322,8 @@ ModelImporter:
     4300116: porta ufficio_006
     4300118: porta ufficio_007
     4300120: pavimento001
+    4300122: "veneziana gi\xF9002"
+    4300124: veneziana su_002
     7400000: Take 001
     9500000: //RootNode
   materials:
