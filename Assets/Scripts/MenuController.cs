@@ -9,37 +9,22 @@ using UnityStandardAssets.Cameras;
 public class MenuController : MonoBehaviour
 {
 
-    public GameObject ResumeUI, PanelExit, PanelMain;
+    public GameObject ResumeButton, PanelExit;
 
-    public bool inMenu;
-
-    void Start()
-    {
-
-    }
+    private bool isInExitMenu;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !isInExitMenu)
         {
-            if (SceneManager.GetActiveScene().name != "Main Menu" && !inMenu)
-            {
-                PanelExit.SetActive(true);
-                Time.timeScale = 0;
-                inMenu = true;
-            }
-            else if (inMenu)
-            {
-                Resume();
-            }
-
-            else
-            {
-                PanelMain.SetActive(true);
-            }
-
+            Time.timeScale = 0;
+            PanelExit.SetActive(true);
+            isInExitMenu = true;
         }
-
+        else if (Input.GetKeyDown(KeyCode.Escape) && isInExitMenu)
+        {
+            Resume();
+        }
     }
 
     public void Exit()
@@ -51,14 +36,8 @@ public class MenuController : MonoBehaviour
 
     public void Resume()
     {
+        Time.timeScale = 1;
         PanelExit.SetActive(false);
-        Time.timeScale = 1;
-        inMenu = false;
-    }
-
-    public void Play()
-    {
-        SceneManager.LoadScene(1);
-        Time.timeScale = 1;
+        isInExitMenu = false;
     }
 }

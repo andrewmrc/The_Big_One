@@ -14,15 +14,13 @@ public struct QuestContainer
 public class Quest : MonoBehaviour
 {
     public QuestContainer[] designQuest;
-    bool isInMenu;
+    private bool isInQuest;
     public GameObject panelQuest, titleQuest;
 
 	void Update ()
     {
-
-        if (Input.GetKeyDown(KeyCode.J) && !isInMenu)
+        if (Input.GetKeyDown(KeyCode.J) && !isInQuest)
         {
-            // Controlla la lista di Quest e assegna il titolo della prima non completata all'Obiettivo attuale
             for (int i = 0; i < designQuest.Length; i++)
             {
                 if (!designQuest[i].isComplete)
@@ -32,13 +30,15 @@ public class Quest : MonoBehaviour
                 }
             }
 
-            isInMenu = true;
+            Time.timeScale = 0;
+            isInQuest = true;
             panelQuest.SetActive(true);
         }
 
-        else if (Input.GetKeyDown(KeyCode.J) && isInMenu)
+        else if (Input.GetKeyDown(KeyCode.J) && isInQuest)
         {
-            isInMenu = false;
+            Time.timeScale = 1;
+            isInQuest = false;
             panelQuest.SetActive(false);
         }
 	}
