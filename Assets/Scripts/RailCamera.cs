@@ -57,20 +57,31 @@ namespace UnityStandardAssets.Cameras
                 }
                 
                 
+				if (moveCamera [i].targetB != null) {
+					while ((this.transform.position - moveCamera [i].targetB.position).magnitude >= distance) {
+						speed += Time.deltaTime;
+						this.transform.position = Vector3.Lerp (moveCamera [i].targetA.position, moveCamera [i].targetB.position, speed / moveCamera [i].timeExec);
+						//this.transform.rotation = Quaternion.Slerp(this.transform.rotation, cubeList[i].transform.rotation, speed / moveCamera[i].timeExec);
+						this.transform.LookAt (moveCamera [i].targetToLook);
+						yield return null;
+					}
+				} else {
+					this.transform.position = moveCamera [i].targetA.position;
+					this.transform.LookAt (moveCamera [i].targetToLook);
+					while ((speed <= moveCamera [i].timeExec)) {
+						speed += Time.deltaTime;
+						yield return null;
+					}
+				}
 
-                while ((this.transform.position - moveCamera[i].targetB.position).magnitude >= distance)
-                {
-                    speed += Time.deltaTime;
-                    this.transform.position = Vector3.Lerp(moveCamera[i].targetA.position, moveCamera[i].targetB.position, speed / moveCamera[i].timeExec);
-                    //this.transform.rotation = Quaternion.Slerp(this.transform.rotation, cubeList[i].transform.rotation, speed / moveCamera[i].timeExec);
-                    this.transform.LookAt(moveCamera[i].targetToLook);
-                    yield return null;
-                }
+
                 if (moveCamera[i].fadeIn)
                 {
                     refFader.StartCoroutine(refFader.FadeIn());
                     //yield return new WaitForSeconds(2);
                 }
+
+
                 yield return new WaitForSeconds(moveCamera[i].waitTime);
                 speed = 0;
             }
@@ -92,7 +103,6 @@ namespace UnityStandardAssets.Cameras
 				this.gameObject.SetActive (false);
 			}
 		}
-
 
     }
 }
