@@ -33,6 +33,7 @@ namespace UnityStandardAssets.Cameras
 		GameObject realMainCamera;
 
         Fader refFader;
+		bool fadeNow;
 
         void OnEnable()
         {
@@ -58,8 +59,23 @@ namespace UnityStandardAssets.Cameras
                 
                 
 				if (moveCamera [i].targetB != null) {
+					fadeNow = false;
+
+
 					while ((this.transform.position - moveCamera [i].targetB.position).magnitude >= distance) {
 						speed += Time.deltaTime;
+
+						//Fa partire il fade prima di arrivare a destinazione.
+						if((speed > (moveCamera [i].timeExec - 1)) && !fadeNow){
+							Debug.Log ("FADE ANTICIPATO");
+							fadeNow = true;
+							if (moveCamera[i].fadeIn)
+							{
+								refFader.StartCoroutine(refFader.FadeIn());
+								//yield return new WaitForSeconds(2);
+							}
+						}
+
 						this.transform.position = Vector3.Lerp (moveCamera [i].targetA.position, moveCamera [i].targetB.position, speed / moveCamera [i].timeExec);
 						//this.transform.rotation = Quaternion.Slerp(this.transform.rotation, cubeList[i].transform.rotation, speed / moveCamera[i].timeExec);
 						this.transform.LookAt (moveCamera [i].targetToLook);
@@ -72,14 +88,18 @@ namespace UnityStandardAssets.Cameras
 						speed += Time.deltaTime;
 						yield return null;
 					}
+					if (moveCamera[i].fadeIn)
+					{
+						refFader.StartCoroutine(refFader.FadeIn());
+					}
 				}
 
-
+				/*
                 if (moveCamera[i].fadeIn)
                 {
                     refFader.StartCoroutine(refFader.FadeIn());
                     //yield return new WaitForSeconds(2);
-                }
+                }*/
 
 
                 yield return new WaitForSeconds(moveCamera[i].waitTime);
