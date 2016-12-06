@@ -192,14 +192,14 @@ public class CharController : MonoBehaviour {
 			
 			//Blocca il personaggio quando collide con qualsiasi cosa che non sia il pavimento così da evitare che continui a camminare contro una parete ad es.
 			if (collision.transform.tag != "Floor") {
-				Debug.Log ("COLLISION");
+				//Debug.Log ("COLLISION");
 				StartCoroutine (StopMove (0.2f));
 				stayThere = true;
 			}
 
 			//Cambia i materiali dei collider quando collide con un NPC per evitare che i personaggi si spostino a vicenda o il player ci scivoli sopra andando verso l'alto
 			if (collision.transform.tag == "ControllableNPC") {
-				Debug.Log ("CHANGE MATERIAL ON COLLISION ENTER");
+				//Debug.Log ("CHANGE MATERIAL ON COLLISION ENTER");
 				m_Rigidbody.isKinematic = true;
 				m_Rigidbody.Sleep ();
 
@@ -224,7 +224,7 @@ public class CharController : MonoBehaviour {
 
 			//Ripristina i materiali dei collider quando si finisce di collidere con un NPC per evitare che i personaggi scivolino dopo essersi mossi
 			if (collision.transform.tag == "ControllableNPC") {
-				Debug.Log ("CHANGE MATERIAL ON COLLISION EXIT");
+				//Debug.Log ("CHANGE MATERIAL ON COLLISION EXIT");
 				m_Rigidbody.isKinematic = true;
 				m_Rigidbody.Sleep ();
 
@@ -240,7 +240,7 @@ public class CharController : MonoBehaviour {
 
 	public IEnumerator StopMove (float delay) {
 		
-		Debug.Log ("STOP MOVE");
+		//Debug.Log ("STOP MOVE");
 		yield return new WaitForSeconds (delay);
 		if (stayThere) {
 			m_Animator.SetBool ("Collision", true);

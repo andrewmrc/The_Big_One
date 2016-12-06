@@ -20,7 +20,7 @@ public class FieldOfView : MonoBehaviour
 
     void Start()
     {
-		Debug.Log(LayerMask.LayerToName(8));
+		//Debug.Log(LayerMask.LayerToName(8));
         StartCoroutine("FindTargetsWithDelay", .2f);
     }
 

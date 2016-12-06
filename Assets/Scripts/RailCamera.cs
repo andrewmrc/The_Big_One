@@ -67,7 +67,7 @@ namespace UnityStandardAssets.Cameras
 
 						//Fa partire il fade prima di arrivare a destinazione.
 						if((speed > (moveCamera [i].timeExec - 1)) && !fadeNow){
-							Debug.Log ("FADE ANTICIPATO");
+							//Debug.Log ("FADE ANTICIPATO");
 							fadeNow = true;
 							if (moveCamera[i].fadeIn)
 							{
@@ -113,7 +113,7 @@ namespace UnityStandardAssets.Cameras
 
 		public void AfterCinematic () {
 			if (loop) {
-				Debug.Log ("LOOP ATTIVO");
+				//Debug.Log ("LOOP ATTIVO");
 				StartCoroutine(RailCameraCO());
 			} else {
 				refFader.StartCoroutine (refFader.FadeOut ());

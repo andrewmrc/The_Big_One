@@ -36,7 +36,7 @@ public class State_PowerControl : State {
     public override void StateUpdate()
     {
         
-        Debug.LogWarning("Premi il tasto destro");
+        //Debug.LogWarning("Premi il tasto destro");
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
         refUI.memoryImageUI.GetComponent<CanvasGroup>().alpha = 0;
@@ -90,7 +90,7 @@ public class State_PowerControl : State {
                     GetComponent<FSMLogic>().onEnemy = true;
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        Debug.LogWarning("Premi Spazio per entrare");
+                        //Debug.LogWarning("Premi Spazio per entrare");
                         this.gameObject.tag = "ControllableNPC";
                         //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
                         //this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;

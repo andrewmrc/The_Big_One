@@ -14,7 +14,7 @@ public class State_ControlBody : State {
 
     public override void StateUpdate()
     {
-        Debug.LogWarning("Non premi il tasto destro");
+        //Debug.LogWarning("Non premi il tasto destro");
         //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = enabled;
         //this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = enabled;
 		if (!GameManager.Self.blockMovement) {
@@ -57,7 +57,7 @@ public class State_ControlBody : State {
     public void ReturnToYourBody()
     {
         MyGlobal.ChangeBody(GameManager.Self.playerBody.gameObject);
-        Debug.Log("Return");
+        //Debug.Log("Return");
         this.gameObject.tag = "ControllableNPC";
         this.gameObject.transform.GetComponent<FSMLogic>().enabled = false;
         //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;

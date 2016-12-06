@@ -50,7 +50,7 @@ public class AvoidCameraCollision : MonoBehaviour {
 		if(Physics.SphereCast(camFollow.transform.position, sphereCastRadius, camFollow.transform.forward, out hit, distFromCamSpot)) {
 			//CHECK IF THE CAMERA HIT THE PLAYER OR THE NPC
 			if (hit.collider.CompareTag (dontClipTag) || hit.collider.CompareTag ("ControllableNPC")) {
-				Debug.Log ("Hit: " + !hit.collider.CompareTag (dontClipTag) + " TAG: " + hit.transform.tag);
+				//Debug.Log ("Hit: " + !hit.collider.CompareTag (dontClipTag) + " TAG: " + hit.transform.tag);
 				//Provare a inserire un metodo per rendere invisibili gli NPC in caso vengano toccati dalla camera
 			} else {
 				//**MAKE SURE THE PLAYER IS NOT BETWEEN THE FOCUS-POINT AND CAMERA**

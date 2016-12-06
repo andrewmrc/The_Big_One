@@ -62,13 +62,13 @@ public class FSMLogic : MonoBehaviour {
 
 		if (!isAiming && GameManager.Self.isShowMemory && Input.GetKeyDown(KeyCode.F))
 		{
-			Debug.Log ("Smetti Ricordo");
+			//Debug.Log ("Smetti Ricordo");
 			UnShowMem ();
 		}
 		else if (GameManager.Self.outOfYourBody && this.gameObject.GetComponent<State_ShowMemory> () && !GameManager.Self.isShowMemory && !Input.GetKey(KeyCode.Mouse1)) 
 		{
 			if (Input.GetKeyDown (KeyCode.F) && !GameManager.Self.isShowMemory) {
-				Debug.Log ("Guarda Ricordo");
+				//Debug.Log ("Guarda Ricordo");
 				ShowMem ();
 
 			}
