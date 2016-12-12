@@ -1,26 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DoorHandler : MonoBehaviour {
+public class DoorHandler : MonoBehaviour
+{
 
-	public float doorRotation;
+    public float doorRotation;
     private Vector3 defaultRot;
     private Vector3 openRot;
-    
-	// Use this for initialization
-	void Start () {
-        defaultRot = transform.eulerAngles;
-        openRot = new Vector3(defaultRot.x, defaultRot.y + doorRotation, defaultRot.z);
-    }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    [Range(0, 1)]
+    public float speed = 0.2f;
 
-	void OnCollisionEnter (Collision coll) {
-		if(coll.gameObject.tag == "Player") {
-            transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, openRot, 1);
+    public float product;
+    bool isOpened = false;
+
+    // Use this for initialization
+    void Start()
+    {
+        defaultRot = transform.eulerAngles;
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    void OnTriggerEnter(Collider coll)
+    {
+        if (coll.gameObject.tag == "Player")
+        {
+            //this.gameObject.GetComponent<BoxCollider>().enabled = false;
+            Debug.Log(transform.eulerAngles);
+
+
+            product = Vector3.Dot(transform.forward, coll.transform.forward);
+            StartCoroutine(DoorOpener(product));
             /*Debug.Log("APRI PORTA");
 
 			ContactPoint contact = coll.contacts[0];
@@ -35,6 +50,37 @@ public class DoorHandler : MonoBehaviour {
 
 
         }
-	}
+    }
+
+    IEnumerator DoorOpener(float product)
+    {
+        float count = 0;
+        if (!isOpened)
+        {
+            if (product >= 0)
+            {
+
+                openRot = new Vector3(defaultRot.x, defaultRot.y - doorRotation, defaultRot.z);
+            }
+            else if (product < 0)
+            {
+                openRot = new Vector3(defaultRot.x, defaultRot.y + doorRotation, defaultRot.z);
+            }
+
+            isOpened = true;
+
+            while (count <= 1)
+            {
+
+                count += Time.deltaTime;
+                transform.eulerAngles = Vector3.Slerp(defaultRot, openRot, count);
+                yield return null;
+            }
+        }
+        else if (isOpened)
+        {
+
+        }
+    }
 
 }
