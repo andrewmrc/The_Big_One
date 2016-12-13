@@ -4,6 +4,7 @@ using System.Collections;
 public class DoorHandler : MonoBehaviour
 {
 
+    Coroutine doorOponerCO;
     public float doorRotation;
     private Vector3 defaultRot;
     private Vector3 openRot;
@@ -23,19 +24,31 @@ public class DoorHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+       
     }
 
-    void OnTriggerEnter(Collider coll)
+    void OnTriggerStay(Collider coll)
     {
+
+        Debug.Log(coll);
         if (coll.gameObject.tag == "Player")
         {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (doorOponerCO == null)
+                {
+                    //Debug.Log(transform.eulerAngles);
+                    Debug.Log(doorOponerCO);
+                    Debug.Log("Entro");
+                    product = Vector3.Dot(transform.forward, coll.transform.forward);
+                    doorOponerCO = StartCoroutine(DoorOpener(product));
+
+                }
+            }
+            
+            
             //this.gameObject.GetComponent<BoxCollider>().enabled = false;
-            Debug.Log(transform.eulerAngles);
 
-
-            product = Vector3.Dot(transform.forward, coll.transform.forward);
-            StartCoroutine(DoorOpener(product));
             /*Debug.Log("APRI PORTA");
 
 			ContactPoint contact = coll.contacts[0];
@@ -76,10 +89,22 @@ public class DoorHandler : MonoBehaviour
                 transform.eulerAngles = Vector3.Slerp(defaultRot, openRot, count);
                 yield return null;
             }
+            StopCoroutine(doorOponerCO);
+            doorOponerCO = null;
         }
         else if (isOpened)
         {
 
+            while (count <= 1)
+            {
+
+                count += Time.deltaTime;
+                transform.eulerAngles = Vector3.Slerp(openRot, defaultRot, count);
+                yield return null;
+            }
+            StopCoroutine(doorOponerCO);
+            doorOponerCO = null;
+            isOpened = false;
         }
     }
 
