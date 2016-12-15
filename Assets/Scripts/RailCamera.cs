@@ -117,10 +117,11 @@ namespace UnityStandardAssets.Cameras
 				StartCoroutine(RailCameraCO());
 			} else {
 				refFader.StartCoroutine (refFader.FadeOut ());
-				mainCamera.GetComponent<FreeLookCam> ().enabled = true;
+				
 				realMainCamera.SetActive (true);
 				mainCamera.SetActive (true);
-				this.gameObject.SetActive (false);
+                mainCamera.GetComponent<FreeLookCam>().enabled = true;
+                this.gameObject.SetActive (false);
 			}
 		}
 
