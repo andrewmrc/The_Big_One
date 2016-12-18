@@ -64,10 +64,16 @@ namespace UnityStandardAssets.Cameras
         }
 
 
+		private void OnEnable()
+		{
+			m_TiltAngle = 0f;
+			m_LookAngle = 0f;
+		}
+
         private void OnDisable()
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+			//Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
         }
 
 
