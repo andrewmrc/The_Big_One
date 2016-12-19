@@ -29,7 +29,7 @@ namespace UnityStandardAssets.Cameras
         [SerializeField]
         private bool m_VerticalAutoReturn = false;           // set wether or not the vertical axis should auto return
         [SerializeField]
-        private float spazioAperturaCamera = 20;
+        private float spazioAperturaCamera = 360;
 
         private float m_LookAngle;                    // The rig's y axis rotation.
         private float m_TiltAngle;                    // The pivot's x axis rotation.
