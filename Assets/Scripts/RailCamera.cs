@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 namespace UnityStandardAssets.Cameras
 {
@@ -32,7 +33,7 @@ namespace UnityStandardAssets.Cameras
         public GameObject mainCamera;
 		GameObject realMainCamera;
 		GameObject player;
-
+		public UnityEvent returnEvent;
         Fader refFader;
 		bool fadeNow;
 
@@ -50,7 +51,7 @@ namespace UnityStandardAssets.Cameras
 			player.GetComponent<FSMLogic> ().enabled = false;
 			player.GetComponent<CharController> ().enabled = false;
 			player.transform.rotation = new Quaternion (0f, 0f, 0f, 0f);
-
+			refFader.GetComponent<CanvasGroup> ().alpha = 1;
 			StartCoroutine(RailCameraCO());
         }
 
@@ -134,7 +135,7 @@ namespace UnityStandardAssets.Cameras
 
                 this.gameObject.SetActive (false);
 				player.GetComponent<FSMLogic> ().enabled = true;
-
+				returnEvent.Invoke ();
 			}
 		}
 
