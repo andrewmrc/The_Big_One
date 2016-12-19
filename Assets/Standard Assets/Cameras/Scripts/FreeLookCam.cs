@@ -39,6 +39,7 @@ namespace UnityStandardAssets.Cameras
         private Quaternion m_TransformTargetRot;
         private float centerCameraRotation = 0f;
         private bool visualeNormale;
+		public bool resetAngle;
 
         protected override void Awake()
         {
@@ -64,10 +65,13 @@ namespace UnityStandardAssets.Cameras
         }
 
 
-		private void OnEnable()
+		public void OnEnable()
 		{
-			m_TiltAngle = 0f;
-			m_LookAngle = 0f;
+			if (resetAngle) {
+				m_TiltAngle = 0f;
+				m_LookAngle = 0f;
+				resetAngle = false;
+			}
 		}
 
         private void OnDisable()

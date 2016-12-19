@@ -41,11 +41,16 @@ namespace UnityStandardAssets.Cameras
 			GameObject pivot = mainCamera.transform.GetChild (0).gameObject;
 			realMainCamera = pivot.transform.GetChild (0).gameObject;
 			mainCamera.SetActive (false);
+
+			mainCamera.GetComponent<FreeLookCam> ().resetAngle = true;
+
             refFader = FindObjectOfType<Fader>();
 			player = GameObject.FindGameObjectWithTag ("Player");
 			player.GetComponent<Animator>().SetFloat("Forward", 0);
 			player.GetComponent<FSMLogic> ().enabled = false;
 			player.GetComponent<CharController> ().enabled = false;
+			player.transform.rotation = new Quaternion (0f, 0f, 0f, 0f);
+
 			StartCoroutine(RailCameraCO());
         }
 
@@ -129,6 +134,7 @@ namespace UnityStandardAssets.Cameras
 
                 this.gameObject.SetActive (false);
 				player.GetComponent<FSMLogic> ().enabled = true;
+
 			}
 		}
 
