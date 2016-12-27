@@ -1,0 +1,510 @@
+fileFormatVersion: 2
+guid: 5187e727336064f459cf85bd6c461496
+timeCreated: 1482544959
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: bus
+    100002: bus esterno
+    100004: //RootNode
+    100006: copri ruota int
+    100008: copri ruota int001
+    100010: copri ruota int002
+    100012: copri ruota int003
+    100014: cruscotto
+    100016: Cylinder002
+    100018: finestra
+    100020: finestrino stra
+    100022: Line003
+    100024: Line004
+    100026: Line005
+    100028: Line006
+    100030: Line007
+    100032: Line008
+    100034: Line009
+    100036: Line011
+    100038: Line012
+    100040: Line014
+    100042: maniglia
+    100044: maniglia001
+    100046: maniglia002
+    100048: maniglia003
+    100050: maniglia004
+    100052: maniglia005
+    100054: maniglia006
+    100056: maniglia007
+    100058: maniglia008
+    100060: maniglia009
+    100062: maniglia010
+    100064: maniglia011
+    100066: maniglia012
+    100068: maniglia013
+    100070: maniglia014
+    100072: maniglia015
+    100074: maniglia016
+    100076: maniglia017
+    100078: maniglia018
+    100080: maniglia019
+    100082: maniglia020
+    100084: maniglia021
+    100086: oblitteratrice
+    100088: oblitteratrice001
+    100090: postazione
+    100092: schienale
+    100094: sedia
+    100096: sedia 1
+    100098: sedia 10
+    100100: sedia 11
+    100102: sedia 12
+    100104: sedia 13
+    100106: sedia 14
+    100108: sedia 15
+    100110: sedia 16
+    100112: sedia 17
+    100114: sedia 18
+    100116: sedia 19
+    100118: sedia 2
+    100120: sedia 20
+    100122: sedia 21
+    100124: sedia 22
+    100126: sedia 23
+    100128: sedia 24
+    100130: sedia 25
+    100132: sedia 26
+    100134: sedia 27
+    100136: sedia 28
+    100138: sedia 29
+    100140: sedia 3
+    100142: sedia 30
+    100144: sedia 31
+    100146: sedia 32
+    100148: sedia 33
+    100150: sedia 34
+    100152: sedia 35
+    100154: sedia 36
+    100156: sedia 37
+    100158: sedia 38
+    100160: sedia 4
+    100162: sedia 5
+    100164: sedia 6
+    100166: sedia 7
+    100168: sedia 8
+    100170: sedia 9
+    100172: sedile
+    100174: volante
+    400000: bus
+    400002: bus esterno
+    400004: //RootNode
+    400006: copri ruota int
+    400008: copri ruota int001
+    400010: copri ruota int002
+    400012: copri ruota int003
+    400014: cruscotto
+    400016: Cylinder002
+    400018: finestra
+    400020: finestrino stra
+    400022: Line003
+    400024: Line004
+    400026: Line005
+    400028: Line006
+    400030: Line007
+    400032: Line008
+    400034: Line009
+    400036: Line011
+    400038: Line012
+    400040: Line014
+    400042: maniglia
+    400044: maniglia001
+    400046: maniglia002
+    400048: maniglia003
+    400050: maniglia004
+    400052: maniglia005
+    400054: maniglia006
+    400056: maniglia007
+    400058: maniglia008
+    400060: maniglia009
+    400062: maniglia010
+    400064: maniglia011
+    400066: maniglia012
+    400068: maniglia013
+    400070: maniglia014
+    400072: maniglia015
+    400074: maniglia016
+    400076: maniglia017
+    400078: maniglia018
+    400080: maniglia019
+    400082: maniglia020
+    400084: maniglia021
+    400086: oblitteratrice
+    400088: oblitteratrice001
+    400090: postazione
+    400092: schienale
+    400094: sedia
+    400096: sedia 1
+    400098: sedia 10
+    400100: sedia 11
+    400102: sedia 12
+    400104: sedia 13
+    400106: sedia 14
+    400108: sedia 15
+    400110: sedia 16
+    400112: sedia 17
+    400114: sedia 18
+    400116: sedia 19
+    400118: sedia 2
+    400120: sedia 20
+    400122: sedia 21
+    400124: sedia 22
+    400126: sedia 23
+    400128: sedia 24
+    400130: sedia 25
+    400132: sedia 26
+    400134: sedia 27
+    400136: sedia 28
+    400138: sedia 29
+    400140: sedia 3
+    400142: sedia 30
+    400144: sedia 31
+    400146: sedia 32
+    400148: sedia 33
+    400150: sedia 34
+    400152: sedia 35
+    400154: sedia 36
+    400156: sedia 37
+    400158: sedia 38
+    400160: sedia 4
+    400162: sedia 5
+    400164: sedia 6
+    400166: sedia 7
+    400168: sedia 8
+    400170: sedia 9
+    400172: sedile
+    400174: volante
+    2300000: bus
+    2300002: bus esterno
+    2300004: copri ruota int
+    2300006: copri ruota int001
+    2300008: copri ruota int002
+    2300010: copri ruota int003
+    2300012: cruscotto
+    2300014: Cylinder002
+    2300016: finestra
+    2300018: finestrino stra
+    2300020: Line003
+    2300022: Line004
+    2300024: Line005
+    2300026: Line006
+    2300028: Line007
+    2300030: Line008
+    2300032: Line009
+    2300034: Line011
+    2300036: Line012
+    2300038: Line014
+    2300040: maniglia
+    2300042: maniglia001
+    2300044: maniglia002
+    2300046: maniglia003
+    2300048: maniglia004
+    2300050: maniglia005
+    2300052: maniglia006
+    2300054: maniglia007
+    2300056: maniglia008
+    2300058: maniglia009
+    2300060: maniglia010
+    2300062: maniglia011
+    2300064: maniglia012
+    2300066: maniglia013
+    2300068: maniglia014
+    2300070: maniglia015
+    2300072: maniglia016
+    2300074: maniglia017
+    2300076: maniglia018
+    2300078: maniglia019
+    2300080: maniglia020
+    2300082: maniglia021
+    2300084: oblitteratrice
+    2300086: oblitteratrice001
+    2300088: postazione
+    2300090: schienale
+    2300092: sedia
+    2300094: sedia 1
+    2300096: sedia 10
+    2300098: sedia 11
+    2300100: sedia 12
+    2300102: sedia 13
+    2300104: sedia 14
+    2300106: sedia 15
+    2300108: sedia 16
+    2300110: sedia 17
+    2300112: sedia 18
+    2300114: sedia 19
+    2300116: sedia 2
+    2300118: sedia 20
+    2300120: sedia 21
+    2300122: sedia 22
+    2300124: sedia 23
+    2300126: sedia 24
+    2300128: sedia 25
+    2300130: sedia 26
+    2300132: sedia 27
+    2300134: sedia 28
+    2300136: sedia 29
+    2300138: sedia 3
+    2300140: sedia 30
+    2300142: sedia 31
+    2300144: sedia 32
+    2300146: sedia 33
+    2300148: sedia 34
+    2300150: sedia 35
+    2300152: sedia 36
+    2300154: sedia 37
+    2300156: sedia 38
+    2300158: sedia 4
+    2300160: sedia 5
+    2300162: sedia 6
+    2300164: sedia 7
+    2300166: sedia 8
+    2300168: sedia 9
+    2300170: sedile
+    2300172: volante
+    3300000: bus
+    3300002: bus esterno
+    3300004: copri ruota int
+    3300006: copri ruota int001
+    3300008: copri ruota int002
+    3300010: copri ruota int003
+    3300012: cruscotto
+    3300014: Cylinder002
+    3300016: finestra
+    3300018: finestrino stra
+    3300020: Line003
+    3300022: Line004
+    3300024: Line005
+    3300026: Line006
+    3300028: Line007
+    3300030: Line008
+    3300032: Line009
+    3300034: Line011
+    3300036: Line012
+    3300038: Line014
+    3300040: maniglia
+    3300042: maniglia001
+    3300044: maniglia002
+    3300046: maniglia003
+    3300048: maniglia004
+    3300050: maniglia005
+    3300052: maniglia006
+    3300054: maniglia007
+    3300056: maniglia008
+    3300058: maniglia009
+    3300060: maniglia010
+    3300062: maniglia011
+    3300064: maniglia012
+    3300066: maniglia013
+    3300068: maniglia014
+    3300070: maniglia015
+    3300072: maniglia016
+    3300074: maniglia017
+    3300076: maniglia018
+    3300078: maniglia019
+    3300080: maniglia020
+    3300082: maniglia021
+    3300084: oblitteratrice
+    3300086: oblitteratrice001
+    3300088: postazione
+    3300090: schienale
+    3300092: sedia
+    3300094: sedia 1
+    3300096: sedia 10
+    3300098: sedia 11
+    3300100: sedia 12
+    3300102: sedia 13
+    3300104: sedia 14
+    3300106: sedia 15
+    3300108: sedia 16
+    3300110: sedia 17
+    3300112: sedia 18
+    3300114: sedia 19
+    3300116: sedia 2
+    3300118: sedia 20
+    3300120: sedia 21
+    3300122: sedia 22
+    3300124: sedia 23
+    3300126: sedia 24
+    3300128: sedia 25
+    3300130: sedia 26
+    3300132: sedia 27
+    3300134: sedia 28
+    3300136: sedia 29
+    3300138: sedia 3
+    3300140: sedia 30
+    3300142: sedia 31
+    3300144: sedia 32
+    3300146: sedia 33
+    3300148: sedia 34
+    3300150: sedia 35
+    3300152: sedia 36
+    3300154: sedia 37
+    3300156: sedia 38
+    3300158: sedia 4
+    3300160: sedia 5
+    3300162: sedia 6
+    3300164: sedia 7
+    3300166: sedia 8
+    3300168: sedia 9
+    3300170: sedile
+    3300172: volante
+    4300000: bus esterno
+    4300002: bus
+    4300004: finestrino stra
+    4300006: finestra
+    4300008: volante
+    4300010: oblitteratrice
+    4300012: cruscotto
+    4300014: sedile
+    4300016: schienale
+    4300018: postazione
+    4300020: Line003
+    4300022: copri ruota int
+    4300024: copri ruota int001
+    4300026: copri ruota int002
+    4300028: copri ruota int003
+    4300030: sedia
+    4300032: sedia
+    4300034: sedia
+    4300036: sedia
+    4300038: sedia
+    4300040: sedia
+    4300042: sedia
+    4300044: sedia
+    4300046: sedia
+    4300048: sedia
+    4300050: sedia
+    4300052: sedia
+    4300054: sedia
+    4300056: sedia
+    4300058: sedia
+    4300060: sedia
+    4300062: sedia
+    4300064: sedia
+    4300066: sedia
+    4300068: sedia
+    4300070: sedia
+    4300072: sedia
+    4300074: sedia
+    4300076: sedia
+    4300078: sedia
+    4300080: sedia
+    4300082: sedia
+    4300084: sedia
+    4300086: sedia
+    4300088: sedia
+    4300090: sedia
+    4300092: sedia
+    4300094: sedia
+    4300096: sedia
+    4300098: sedia
+    4300100: sedia
+    4300102: sedia
+    4300104: sedia
+    4300106: sedia
+    4300108: Line004
+    4300110: oblitteratrice001
+    4300112: Line005
+    4300114: Line006
+    4300116: Line007
+    4300118: Line008
+    4300120: Line009
+    4300122: Line011
+    4300124: Line012
+    4300126: maniglia
+    4300128: Cylinder002
+    4300130: Line014
+    4300132: maniglia001
+    4300134: maniglia002
+    4300136: maniglia003
+    4300138: maniglia004
+    4300140: maniglia005
+    4300142: maniglia006
+    4300144: maniglia007
+    4300146: maniglia008
+    4300148: maniglia009
+    4300150: maniglia010
+    4300152: maniglia011
+    4300154: maniglia012
+    4300156: maniglia013
+    4300158: maniglia014
+    4300160: maniglia015
+    4300162: maniglia016
+    4300164: maniglia017
+    4300166: maniglia018
+    4300168: maniglia019
+    4300170: maniglia020
+    4300172: maniglia021
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
