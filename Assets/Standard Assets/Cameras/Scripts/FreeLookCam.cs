@@ -40,6 +40,8 @@ namespace UnityStandardAssets.Cameras
         private float centerCameraRotation = 0f;
         private bool visualeNormale;
 		public bool resetAngle;
+		public bool isTutorial;
+
 
         protected override void Awake()
         {
@@ -99,7 +101,6 @@ namespace UnityStandardAssets.Cameras
             var y = CrossPlatformInputManager.GetAxis("Mouse Y");
 
 
-
             // Rotate the rig (the root object) around Y axis only:
             m_TransformTargetRot = Quaternion.Euler(0f, m_LookAngle, 0f);
 
@@ -121,17 +122,21 @@ namespace UnityStandardAssets.Cameras
                     centerCameraRotation = m_LookAngle;
 
                 if (Input.GetMouseButton(1) || (Input.GetAxis("LeftTriggerJoystick") >= 0.001))
-                {
-                    m_Target.transform.rotation =
-                        new Quaternion(0, Camera.main.transform.rotation.y, 0, Camera.main.transform.rotation.w);
-                    m_LookAngle = Mathf.Clamp(m_LookAngle + x * m_TurnSpeed,
-                        centerCameraRotation - spazioAperturaCamera, centerCameraRotation + spazioAperturaCamera);
-                    visualeNormale = false;
+				{
+					if (!isTutorial) {
+						m_Target.transform.rotation =
+	                        new Quaternion (0, Camera.main.transform.rotation.y, 0, Camera.main.transform.rotation.w);
+						m_LookAngle = Mathf.Clamp (m_LookAngle + x * m_TurnSpeed,
+							centerCameraRotation - spazioAperturaCamera, centerCameraRotation + spazioAperturaCamera);
+						visualeNormale = false;
+					}
                 }
 
             }
+
             if (visualeNormale)
                 m_LookAngle += x * m_TurnSpeed;
+			
             // Tilt input around X is applied to the pivot (the child of this object)
             m_PivotTargetRot = Quaternion.Euler(m_TiltAngle, m_PivotEulers.y, m_PivotEulers.z);
 

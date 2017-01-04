@@ -1,0 +1,259 @@
+fileFormatVersion: 2
+guid: 0ca400e94674b454aa0cf15c8344ae22
+timeCreated: 1483492623
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: battiscopa
+    100002: Box001
+    100004: finestra boss_che si muove boss001
+    100006: finestra boss_che si muove boss003
+    100008: finestra boss_che si muove boss004
+    100010: finestra boss_che si muove boss005
+    100012: finestra boss_che si muove boss006
+    100014: finestra boss_che si muove boss007
+    100016: finestra boss_che si muove boss008
+    100018: finestra ufficio
+    100020: finestra ufficio001
+    100022: finestra ufficio002
+    100024: finestra ufficio003
+    100026: finestra ufficio004
+    100028: finestra ufficio005
+    100030: finestra ufficio006
+    100032: finestra ufficio007
+    100034: finestra ufficio008
+    100036: finestra ufficio009
+    100038: finestra ufficio010
+    100040: finestra ufficio011
+    100042: finestra ufficio012
+    100044: legno corridoio
+    100046: luci
+    100048: luci001
+    100050: luci002
+    100052: luci003
+    100054: luci004
+    100056: luci005
+    100058: luci006
+    100060: //RootNode
+    100062: Planimetria
+    100064: porta ufficio_004
+    100066: porta ufficio_005
+    100068: porta ufficio_3
+    100070: "veneziana gi\xF9"
+    100072: veneziana su_1
+    100074: veneziana su_2
+    400000: battiscopa
+    400002: Box001
+    400004: finestra boss_che si muove boss001
+    400006: finestra boss_che si muove boss003
+    400008: finestra boss_che si muove boss004
+    400010: finestra boss_che si muove boss005
+    400012: finestra boss_che si muove boss006
+    400014: finestra boss_che si muove boss007
+    400016: finestra boss_che si muove boss008
+    400018: finestra ufficio
+    400020: finestra ufficio001
+    400022: finestra ufficio002
+    400024: finestra ufficio003
+    400026: finestra ufficio004
+    400028: finestra ufficio005
+    400030: finestra ufficio006
+    400032: finestra ufficio007
+    400034: finestra ufficio008
+    400036: finestra ufficio009
+    400038: finestra ufficio010
+    400040: finestra ufficio011
+    400042: finestra ufficio012
+    400044: legno corridoio
+    400046: luci
+    400048: luci001
+    400050: luci002
+    400052: luci003
+    400054: luci004
+    400056: luci005
+    400058: luci006
+    400060: //RootNode
+    400062: Planimetria
+    400064: porta ufficio_004
+    400066: porta ufficio_005
+    400068: porta ufficio_3
+    400070: "veneziana gi\xF9"
+    400072: veneziana su_1
+    400074: veneziana su_2
+    2300000: battiscopa
+    2300002: Box001
+    2300004: finestra boss_che si muove boss001
+    2300006: finestra boss_che si muove boss003
+    2300008: finestra boss_che si muove boss004
+    2300010: finestra boss_che si muove boss005
+    2300012: finestra boss_che si muove boss006
+    2300014: finestra boss_che si muove boss007
+    2300016: finestra boss_che si muove boss008
+    2300018: finestra ufficio
+    2300020: finestra ufficio001
+    2300022: finestra ufficio002
+    2300024: finestra ufficio003
+    2300026: finestra ufficio004
+    2300028: finestra ufficio005
+    2300030: finestra ufficio006
+    2300032: finestra ufficio007
+    2300034: finestra ufficio008
+    2300036: finestra ufficio009
+    2300038: finestra ufficio010
+    2300040: finestra ufficio011
+    2300042: finestra ufficio012
+    2300044: legno corridoio
+    2300046: luci
+    2300048: luci001
+    2300050: luci002
+    2300052: luci003
+    2300054: luci004
+    2300056: luci005
+    2300058: luci006
+    2300060: Planimetria
+    2300062: porta ufficio_004
+    2300064: porta ufficio_005
+    2300066: porta ufficio_3
+    2300068: "veneziana gi\xF9"
+    2300070: veneziana su_1
+    2300072: veneziana su_2
+    3300000: battiscopa
+    3300002: Box001
+    3300004: finestra boss_che si muove boss001
+    3300006: finestra boss_che si muove boss003
+    3300008: finestra boss_che si muove boss004
+    3300010: finestra boss_che si muove boss005
+    3300012: finestra boss_che si muove boss006
+    3300014: finestra boss_che si muove boss007
+    3300016: finestra boss_che si muove boss008
+    3300018: finestra ufficio
+    3300020: finestra ufficio001
+    3300022: finestra ufficio002
+    3300024: finestra ufficio003
+    3300026: finestra ufficio004
+    3300028: finestra ufficio005
+    3300030: finestra ufficio006
+    3300032: finestra ufficio007
+    3300034: finestra ufficio008
+    3300036: finestra ufficio009
+    3300038: finestra ufficio010
+    3300040: finestra ufficio011
+    3300042: finestra ufficio012
+    3300044: legno corridoio
+    3300046: luci
+    3300048: luci001
+    3300050: luci002
+    3300052: luci003
+    3300054: luci004
+    3300056: luci005
+    3300058: luci006
+    3300060: Planimetria
+    3300062: porta ufficio_004
+    3300064: porta ufficio_005
+    3300066: porta ufficio_3
+    3300068: "veneziana gi\xF9"
+    3300070: veneziana su_1
+    3300072: veneziana su_2
+    4300000: Planimetria
+    4300002: legno corridoio
+    4300004: battiscopa
+    4300006: veneziana su_2
+    4300008: veneziana su_1
+    4300010: "veneziana gi\xF9"
+    4300012: porta ufficio_3
+    4300014: luci
+    4300016: luci001
+    4300018: luci002
+    4300020: luci003
+    4300022: luci004
+    4300024: luci005
+    4300026: luci006
+    4300028: finestra boss_che si muove boss001
+    4300030: finestra boss_che si muove boss003
+    4300032: finestra boss_che si muove boss004
+    4300034: finestra boss_che si muove boss005
+    4300036: finestra boss_che si muove boss006
+    4300038: finestra boss_che si muove boss007
+    4300040: finestra ufficio
+    4300042: finestra ufficio001
+    4300044: finestra ufficio002
+    4300046: finestra ufficio003
+    4300048: finestra ufficio004
+    4300050: finestra ufficio005
+    4300052: finestra ufficio006
+    4300054: finestra ufficio007
+    4300056: finestra ufficio008
+    4300058: finestra ufficio009
+    4300060: finestra ufficio010
+    4300062: finestra ufficio011
+    4300064: finestra ufficio012
+    4300066: finestra boss_che si muove boss008
+    4300068: porta ufficio_004
+    4300070: porta ufficio_005
+    4300072: Box001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
