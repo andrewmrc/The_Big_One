@@ -13,11 +13,7 @@ public class SaveData : MonoBehaviour
     [Serializable]
     class PlayerData
     {
-
         public Dictionary<string, Dictionary<string, float>> npcInfo;
-        public float posx;
-        public float posy;
-        public float posz;
         public string playername;
 
         public PlayerData()
@@ -32,26 +28,17 @@ public class SaveData : MonoBehaviour
 
     }
 
-    // Use this for initialization
-    void Start()
-    {
-
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
             Save();
-
         }
+
         if (Input.GetKeyDown(KeyCode.X))
         {
             Load();
-
         }
 
     }
@@ -105,8 +92,6 @@ public class SaveData : MonoBehaviour
             fs.Close();
 
             //sposto il player
-
-
             var allInfo = data.npcInfo;
             foreach (string playername in allInfo.Keys)
             {
@@ -120,18 +105,15 @@ public class SaveData : MonoBehaviour
                     GameObject.Find(playername).tag = "Player";
                     GameObject.Find(playername).GetComponent<FSMLogic>().enabled = true;
                     GameObject.FindObjectOfType<FreeLookCam>().m_Target = GameObject.Find(playername).transform;
-
                 }
+
                 else
                 {
                     GameObject.Find(playername).tag = "ControllableNPC";
                     GameObject.Find(playername).GetComponent<FSMLogic>().enabled = false;
                     GameObject.Find(playername).GetComponent<CharController>().enabled = false;
-
                 }
             }
-
         }
     }
-
 }
