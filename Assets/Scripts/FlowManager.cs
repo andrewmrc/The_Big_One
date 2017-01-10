@@ -19,7 +19,6 @@ public class RandomArrayBool
     public string SequenceName;
     public bool[] sequence;
     
-
 }
 public class FlowManager : MonoBehaviour
 {
@@ -44,7 +43,7 @@ public class FlowManager : MonoBehaviour
         {
             if (sequenceName == randomArray.SequenceName)
             {
-                randomArray.sequence[arrayPosition] = true;                
+                randomArray.sequence[arrayPosition] = true;
             }
         }
         foreach (var randomArray in flowRandomGameArray)
@@ -120,8 +119,7 @@ public class FlowManager : MonoBehaviour
             if (sequenceName == gameArray.SequenceName)
             {
                 if (CheckAllBool(gameArray.sequence) && !gameArray.executed)
-                {
-                    
+                {                    
                     gameArray.call.GetComponent<GameEvents>().ExecuteNTimes(1);
                     gameArray.executed = true;
                 }

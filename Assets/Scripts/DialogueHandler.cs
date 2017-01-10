@@ -28,7 +28,7 @@ public class DialogueHandler : MonoBehaviour {
 		//Debug.Log("This gameobject: " + this.gameObject.name + " is distant " + Vector3.Distance(this.transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) + " from the player");
 		if (this.GetComponent<FieldOfView> ().visibleTargets.Contains (GameObject.FindGameObjectWithTag ("Player").transform) && !cantTalk) {
 			//this.transform.GetChild (0).gameObject.SetActive (true);
-			this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer>().enabled = true;
+			//this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer>().enabled = true;
 			float distanceSqr = (this.transform.position - GameObject.FindGameObjectWithTag ("Player").transform.position).sqrMagnitude;
 			if (distanceSqr < distanceToTalk) { //Within range
 				//this.transform.GetChild (0).gameObject.SetActive (true);
@@ -47,7 +47,7 @@ public class DialogueHandler : MonoBehaviour {
 			}
 		} else {
 			//this.transform.GetChild (0).gameObject.SetActive (false);
-			this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer>().enabled = false;
+			//this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer>().enabled = false;
 		}
 	}
 

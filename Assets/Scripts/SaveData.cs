@@ -9,7 +9,6 @@ using System.Collections.Generic;
 
 public class SaveData : MonoBehaviour
 {
-
     [Serializable]
     class PlayerData
     {
@@ -102,9 +101,15 @@ public class SaveData : MonoBehaviour
                 GameObject.Find(playername).transform.rotation = newrot;
                 if (playername.Equals(data.playername))
                 {
-                    GameObject.Find(playername).tag = "Player";
-                    GameObject.Find(playername).GetComponent<FSMLogic>().enabled = true;
+                    GameObject.Find(playername).tag = "Player";                    
                     GameObject.FindObjectOfType<FreeLookCam>().m_Target = GameObject.Find(playername).transform;
+                    GameObject.Find(playername).GetComponent<FSMLogic>().enabled = true;
+
+                    //DA SISTEMARE CON IL NOME DELL'NPC PLAYER  <-----------------------------------------!!
+                    if (playername != "OliviaRigCorretta")
+                    {
+                        GameManager.Self.outOfYourBody = true;
+                    }
                 }
 
                 else
