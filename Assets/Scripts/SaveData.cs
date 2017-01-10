@@ -9,6 +9,8 @@ using System.Collections.Generic;
 
 public class SaveData : MonoBehaviour
 {
+    public FlowManager flow;
+
     [Serializable]
     class FlowBoolSave
     {
@@ -28,7 +30,7 @@ public class SaveData : MonoBehaviour
         public Dictionary<string, Dictionary<string, float>> npcInfo;
         public string playername;
         public List<FlowBoolSave> sequenceToSave; 
-
+        
 
         public PlayerData()
         {
@@ -40,23 +42,26 @@ public class SaveData : MonoBehaviour
             npcInfo.Add(name, inf);
         }
 
-        public void AddFlowManager()
-        {
-            sequenceToSave = new List<FlowBoolSave>();
-            foreach (var array in FlowManager.Self.flowRandomGameArray)
-            {
-                sequenceToSave.Add(new FlowBoolSave(array.sequence,array.executed));                
-            }
-            foreach (var array in FlowManager.Self.flowGameArray)
-            {                
-                sequenceToSave.Add(new FlowBoolSave(array.sequence, array.executed));  
-            }           
+        //public void AddFlowManager()
+        //{
+        //    sequenceToSave = new List<FlowBoolSave>();
+        //    foreach (var array in FlowManager.Self.flowRandomGameArray)
+        //    {
+        //        sequenceToSave.Add(new FlowBoolSave(array.sequence,array.executed));                
+        //    }
+        //    foreach (var array in FlowManager.Self.flowGameArray)
+        //    {                
+        //        sequenceToSave.Add(new FlowBoolSave(array.sequence, array.executed));  
+        //    }           
             
-        }
+        //}
 
     }
 
-    
+    void Awake()
+    {
+        flow = FindObjectOfType<FlowManager>();
+    }
 
     void Update()
     {
@@ -81,8 +86,21 @@ public class SaveData : MonoBehaviour
 
         PlayerData data = new PlayerData();
 
-        data.AddFlowManager();
-
+        //data.AddFlowManager();
+        //salvo il flowmanager
+        if (flow)
+        {
+            data.sequenceToSave = new List<FlowBoolSave>();
+            foreach (var array in flow.flowRandomGameArray)
+            {
+                data.sequenceToSave.Add(new FlowBoolSave(array.sequence, array.executed));
+            }
+            foreach (var array in flow.flowGameArray)
+            {
+                data.sequenceToSave.Add(new FlowBoolSave(array.sequence, array.executed));
+            }
+        }
+        
         var npcList = GameObject.FindGameObjectsWithTag("ControllableNPC");
         foreach (var npc in npcList)
         {
@@ -96,6 +114,13 @@ public class SaveData : MonoBehaviour
             npcInfo.Add("rotx", npcrot.x);
             npcInfo.Add("roty", npcrot.y);
             npcInfo.Add("rotz", npcrot.z);
+            var nva = npc.GetComponent<NavMeshAgent>();
+            if (nva != null)
+            {
+                npcInfo.Add("destx", nva.destination.x);
+                npcInfo.Add("desty", nva.destination.y);
+                npcInfo.Add("destz", nva.destination.z);
+            }
             data.addNpcInfo(npc.name, npcInfo);
 
         }
@@ -126,20 +151,23 @@ public class SaveData : MonoBehaviour
             fs.Close();
 
             //setto il flow manager
-            int i;
-            for (i = 0 ; i < FlowManager.Self.flowRandomGameArray.Length; i++)
+            if (flow)
             {
-                FlowManager.Self.flowRandomGameArray[i].sequence = data.sequenceToSave[i].sequence;
-                FlowManager.Self.flowRandomGameArray[i].executed = data.sequenceToSave[i].executed;
-            }
-            int j = 0;
-            for (i = FlowManager.Self.flowRandomGameArray.Length; j < FlowManager.Self.flowGameArray.Count; i++)
-            {
+                int i;
+                for (i = 0; i < FlowManager.Self.flowRandomGameArray.Length; i++)
+                {
+                    flow.flowRandomGameArray[i].sequence = data.sequenceToSave[i].sequence;
+                    flow.flowRandomGameArray[i].executed = data.sequenceToSave[i].executed;
+                }
+                int j = 0;
+                for (i = FlowManager.Self.flowRandomGameArray.Length; j < FlowManager.Self.flowGameArray.Count; i++)
+                {
 
-                FlowManager.Self.flowGameArray[j].sequence = data.sequenceToSave[i].sequence;
-                FlowManager.Self.flowGameArray[j].executed = data.sequenceToSave[i].executed;
-                j++;
-            }
+                    flow.flowGameArray[j].sequence = data.sequenceToSave[i].sequence;
+                    flow.flowGameArray[j].executed = data.sequenceToSave[i].executed;
+                    j++;
+                }
+            }            
 
             //sposto il player
             var allInfo = data.npcInfo;
@@ -165,6 +193,17 @@ public class SaveData : MonoBehaviour
 
                 else
                 {
+                    if (playerInfo.ContainsKey("destx"))
+                    {
+                        var destx = playerInfo["destx"];
+                        var desty = playerInfo["desty"];
+                        var destz = playerInfo["destz"];
+                        Vector3 newdest = new Vector3(destx, desty, destz);
+                        var nva = GameObject.Find(playername).GetComponent<NavMeshAgent>();
+                        if (nva != null && nva.isActiveAndEnabled && nva.isOnNavMesh)
+                            nva.SetDestination(newdest);
+
+                    }
                     GameObject.Find(playername).tag = "ControllableNPC";
                     GameObject.Find(playername).GetComponent<FSMLogic>().enabled = false;
                     GameObject.Find(playername).GetComponent<CharController>().enabled = false;
