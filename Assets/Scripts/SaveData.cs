@@ -10,10 +10,25 @@ using System.Collections.Generic;
 public class SaveData : MonoBehaviour
 {
     [Serializable]
+    class FlowBoolSave
+    {
+        public FlowBoolSave(bool[] _sequence,bool _executed)
+        {
+            sequence = _sequence;
+            executed = _executed;
+            
+        }
+        public bool[] sequence;
+        public bool executed;
+    }
+
+    [Serializable]
     class PlayerData
     {
         public Dictionary<string, Dictionary<string, float>> npcInfo;
         public string playername;
+        public List<FlowBoolSave> sequenceToSave; 
+
 
         public PlayerData()
         {
@@ -25,7 +40,23 @@ public class SaveData : MonoBehaviour
             npcInfo.Add(name, inf);
         }
 
+        public void AddFlowManager()
+        {
+            sequenceToSave = new List<FlowBoolSave>();
+            foreach (var array in FlowManager.Self.flowRandomGameArray)
+            {
+                sequenceToSave.Add(new FlowBoolSave(array.sequence,array.executed));                
+            }
+            foreach (var array in FlowManager.Self.flowGameArray)
+            {                
+                sequenceToSave.Add(new FlowBoolSave(array.sequence, array.executed));  
+            }           
+            
+        }
+
     }
+
+    
 
     void Update()
     {
@@ -33,6 +64,7 @@ public class SaveData : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             Save();
+            
         }
 
         if (Input.GetKeyDown(KeyCode.X))
@@ -48,6 +80,9 @@ public class SaveData : MonoBehaviour
         FileStream fs = File.Create(Application.persistentDataPath + "/Playerdata.txt");
 
         PlayerData data = new PlayerData();
+
+        data.AddFlowManager();
+
         var npcList = GameObject.FindGameObjectsWithTag("ControllableNPC");
         foreach (var npc in npcList)
         {
@@ -75,7 +110,7 @@ public class SaveData : MonoBehaviour
         playerInfo.Add("roty", playerrot.y);
         data.addNpcInfo(playerNPC.name, playerInfo);
         data.playername = playerNPC.name;
-
+        
         bf.Serialize(fs, data);
         fs.Close();
 
@@ -89,6 +124,22 @@ public class SaveData : MonoBehaviour
             FileStream fs = File.Open(Application.persistentDataPath + "/Playerdata.txt", FileMode.Open);
             PlayerData data = (PlayerData)bf.Deserialize(fs);
             fs.Close();
+
+            //setto il flow manager
+            int i;
+            for (i = 0 ; i < FlowManager.Self.flowRandomGameArray.Length; i++)
+            {
+                FlowManager.Self.flowRandomGameArray[i].sequence = data.sequenceToSave[i].sequence;
+                FlowManager.Self.flowRandomGameArray[i].executed = data.sequenceToSave[i].executed;
+            }
+            int j = 0;
+            for (i = FlowManager.Self.flowRandomGameArray.Length; j < FlowManager.Self.flowGameArray.Count; i++)
+            {
+
+                FlowManager.Self.flowGameArray[j].sequence = data.sequenceToSave[i].sequence;
+                FlowManager.Self.flowGameArray[j].executed = data.sequenceToSave[i].executed;
+                j++;
+            }
 
             //sposto il player
             var allInfo = data.npcInfo;

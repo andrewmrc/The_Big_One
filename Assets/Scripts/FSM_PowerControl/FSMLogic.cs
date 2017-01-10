@@ -16,7 +16,7 @@ public class FSMLogic : MonoBehaviour {
     //public Sprite imageSprite;
 
 	float currentWeight = 0f;
-
+    
     public bool onEnemy = false;
     UI refUI;
 
