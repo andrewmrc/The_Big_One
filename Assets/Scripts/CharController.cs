@@ -68,19 +68,21 @@ public class CharController : MonoBehaviour {
 	{
 
 		// convert the world relative moveInput vector into a local-relative
-		// turn amount and forward amount required to head in the desired
-		// direction.
+		// turn amount and forward amount required to head in the desired direction.
 		if (move.magnitude > 1f) move.Normalize();
 		move = transform.InverseTransformDirection(move);
 		move = Vector3.ProjectOnPlane(move, m_GroundNormal);
-		m_TurnAmount = Mathf.Atan2(move.x, move.z);
-		m_ForwardAmount = move.z;
+        m_TurnAmount = Mathf.Atan2(move.x, move.z);
+        if (move.x == 0 && move.z == 0) m_TurnAmount = 0f;
+        if (m_TurnAmount == Mathf.PI) m_TurnAmount = 0f;
+        m_ForwardAmount = move.z;
 
-		ApplyExtraTurnRotation();
-
-		// send input and other state parameters to the animator
-		UpdateAnimator(move);
-	}
+        ApplyExtraTurnRotation();
+        
+        // send input and other state parameters to the animator
+        UpdateAnimator(move);
+        
+    }
 
 
 	void UpdateAnimator(Vector3 move)

@@ -5,24 +5,11 @@ public class Transparency : MonoBehaviour {
 
     RaycastHit oldHit;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
-    {
-
-    }
-
-    void FixedUpdate()
     {
         XRay();
     }
 
-    // Hacer a los objetos que interfieran con la vision transparentes
     private void XRay()
     {
 
@@ -36,15 +23,16 @@ public class Transparency : MonoBehaviour {
             {
 
                 // Add transparence
-                Color colorA = oldHit.transform.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color;
+                
+                Color colorA = oldHit.transform.gameObject.GetComponentInChildren<MeshRenderer>().material.color;
                 colorA.a = 1f;
-                oldHit.transform.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.SetColor("_Color", colorA);
+                oldHit.transform.gameObject.GetComponentInChildren<MeshRenderer>().material.SetColor("_Color", colorA);
             }
 
             // Add transparence
-            Color colorB = hit.transform.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color;
+            Color colorB = hit.transform.gameObject.GetComponentInChildren<MeshRenderer>().material.color;
             colorB.a = 0.5f;
-            hit.transform.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.SetColor("_Color", colorB);
+            hit.transform.gameObject.GetComponentInChildren<MeshRenderer>().material.SetColor("_Color", colorB);
 
             // Save hit
             oldHit = hit;

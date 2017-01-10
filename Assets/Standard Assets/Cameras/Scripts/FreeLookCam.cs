@@ -29,7 +29,7 @@ namespace UnityStandardAssets.Cameras
         [SerializeField]
         private bool m_VerticalAutoReturn = false;           // set wether or not the vertical axis should auto return
         [SerializeField]
-        private float spazioAperturaCamera = 20;
+        private float spazioAperturaCamera = 360;
 
         private float m_LookAngle;                    // The rig's y axis rotation.
         private float m_TiltAngle;                    // The pivot's x axis rotation.
@@ -39,6 +39,9 @@ namespace UnityStandardAssets.Cameras
         private Quaternion m_TransformTargetRot;
         private float centerCameraRotation = 0f;
         private bool visualeNormale;
+		public bool resetAngle;
+		public bool isTutorial;
+
 
         protected override void Awake()
         {
@@ -64,10 +67,19 @@ namespace UnityStandardAssets.Cameras
         }
 
 
+		public void OnEnable()
+		{
+			if (resetAngle) {
+				m_TiltAngle = 0f;
+				m_LookAngle = 0f;
+				resetAngle = false;
+			}
+		}
+
         private void OnDisable()
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+			//Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
         }
 
 
@@ -87,7 +99,6 @@ namespace UnityStandardAssets.Cameras
             // Read the user input
             var x = CrossPlatformInputManager.GetAxis("Mouse X");
             var y = CrossPlatformInputManager.GetAxis("Mouse Y");
-
 
 
             // Rotate the rig (the root object) around Y axis only:
@@ -111,17 +122,21 @@ namespace UnityStandardAssets.Cameras
                     centerCameraRotation = m_LookAngle;
 
                 if (Input.GetMouseButton(1) || (Input.GetAxis("LeftTriggerJoystick") >= 0.001))
-                {
-                    m_Target.transform.rotation =
-                        new Quaternion(0, Camera.main.transform.rotation.y, 0, Camera.main.transform.rotation.w);
-                    m_LookAngle = Mathf.Clamp(m_LookAngle + x * m_TurnSpeed,
-                        centerCameraRotation - spazioAperturaCamera, centerCameraRotation + spazioAperturaCamera);
-                    visualeNormale = false;
+				{
+					if (!isTutorial) {
+						m_Target.transform.rotation =
+	                        new Quaternion (0, Camera.main.transform.rotation.y, 0, Camera.main.transform.rotation.w);
+						m_LookAngle = Mathf.Clamp (m_LookAngle + x * m_TurnSpeed,
+							centerCameraRotation - spazioAperturaCamera, centerCameraRotation + spazioAperturaCamera);
+						visualeNormale = false;
+					}
                 }
 
             }
+
             if (visualeNormale)
                 m_LookAngle += x * m_TurnSpeed;
+			
             // Tilt input around X is applied to the pivot (the child of this object)
             m_PivotTargetRot = Quaternion.Euler(m_TiltAngle, m_PivotEulers.y, m_PivotEulers.z);
 

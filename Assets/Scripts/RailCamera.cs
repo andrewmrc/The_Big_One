@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 namespace UnityStandardAssets.Cameras
 {
@@ -31,7 +32,8 @@ namespace UnityStandardAssets.Cameras
         public float speed = 0;
         public GameObject mainCamera;
 		GameObject realMainCamera;
-
+		GameObject player;
+		public UnityEvent returnEvent;
         Fader refFader;
 		bool fadeNow;
 
@@ -40,8 +42,17 @@ namespace UnityStandardAssets.Cameras
 			GameObject pivot = mainCamera.transform.GetChild (0).gameObject;
 			realMainCamera = pivot.transform.GetChild (0).gameObject;
 			mainCamera.SetActive (false);
+
+			mainCamera.GetComponent<FreeLookCam> ().resetAngle = true;
+
             refFader = FindObjectOfType<Fader>();
-            StartCoroutine(RailCameraCO());
+			player = GameObject.FindGameObjectWithTag ("Player");
+			player.GetComponent<Animator>().SetFloat("Forward", 0);
+			player.GetComponent<FSMLogic> ().enabled = false;
+			player.GetComponent<CharController> ().enabled = false;
+			player.transform.rotation = new Quaternion (0f, 0f, 0f, 0f);
+			refFader.GetComponent<CanvasGroup> ().alpha = 1;
+			StartCoroutine(RailCameraCO());
         }
 
         private IEnumerator RailCameraCO()
@@ -117,10 +128,14 @@ namespace UnityStandardAssets.Cameras
 				StartCoroutine(RailCameraCO());
 			} else {
 				refFader.StartCoroutine (refFader.FadeOut ());
-				mainCamera.GetComponent<FreeLookCam> ().enabled = true;
+				
 				realMainCamera.SetActive (true);
 				mainCamera.SetActive (true);
-				this.gameObject.SetActive (false);
+                mainCamera.GetComponent<FreeLookCam>().enabled = true;
+
+                this.gameObject.SetActive (false);
+				player.GetComponent<FSMLogic> ().enabled = true;
+				returnEvent.Invoke ();
 			}
 		}
 

@@ -14,10 +14,16 @@ public struct QuestContainer
 public class Quest : MonoBehaviour
 {
     public QuestContainer[] designQuest;
-    private bool isInQuest;
+    public bool isInQuest;
     public GameObject panelQuest, titleQuest;
+    public CanvasController refCanvasController;
 
-	void Update ()
+    private void Start()
+    {
+        refCanvasController = FindObjectOfType<CanvasController>();
+    }
+
+    void Update ()
     {
         if (Input.GetKeyDown(KeyCode.J) && !isInQuest)
         {
@@ -33,6 +39,7 @@ public class Quest : MonoBehaviour
             Time.timeScale = 0;
             isInQuest = true;
             panelQuest.SetActive(true);
+            refCanvasController.QuestHandler(false);
         }
 
         else if (Input.GetKeyDown(KeyCode.J) && isInQuest)
@@ -40,6 +47,7 @@ public class Quest : MonoBehaviour
             Time.timeScale = 1;
             isInQuest = false;
             panelQuest.SetActive(false);
+            refCanvasController.QuestHandler(true);
         }
 	}
 

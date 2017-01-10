@@ -1,0 +1,150 @@
+fileFormatVersion: 2
+guid: 39f9d1068613906418904706434bb79a
+timeCreated: 1482249370
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: finestra salotto
+    100004: INFISSO CAMERA DA LETTO
+    100006: INFISSO CAMERA DA LETTO001
+    100008: MANIGLIA PORTA
+    100010: MANIGLIA PORTA001
+    100012: MANIGLIA PORTA002
+    100014: muri
+    100016: pavimento vero
+    100018: Plane001
+    100020: 'PORTA '
+    100022: PORTA 001
+    100024: PORTA 002
+    100026: PORTA4
+    100028: soffitto
+    100030: soffitto001
+    400000: //RootNode
+    400002: finestra salotto
+    400004: INFISSO CAMERA DA LETTO
+    400006: INFISSO CAMERA DA LETTO001
+    400008: MANIGLIA PORTA
+    400010: MANIGLIA PORTA001
+    400012: MANIGLIA PORTA002
+    400014: muri
+    400016: pavimento vero
+    400018: Plane001
+    400020: 'PORTA '
+    400022: PORTA 001
+    400024: PORTA 002
+    400026: PORTA4
+    400028: soffitto
+    400030: soffitto001
+    2300000: finestra salotto
+    2300002: INFISSO CAMERA DA LETTO
+    2300004: INFISSO CAMERA DA LETTO001
+    2300006: MANIGLIA PORTA
+    2300008: MANIGLIA PORTA001
+    2300010: MANIGLIA PORTA002
+    2300012: muri
+    2300014: pavimento vero
+    2300016: Plane001
+    2300018: 'PORTA '
+    2300020: PORTA 001
+    2300022: PORTA 002
+    2300024: PORTA4
+    2300026: soffitto
+    2300028: soffitto001
+    3300000: finestra salotto
+    3300002: INFISSO CAMERA DA LETTO
+    3300004: INFISSO CAMERA DA LETTO001
+    3300006: MANIGLIA PORTA
+    3300008: MANIGLIA PORTA001
+    3300010: MANIGLIA PORTA002
+    3300012: muri
+    3300014: pavimento vero
+    3300016: Plane001
+    3300018: 'PORTA '
+    3300020: PORTA 001
+    3300022: PORTA 002
+    3300024: PORTA4
+    3300026: soffitto
+    3300028: soffitto001
+    4300000: muri
+    4300002: finestra salotto
+    4300004: soffitto
+    4300006: soffitto001
+    4300008: INFISSO CAMERA DA LETTO
+    4300010: INFISSO CAMERA DA LETTO001
+    4300012: 'PORTA '
+    4300014: PORTA4
+    4300016: MANIGLIA PORTA
+    4300018: MANIGLIA PORTA001
+    4300020: PORTA 001
+    4300022: PORTA 002
+    4300024: MANIGLIA PORTA002
+    4300026: Plane001
+    4300028: pavimento vero
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

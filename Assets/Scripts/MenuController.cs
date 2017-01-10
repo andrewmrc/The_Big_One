@@ -11,7 +11,14 @@ public class MenuController : MonoBehaviour
 
     public GameObject ResumeButton, PanelExit;
 
-    private bool isInExitMenu;
+    public bool isInExitMenu;
+
+    public CanvasController refCanvasController;
+
+    private void Start()
+    {
+        refCanvasController = FindObjectOfType<CanvasController>();
+    }
 
     void Update()
     {
@@ -20,10 +27,12 @@ public class MenuController : MonoBehaviour
             Time.timeScale = 0;
             PanelExit.SetActive(true);
             isInExitMenu = true;
+            refCanvasController.ExitHandler(false);
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && isInExitMenu)
         {
             Resume();
+            refCanvasController.ExitHandler(true);
         }
     }
 

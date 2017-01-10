@@ -12,8 +12,14 @@ public struct ItemContainer
 public class Inventory : MonoBehaviour
 {
     public ItemContainer[] designInventory;
-    private bool isInInventory;
+    public bool isInInventory;
     public GameObject panelInventory;
+    public CanvasController refCanvasController;
+
+    private void Start()
+    {
+        refCanvasController = FindObjectOfType<CanvasController>();
+    }
 
     void Update()
     {
@@ -31,6 +37,7 @@ public class Inventory : MonoBehaviour
             Time.timeScale = 0;
             isInInventory = true;
             panelInventory.SetActive(true);
+            refCanvasController.InventoryHandler(false);
         }
 
         else if (Input.GetKeyDown(KeyCode.I) && isInInventory)
@@ -38,6 +45,7 @@ public class Inventory : MonoBehaviour
             Time.timeScale = 1;
             isInInventory = false;
             panelInventory.SetActive(false);
+            refCanvasController.InventoryHandler(true);
         }
     }
 }
