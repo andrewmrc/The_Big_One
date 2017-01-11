@@ -24,29 +24,38 @@ public class DoorHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
     }
 
     void OnTriggerStay(Collider coll)
     {
 
-        Debug.Log(coll);
+
         if (coll.gameObject.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.C))
             {
-                if (doorOponerCO == null)
-                {
-                    //Debug.Log(transform.eulerAngles);
-                    Debug.Log(doorOponerCO);
-                    Debug.Log("Entro");
-                    product = Vector3.Dot(transform.forward, coll.transform.forward);
-                    doorOponerCO = StartCoroutine(DoorOpener(product));
+                RaycastHit hitInfo;
 
+                Vector3 modYPlayer = new Vector3(0, 1, 0) + coll.transform.position;
+
+                if (Physics.Raycast(modYPlayer, coll.transform.forward, out hitInfo, 1f))
+                {
+
+
+                    if (doorOponerCO == null)
+                    {
+                        //Debug.Log(transform.eulerAngles);
+                        Debug.Log(doorOponerCO);
+                        Debug.Log("Entro");
+                        product = Vector3.Dot(transform.forward, coll.transform.forward);
+                        doorOponerCO = StartCoroutine(DoorOpener(product));
+
+                    }
                 }
             }
-            
-            
+
+
             //this.gameObject.GetComponent<BoxCollider>().enabled = false;
 
             /*Debug.Log("APRI PORTA");
@@ -65,19 +74,41 @@ public class DoorHandler : MonoBehaviour
         }
     }
 
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (doorOponerCO != null)
+            {
+                StopCoroutine(doorOponerCO);
+            }
+            doorOponerCO = StartCoroutine(DoorOpener(0));
+
+        }
+    }
+
     IEnumerator DoorOpener(float product)
     {
+
+
+
+
         float count = 0;
         if (!isOpened)
         {
+
+
+
+
             if (product >= 0)
             {
-
                 openRot = new Vector3(defaultRot.x, defaultRot.y - doorRotation, defaultRot.z);
+
             }
             else if (product < 0)
             {
                 openRot = new Vector3(defaultRot.x, defaultRot.y + doorRotation, defaultRot.z);
+
             }
 
             isOpened = true;
