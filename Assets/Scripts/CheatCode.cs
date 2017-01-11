@@ -11,7 +11,7 @@ public class CheatCode : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
 		if (Input.GetKeyDown(KeyCode.P)){
 			refFader.StartCoroutine(refFader.FadeIn());
 			StartCoroutine (LoadScene ("Level_Office"));
@@ -25,7 +25,7 @@ public class CheatCode : MonoBehaviour {
 			refFader.StartCoroutine(refFader.FadeIn());
 			StartCoroutine (LoadScene (SceneManager.GetActiveScene().name));
 		}
-	}
+	}*/
 
 
 	IEnumerator LoadScene (string levelName) {

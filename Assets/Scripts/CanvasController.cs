@@ -17,20 +17,17 @@ public class CanvasController : MonoBehaviour
     {
         refMC.enabled = On;
         refQuest.enabled = On;
-        Debug.Log("InventoryEnable");
     }
 
     public void QuestHandler(bool On)
     {
         refMC.enabled = On;
         refInventory.enabled = On;
-        Debug.Log("QuestEnable");
     }
 
     public void ExitHandler(bool On)
     {
         refInventory.enabled = On;
         refQuest.enabled = On;
-        Debug.Log("ExitEnable");
     }
 }
