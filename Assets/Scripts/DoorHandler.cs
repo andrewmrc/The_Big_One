@@ -8,6 +8,7 @@ public class DoorHandler : MonoBehaviour
     public float doorRotation;
     private Vector3 defaultRot;
     private Vector3 openRot;
+    bool isClosing = false;
     [Range(0, 1)]
     public float speed = 0.2f;
 
@@ -48,7 +49,7 @@ public class DoorHandler : MonoBehaviour
                         //Debug.Log(transform.eulerAngles);
                         Debug.Log(doorOponerCO);
                         Debug.Log("Entro");
-                        product = Vector3.Dot(transform.forward, coll.transform.forward);
+                        product = Vector3.Dot(transform.right, coll.transform.forward);
                         doorOponerCO = StartCoroutine(DoorOpener(product));
 
                     }
@@ -73,16 +74,22 @@ public class DoorHandler : MonoBehaviour
 
         }
     }
-
+    
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            if (doorOponerCO != null)
+            
+            if (isOpened && !isClosing)
             {
-                StopCoroutine(doorOponerCO);
+                isClosing = true;
+                if (doorOponerCO != null)
+                {
+                    StopCoroutine(doorOponerCO);
+                }
+                doorOponerCO = StartCoroutine(DoorOpener(0));
             }
-            doorOponerCO = StartCoroutine(DoorOpener(0));
+            
 
         }
     }
@@ -136,6 +143,7 @@ public class DoorHandler : MonoBehaviour
             StopCoroutine(doorOponerCO);
             doorOponerCO = null;
             isOpened = false;
+            isClosing = false;
         }
     }
 
