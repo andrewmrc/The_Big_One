@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
+[ExecuteInEditMode]
 public class DoorHandler : MonoBehaviour
 {
 
     Coroutine doorOponerCO;
-    public float doorRotation;
+    public float doorRotation = 90;
     private Vector3 defaultRot;
     private Vector3 openRot;
     bool isClosing = false;
@@ -14,7 +16,19 @@ public class DoorHandler : MonoBehaviour
 
     public float product;
     bool isOpened = false;
+    BoxCollider qualcosa;
 
+    Vector3 center;
+    Vector3 size;
+
+    private GameObject player;
+    [Range(2, 10)]
+    public float distanceToClose = 2;
+
+    void Awake()
+    {
+
+    }
     // Use this for initialization
     void Start()
     {
@@ -22,11 +36,48 @@ public class DoorHandler : MonoBehaviour
 
     }
 
+
     // Update is called once per frame
+
     void Update()
     {
+        center = new Vector3(0, 0.15f, -0.3f);
+        size = new Vector3(1, 0.32f, 0.01f);
+        if (!this.gameObject.GetComponent<BoxCollider>())
+        {
 
+            qualcosa = this.gameObject.AddComponent<BoxCollider>();
+        }
+        else
+        {
+            qualcosa = this.gameObject.GetComponent<BoxCollider>();
+            qualcosa.isTrigger = true;
+            qualcosa.center = center;
+            qualcosa.size = size;
+        }
+
+        if (player)
+        {
+            Debug.Log(Vector3.Distance(player.transform.position, this.transform.position));
+            if (Vector3.Distance(player.transform.position, this.transform.position) > distanceToClose)
+            {
+
+                if (isOpened && !isClosing)
+                {
+                    isClosing = true;
+                    if (doorOponerCO != null)
+                    {
+                        StopCoroutine(doorOponerCO);
+                    }
+                    doorOponerCO = StartCoroutine(DoorOpener(0));
+                }
+
+
+
+            }
+        }
     }
+
 
     void OnTriggerStay(Collider coll)
     {
@@ -34,6 +85,7 @@ public class DoorHandler : MonoBehaviour
 
         if (coll.gameObject.tag == "Player")
         {
+            player = coll.gameObject;
             if (Input.GetKeyDown(KeyCode.C))
             {
                 RaycastHit hitInfo;
@@ -74,24 +126,10 @@ public class DoorHandler : MonoBehaviour
 
         }
     }
-    
+
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            
-            if (isOpened && !isClosing)
-            {
-                isClosing = true;
-                if (doorOponerCO != null)
-                {
-                    StopCoroutine(doorOponerCO);
-                }
-                doorOponerCO = StartCoroutine(DoorOpener(0));
-            }
-            
 
-        }
     }
 
     IEnumerator DoorOpener(float product)
