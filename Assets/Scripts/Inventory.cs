@@ -16,6 +16,9 @@ public class Inventory : MonoBehaviour
     public GameObject panelInventory;
     public CanvasController refCanvasController;
 
+    [SerializeField]
+    public bool[] savedArrayBoolean;
+
     private void Start()
     {
         refCanvasController = FindObjectOfType<CanvasController>();
@@ -46,6 +49,24 @@ public class Inventory : MonoBehaviour
             isInInventory = false;
             panelInventory.SetActive(false);
             refCanvasController.InventoryHandler(true);
+        }
+    }
+
+    //Quando si ricarica il gioco passa i booleani salvati agli oggetti nell'inventario
+    public void OnLoading()
+    {
+        for (int i = 0; i < savedArrayBoolean.Length; i++)
+        {
+            designInventory[i].isFound = savedArrayBoolean[i];
+        }
+    }
+
+    // Quando salva l'inventario passa i booleani a savedArrayBoolean che può essere serializzato 
+    public void OnSaving()
+    {
+        for (int i = 0; i < designInventory.Length; i++)
+        {
+            savedArrayBoolean[i] = designInventory[i].isFound;
         }
     }
 }
