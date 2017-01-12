@@ -25,6 +25,9 @@ public class DoorHandler : MonoBehaviour
     [Range(2, 10)]
     public float distanceToClose = 2;
 
+    public bool isFree = false;
+    public string nameContains;
+
     void Awake()
     {
 
@@ -58,7 +61,6 @@ public class DoorHandler : MonoBehaviour
 
         if (player)
         {
-            Debug.Log(Vector3.Distance(player.transform.position, this.transform.position));
             if (Vector3.Distance(player.transform.position, this.transform.position) > distanceToClose)
             {
 
@@ -78,6 +80,36 @@ public class DoorHandler : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider coll)
+    {
+        
+        if (!(coll.tag == "Player"))
+        {
+            player = coll.gameObject;
+            if (isFree)
+            {
+                
+                if (doorOponerCO == null)
+                {
+                    product = Vector3.Dot(transform.right, coll.transform.forward);
+                    doorOponerCO = StartCoroutine(DoorOpener(product));
+
+                }
+            }
+            else if (nameContains != "" && coll.name.Contains(nameContains))
+            {
+                
+                if (doorOponerCO == null)
+                {
+                    product = Vector3.Dot(transform.right, coll.transform.forward);
+                    doorOponerCO = StartCoroutine(DoorOpener(product));
+
+                }
+            }
+        }
+        
+        
+    }
 
     void OnTriggerStay(Collider coll)
     {
@@ -162,7 +194,7 @@ public class DoorHandler : MonoBehaviour
             {
 
                 count += Time.deltaTime;
-                transform.eulerAngles = Vector3.Slerp(defaultRot, openRot, count);
+                transform.eulerAngles = Vector3.Lerp(defaultRot, openRot, count);
                 yield return null;
             }
             StopCoroutine(doorOponerCO);
@@ -175,7 +207,7 @@ public class DoorHandler : MonoBehaviour
             {
 
                 count += Time.deltaTime;
-                transform.eulerAngles = Vector3.Slerp(openRot, defaultRot, count);
+                transform.eulerAngles = Vector3.Lerp(openRot, defaultRot, count);
                 yield return null;
             }
             StopCoroutine(doorOponerCO);
