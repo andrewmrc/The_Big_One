@@ -1,0 +1,495 @@
+fileFormatVersion: 2
+guid: 6bc1657f9664c644d9563638db622141
+timeCreated: 1484145912
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: bus esterno
+    100002: bus INTERNO
+    100004: //RootNode
+    100006: copri ruota int_005
+    100008: copri ruota int_006
+    100010: copri ruota int_007
+    100012: copri ruota int_1
+    100014: cruscotto
+    100016: esterno senza gadget001
+    100018: finestra
+    100020: finestrino stra
+    100022: Line007
+    100024: Line011
+    100026: maniglia021
+    100028: maniglia022
+    100030: maniglia023
+    100032: maniglia024
+    100034: maniglia025
+    100036: maniglia026
+    100038: maniglia027
+    100040: maniglia028
+    100042: maniglia029
+    100044: maniglia030
+    100046: maniglia031
+    100048: maniglia033
+    100050: maniglia035
+    100052: maniglia037
+    100054: maniglia038
+    100056: maniglia039
+    100058: maniglia040
+    100060: maniglia041
+    100062: oblitteratrice001
+    100064: oblitteratrice002
+    100066: 'PALO '
+    100068: postazione
+    100070: SBARRA DISABILE
+    100072: SBARRA DISABILE001
+    100074: schienale
+    100076: sedia_UV_003
+    100078: sedia_UV_004
+    100080: sedia_UV_005
+    100082: sedia_UV_006
+    100084: sedia_UV_007
+    100086: sedia_UV_008
+    100088: sedia_UV_009
+    100090: sedia_UV_010
+    100092: sedia_UV_011
+    100094: sedia_UV_012
+    100096: sedia_UV_013
+    100098: sedia_UV_014
+    100100: sedia_UV_015
+    100102: sedia_UV_016
+    100104: sedia_UV_017
+    100106: sedia_UV_018
+    100108: sedia_UV_019
+    100110: sedia_UV_020
+    100112: sedia_UV_021
+    100114: sedia_UV_022
+    100116: sedia_UV_023
+    100118: sedia_UV_024
+    100120: sedia_UV_025
+    100122: sedia_UV_026
+    100124: sedia_UV_027
+    100126: sedia_UV_028
+    100128: sedia_UV_029
+    100130: sedia_UV_030
+    100132: sedia_UV_031
+    100134: sedia_UV_032
+    100136: sedia_UV_033
+    100138: sedia_UV_034
+    100140: sedia_UV_035
+    100142: sedia_UV_036
+    100144: sedia_UV_037
+    100146: sedia_UV_038
+    100148: sedia_UV_039
+    100150: sedia_UV_1
+    100152: sedia_UV_2
+    100154: sedile
+    100156: tubo
+    100158: tubo oblitteratrice_1
+    100160: tubo oblitteratrice_2
+    100162: tubo_1
+    100164: volante
+    100166: Object001
+    100168: sedia_UV_040
+    400000: bus esterno
+    400002: bus INTERNO
+    400004: //RootNode
+    400006: copri ruota int_005
+    400008: copri ruota int_006
+    400010: copri ruota int_007
+    400012: copri ruota int_1
+    400014: cruscotto
+    400016: esterno senza gadget001
+    400018: finestra
+    400020: finestrino stra
+    400022: Line007
+    400024: Line011
+    400026: maniglia021
+    400028: maniglia022
+    400030: maniglia023
+    400032: maniglia024
+    400034: maniglia025
+    400036: maniglia026
+    400038: maniglia027
+    400040: maniglia028
+    400042: maniglia029
+    400044: maniglia030
+    400046: maniglia031
+    400048: maniglia033
+    400050: maniglia035
+    400052: maniglia037
+    400054: maniglia038
+    400056: maniglia039
+    400058: maniglia040
+    400060: maniglia041
+    400062: oblitteratrice001
+    400064: oblitteratrice002
+    400066: 'PALO '
+    400068: postazione
+    400070: SBARRA DISABILE
+    400072: SBARRA DISABILE001
+    400074: schienale
+    400076: sedia_UV_003
+    400078: sedia_UV_004
+    400080: sedia_UV_005
+    400082: sedia_UV_006
+    400084: sedia_UV_007
+    400086: sedia_UV_008
+    400088: sedia_UV_009
+    400090: sedia_UV_010
+    400092: sedia_UV_011
+    400094: sedia_UV_012
+    400096: sedia_UV_013
+    400098: sedia_UV_014
+    400100: sedia_UV_015
+    400102: sedia_UV_016
+    400104: sedia_UV_017
+    400106: sedia_UV_018
+    400108: sedia_UV_019
+    400110: sedia_UV_020
+    400112: sedia_UV_021
+    400114: sedia_UV_022
+    400116: sedia_UV_023
+    400118: sedia_UV_024
+    400120: sedia_UV_025
+    400122: sedia_UV_026
+    400124: sedia_UV_027
+    400126: sedia_UV_028
+    400128: sedia_UV_029
+    400130: sedia_UV_030
+    400132: sedia_UV_031
+    400134: sedia_UV_032
+    400136: sedia_UV_033
+    400138: sedia_UV_034
+    400140: sedia_UV_035
+    400142: sedia_UV_036
+    400144: sedia_UV_037
+    400146: sedia_UV_038
+    400148: sedia_UV_039
+    400150: sedia_UV_1
+    400152: sedia_UV_2
+    400154: sedile
+    400156: tubo
+    400158: tubo oblitteratrice_1
+    400160: tubo oblitteratrice_2
+    400162: tubo_1
+    400164: volante
+    400166: Object001
+    400168: sedia_UV_040
+    2300000: bus esterno
+    2300002: bus INTERNO
+    2300004: copri ruota int_005
+    2300006: copri ruota int_006
+    2300008: copri ruota int_007
+    2300010: copri ruota int_1
+    2300012: cruscotto
+    2300014: esterno senza gadget001
+    2300016: finestra
+    2300018: finestrino stra
+    2300020: Line007
+    2300022: Line011
+    2300024: maniglia021
+    2300026: maniglia022
+    2300028: maniglia023
+    2300030: maniglia024
+    2300032: maniglia025
+    2300034: maniglia026
+    2300036: maniglia027
+    2300038: maniglia028
+    2300040: maniglia029
+    2300042: maniglia030
+    2300044: maniglia031
+    2300046: maniglia033
+    2300048: maniglia035
+    2300050: maniglia037
+    2300052: maniglia038
+    2300054: maniglia039
+    2300056: maniglia040
+    2300058: maniglia041
+    2300060: oblitteratrice001
+    2300062: oblitteratrice002
+    2300064: 'PALO '
+    2300066: postazione
+    2300068: SBARRA DISABILE
+    2300070: SBARRA DISABILE001
+    2300072: schienale
+    2300074: sedia_UV_003
+    2300076: sedia_UV_004
+    2300078: sedia_UV_005
+    2300080: sedia_UV_006
+    2300082: sedia_UV_007
+    2300084: sedia_UV_008
+    2300086: sedia_UV_009
+    2300088: sedia_UV_010
+    2300090: sedia_UV_011
+    2300092: sedia_UV_012
+    2300094: sedia_UV_013
+    2300096: sedia_UV_014
+    2300098: sedia_UV_015
+    2300100: sedia_UV_016
+    2300102: sedia_UV_017
+    2300104: sedia_UV_018
+    2300106: sedia_UV_019
+    2300108: sedia_UV_020
+    2300110: sedia_UV_021
+    2300112: sedia_UV_022
+    2300114: sedia_UV_023
+    2300116: sedia_UV_024
+    2300118: sedia_UV_025
+    2300120: sedia_UV_026
+    2300122: sedia_UV_027
+    2300124: sedia_UV_028
+    2300126: sedia_UV_029
+    2300128: sedia_UV_030
+    2300130: sedia_UV_031
+    2300132: sedia_UV_032
+    2300134: sedia_UV_033
+    2300136: sedia_UV_034
+    2300138: sedia_UV_035
+    2300140: sedia_UV_036
+    2300142: sedia_UV_037
+    2300144: sedia_UV_038
+    2300146: sedia_UV_039
+    2300148: sedia_UV_1
+    2300150: sedia_UV_2
+    2300152: sedile
+    2300154: tubo
+    2300156: tubo oblitteratrice_1
+    2300158: tubo oblitteratrice_2
+    2300160: tubo_1
+    2300162: volante
+    2300164: Object001
+    2300166: sedia_UV_040
+    3300000: bus esterno
+    3300002: bus INTERNO
+    3300004: copri ruota int_005
+    3300006: copri ruota int_006
+    3300008: copri ruota int_007
+    3300010: copri ruota int_1
+    3300012: cruscotto
+    3300014: esterno senza gadget001
+    3300016: finestra
+    3300018: finestrino stra
+    3300020: Line007
+    3300022: Line011
+    3300024: maniglia021
+    3300026: maniglia022
+    3300028: maniglia023
+    3300030: maniglia024
+    3300032: maniglia025
+    3300034: maniglia026
+    3300036: maniglia027
+    3300038: maniglia028
+    3300040: maniglia029
+    3300042: maniglia030
+    3300044: maniglia031
+    3300046: maniglia033
+    3300048: maniglia035
+    3300050: maniglia037
+    3300052: maniglia038
+    3300054: maniglia039
+    3300056: maniglia040
+    3300058: maniglia041
+    3300060: oblitteratrice001
+    3300062: oblitteratrice002
+    3300064: 'PALO '
+    3300066: postazione
+    3300068: SBARRA DISABILE
+    3300070: SBARRA DISABILE001
+    3300072: schienale
+    3300074: sedia_UV_003
+    3300076: sedia_UV_004
+    3300078: sedia_UV_005
+    3300080: sedia_UV_006
+    3300082: sedia_UV_007
+    3300084: sedia_UV_008
+    3300086: sedia_UV_009
+    3300088: sedia_UV_010
+    3300090: sedia_UV_011
+    3300092: sedia_UV_012
+    3300094: sedia_UV_013
+    3300096: sedia_UV_014
+    3300098: sedia_UV_015
+    3300100: sedia_UV_016
+    3300102: sedia_UV_017
+    3300104: sedia_UV_018
+    3300106: sedia_UV_019
+    3300108: sedia_UV_020
+    3300110: sedia_UV_021
+    3300112: sedia_UV_022
+    3300114: sedia_UV_023
+    3300116: sedia_UV_024
+    3300118: sedia_UV_025
+    3300120: sedia_UV_026
+    3300122: sedia_UV_027
+    3300124: sedia_UV_028
+    3300126: sedia_UV_029
+    3300128: sedia_UV_030
+    3300130: sedia_UV_031
+    3300132: sedia_UV_032
+    3300134: sedia_UV_033
+    3300136: sedia_UV_034
+    3300138: sedia_UV_035
+    3300140: sedia_UV_036
+    3300142: sedia_UV_037
+    3300144: sedia_UV_038
+    3300146: sedia_UV_039
+    3300148: sedia_UV_1
+    3300150: sedia_UV_2
+    3300152: sedile
+    3300154: tubo
+    3300156: tubo oblitteratrice_1
+    3300158: tubo oblitteratrice_2
+    3300160: tubo_1
+    3300162: volante
+    3300164: Object001
+    3300166: sedia_UV_040
+    4300000: bus esterno
+    4300002: bus INTERNO
+    4300004: finestrino stra
+    4300006: finestra
+    4300008: volante
+    4300010: cruscotto
+    4300012: sedile
+    4300014: schienale
+    4300016: postazione
+    4300018: tubo oblitteratrice_2
+    4300020: copri ruota int_1
+    4300022: sedia_UV_2
+    4300024: sedia_UV_1
+    4300026: oblitteratrice001
+    4300028: tubo oblitteratrice_1
+    4300030: tubo
+    4300032: Line007
+    4300034: tubo_1
+    4300036: SBARRA DISABILE
+    4300038: Line011
+    4300040: 'PALO '
+    4300042: maniglia021
+    4300044: SBARRA DISABILE001
+    4300046: oblitteratrice002
+    4300048: maniglia022
+    4300050: maniglia023
+    4300052: maniglia024
+    4300054: maniglia025
+    4300056: maniglia026
+    4300058: maniglia027
+    4300060: maniglia028
+    4300062: maniglia029
+    4300064: maniglia030
+    4300066: maniglia031
+    4300068: maniglia033
+    4300070: maniglia035
+    4300072: maniglia037
+    4300074: maniglia038
+    4300076: maniglia039
+    4300078: maniglia040
+    4300080: maniglia041
+    4300082: copri ruota int_005
+    4300084: copri ruota int_006
+    4300086: copri ruota int_007
+    4300088: sedia_UV_003
+    4300090: sedia_UV_004
+    4300092: sedia_UV_005
+    4300094: sedia_UV_006
+    4300096: sedia_UV_007
+    4300098: sedia_UV_008
+    4300100: sedia_UV_009
+    4300102: sedia_UV_010
+    4300104: sedia_UV_011
+    4300106: sedia_UV_012
+    4300108: sedia_UV_013
+    4300110: sedia_UV_014
+    4300112: sedia_UV_015
+    4300114: sedia_UV_016
+    4300116: sedia_UV_017
+    4300118: sedia_UV_018
+    4300120: sedia_UV_019
+    4300122: sedia_UV_020
+    4300124: sedia_UV_021
+    4300126: sedia_UV_022
+    4300128: sedia_UV_023
+    4300130: sedia_UV_024
+    4300132: sedia_UV_025
+    4300134: sedia_UV_026
+    4300136: sedia_UV_027
+    4300138: sedia_UV_028
+    4300140: sedia_UV_029
+    4300142: sedia_UV_030
+    4300144: sedia_UV_031
+    4300146: sedia_UV_032
+    4300148: sedia_UV_033
+    4300150: sedia_UV_034
+    4300152: sedia_UV_035
+    4300154: sedia_UV_036
+    4300156: sedia_UV_037
+    4300158: sedia_UV_038
+    4300160: sedia_UV_039
+    4300162: esterno senza gadget001
+    4300164: Object001
+    4300166: sedia_UV_040
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
