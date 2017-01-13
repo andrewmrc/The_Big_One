@@ -22,10 +22,10 @@ public class DoorHandler : MonoBehaviour
     Vector3 size;
 
     private GameObject player;
-    [Range(2, 10)]
-    public float distanceToClose = 2;
+    [Range(3, 10)]
+    public float distanceToClose = 3;
 
-    public bool isFree = false;
+    public bool isNameContains = false;
     public string nameContains;
 
     void Awake()
@@ -85,8 +85,9 @@ public class DoorHandler : MonoBehaviour
         
         if (!(coll.tag == "Player"))
         {
+
             player = coll.gameObject;
-            if (isFree)
+            if (!isNameContains)
             {
                 
                 if (doorOponerCO == null)
@@ -124,7 +125,7 @@ public class DoorHandler : MonoBehaviour
 
                 Vector3 modYPlayer = new Vector3(0, 1, 0) + coll.transform.position;
 
-                if (Physics.Raycast(modYPlayer, coll.transform.forward, out hitInfo, 1f))
+                if (Physics.Raycast(modYPlayer, coll.transform.forward, out hitInfo, 2f))
                 {
 
 
