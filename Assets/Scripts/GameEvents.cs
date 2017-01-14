@@ -13,7 +13,6 @@ public class SpawnEvent : UnityEvent <GameObject, Transform> {}*/
 public class GameEvents : MonoBehaviour
 {
 
-    
     public enum Condition { Spawner, PlayAnimationFloat, PlayAnimationBool, LoadScene,
                             RandomActionSequence,ActionSequence, Patrolling }
     public Condition whichEvent;
@@ -25,6 +24,10 @@ public class GameEvents : MonoBehaviour
     public bool animationValueBool;
     public string sequenceName;
     public int positionArray;
+
+    // Variabili per compattare
+    public bool isSequenceRandom;
+    public int choice;
 
     //Variabili Patroling
     public PatrollingDB[] moveTransform;
@@ -167,6 +170,10 @@ public class GameEvents : MonoBehaviour
                     break;
                 case Condition.Spawner:
                     Spawner();
+                    if (isSequenceRandom)
+                    {
+                        FlowManager.Self.ExecuteNewRandomEvent(choice);
+                    }
                     break;
                 case Condition.LoadScene:
 					LoadScene();

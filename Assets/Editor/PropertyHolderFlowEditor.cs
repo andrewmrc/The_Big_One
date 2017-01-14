@@ -70,7 +70,7 @@ public class PropertyHolderFlowEditor : Editor
                     sequenceName.stringValue = EditorGUILayout.TextField("Nome ", sequenceName.stringValue);
                     callAction.objectReferenceValue = EditorGUILayout.ObjectField("Action to Call", callAction.objectReferenceValue, typeof(GameObject), true);
                     EditorGUILayout.BeginHorizontal();
-                    arrayBool.arraySize = EditorGUILayout.IntSlider("N sequenze ", arrayBool.arraySize, 1, 10);
+                    arrayBool.arraySize = EditorGUILayout.IntSlider("N Action ", arrayBool.arraySize, 1, 10);
                     EditorGUILayout.EndHorizontal();
                     EditorGUILayout.BeginHorizontal();
                     for (int a = 0; a < arrayBool.arraySize; a++)

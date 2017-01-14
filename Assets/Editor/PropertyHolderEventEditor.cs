@@ -4,8 +4,11 @@ using UnityEngine;
 [CustomEditor(typeof(GameEvents)), CanEditMultipleObjects]
 public class PropertyHolderEventEditor : Editor
 {
+    string[] nameRandomSequence;
 
     public SerializedProperty
+
+
         condition_Prop,
         //returnEvent_Prop,
         objectToUse_Prop,
@@ -14,13 +17,16 @@ public class PropertyHolderEventEditor : Editor
         animationValueFloat_Prop,
         int_Prop,
         sequenceName_Prop,
-		sceneName_Prop,
+        sceneName_Prop,
         positionArray_Prop,
         patrolingTransArray_Prop,
         patrolingObj_Prop,
         patrolingSpeed_Prop,
         patrolingStunWait_Prop,
+        isSequenceRandom_Prop,
+        choice_Prop,
         animationValueBool_Prop;
+
 
     void OnEnable()
     {
@@ -40,6 +46,15 @@ public class PropertyHolderEventEditor : Editor
         patrolingSpeed_Prop = serializedObject.FindProperty("speedObj");
         patrolingStunWait_Prop = serializedObject.FindProperty("stunWaiting");
         patrolingTransArray_Prop = serializedObject.FindProperty("moveTransform");
+        isSequenceRandom_Prop = serializedObject.FindProperty("isSequenceRandom");
+        choice_Prop = serializedObject.FindProperty("choice");
+
+        nameRandomSequence = new string[FlowManager.Self.flowRandomGameArray.Length];
+
+        for (int i = 0; i < FlowManager.Self.flowRandomGameArray.Length; i++)
+        {
+            nameRandomSequence[i] = FlowManager.Self.flowRandomGameArray[i].SequenceName;
+        }
 
     }
 
@@ -57,18 +72,42 @@ public class PropertyHolderEventEditor : Editor
             case GameEvents.Condition.Spawner:
                 EditorGUILayout.PropertyField(objectToUse_Prop, new GUIContent("objectToUse"));
                 EditorGUILayout.PropertyField(positionToSpawn_Prop, new GUIContent("positionToSpawn"));
+                EditorGUILayout.PropertyField(isSequenceRandom_Prop, new GUIContent("Sequenza Random"));
+                if (isSequenceRandom_Prop.boolValue)
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("Nome Azione");
+                    choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue,nameRandomSequence);
+                    EditorGUILayout.EndHorizontal();
+                }
                 break;
 
             case GameEvents.Condition.PlayAnimationBool:
                 EditorGUILayout.PropertyField(objectToUse_Prop, new GUIContent("objectToUse"));
                 EditorGUILayout.PropertyField(animationName_Prop, new GUIContent("animationName"));
                 EditorGUILayout.PropertyField(animationValueBool_Prop, new GUIContent("animationValueBool"));
+                EditorGUILayout.PropertyField(isSequenceRandom_Prop, new GUIContent("Sequenza Random"));
+                if (isSequenceRandom_Prop.boolValue)
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("Nome Azione");
+                    choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameRandomSequence);
+                    EditorGUILayout.EndHorizontal();
+                }
                 break;
 
             case GameEvents.Condition.PlayAnimationFloat:
                 EditorGUILayout.PropertyField(objectToUse_Prop, new GUIContent("objectToUse"));
                 EditorGUILayout.PropertyField(animationName_Prop, new GUIContent("animationName"));
                 EditorGUILayout.PropertyField(animationValueFloat_Prop, new GUIContent("animationValueFloat"));
+                EditorGUILayout.PropertyField(isSequenceRandom_Prop, new GUIContent("Sequenza Random"));
+                if (isSequenceRandom_Prop.boolValue)
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("Nome Azione");
+                    choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameRandomSequence);
+                    EditorGUILayout.EndHorizontal();
+                }
                 break;
 
             case GameEvents.Condition.RandomActionSequence:
@@ -114,6 +153,14 @@ public class PropertyHolderEventEditor : Editor
                 EditorGUILayout.PropertyField(patrolingObj_Prop);
                 EditorGUILayout.PropertyField(patrolingSpeed_Prop);
                 EditorGUILayout.PropertyField(patrolingStunWait_Prop);
+                EditorGUILayout.PropertyField(isSequenceRandom_Prop, new GUIContent("Sequenza Random"));
+                if (isSequenceRandom_Prop.boolValue)
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("Nome Azione");
+                    choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameRandomSequence);
+                    EditorGUILayout.EndHorizontal();
+                }
                 break;
         }
 

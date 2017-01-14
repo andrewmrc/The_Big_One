@@ -126,4 +126,34 @@ public class FlowManager : MonoBehaviour
             }
         }
     }
+
+    public void ExecuteNewRandomEvent(int sequencePosition)
+    {
+
+        if (!flowRandomGameArray[sequencePosition].executed)
+        {            
+            for (int i = 0; i < flowRandomGameArray[sequencePosition].sequence.Length; i++)
+            {
+                if (!flowRandomGameArray[sequencePosition].sequence[i])
+                {
+                    flowRandomGameArray[sequencePosition].sequence[i] = true;
+                    break;
+
+                }
+            }
+            if (CheckAllBool(flowRandomGameArray[sequencePosition].sequence))
+            {
+                if (flowRandomGameArray[sequencePosition].call)
+                {
+                    flowRandomGameArray[sequencePosition].call.GetComponent<GameEvents>().ExecuteNTimes(1);
+                }
+                else
+                {
+                    Debug.LogError("Hai dimenticato l'azione da mettere nel FlowManager nella sequence : "+ flowRandomGameArray[sequencePosition].SequenceName);
+                }
+                
+                flowRandomGameArray[sequencePosition].executed = true;
+            }
+        }
+    }
 }
