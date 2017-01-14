@@ -1,0 +1,392 @@
+fileFormatVersion: 2
+guid: 4d09423f032d52441997a2bc7907d33f
+timeCreated: 1480174026
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: battiscopa
+    100002: finestra
+    100004: finestra boss_che si muove boss001
+    100006: finestra boss_che si muove boss003
+    100008: finestra boss_che si muove boss004
+    100010: finestra boss_che si muove boss005
+    100012: finestra boss_che si muove boss006
+    100014: finestra boss_che si muove boss007
+    100016: finestra boss_che si muove boss008
+    100018: finestra ufficio
+    100020: finestra ufficio001
+    100022: finestra ufficio002
+    100024: finestra ufficio003
+    100026: finestra ufficio004
+    100028: finestra ufficio005
+    100030: finestra ufficio006
+    100032: finestra ufficio007
+    100034: finestra ufficio008
+    100036: finestra ufficio009
+    100038: finestra ufficio010
+    100040: finestra ufficio011
+    100042: finestra ufficio012
+    100044: finestra001
+    100046: finestra002
+    100048: finestra009
+    100050: finestra_003
+    100052: finestra_004
+    100054: finestra_1
+    100056: legno corridoio
+    100058: Line005
+    100060: Line011
+    100062: Line018
+    100064: luci
+    100066: luci001
+    100068: luci002
+    100070: luci003
+    100072: luci004
+    100074: luci005
+    100076: luci006
+    100078: muro
+    100080: muro con legno
+    100082: Object002
+    100084: //RootNode
+    100086: pavimento
+    100088: Planimetria
+    100090: Porta solo infissi004
+    100092: porta ufficio_005
+    100094: porta ufficio_006
+    100096: porta ufficio_007
+    100098: porta unica001
+    100100: Predefinito
+    100102: soffitto
+    100104: soffitto001
+    100106: solo porta
+    100108: solo porta003
+    100110: solo porta008
+    100112: "veneziana gi\xF9"
+    100114: "veneziana gi\xF9001"
+    100116: veneziana su_1
+    100118: veneziana su_2
+    100120: VENEZIANE001
+    100122: VENEZIANE002
+    100124: pavimento001
+    100126: "veneziana gi\xF9002"
+    100128: veneziana su_002
+    400000: battiscopa
+    400002: finestra
+    400004: finestra boss_che si muove boss001
+    400006: finestra boss_che si muove boss003
+    400008: finestra boss_che si muove boss004
+    400010: finestra boss_che si muove boss005
+    400012: finestra boss_che si muove boss006
+    400014: finestra boss_che si muove boss007
+    400016: finestra boss_che si muove boss008
+    400018: finestra ufficio
+    400020: finestra ufficio001
+    400022: finestra ufficio002
+    400024: finestra ufficio003
+    400026: finestra ufficio004
+    400028: finestra ufficio005
+    400030: finestra ufficio006
+    400032: finestra ufficio007
+    400034: finestra ufficio008
+    400036: finestra ufficio009
+    400038: finestra ufficio010
+    400040: finestra ufficio011
+    400042: finestra ufficio012
+    400044: finestra001
+    400046: finestra002
+    400048: finestra009
+    400050: finestra_003
+    400052: finestra_004
+    400054: finestra_1
+    400056: legno corridoio
+    400058: Line005
+    400060: Line011
+    400062: Line018
+    400064: luci
+    400066: luci001
+    400068: luci002
+    400070: luci003
+    400072: luci004
+    400074: luci005
+    400076: luci006
+    400078: muro
+    400080: muro con legno
+    400082: Object002
+    400084: //RootNode
+    400086: pavimento
+    400088: Planimetria
+    400090: Porta solo infissi004
+    400092: porta ufficio_005
+    400094: porta ufficio_006
+    400096: porta ufficio_007
+    400098: porta unica001
+    400100: Predefinito
+    400102: soffitto
+    400104: soffitto001
+    400106: solo porta
+    400108: solo porta003
+    400110: solo porta008
+    400112: "veneziana gi\xF9"
+    400114: "veneziana gi\xF9001"
+    400116: veneziana su_1
+    400118: veneziana su_2
+    400120: VENEZIANE001
+    400122: VENEZIANE002
+    400124: pavimento001
+    400126: "veneziana gi\xF9002"
+    400128: veneziana su_002
+    2300000: battiscopa
+    2300002: finestra
+    2300004: finestra boss_che si muove boss001
+    2300006: finestra boss_che si muove boss003
+    2300008: finestra boss_che si muove boss004
+    2300010: finestra boss_che si muove boss005
+    2300012: finestra boss_che si muove boss006
+    2300014: finestra boss_che si muove boss007
+    2300016: finestra boss_che si muove boss008
+    2300018: finestra ufficio
+    2300020: finestra ufficio001
+    2300022: finestra ufficio002
+    2300024: finestra ufficio003
+    2300026: finestra ufficio004
+    2300028: finestra ufficio005
+    2300030: finestra ufficio006
+    2300032: finestra ufficio007
+    2300034: finestra ufficio008
+    2300036: finestra ufficio009
+    2300038: finestra ufficio010
+    2300040: finestra ufficio011
+    2300042: finestra ufficio012
+    2300044: finestra001
+    2300046: finestra002
+    2300048: finestra009
+    2300050: finestra_003
+    2300052: finestra_004
+    2300054: finestra_1
+    2300056: legno corridoio
+    2300058: Line005
+    2300060: Line011
+    2300062: Line018
+    2300064: luci
+    2300066: luci001
+    2300068: luci002
+    2300070: luci003
+    2300072: luci004
+    2300074: luci005
+    2300076: luci006
+    2300078: muro
+    2300080: muro con legno
+    2300082: Object002
+    2300084: pavimento
+    2300086: Planimetria
+    2300088: Porta solo infissi004
+    2300090: porta ufficio_005
+    2300092: porta ufficio_006
+    2300094: porta ufficio_007
+    2300096: porta unica001
+    2300098: soffitto
+    2300100: soffitto001
+    2300102: solo porta
+    2300104: solo porta003
+    2300106: solo porta008
+    2300108: "veneziana gi\xF9"
+    2300110: "veneziana gi\xF9001"
+    2300112: veneziana su_1
+    2300114: veneziana su_2
+    2300116: VENEZIANE001
+    2300118: VENEZIANE002
+    2300120: pavimento001
+    2300122: "veneziana gi\xF9002"
+    2300124: veneziana su_002
+    3300000: battiscopa
+    3300002: finestra
+    3300004: finestra boss_che si muove boss001
+    3300006: finestra boss_che si muove boss003
+    3300008: finestra boss_che si muove boss004
+    3300010: finestra boss_che si muove boss005
+    3300012: finestra boss_che si muove boss006
+    3300014: finestra boss_che si muove boss007
+    3300016: finestra boss_che si muove boss008
+    3300018: finestra ufficio
+    3300020: finestra ufficio001
+    3300022: finestra ufficio002
+    3300024: finestra ufficio003
+    3300026: finestra ufficio004
+    3300028: finestra ufficio005
+    3300030: finestra ufficio006
+    3300032: finestra ufficio007
+    3300034: finestra ufficio008
+    3300036: finestra ufficio009
+    3300038: finestra ufficio010
+    3300040: finestra ufficio011
+    3300042: finestra ufficio012
+    3300044: finestra001
+    3300046: finestra002
+    3300048: finestra009
+    3300050: finestra_003
+    3300052: finestra_004
+    3300054: finestra_1
+    3300056: legno corridoio
+    3300058: Line005
+    3300060: Line011
+    3300062: Line018
+    3300064: luci
+    3300066: luci001
+    3300068: luci002
+    3300070: luci003
+    3300072: luci004
+    3300074: luci005
+    3300076: luci006
+    3300078: muro
+    3300080: muro con legno
+    3300082: Object002
+    3300084: pavimento
+    3300086: Planimetria
+    3300088: Porta solo infissi004
+    3300090: porta ufficio_005
+    3300092: porta ufficio_006
+    3300094: porta ufficio_007
+    3300096: porta unica001
+    3300098: soffitto
+    3300100: soffitto001
+    3300102: solo porta
+    3300104: solo porta003
+    3300106: solo porta008
+    3300108: "veneziana gi\xF9"
+    3300110: "veneziana gi\xF9001"
+    3300112: veneziana su_1
+    3300114: veneziana su_2
+    3300116: VENEZIANE001
+    3300118: VENEZIANE002
+    3300120: pavimento001
+    3300122: "veneziana gi\xF9002"
+    3300124: veneziana su_002
+    4300000: finestra_1
+    4300002: solo porta
+    4300004: muro con legno
+    4300006: muro
+    4300008: Planimetria
+    4300010: Porta solo infissi004
+    4300012: solo porta003
+    4300014: finestra
+    4300016: finestra_003
+    4300018: pavimento
+    4300020: legno corridoio
+    4300022: battiscopa
+    4300024: finestra_004
+    4300026: finestra001
+    4300028: finestra002
+    4300030: Line005
+    4300032: VENEZIANE001
+    4300034: VENEZIANE002
+    4300036: Line011
+    4300038: veneziana su_2
+    4300040: veneziana su_1
+    4300042: "veneziana gi\xF9"
+    4300044: finestra009
+    4300046: Line018
+    4300048: solo porta008
+    4300050: Object002
+    4300052: porta unica001
+    4300054: soffitto
+    4300056: "veneziana gi\xF9001"
+    4300058: luci
+    4300060: luci001
+    4300062: luci002
+    4300064: luci003
+    4300066: luci004
+    4300068: luci005
+    4300070: luci006
+    4300072: finestra boss_che si muove boss001
+    4300074: finestra boss_che si muove boss003
+    4300076: finestra boss_che si muove boss004
+    4300078: finestra boss_che si muove boss005
+    4300080: finestra boss_che si muove boss006
+    4300082: finestra boss_che si muove boss007
+    4300084: finestra ufficio
+    4300086: finestra ufficio001
+    4300088: finestra ufficio002
+    4300090: finestra ufficio003
+    4300092: finestra ufficio004
+    4300094: finestra ufficio005
+    4300096: finestra ufficio006
+    4300098: finestra ufficio007
+    4300100: finestra ufficio008
+    4300102: finestra ufficio009
+    4300104: finestra ufficio010
+    4300106: finestra ufficio011
+    4300108: finestra ufficio012
+    4300110: finestra boss_che si muove boss008
+    4300112: porta ufficio_005
+    4300114: soffitto001
+    4300116: porta ufficio_006
+    4300118: porta ufficio_007
+    4300120: pavimento001
+    4300122: "veneziana gi\xF9002"
+    4300124: veneziana su_002
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
