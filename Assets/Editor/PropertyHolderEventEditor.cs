@@ -5,6 +5,8 @@ using UnityEngine;
 public class PropertyHolderEventEditor : Editor
 {
     string[] nameRandomSequence;
+    string[] nameSequence;
+    string[] nAction;
 
     public SerializedProperty
 
@@ -24,6 +26,7 @@ public class PropertyHolderEventEditor : Editor
         patrolingSpeed_Prop,
         patrolingStunWait_Prop,
         isSequenceRandom_Prop,
+        isSequence_Prop,
         choice_Prop,
         animationValueBool_Prop;
 
@@ -50,6 +53,12 @@ public class PropertyHolderEventEditor : Editor
         choice_Prop = serializedObject.FindProperty("choice");
 
         nameRandomSequence = new string[FlowManager.Self.flowRandomGameArray.Length];
+        nameSequence = new string[FlowManager.Self.flowGameArray.Count];
+
+        for (int i = 0; i < FlowManager.Self.flowGameArray.Count; i++)
+        {
+            nameSequence[i] = FlowManager.Self.flowGameArray[i].SequenceName;
+        }
 
         for (int i = 0; i < FlowManager.Self.flowRandomGameArray.Length; i++)
         {
@@ -116,8 +125,21 @@ public class PropertyHolderEventEditor : Editor
                 break;
 
             case GameEvents.Condition.ActionSequence:
-                EditorGUILayout.PropertyField(sequenceName_Prop, new GUIContent("sequenceName"));
-                EditorGUILayout.PropertyField(positionArray_Prop, new GUIContent("positionArray"));
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("Nome Azione");
+                choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameSequence);
+                EditorGUILayout.EndHorizontal();
+                // inizializzo l'array con il numero di 
+                nAction = new string[FlowManager.Self.flowGameArray[choice_Prop.intValue].sequence.Length];
+                for (int i = 0; i < nAction.Length; i++)
+                {
+                    nAction[i] = (i + 1).ToString();
+                }
+
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("Posizione");
+                positionArray_Prop.intValue = EditorGUILayout.Popup(positionArray_Prop.intValue, nAction);
+                EditorGUILayout.EndHorizontal();
                 break;
 
 			case GameEvents.Condition.LoadScene:

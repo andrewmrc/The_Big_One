@@ -7,11 +7,14 @@ public class FadeMaterialAlpha : MonoBehaviour {
 	public float maxRange = 3f;
     Renderer renderer;
     Color color;
+    float alpha;
+
 
     void Awake()
     {
         renderer = transform.GetComponent<Renderer>();
         color = renderer.material.color;
+        alpha = color.a;
     }
 
 	void Update () {
@@ -28,8 +31,15 @@ public class FadeMaterialAlpha : MonoBehaviour {
             // aggiorniamo l'alpha del materiale
 
             //color.a = lerpAmt;
+            alpha = Mathf.Lerp(1, 0, distance);
+            color.a = alpha;
+            renderer.material.color = color;
 
-            renderer.material.color = Color.Lerp(Color.white, Color.clear,distance);
+
+
+
+           //  = Color.Lerp(Color.white,Color.clear, distance);
+            
         }
 		
 

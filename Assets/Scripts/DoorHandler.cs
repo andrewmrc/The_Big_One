@@ -82,14 +82,15 @@ public class DoorHandler : MonoBehaviour
 
     void OnTriggerEnter(Collider coll)
     {
-        
+
+
         if (!(coll.tag == "Player"))
         {
 
             player = coll.gameObject;
             if (!isNameContains)
             {
-                
+
                 if (doorOponerCO == null)
                 {
                     product = Vector3.Dot(transform.right, coll.transform.forward);
@@ -99,7 +100,7 @@ public class DoorHandler : MonoBehaviour
             }
             else if (nameContains != "" && coll.name.Contains(nameContains))
             {
-                
+
                 if (doorOponerCO == null)
                 {
                     product = Vector3.Dot(transform.right, coll.transform.forward);
@@ -108,13 +109,13 @@ public class DoorHandler : MonoBehaviour
                 }
             }
         }
-        
-        
+
     }
 
     void OnTriggerStay(Collider coll)
     {
-
+        
+        
 
         if (coll.gameObject.tag == "Player")
         {

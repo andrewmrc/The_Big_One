@@ -7,10 +7,10 @@ using System;
 [Serializable]
 public class ArrayBool
 {
-	public string SequenceName;
+    public string SequenceName;
     public bool[] sequence;
-	public GameObject call;
-    public bool executed; 
+    public GameObject call;
+    public bool executed;
 }
 
 [Serializable]
@@ -18,7 +18,7 @@ public class RandomArrayBool
 {
     public string SequenceName;
     public bool[] sequence;
-    
+
 }
 public class FlowManager : MonoBehaviour
 {
@@ -56,7 +56,7 @@ public class FlowManager : MonoBehaviour
                     randomArray.executed = true;
                 }
             }
-        }        
+        }
     }
 
     bool CheckAllBool(bool[] boolArray)
@@ -80,46 +80,39 @@ public class FlowManager : MonoBehaviour
         {
             if (flowGameArray[i].SequenceName == sequenceName)
             {
-                if (i == 0)
+                if (arrayPosition == 0)
                 {
-                    
+                    flowGameArray[i].sequence[arrayPosition] = true;
+                }
+                else
+                {
+                    if (flowGameArray[i].sequence[arrayPosition - 1])
+                    {
+                        flowGameArray[i].sequence[arrayPosition] = true;
+                    }
+                }                
+                if (CheckAllBool(flowGameArray[i - 1].sequence))
+                {
                     if (arrayPosition == 0)
                     {
                         flowGameArray[i].sequence[arrayPosition] = true;
                     }
                     else
                     {
-                        if(flowGameArray[i].sequence[arrayPosition-1])
+                        if (flowGameArray[i].sequence[arrayPosition - 1])
                         {
                             flowGameArray[i].sequence[arrayPosition] = true;
                         }
                     }
                 }
-                else
-                {
-                    if (CheckAllBool(flowGameArray[i-1].sequence))
-                    {
-                        if (arrayPosition == 0)
-                        {
-                            flowGameArray[i].sequence[arrayPosition] = true;
-                        }
-                        else
-                        {
-                            if (flowGameArray[i].sequence[arrayPosition - 1])
-                            {
-                                flowGameArray[i].sequence[arrayPosition] = true;
-                            }
-                        }
-                    }
-                }
-            }    
+            }
         }
         foreach (var gameArray in flowGameArray)
         {
             if (sequenceName == gameArray.SequenceName)
             {
                 if (CheckAllBool(gameArray.sequence) && !gameArray.executed)
-                {                    
+                {
                     gameArray.call.GetComponent<GameEvents>().ExecuteNTimes(1);
                     gameArray.executed = true;
                 }
@@ -127,11 +120,62 @@ public class FlowManager : MonoBehaviour
         }
     }
 
+    public void ExecuteNewSequenceEvent(int sequencePosition,int actionPosition)
+    {
+        // Controllo se è la prima sequenza nella lista
+        if (sequencePosition == 0)
+        {
+            // Controllo se è la prima azione nella lista
+            if (actionPosition == 0)
+            {
+                flowGameArray[sequencePosition].sequence[actionPosition] = true;
+            }
+            // Se non è la prima azione
+            else
+            {
+                // Controllo se l'azione precedente è vera
+                if (flowGameArray[sequencePosition].sequence[actionPosition - 1])
+                {
+                    flowGameArray[sequencePosition].sequence[actionPosition] = true;
+                }
+            }
+        }
+        // Se non è la prima sequenza controllo se la precedente è stata eseguita
+        else if(flowGameArray[sequencePosition - 1].executed)
+        {         
+            if (actionPosition == 0)
+            {
+                flowGameArray[sequencePosition].sequence[actionPosition] = true;
+            }
+            else
+            {
+                if (flowGameArray[sequencePosition].sequence[actionPosition - 1])
+                {
+                    flowGameArray[sequencePosition].sequence[actionPosition] = true;
+                }
+            }
+        }
+
+        if (CheckAllBool(flowGameArray[sequencePosition].sequence))
+        {
+            if (flowGameArray[sequencePosition].call)
+            {
+                flowGameArray[sequencePosition].call.GetComponent<GameEvents>().ExecuteNTimes(1);
+            }
+            else
+            {
+                Debug.LogError("Hai dimenticato l'azione da mettere nel FlowManager nella sequence : " + flowRandomGameArray[sequencePosition].SequenceName);
+            }
+
+            flowGameArray[sequencePosition].executed = true;
+        }
+    }
+
     public void ExecuteNewRandomEvent(int sequencePosition)
     {
 
         if (!flowRandomGameArray[sequencePosition].executed)
-        {            
+        {
             for (int i = 0; i < flowRandomGameArray[sequencePosition].sequence.Length; i++)
             {
                 if (!flowRandomGameArray[sequencePosition].sequence[i])
@@ -149,9 +193,9 @@ public class FlowManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("Hai dimenticato l'azione da mettere nel FlowManager nella sequence : "+ flowRandomGameArray[sequencePosition].SequenceName);
+                    Debug.LogError("Hai dimenticato l'azione da mettere nel FlowManager nella sequence : " + flowRandomGameArray[sequencePosition].SequenceName);
                 }
-                
+
                 flowRandomGameArray[sequencePosition].executed = true;
             }
         }

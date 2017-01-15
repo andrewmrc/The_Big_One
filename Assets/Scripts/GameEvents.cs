@@ -27,6 +27,7 @@ public class GameEvents : MonoBehaviour
 
     // Variabili per compattare
     public bool isSequenceRandom;
+    public bool isSequnce;
     public int choice;
 
     //Variabili Patroling
@@ -90,7 +91,7 @@ public class GameEvents : MonoBehaviour
 
 	void ActionSequence()
     {
-        FlowManager.Self.ExecuteSequenceEvent(sequenceName,positionArray);
+        FlowManager.Self.ExecuteNewSequenceEvent(choice,positionArray);
     }
 
 
