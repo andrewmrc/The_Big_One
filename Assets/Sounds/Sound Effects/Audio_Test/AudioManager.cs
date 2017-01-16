@@ -36,13 +36,14 @@ public class AudioManager : MonoBehaviour
 		if (charAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
 		{
 			if (!isWalking) {
+				Debug.Log ("WALK");
 				isWalking = true;
 				//Facendo così la clip viene fatta partire ma non seguirà nè i movimenti precisi del personaggio nè qualche tipo di variabile temporale imposta da noi.
-				m_AudioSource.clip = otherClip;
-				m_AudioSource.Play();
+				//m_AudioSource.clip = otherClip;
+				//m_AudioSource.Play();
 
 				//Questa coroutine serve se vogliamo passare noi ogni quanto tempo deve sentirsi il rumore di un singolo passo.
-				//StartCoroutine (PlayFootStepSound (stepTime)); 
+				StartCoroutine (PlayFootStepSound (stepTime)); 
 			}
 
 		} else if(charAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))	{
