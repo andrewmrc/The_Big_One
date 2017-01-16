@@ -50,6 +50,7 @@ public class PropertyHolderEventEditor : Editor
         patrolingStunWait_Prop = serializedObject.FindProperty("stunWaiting");
         patrolingTransArray_Prop = serializedObject.FindProperty("moveTransform");
         isSequenceRandom_Prop = serializedObject.FindProperty("isSequenceRandom");
+        isSequence_Prop = serializedObject.FindProperty("isSequence");
         choice_Prop = serializedObject.FindProperty("choice");
 
         nameRandomSequence = new string[FlowManager.Self.flowRandomGameArray.Length];
@@ -81,47 +82,28 @@ public class PropertyHolderEventEditor : Editor
             case GameEvents.Condition.Spawner:
                 EditorGUILayout.PropertyField(objectToUse_Prop, new GUIContent("objectToUse"));
                 EditorGUILayout.PropertyField(positionToSpawn_Prop, new GUIContent("positionToSpawn"));
-                EditorGUILayout.PropertyField(isSequenceRandom_Prop, new GUIContent("Sequenza Random"));
-                if (isSequenceRandom_Prop.boolValue)
-                {
-                    EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField("Nome Azione");
-                    choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue,nameRandomSequence);
-                    EditorGUILayout.EndHorizontal();
-                }
+                VisualizeBool();
                 break;
 
             case GameEvents.Condition.PlayAnimationBool:
                 EditorGUILayout.PropertyField(objectToUse_Prop, new GUIContent("objectToUse"));
                 EditorGUILayout.PropertyField(animationName_Prop, new GUIContent("animationName"));
                 EditorGUILayout.PropertyField(animationValueBool_Prop, new GUIContent("animationValueBool"));
-                EditorGUILayout.PropertyField(isSequenceRandom_Prop, new GUIContent("Sequenza Random"));
-                if (isSequenceRandom_Prop.boolValue)
-                {
-                    EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField("Nome Azione");
-                    choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameRandomSequence);
-                    EditorGUILayout.EndHorizontal();
-                }
+                VisualizeBool();
                 break;
 
             case GameEvents.Condition.PlayAnimationFloat:
                 EditorGUILayout.PropertyField(objectToUse_Prop, new GUIContent("objectToUse"));
                 EditorGUILayout.PropertyField(animationName_Prop, new GUIContent("animationName"));
                 EditorGUILayout.PropertyField(animationValueFloat_Prop, new GUIContent("animationValueFloat"));
-                EditorGUILayout.PropertyField(isSequenceRandom_Prop, new GUIContent("Sequenza Random"));
-                if (isSequenceRandom_Prop.boolValue)
-                {
-                    EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField("Nome Azione");
-                    choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameRandomSequence);
-                    EditorGUILayout.EndHorizontal();
-                }
+                VisualizeBool();
                 break;
 
             case GameEvents.Condition.RandomActionSequence:
-                EditorGUILayout.PropertyField(sequenceName_Prop, new GUIContent("sequenceName"));
-                EditorGUILayout.PropertyField(positionArray_Prop, new GUIContent("positionArray"));                
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("Nome Azione");
+                choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameRandomSequence);
+                EditorGUILayout.EndHorizontal();
                 break;
 
             case GameEvents.Condition.ActionSequence:
@@ -166,6 +148,7 @@ public class PropertyHolderEventEditor : Editor
                             SerializedProperty delay = patrolingTransArray_Prop.GetArrayElementAtIndex(i).FindPropertyRelative("delay");
                             EditorGUILayout.PropertyField(target);
                             EditorGUILayout.PropertyField(delay);
+                            VisualizeBool();
                         }
                         
                     }
@@ -175,14 +158,7 @@ public class PropertyHolderEventEditor : Editor
                 EditorGUILayout.PropertyField(patrolingObj_Prop);
                 EditorGUILayout.PropertyField(patrolingSpeed_Prop);
                 EditorGUILayout.PropertyField(patrolingStunWait_Prop);
-                EditorGUILayout.PropertyField(isSequenceRandom_Prop, new GUIContent("Sequenza Random"));
-                if (isSequenceRandom_Prop.boolValue)
-                {
-                    EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField("Nome Azione");
-                    choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameRandomSequence);
-                    EditorGUILayout.EndHorizontal();
-                }
+                
                 break;
         }
 
@@ -190,5 +166,48 @@ public class PropertyHolderEventEditor : Editor
         //EditorGUILayout.PropertyField(returnEvent_Prop);
 
         serializedObject.ApplyModifiedProperties();
+    }
+
+    public void VisualizeBool()
+    {
+        
+        EditorGUILayout.PropertyField(isSequenceRandom_Prop, new GUIContent("Sequenza Random"));
+        if (isSequenceRandom_Prop.boolValue)
+        {
+            if (choice_Prop.intValue >= nameRandomSequence.Length)
+            {
+                choice_Prop.intValue = 0;
+            }
+            isSequence_Prop.boolValue = false;
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Nome Azione");
+            choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameRandomSequence);
+            EditorGUILayout.EndHorizontal();
+        }
+        EditorGUILayout.PropertyField(isSequence_Prop, new GUIContent("Sequenza Non Random"));
+        
+        if (isSequence_Prop.boolValue )
+        {
+            if (choice_Prop.intValue >= nameSequence.Length)
+            {
+                choice_Prop.intValue = 0;
+            }
+            isSequenceRandom_Prop.boolValue = false;
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Nome Azione");
+            choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameSequence);
+            EditorGUILayout.EndHorizontal();
+            // inizializzo l'array con il numero di 
+            nAction = new string[FlowManager.Self.flowGameArray[choice_Prop.intValue].sequence.Length];
+            for (int i = 0; i < nAction.Length; i++)
+            {
+                nAction[i] = (i + 1).ToString();
+            }
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Posizione");
+            positionArray_Prop.intValue = EditorGUILayout.Popup(positionArray_Prop.intValue, nAction);
+            EditorGUILayout.EndHorizontal();
+        }
     }
 }

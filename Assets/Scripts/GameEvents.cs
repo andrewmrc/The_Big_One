@@ -27,7 +27,7 @@ public class GameEvents : MonoBehaviour
 
     // Variabili per compattare
     public bool isSequenceRandom;
-    public bool isSequnce;
+    public bool isSequence;
     public int choice;
 
     //Variabili Patroling
@@ -165,16 +165,15 @@ public class GameEvents : MonoBehaviour
 
                 case Condition.PlayAnimationBool:
                     PlayAnimationBool();
+                    ExecuteRandomOrSequence();
                     break;
                 case Condition.PlayAnimationFloat:
                     PlayAnimationFloat();
+                    ExecuteRandomOrSequence();
                     break;
                 case Condition.Spawner:
                     Spawner();
-                    if (isSequenceRandom)
-                    {
-                        FlowManager.Self.ExecuteNewRandomEvent(choice);
-                    }
+                    ExecuteRandomOrSequence();
                     break;
                 case Condition.LoadScene:
 					LoadScene();
@@ -188,10 +187,23 @@ public class GameEvents : MonoBehaviour
                     break;
                 case Condition.Patrolling:
                     StartPatroling();
+                    ExecuteRandomOrSequence();
                     break;
                 default:
                     break;
             }
+        }
+    }
+
+    void ExecuteRandomOrSequence()
+    {
+        if (isSequenceRandom)
+        {
+            FlowManager.Self.ExecuteNewRandomEvent(choice);
+        }
+        if (isSequence)
+        {
+            FlowManager.Self.ExecuteNewSequenceEvent(choice, positionArray);
         }
     }
 }
