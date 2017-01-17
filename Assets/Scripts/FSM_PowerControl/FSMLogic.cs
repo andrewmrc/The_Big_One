@@ -41,7 +41,7 @@ public class FSMLogic : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-		if (Input.GetKey(KeyCode.Mouse1) && !GameManager.Self.isShowMemory)
+		if (Input.GetKey(KeyCode.Mouse1) && !GameManager.Self.isShowMemory && !GameManager.Self.cantUsePower)
         {
             //RaycastHandler();
             sm.HandleInput(InputTransition.MouseButtonOneDown);

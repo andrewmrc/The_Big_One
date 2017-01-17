@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour {
 	public int nBodyChanged = 0;
 	public bool isShowMemory = false;
 	public bool blockMovement;
+	public bool cantUsePower = false;
 
     // Use this for initialization
     void Start () {
