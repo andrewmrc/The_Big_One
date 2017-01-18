@@ -22,7 +22,7 @@ public class TestAudioScript : MonoBehaviour {
         if (col.gameObject.tag == "Floor")
         {
             Debug.Log("CollidoFloor");
-            if (charAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+            if (!GameManager.Self.isAiming && charAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
             {
                 audioS.PlayOneShot(insertClip);
             }

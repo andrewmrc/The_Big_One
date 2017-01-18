@@ -18,7 +18,8 @@ public class AimingSound : MonoBehaviour {
 	void Update ()
     {
 		if (Input.GetKeyDown (KeyCode.Mouse1) && !GameManager.Self.cantUsePower) {
-			audio.clip = otherClip;
+            Debug.Log("AIMING");
+            audio.clip = otherClip;
 			audio.Play ();
 		} else if (Input.GetKeyUp (KeyCode.Mouse1)) {
 			audio.clip = otherClip;

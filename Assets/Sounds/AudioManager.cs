@@ -10,16 +10,12 @@ public class AudioManager : MonoBehaviour
 
 	private Animator charAnimator;
 
-	[Header("[Clip to play (1st metodo)]")]
-	[Space(3)]
-	public AudioClip otherClip;
+	public AudioClip aimingSound;
 
+    [Space(5)]
+    public AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
 
-	[Header("[Array di clip to play (2nd metodo)]")]
-
-	public AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
-
-	[Header("[Tempo tra ogni suono di passo per il 2nd metodo]")]
+	[Header("[Tempo tra ogni suono di passo]")]
 	public float stepTime;
 
 
@@ -33,7 +29,19 @@ public class AudioManager : MonoBehaviour
 	void FixedUpdate () 
 	{
 
-		if (charAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !GameManager.Self.cantUsePower)
+        {
+            Debug.Log("AIMING");
+            m_AudioSource.clip = aimingSound;
+            m_AudioSource.Play();
+        }
+        else if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            m_AudioSource.clip = aimingSound;
+            m_AudioSource.Stop();
+        }
+
+        if (charAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
 		{
 			if (!isWalking) {
 				Debug.Log ("WALK");
@@ -48,8 +56,8 @@ public class AudioManager : MonoBehaviour
 
 		} else if(charAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))	{
 			isWalking = false;
-			m_AudioSource.clip = otherClip;
-			m_AudioSource.Stop();
+			//m_AudioSource.clip = otherClip;
+			//m_AudioSource.Stop();
 		}
 	}
 
