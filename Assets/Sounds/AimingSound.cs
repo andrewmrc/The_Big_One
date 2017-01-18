@@ -15,18 +15,21 @@ public class AimingSound : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
+           // if (!GameManager.Self.cantUsePower)
             {
             audio.clip = otherClip;
             audio.Play();
-        }
+            }
 
         else if (Input.GetKeyUp(KeyCode.Mouse1))
-            {
-            audio.clip = otherClip;
-            audio.Stop();
-        }
+             //   if (GameManager.Self.cantUsePower)
+                {
+                audio.clip = otherClip;
+                audio.Stop();
+                }
     }
 }
