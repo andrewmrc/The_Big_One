@@ -5,9 +5,15 @@ using UnityEditor;
 [ExecuteInEditMode]
 public class DoorHandler : MonoBehaviour
 {
+    // Variabile utilizzata per capire come sono direzionate
+    // grazie artisti
+    // False = forward == Vector3.up
+    // True = forward == Vector3.forward
+    private bool choosedDirection; 
+
 
     Coroutine doorOponerCO;
-    private float doorRotation = 90;
+    public float doorRotation = 90;
     private Vector3 defaultRot;
     private Vector3 openRot;
     bool isClosing = false;
@@ -21,7 +27,7 @@ public class DoorHandler : MonoBehaviour
     Vector3 size;
 
     private GameObject player;
-    [Range(3, 10)]
+    [Range (2, 10)]
     public float distanceToClose = 3;
 
     public bool playerCanEnter = false;
@@ -46,6 +52,7 @@ public class DoorHandler : MonoBehaviour
 
         if (this.transform.forward == Vector3.up)
         {
+            choosedDirection = false;
             center = new Vector3(0, 0.15f, -0.3f);
             size = new Vector3(1, 0.32f, 0.01f);
             if (!this.gameObject.GetComponent<BoxCollider>())
@@ -64,6 +71,7 @@ public class DoorHandler : MonoBehaviour
         
         if (this.transform.forward == Vector3.forward)
         {
+            choosedDirection = true;
             center = new Vector3(0.6f, -0.9f, -0.05f);
             size = new Vector3(1.28f, 0.05f, 2f);
             if (!this.gameObject.GetComponent<BoxCollider>())
@@ -118,7 +126,7 @@ public class DoorHandler : MonoBehaviour
             {
                 if (doorOponerCO == null)
                 {
-                    product = Vector3.Dot(transform.right, coll.transform.forward);
+                    product = CalculateProduct(coll);
                     doorOponerCO = StartCoroutine(DoorOpener(product));
 
                 }
@@ -138,7 +146,7 @@ public class DoorHandler : MonoBehaviour
             player = coll.gameObject;
             if (player.name.Contains(nameContains) || playerCanEnter)
             {
-                if (Input.GetKeyDown(KeyCode.C))
+                if (Input.GetKeyDown(KeyCode.C) && !isOpened)
                 {
                     RaycastHit hitInfo;
 
@@ -147,13 +155,10 @@ public class DoorHandler : MonoBehaviour
                     if (Physics.Raycast(modYPlayer, coll.transform.forward, out hitInfo, 2f))
                     {
 
-
+                        Debug.DrawRay(modYPlayer, coll.transform.forward, Color.magenta, 1f);
                         if (doorOponerCO == null)
-                        {
-                            //Debug.Log(transform.eulerAngles);
-                            Debug.Log(doorOponerCO);
-                            Debug.Log("Entro");
-                            product = Vector3.Dot(transform.right, coll.transform.forward);
+                        {                            
+                            product = CalculateProduct(coll);
                             doorOponerCO = StartCoroutine(DoorOpener(product));
 
                         }
@@ -179,6 +184,20 @@ public class DoorHandler : MonoBehaviour
 
 
         }
+    }
+
+    private float CalculateProduct(Collider coll)
+    {
+        float calculatedProduct = 0;
+        if (!choosedDirection)
+        {
+            calculatedProduct = Vector3.Dot(transform.right, coll.transform.forward);
+        }
+        if (choosedDirection)
+        {
+            calculatedProduct = Vector3.Dot(transform.forward, coll.transform.forward);
+        }
+        return calculatedProduct;
     }
 
     void OnTriggerExit(Collider other)
