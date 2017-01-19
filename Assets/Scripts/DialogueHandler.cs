@@ -106,16 +106,26 @@ public class DialogueHandler : MonoBehaviour {
 
 						GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = conversations [i].dialogues [j];
 
-						//Play speech e quando finisce passa al prossimo quindi waitforsecond inserendo la durata dell'audio
+						float seconds = dialogueSpeed;
+						bool isFirstClick = false;
 						if (conversations [i].audioSpeech.Count != 0 && conversations [i].audioSpeech [j] != null) {
 							AudioSource audioSource = this.gameObject.AddComponent<AudioSource> ();
 							audioSource.clip = conversations [i].audioSpeech [j];
 							audioSource.Play ();
 							float audioDuration = audioSource.clip.length;
-							yield return new WaitForSeconds (audioDuration);
 
-						} else {
-							yield return new WaitForSeconds (dialogueSpeed);
+							seconds = audioDuration;
+						}  
+
+
+						//Play speech e quando finisce passa al prossimo quindi waitforsecond inserendo la durata dell'audio
+						while (seconds > 0) {
+							seconds -= Time.deltaTime;
+							if(Input.GetKeyDown(KeyCode.E) && isFirstClick){
+								seconds = 0;
+							}
+							isFirstClick = true;
+							yield return null;
 						}
 
 					}
@@ -128,7 +138,27 @@ public class DialogueHandler : MonoBehaviour {
 					Debug.Log ("i: " + i + ", j: " + j);
 
 					GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = conversations [i].dialogues [j];
-					yield return new WaitForSeconds (dialogueSpeed);
+					float seconds = dialogueSpeed;
+					bool isFirstClick = false;
+					if (conversations [i].audioSpeech.Count != 0 && conversations [i].audioSpeech [j] != null) {
+						AudioSource audioSource = this.gameObject.AddComponent<AudioSource> ();
+						audioSource.clip = conversations [i].audioSpeech [j];
+						audioSource.Play ();
+						float audioDuration = audioSource.clip.length;
+
+						seconds = audioDuration;
+					}  
+
+
+					//Play speech e quando finisce passa al prossimo quindi waitforsecond inserendo la durata dell'audio
+					while (seconds > 0) {
+						seconds -= Time.deltaTime;
+						if(Input.GetKeyDown(KeyCode.E) && isFirstClick){
+							seconds = 0;
+						}
+						isFirstClick = true;
+						yield return null;
+					}
 
 				}
 				break;
