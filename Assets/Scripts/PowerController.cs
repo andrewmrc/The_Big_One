@@ -24,14 +24,14 @@ public class PowerController : MonoBehaviour
     private RayHitComparer m_RayHitComparer;  // variable to compare raycast hit distances
     private Vector3 dir;
     public bool onEnemy;
-	public bool showMemory;
-	//GameObject npcTarget;
-	public float powerRange = 10;
-	public int controlBodyCost = 20;
-	public int mentalPowerCost = 10;
+    public bool showMemory;
+    //GameObject npcTarget;
+    public float powerRange = 10;
+    public int controlBodyCost = 20;
+    public int mentalPowerCost = 10;
 
-	//prova
-	bool near;
+    //prova
+    bool near;
 
     void Start()
     {
@@ -51,81 +51,90 @@ public class PowerController : MonoBehaviour
 
         //Tasto per attivare la mira. Quando si mira blocchiamo i movimenti del personaggio 
         //BISOGNA CREARE E POI ATTIVARE QUI IL SISTEMA DI CAMERA PER CUI SARA' POSSIBILE RUOTARE LA VISUALE MIRANDO ENTRO UN CERTO ANGOLO
-		if (Input.GetMouseButton (1) || (Input.GetAxis ("LeftTriggerJoystick") >= 0.001))
+        if (GameManager.Self.canClick)
         {
-			this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
-			this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
-			this.GetComponent<Animator>().SetFloat ("Forward", 0);
-			this.GetComponent<Animator>().SetFloat ("Turn", 0);
-			RaycastHandler ();
-			Debug.Log (near);
-		}
+            if (Input.GetMouseButton(1) || (Input.GetAxis("LeftTriggerJoystick") >= 0.001))
+            {
 
-		if (Input.GetMouseButtonUp (1) || ((Input.GetAxis ("LeftTriggerJoystick") > 0.1f) && (Input.GetAxis ("LeftTriggerJoystick") < 0.8f)) )
-        {
-			this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = true;
-			this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = true;
-			Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
-			showMemory = false;
-            onEnemy = false;
-			UIActivator ();
-			/*
-			if (npcTarget != null) {
-				npcTarget.transform.GetComponent<FieldOfView> ().checkVisible = false;
-				//Destroy(npcTarget.gameObject.GetComponent <FieldOfView>());
-				npcTarget = null;
-			}*/
-		}
 
+
+                this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
+                this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+                this.GetComponent<Animator>().SetFloat("Forward", 0);
+                this.GetComponent<Animator>().SetFloat("Turn", 0);
+                RaycastHandler();
+                Debug.Log(near);
+            }
+            if (Input.GetMouseButtonUp(1) || ((Input.GetAxis("LeftTriggerJoystick") > 0.1f) && (Input.GetAxis("LeftTriggerJoystick") < 0.8f)))
+            {
+                this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
+                this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
+                Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
+                showMemory = false;
+                onEnemy = false;
+                UIActivator();
+                /*
+                if (npcTarget != null) {
+                    npcTarget.transform.GetComponent<FieldOfView> ().checkVisible = false;
+                    //Destroy(npcTarget.gameObject.GetComponent <FieldOfView>());
+                    npcTarget = null;
+                }*/
+            }
+        }
 
         //Controlliamo se questo è il corpo della protagonista oppure no e in caso attiviamo la UI e il tasto per permettere di tornare nel suo corpo
         if (this.gameObject != GameManager.Self.playerBody)
         {
-			GameManager.Self.outOfYourBody = true;
+            GameManager.Self.outOfYourBody = true;
             refUI.ReturnUI(true);
-			if (Input.GetKeyDown (KeyCode.R) || Input.GetButtonDown ("Return"))
+            if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Return"))
             {
-				ReturnToYourBody ();
-			}
-		}
+                ReturnToYourBody();
+            }
+        }
         else
         {
             refUI.ReturnUI(false);
-			GameManager.Self.outOfYourBody = false;
-		}
+            GameManager.Self.outOfYourBody = false;
+        }
 
 
-		//Potere di leggere un ricordo quando si è nel corpo di un NPC
-		if ((this.gameObject.transform.GetComponent<MemoryContainer> () != null) )
+        //Potere di leggere un ricordo quando si è nel corpo di un NPC
+        if ((this.gameObject.transform.GetComponent<MemoryContainer>() != null))
         {
-			if(!Input.GetKey(KeyCode.Mouse1)){
-				if ((Input.GetAxis ("LeftTriggerJoystick") == 0)) {
-				
-					Debug.LogWarning ((!(Input.GetMouseButton (1)) || (Input.GetAxis ("LeftTriggerJoystick") == 0)));
-					//Debug.Log (Input.GetAxis ("LeftTriggerJoystick"));
-					//Debug.Log (Input.GetButtonDown(1).ToString());
-					refUI.HackUI (true);
+            if (!Input.GetKey(KeyCode.Mouse1))
+            {
+                if ((Input.GetAxis("LeftTriggerJoystick") == 0))
+                {
 
-					if ((Input.GetKeyDown (KeyCode.F) || Input.GetButtonDown ("Hack")) && !showMemory) {
-						Debug.Log ("Accendi");
+                    Debug.LogWarning((!(Input.GetMouseButton(1)) || (Input.GetAxis("LeftTriggerJoystick") == 0)));
+                    //Debug.Log (Input.GetAxis ("LeftTriggerJoystick"));
+                    //Debug.Log (Input.GetButtonDown(1).ToString());
+                    refUI.HackUI(true);
 
-						showMemory = true;
-						refUI.memoryImageUI.GetComponent<Image> ().sprite = this.gameObject.transform.GetComponent<MemoryContainer> ().memoryImage;
-						refUI.MemoryImageUI (true);
-						this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
-						this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
-						Camera.main.GetComponentInParent<FreeLookCam> ().enabled = false;
+                    if ((Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("Hack")) && !showMemory)
+                    {
+                        Debug.Log("Accendi");
 
-					} else if ((Input.GetKeyDown (KeyCode.F) || Input.GetButtonDown ("Hack")) && showMemory) {
-						Debug.Log ("Spegni");
-						showMemory = false;
-						refUI.memoryImageUI.GetComponent<Image> ().sprite = null;
-						refUI.MemoryImageUI (false);
-						Camera.main.GetComponentInParent<FreeLookCam> ().enabled = true;
-					}
-				}
-			}
-		} 
+                        showMemory = true;
+                        refUI.memoryImageUI.GetComponent<Image>().sprite = this.gameObject.transform.GetComponent<MemoryContainer>().memoryImage;
+                        refUI.MemoryImageUI(true);
+                        this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
+                        this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+                        Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
+
+                    }
+                    else if ((Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("Hack")) && showMemory)
+                    {
+                        Debug.Log("Spegni");
+                        showMemory = false;
+                        refUI.memoryImageUI.GetComponent<Image>().sprite = null;
+                        refUI.MemoryImageUI(false);
+                        Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
+                    }
+                }
+            }
+        }
 
     }
 
@@ -135,22 +144,24 @@ public class PowerController : MonoBehaviour
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
-		if (Physics.Raycast(ray, out hit, 1000)) {
-			if (hit.collider.tag == "ControllableNPC") {
-				near = false;
+        if (Physics.Raycast(ray, out hit, 1000))
+        {
+            if (hit.collider.tag == "ControllableNPC")
+            {
+                near = false;
 
-			}
-		}
+            }
+        }
 
         if (Physics.Raycast(ray, out hit, powerRange))
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red);
             //Debug.Log(hit.collider.name + ", " + hit.collider.tag);
-			Debug.Log (hit);
+            Debug.Log(hit);
             //Prima controlliamo se stiamo mirando ad un personaggio controllabile
             if (hit.collider.tag == "ControllableNPC")
             {
-				near = true;
+                near = true;
                 //Controlliamo se il personaggio mirato abbia il componente Field Of View e in caso lo aggiungiamo
                 if (hit.collider.transform.GetComponent<FieldOfView>() == null)
                 {
@@ -164,7 +175,7 @@ public class PowerController : MonoBehaviour
                     //Cambia emission brightness agli NPC quando puntati
                     //hit.collider.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.4f,0.4f,0.4f));
                     onEnemy = true;
-					UIActivator ();
+                    UIActivator();
                     refUI.cursor.GetComponent<Image>().color = Color.green;
 
                     //Potere di dare ordini mentali. Facciamo prima un controllo così attiviamo la UI relativa solo se necessario.
@@ -172,7 +183,7 @@ public class PowerController : MonoBehaviour
                     {
                         MyGlobal.rayCastHit = hit.collider.gameObject;
                         refUI.PowerUI(true);
-						if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown ("Idea") && GameManager.Self.powerQuantity >= mentalPowerCost)
+                        if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Idea") && GameManager.Self.powerQuantity >= mentalPowerCost)
                         {
                             GameManager.Self.powerQuantity -= mentalPowerCost;
                             MoveNPC(hit, 0);
@@ -189,30 +200,31 @@ public class PowerController : MonoBehaviour
                     }
 
                     //Potere di leggere un ricordo nella mente degli NPC. Facciamo prima un controllo così attiviamo la UI relativa solo se necessario.
-					if (hit.collider.transform.GetComponent<MemoryContainer>() && !showMemory)
+                    if (hit.collider.transform.GetComponent<MemoryContainer>() && !showMemory)
                     {
                         refUI.MemoryUI(true);
-						if (Input.GetKeyDown (KeyCode.F) || Input.GetButtonDown ("Hack"))
-						{
-							showMemory = true;
-							refUI.memoryImageUI.GetComponent<Image>().sprite = hit.collider.transform.GetComponent<MemoryContainer>().memoryImage;
-							refUI.MemoryImageUI(true);
-							this.gameObject.transform.GetComponent<ThirdPersonUserControl> ().enabled = false;
-							this.gameObject.transform.GetComponent<ThirdPersonCharacter> ().enabled = false;
-							Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
+                        if (Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("Hack"))
+                        {
+                            showMemory = true;
+                            refUI.memoryImageUI.GetComponent<Image>().sprite = hit.collider.transform.GetComponent<MemoryContainer>().memoryImage;
+                            refUI.MemoryImageUI(true);
+                            this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
+                            this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
+                            Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
 
-						} 
+                        }
                     }
-					else if ((Input.GetKeyDown (KeyCode.F) || Input.GetButtonDown ("Hack") && showMemory)) {
-						showMemory = false;
-						refUI.memoryImageUI.GetComponent<Image>().sprite = null;
-						refUI.MemoryImageUI(false);
-						Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
-					}
+                    else if ((Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("Hack") && showMemory))
+                    {
+                        showMemory = false;
+                        refUI.memoryImageUI.GetComponent<Image>().sprite = null;
+                        refUI.MemoryImageUI(false);
+                        Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
+                    }
 
 
                     //Potere di controllare fisicamente gli NPC
-					if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown ("Possession") && GameManager.Self.powerQuantity >= controlBodyCost)
+                    if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Possession") && GameManager.Self.powerQuantity >= controlBodyCost)
                     {
                         MyGlobal.ChangeBody(hit.collider.gameObject);
 
@@ -259,7 +271,7 @@ public class PowerController : MonoBehaviour
             else
             {
                 onEnemy = false;
-				UIActivator ();
+                UIActivator();
                 refUI.cursor.GetComponent<Image>().color = Color.white;
             }
         }
@@ -268,22 +280,22 @@ public class PowerController : MonoBehaviour
             onEnemy = false;
             refUI.cursor.GetComponent<Image>().color = Color.white;
         }
-            
+
     }
 
 
-	//Permette di tornare nel corpo principale in qualsiasi momento
+    //Permette di tornare nel corpo principale in qualsiasi momento
     public void ReturnToYourBody()
     {
         MyGlobal.ChangeBody(GameManager.Self.playerBody.gameObject);
         Debug.Log("Return");
         this.gameObject.tag = "ControllableNPC";
-		this.gameObject.transform.GetComponent<PowerController>().enabled = false;
+        this.gameObject.transform.GetComponent<PowerController>().enabled = false;
         this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
         this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
         this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-		this.GetComponent<Animator>().SetFloat ("Forward", 0);
-		this.GetComponent<Animator>().SetFloat ("Turn", 0);
+        this.GetComponent<Animator>().SetFloat("Forward", 0);
+        this.GetComponent<Animator>().SetFloat("Turn", 0);
 
         cameraRig.transform.GetComponent<AbstractTargetFollower>().m_Target = null;
         GameManager.Self.playerBody.gameObject.tag = "Player";
@@ -317,21 +329,22 @@ public class PowerController : MonoBehaviour
     }
 
 
-	//Metodo per attivare e disattivare la UI
-	void UIActivator () {
-		if (onEnemy)
-		{
-			refUI.PossessionUI(true);
-		}
-		else
-		{
-			refUI.PossessionUI(false);
-			refUI.PowerUI(false);
-			refUI.MemoryUI(false);
-			refUI.HackUI(false);
-			refUI.MemoryImageUI(false);
+    //Metodo per attivare e disattivare la UI
+    void UIActivator()
+    {
+        if (onEnemy)
+        {
+            refUI.PossessionUI(true);
+        }
+        else
+        {
+            refUI.PossessionUI(false);
+            refUI.PowerUI(false);
+            refUI.MemoryUI(false);
+            refUI.HackUI(false);
+            refUI.MemoryImageUI(false);
 
-		}
-	}
-		
+        }
+    }
+
 }

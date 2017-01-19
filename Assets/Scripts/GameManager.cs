@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour {
 	public bool isShowMemory = false;
 	public bool blockMovement;
 	public bool cantUsePower = false;
+    //[HideInInspector]
+    public bool canClick = false;
 
     // Use this for initialization
     void Start () {
@@ -56,5 +58,16 @@ public class GameManager : MonoBehaviour {
 			outOfYourBody = false;
 			GameObject.FindGameObjectWithTag("Player").GetComponent<State_ControlBody> ().ReturnToYourBody ();
 		}
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            if (!cantUsePower)
+            {
+                canClick = true;
+            }
+            else
+            {
+                canClick = false;
+            }
+        }
 	}
 }

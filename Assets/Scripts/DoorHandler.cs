@@ -124,7 +124,7 @@ public class DoorHandler : MonoBehaviour
 
             if (coll.name.Contains(nameContains))
             {
-                if (doorOponerCO == null)
+                if (doorOponerCO == null && !isOpened)
                 {
                     product = CalculateProduct(coll);
                     doorOponerCO = StartCoroutine(DoorOpener(product));
@@ -207,17 +207,9 @@ public class DoorHandler : MonoBehaviour
 
     IEnumerator DoorOpener(float product)
     {
-
-
-
-
         float count = 0;
         if (!isOpened)
         {
-
-
-
-
             if (product >= 0)
             {
                 openRot = new Vector3(defaultRot.x, defaultRot.y - doorRotation, defaultRot.z);

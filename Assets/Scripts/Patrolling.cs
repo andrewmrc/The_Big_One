@@ -128,7 +128,7 @@ public class Patrolling : MonoBehaviour
         if (isPatrolling)
         {
             StopAllCoroutines();
-            currentPoint = 0;
+            //currentPoint = 0;
             StartCoroutine(PatrolingCO());
         }
 

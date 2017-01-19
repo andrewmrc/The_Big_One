@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class UI : MonoBehaviour {
+public class UI : MonoBehaviour
+{
 
     public GameObject cursor;
     public GameObject UI_Possession;
@@ -14,29 +15,31 @@ public class UI : MonoBehaviour {
     public GameObject UI_PowerBar;
     public GameObject memoryImageUI;
     public GameObject cursorFar;
-    
+
     public Text ExaminTextUI, textToShowUI, VariousDescriptionUI;
 
     PowerController refPC;
 
-	void Start ()
+    void Start()
     {
         refPC = FindObjectOfType<PowerController>();
     }
-	
 
-	void Update ()
+
+    void Update()
     {
-		if (Input.GetMouseButton(1) || (Input.GetAxis ("LeftTriggerJoystick") >= 0.001))
+        if (GameManager.Self.canClick)
         {
-            cursor.SetActive(true);
-        }
+            if (Input.GetMouseButton(1) || (Input.GetAxis("LeftTriggerJoystick") >= 0.001))
+            {
+                cursor.SetActive(true);
+            }
 
-        else
-        {
-            cursor.SetActive(false);
-        }       
-            
+            else
+            {
+                cursor.SetActive(false);
+            }
+        }
     }
 
     public void PossessionUI(bool on)
@@ -77,7 +80,7 @@ public class UI : MonoBehaviour {
     public void ExamineMemory(Sprite memorySprite, bool on)
     {
         memoryImageUI.GetComponent<Image>().sprite = memorySprite;
-        memoryImageUI.SetActive(on);        
+        memoryImageUI.SetActive(on);
     }
 
     public void ExaminableText(bool on)

@@ -48,7 +48,7 @@ public class CameraController : MonoBehaviour {
 			else if (vert < 0 && x < 300 && x > 180 ) vert = 0;
 
 			pivot.localEulerAngles += new Vector3(vert, hor, 0);
-		} else if(Input.GetMouseButton(1)){
+		} else if(Input.GetMouseButton(1) && GameManager.Self.canClick){
 			//Camera Orbits the charcter Vertically, and Character Rotates Horizontal
 			float hor = Input.GetAxis("Mouse X");
 			float vert = Input.GetAxis("Mouse Y");
