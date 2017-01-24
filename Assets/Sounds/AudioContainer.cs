@@ -13,8 +13,6 @@ public class AudioContainer : MonoBehaviour {
     public AudioClip OfficeNoiseSound;
     public AudioClip Footstep1;
     public AudioClip Footstep2;
-    public AudioClip Footstep3;
-    public AudioClip Footstep4;
     public AudioClip KeyboardTypingSound;
     public AudioClip InsertCDSound;
     public AudioClip AimSound;

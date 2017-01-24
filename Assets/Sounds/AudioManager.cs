@@ -4,14 +4,16 @@ using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
+
     private AudioSource m_AudioSource;
 
     private bool isWalking;
     private bool isAiming;
 
     private Animator charAnimator;
+    private AudioContainer soundContainer;
 
-    public AudioClip aimingSound;
+    
     Coroutine footStepCo;
 
     [Space(5)]
@@ -26,6 +28,9 @@ public class AudioManager : MonoBehaviour
         isWalking = false;
         m_AudioSource = GetComponent<AudioSource>();
         charAnimator = GetComponent<Animator>();
+        soundContainer = GameManager.Self.GetComponent<AudioContainer>();
+        m_FootstepSounds[0] = soundContainer.Footstep1;
+        m_FootstepSounds[1] = soundContainer.Footstep2;
     }
 
     void Update()
@@ -38,12 +43,11 @@ public class AudioManager : MonoBehaviour
             StopCoroutine(footStepCo);
             isWalking = false;
             m_AudioSource.Stop();
-            m_AudioSource.clip = aimingSound;
+            m_AudioSource.clip = soundContainer.AimSound;
             m_AudioSource.Play();
         }
         else if (Input.GetKeyUp(KeyCode.Mouse1))
         {
-            m_AudioSource.clip = aimingSound;
             m_AudioSource.Stop();
             isAiming = false;
         }
@@ -69,10 +73,13 @@ public class AudioManager : MonoBehaviour
             //m_AudioSource.clip = otherClip;
             //m_AudioSource.Stop();
         }
+
     }
 
 
-    private IEnumerator PlayFootStepSound(float waitTime)
+
+
+private IEnumerator PlayFootStepSound(float waitTime)
     {
         while (isWalking)
         {

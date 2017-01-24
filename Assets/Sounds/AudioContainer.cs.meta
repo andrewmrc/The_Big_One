@@ -1,10 +1,30 @@
 fileFormatVersion: 2
 guid: b34dda510453cc54a9bddf5bba93f878
-timeCreated: 1484833141
+timeCreated: 1485255469
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - FatigueSound: {fileID: 8300000, guid: 849033199a6117848b59f8334b426540, type: 3}
+  - OpenDoorSound: {fileID: 8300000, guid: 838abd4532ce3fc4da3740a0fc034617, type: 3}
+  - CloseDoorSound: {fileID: 8300000, guid: bccfaf79a63194147a0c42f5acdafb1e, type: 3}
+  - ElevatorFloorSound: {fileID: 8300000, guid: 68da0332da64a7e4a84db58953374878,
+      type: 3}
+  - ControlBodyONSound: {fileID: 8300000, guid: afa3bb1a2c3f37244b970c798e727708,
+      type: 3}
+  - ControlBodyOFFSound: {fileID: 8300000, guid: 4d0dbcc56b04a7b4a9db0fab966c9a12,
+      type: 3}
+  - SwitchSound: {fileID: 8300000, guid: 7241d8fa7e990d64b847a961fc7adbd4, type: 3}
+  - OfficeNoiseSound: {fileID: 8300000, guid: f36085e26638f0d48a3ebddb60eba3e2, type: 3}
+  - Footstep1: {fileID: 8300000, guid: 5a9383dda6cabc047b7a297602e93eb4, type: 3}
+  - Footstep2: {fileID: 8300000, guid: e9714160ce34f2b4ab63ff8c27bd68e1, type: 3}
+  - KeyboardTypingSound: {fileID: 8300000, guid: 70e2487ed5a9b634785ae2cb5253b34f,
+      type: 3}
+  - InsertCDSound: {fileID: 8300000, guid: 4d89b9776d2e4634884de90ee1dea52d, type: 3}
+  - AimSound: {fileID: 8300000, guid: 09a384e11ea04cc4ba389843df49f406, type: 3}
+  - PhoneSound: {fileID: 8300000, guid: 1c63765fe3715824cae60064e5671ed4, type: 3}
+  - MagneticCardSound: {fileID: 8300000, guid: d6335485ab344324891c2716e43491e2, type: 3}
+  - CoughSound: {fileID: 8300000, guid: 419bcc49a7a0a2f458b7482c01c7434a, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
