@@ -88,9 +88,28 @@ public class DoorHandler : MonoBehaviour
             }
 
         }
-        
-        
-        
+        if (this.transform.forward == Vector3.up && this.transform.right == Vector3.forward)
+        {
+            choosedDirection = true;
+            center = new Vector3(0f, 0.6f, -2.1f);
+            size = new Vector3(2.2f, 1.25f, 0f);
+            if (!this.gameObject.GetComponent<BoxCollider>())
+            {
+
+                qualcosa = this.gameObject.AddComponent<BoxCollider>();
+            }
+            else
+            {
+                qualcosa = this.gameObject.GetComponent<BoxCollider>();
+                qualcosa.isTrigger = true;
+                qualcosa.center = center;
+                qualcosa.size = size;
+            }
+
+        }
+
+
+
 
         if (player)
         {
