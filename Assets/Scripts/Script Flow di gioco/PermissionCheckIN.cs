@@ -10,6 +10,7 @@ public class PermissionCheckIN : MonoBehaviour
 	public string thisPasskey;
 	public bool targetVersion;
 	public string passDescription;
+	public bool useOneTime;
 
     void OnCollisionEnter(Collision collision)
     {
@@ -42,12 +43,16 @@ public class PermissionCheckIN : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
-		gameObject.GetComponent<BoxCollider>().isTrigger = false;
+		//gameObject.GetComponent<BoxCollider>().isTrigger = false;
+		gameObject.SetActive(false);
     }
 
 
 	IEnumerator DeactivateDescriptionUI () {
 		yield return new WaitForSeconds (3f);
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = null;
+		if (useOneTime) {
+			gameObject.SetActive (false);
+		}
 	}
 }
