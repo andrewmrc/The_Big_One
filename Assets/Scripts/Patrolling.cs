@@ -97,7 +97,6 @@ public class Patrolling : MonoBehaviour
                     StopAllCoroutines();
                     refNav.enabled = false;
                 }
-                //Debug.Log("ciao");
                 yield return null;
             }
 

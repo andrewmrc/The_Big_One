@@ -203,12 +203,12 @@ public class SaveData : MonoBehaviour
                         if (nva != null && nva.isActiveAndEnabled && nva.isOnNavMesh)
                         {
                             nva.SetDestination(newdest);
-                            nva.speed = 1.5f;
+                            //nva.speed = 1.3f;
                         }
                     }
                     GameObject.Find(playername).tag = "ControllableNPC";
                     GameObject.Find(playername).GetComponent<FSMLogic>().enabled = false;
-                    GameObject.Find(playername).GetComponent<CharController>().enabled = false;
+                    //GameObject.Find(playername).GetComponent<CharController>().enabled = false;
                 }
             }
         }
