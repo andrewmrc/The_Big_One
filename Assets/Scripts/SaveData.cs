@@ -185,7 +185,7 @@ public class SaveData : MonoBehaviour
                     GameObject.Find(playername).GetComponent<FSMLogic>().enabled = true;
 
                     //DA SISTEMARE CON IL NOME DELL'NPC PLAYER  <-----------------------------------------!!
-                    if (playername != "OliviaRigCorretta")
+                    if (playername != "OliviaRig_Stand")
                     {
                         GameManager.Self.outOfYourBody = true;
                     }
@@ -201,8 +201,10 @@ public class SaveData : MonoBehaviour
                         Vector3 newdest = new Vector3(destx, desty, destz);
                         var nva = GameObject.Find(playername).GetComponent<NavMeshAgent>();
                         if (nva != null && nva.isActiveAndEnabled && nva.isOnNavMesh)
+                        {
                             nva.SetDestination(newdest);
-
+                            nva.speed = 1.5f;
+                        }
                     }
                     GameObject.Find(playername).tag = "ControllableNPC";
                     GameObject.Find(playername).GetComponent<FSMLogic>().enabled = false;
