@@ -79,7 +79,7 @@ public class SaveData : MonoBehaviour
 
     }
 
-    void Save()
+    public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream fs = File.Create(Application.persistentDataPath + "/Playerdata.txt");
@@ -141,8 +141,11 @@ public class SaveData : MonoBehaviour
 
     }
 
-    void Load()
+    public void Load()
     {
+        // Set timescale to 1 if Load is called by the UI button
+        Time.timeScale = 1;
+
         if (File.Exists(Application.persistentDataPath + "/Playerdata.txt"))
         {
             BinaryFormatter bf = new BinaryFormatter();
