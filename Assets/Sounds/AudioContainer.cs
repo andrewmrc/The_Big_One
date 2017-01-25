@@ -19,5 +19,6 @@ public class AudioContainer : MonoBehaviour {
     public AudioClip PhoneSound;
     public AudioClip MagneticCardSound;
     public AudioClip CoughSound;
+    public AudioClip BreakingWindow;
 
 }
