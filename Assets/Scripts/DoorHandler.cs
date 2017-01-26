@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEditor;
+using System;
+using UnityEngine.UI;
 
 [ExecuteInEditMode]
 public class DoorHandler : MonoBehaviour
@@ -9,8 +11,9 @@ public class DoorHandler : MonoBehaviour
     // grazie artisti
     // False = forward == Vector3.up
     // True = forward == Vector3.forward
-    private bool choosedDirection; 
+    private bool choosedDirection;
 
+    
 
     Coroutine doorOponerCO;
     public float doorRotation = 90;
@@ -33,6 +36,10 @@ public class DoorHandler : MonoBehaviour
 
     public GameObject[] listOfGo;
     public bool playerCanEnter = false;
+    public bool isLocked;
+    public string[] messageList;
+    public float messageSpeed = 2;
+
     
     void Awake()
     {
@@ -187,12 +194,17 @@ public class DoorHandler : MonoBehaviour
                     {
 
                         Debug.DrawRay(modYPlayer, coll.transform.forward, Color.magenta, 1f);
-                        if (doorOponerCO == null)
+                        if (doorOponerCO == null && !isLocked)
                         {                            
                             product = CalculateProduct(coll);
                             doorOponerCO = StartCoroutine(DoorOpener(product));
 
                         }
+                        if (isLocked)
+                        {
+                            StartCoroutine(DoorMessage());
+                        }
+                        
                     }
                 }
             }
@@ -215,6 +227,34 @@ public class DoorHandler : MonoBehaviour
 
 
         }
+    }
+
+    private IEnumerator DoorMessage()
+    {
+        GameManager.Self.blockMovement = true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>().enabled = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
+
+        for (int i = 0; i < messageList.Length; i++)
+        {
+            GameManager.Self.canvasUI.GetComponent<UI>().VariousDescriptionUI.GetComponent<Text>().text = messageList[i];
+            bool isFirstClick = false;
+            float seconds = messageSpeed;
+            while (seconds > 0)
+            {
+                seconds -= Time.deltaTime;
+                if (Input.GetKeyDown(KeyCode.E) && isFirstClick)
+                {
+                    seconds = 0;
+                }
+                isFirstClick = true;
+                yield return null;
+            }
+        }
+        GameManager.Self.canvasUI.GetComponent<UI>().VariousDescriptionUI.GetComponent<Text>().text = "";
+        GameManager.Self.blockMovement = false;
+
+
     }
 
     private float CalculateProduct(Collider coll)
@@ -284,5 +324,9 @@ public class DoorHandler : MonoBehaviour
     public void SetPlayerCanEnter(bool change)
     {
         playerCanEnter = change;
+    }
+    public void SetDoorLocked(bool change)
+    {
+        isLocked = change;
     }
 }
