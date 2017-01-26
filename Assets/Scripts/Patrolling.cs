@@ -24,6 +24,7 @@ public class Patrolling : MonoBehaviour
 
     public float delay;
     private int currentPoint = 0;
+    private int arrayLength;
 
     // Fuori dalla struttura
     public float delayStartPatrol = 0;
@@ -82,7 +83,7 @@ public class Patrolling : MonoBehaviour
         }
         
         inExec = true;
-        
+        arrayLength = patrollingTransform.Length;
         while (isPatrolling)
         {
             refNav.destination = patrollingTransform[currentPoint].target.position;
@@ -127,7 +128,10 @@ public class Patrolling : MonoBehaviour
         if (isPatrolling)
         {
             StopAllCoroutines();
-            //currentPoint = 0;
+            if (arrayLength != patrollingTransform.Length)
+            {
+                currentPoint = 0;
+            }
             StartCoroutine(PatrolingCO());
         }
 

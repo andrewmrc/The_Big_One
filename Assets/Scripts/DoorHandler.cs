@@ -30,9 +30,10 @@ public class DoorHandler : MonoBehaviour
     [Range (2, 10)]
     public float distanceToClose = 3;
 
-    public bool playerCanEnter = false;
-    public string nameContains;
 
+    public GameObject[] listOfGo;
+    public bool playerCanEnter = false;
+    
     void Awake()
     {
 
@@ -90,6 +91,7 @@ public class DoorHandler : MonoBehaviour
         }
         if (this.transform.forward == Vector3.up && this.transform.right == Vector3.forward)
         {
+            
             choosedDirection = true;
             center = new Vector3(0f, 0.6f, -2.1f);
             size = new Vector3(2.2f, 1.25f, 0f);
@@ -141,13 +143,16 @@ public class DoorHandler : MonoBehaviour
 
             player = coll.gameObject;
 
-            if (coll.name.Contains(nameContains))
+            foreach (var go in listOfGo)
             {
-                if (doorOponerCO == null && !isOpened)
+                if (coll.gameObject == go)
                 {
-                    product = CalculateProduct(coll);
-                    doorOponerCO = StartCoroutine(DoorOpener(product));
+                    if (doorOponerCO == null && !isOpened)
+                    {
+                        product = CalculateProduct(coll);
+                        doorOponerCO = StartCoroutine(DoorOpener(product));
 
+                    }
                 }
             }
             
@@ -157,13 +162,20 @@ public class DoorHandler : MonoBehaviour
 
     void OnTriggerStay(Collider coll)
     {
-        
+        bool npcFind = false;
+        foreach (var npcGO in listOfGo)
+        {
+            if (coll.gameObject == npcGO)
+            {
+                npcFind = true;
+            }
+        }
         
 
         if (coll.gameObject.tag == "Player")
         {
             player = coll.gameObject;
-            if (player.name.Contains(nameContains) || playerCanEnter)
+            if (npcFind || playerCanEnter)
             {
                 if (Input.GetKeyDown(KeyCode.C) && !isOpened)
                 {
