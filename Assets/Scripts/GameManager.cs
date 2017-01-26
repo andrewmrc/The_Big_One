@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.Cameras;
 
 public class GameManager : MonoBehaviour {
 
@@ -47,6 +48,12 @@ public class GameManager : MonoBehaviour {
 		cameraRig = GameObject.FindGameObjectWithTag ("CameraRig");
 		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
         MyGlobal.myBody = GameObject.FindGameObjectWithTag("Player");
+
+		if (cantUsePower) {
+			HandlePowerActivation (true);
+		} else {
+			HandlePowerActivation (false);
+		}
 	}
 	
 	// Update is called once per frame
@@ -55,6 +62,17 @@ public class GameManager : MonoBehaviour {
 		if (powerQuantity <= 1 && outOfYourBody) {
 			outOfYourBody = false;
 			GameObject.FindGameObjectWithTag("Player").GetComponent<State_ControlBody> ().ReturnToYourBody ();
+		}
+	}
+
+
+	public void HandlePowerActivation (bool act) {
+		if (act == true) {
+			cantUsePower = true;
+			cameraRig.GetComponent<FreeLookCam> ().cantUsePower = true;
+		} else {
+			cantUsePower = false;
+			cameraRig.GetComponent<FreeLookCam> ().cantUsePower = false;
 		}
 	}
 }

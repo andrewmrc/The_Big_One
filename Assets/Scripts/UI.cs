@@ -27,16 +27,13 @@ public class UI : MonoBehaviour {
 
 	void Update ()
     {
-		if (Input.GetMouseButton(1) || (Input.GetAxis ("LeftTriggerJoystick") >= 0.001))
-        {
-            cursor.SetActive(true);
-        }
-
-        else
-        {
-            cursor.SetActive(false);
-        }       
-            
+		if (!GameManager.Self.cantUsePower) {
+			if (Input.GetMouseButton (1) || (Input.GetAxis ("LeftTriggerJoystick") >= 0.001)) {
+				cursor.SetActive (true);
+			} else {
+				cursor.SetActive (false);
+			}       
+		}
     }
 
     public void PossessionUI(bool on)
