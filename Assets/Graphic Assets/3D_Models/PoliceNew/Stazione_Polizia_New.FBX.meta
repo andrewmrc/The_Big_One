@@ -1,0 +1,740 @@
+fileFormatVersion: 2
+guid: c86f29ff0d023014ba3702369a5442ae
+timeCreated: 1485424559
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Aste Bandiere
+    100002: Battiscopa_2
+    100004: Boh, ingresso
+    100006: Boh, porte ingresso
+    100008: Boh, roba per l'ingresso
+    100010: Cornice Interrogatorio
+    100012: Cornice Porta Sceriffo
+    100014: Cornici Finestre
+    100016: Cornici Finestre Celle
+    100018: Cornici Porte
+    100020: Cornici Porte_11
+    100022: Cornici Porte_13
+    100024: Cornici Porte_15
+    100026: Cornici Porte_17
+    100028: Cornici Porte_19
+    100030: Cornici Porte_21
+    100032: Cornici Porte_23
+    100034: Cornici Porte_25
+    100036: Cornici Porte_3
+    100038: Cornici Porte_5
+    100040: Cornici Porte_7
+    100042: Cornici Porte_9
+    100044: CPD
+    100046: Finestra Archivio Legno
+    100048: Finestra Archivio Legno_2
+    100050: Finestra Archivio Legno_3
+    100052: Finestra Archivio Legno_4
+    100054: Finestra Archivio Legno_5
+    100056: Finestra Archivio Legno_6
+    100058: Finestra Archivio Vetro
+    100060: Finestra Archivio Vetro_10
+    100062: Finestra Archivio Vetro_11
+    100064: Finestra Archivio Vetro_12
+    100066: Finestra Archivio Vetro_2
+    100068: Finestra Archivio Vetro_3
+    100070: Finestra Archivio Vetro_4
+    100072: Finestra Archivio Vetro_5
+    100074: Finestra Archivio Vetro_6
+    100076: Finestra Archivio Vetro_7
+    100078: Finestra Archivio Vetro_8
+    100080: Finestra Archivio Vetro_9
+    100082: Finestra Legno
+    100084: Finestra Legno_11
+    100086: Finestra Legno_13
+    100088: Finestra Legno_15
+    100090: Finestra Legno_17
+    100092: Finestra Legno_19
+    100094: Finestra Legno_21
+    100096: Finestra Legno_23
+    100098: Finestra Legno_25
+    100100: Finestra Legno_27
+    100102: Finestra Legno_29
+    100104: Finestra Legno_3
+    100106: Finestra Legno_31
+    100108: Finestra Legno_5
+    100110: Finestra Legno_7
+    100112: Finestra Legno_9
+    100114: Finestra Vetro
+    100116: Finestra Vetro_11
+    100118: Finestra Vetro_13
+    100120: Finestra Vetro_15
+    100122: Finestra Vetro_17
+    100124: Finestra Vetro_19
+    100126: Finestra Vetro_21
+    100128: Finestra Vetro_23
+    100130: Finestra Vetro_25
+    100132: Finestra Vetro_27
+    100134: Finestra Vetro_29
+    100136: Finestra Vetro_3
+    100138: Finestra Vetro_31
+    100140: Finestra Vetro_5
+    100142: Finestra Vetro_7
+    100144: Finestra Vetro_9
+    100146: Ingresso
+    100148: Ingresso Sceriffo_2_2
+    100150: Ingresso Sceriffo_3_2
+    100152: Ingresso Sceriffo_4_2
+    100154: Ingresso Sceriffo_5
+    100156: Ingresso Sceriffo_6
+    100158: Ingresso Sceriffo_7
+    100160: Ingresso Sceriffo_9
+    100162: Lampione Ferro_2
+    100164: Lampione Ferro_3
+    100166: Lampione Vetro_2
+    100168: Lampione Vetro_3
+    100170: Legno Reception
+    100172: Maniglioni Ingresso
+    100174: Manille_11
+    100176: Manille_27
+    100178: Manille_27.001
+    100180: Manille_27.002
+    100182: Manille_27.003
+    100184: Manille_27.004
+    100186: Manille_27.005
+    100188: Manille_27.006
+    100190: Manille_27.007
+    100192: Manille_27.008
+    100194: Manille_27.009
+    100196: Manille_27.010
+    100198: Manille_27.011
+    100200: Manille_27.012
+    100202: Medioscopa
+    100204: Pareti
+    100206: Pavimento Sopra
+    100208: Pavimento Sotto
+    100210: Piani per non far passare luce
+    100212: Piani per non far passare luce_2
+    100214: Porta Cella
+    100216: Porta Cella_2
+    100218: Porta Cella_2_2
+    100220: Porta Ingresso
+    100222: Porte Chiuse Sempre Ingresso
+    100224: Porte Chiuse Sempre Ingresso_2
+    100226: Reception_2_2
+    100228: Reception_3_2
+    100230: Reception_4
+    100232: Sbarre Finestre Antro
+    100234: Sbarre_2
+    100236: Soffitto Sopra
+    100238: Soffitto Sotto
+    100240: //RootNode
+    100242: veneziana
+    100244: veneziana_2
+    100246: veneziana_3
+    100248: veneziana_4
+    100250: veneziana_5
+    100252: veneziana_6
+    100254: veneziana_7
+    100256: veneziana_8
+    100258: Vetro Finestre Antro
+    100260: Vetro Interrogatorio
+    100262: Vetro Interrogatorio_2_2
+    100264: Vetro Sceriffo_2
+    100266: Vetro Sceriffo_3
+    400000: Aste Bandiere
+    400002: Battiscopa_2
+    400004: Boh, ingresso
+    400006: Boh, porte ingresso
+    400008: Boh, roba per l'ingresso
+    400010: Cornice Interrogatorio
+    400012: Cornice Porta Sceriffo
+    400014: Cornici Finestre
+    400016: Cornici Finestre Celle
+    400018: Cornici Porte
+    400020: Cornici Porte_11
+    400022: Cornici Porte_13
+    400024: Cornici Porte_15
+    400026: Cornici Porte_17
+    400028: Cornici Porte_19
+    400030: Cornici Porte_21
+    400032: Cornici Porte_23
+    400034: Cornici Porte_25
+    400036: Cornici Porte_3
+    400038: Cornici Porte_5
+    400040: Cornici Porte_7
+    400042: Cornici Porte_9
+    400044: CPD
+    400046: Finestra Archivio Legno
+    400048: Finestra Archivio Legno_2
+    400050: Finestra Archivio Legno_3
+    400052: Finestra Archivio Legno_4
+    400054: Finestra Archivio Legno_5
+    400056: Finestra Archivio Legno_6
+    400058: Finestra Archivio Vetro
+    400060: Finestra Archivio Vetro_10
+    400062: Finestra Archivio Vetro_11
+    400064: Finestra Archivio Vetro_12
+    400066: Finestra Archivio Vetro_2
+    400068: Finestra Archivio Vetro_3
+    400070: Finestra Archivio Vetro_4
+    400072: Finestra Archivio Vetro_5
+    400074: Finestra Archivio Vetro_6
+    400076: Finestra Archivio Vetro_7
+    400078: Finestra Archivio Vetro_8
+    400080: Finestra Archivio Vetro_9
+    400082: Finestra Legno
+    400084: Finestra Legno_11
+    400086: Finestra Legno_13
+    400088: Finestra Legno_15
+    400090: Finestra Legno_17
+    400092: Finestra Legno_19
+    400094: Finestra Legno_21
+    400096: Finestra Legno_23
+    400098: Finestra Legno_25
+    400100: Finestra Legno_27
+    400102: Finestra Legno_29
+    400104: Finestra Legno_3
+    400106: Finestra Legno_31
+    400108: Finestra Legno_5
+    400110: Finestra Legno_7
+    400112: Finestra Legno_9
+    400114: Finestra Vetro
+    400116: Finestra Vetro_11
+    400118: Finestra Vetro_13
+    400120: Finestra Vetro_15
+    400122: Finestra Vetro_17
+    400124: Finestra Vetro_19
+    400126: Finestra Vetro_21
+    400128: Finestra Vetro_23
+    400130: Finestra Vetro_25
+    400132: Finestra Vetro_27
+    400134: Finestra Vetro_29
+    400136: Finestra Vetro_3
+    400138: Finestra Vetro_31
+    400140: Finestra Vetro_5
+    400142: Finestra Vetro_7
+    400144: Finestra Vetro_9
+    400146: Ingresso
+    400148: Ingresso Sceriffo_2_2
+    400150: Ingresso Sceriffo_3_2
+    400152: Ingresso Sceriffo_4_2
+    400154: Ingresso Sceriffo_5
+    400156: Ingresso Sceriffo_6
+    400158: Ingresso Sceriffo_7
+    400160: Ingresso Sceriffo_9
+    400162: Lampione Ferro_2
+    400164: Lampione Ferro_3
+    400166: Lampione Vetro_2
+    400168: Lampione Vetro_3
+    400170: Legno Reception
+    400172: Maniglioni Ingresso
+    400174: Manille_11
+    400176: Manille_27
+    400178: Manille_27.001
+    400180: Manille_27.002
+    400182: Manille_27.003
+    400184: Manille_27.004
+    400186: Manille_27.005
+    400188: Manille_27.006
+    400190: Manille_27.007
+    400192: Manille_27.008
+    400194: Manille_27.009
+    400196: Manille_27.010
+    400198: Manille_27.011
+    400200: Manille_27.012
+    400202: Medioscopa
+    400204: Pareti
+    400206: Pavimento Sopra
+    400208: Pavimento Sotto
+    400210: Piani per non far passare luce
+    400212: Piani per non far passare luce_2
+    400214: Porta Cella
+    400216: Porta Cella_2
+    400218: Porta Cella_2_2
+    400220: Porta Ingresso
+    400222: Porte Chiuse Sempre Ingresso
+    400224: Porte Chiuse Sempre Ingresso_2
+    400226: Reception_2_2
+    400228: Reception_3_2
+    400230: Reception_4
+    400232: Sbarre Finestre Antro
+    400234: Sbarre_2
+    400236: Soffitto Sopra
+    400238: Soffitto Sotto
+    400240: //RootNode
+    400242: veneziana
+    400244: veneziana_2
+    400246: veneziana_3
+    400248: veneziana_4
+    400250: veneziana_5
+    400252: veneziana_6
+    400254: veneziana_7
+    400256: veneziana_8
+    400258: Vetro Finestre Antro
+    400260: Vetro Interrogatorio
+    400262: Vetro Interrogatorio_2_2
+    400264: Vetro Sceriffo_2
+    400266: Vetro Sceriffo_3
+    2300000: Aste Bandiere
+    2300002: Battiscopa_2
+    2300004: Boh, ingresso
+    2300006: Boh, porte ingresso
+    2300008: Boh, roba per l'ingresso
+    2300010: Cornice Interrogatorio
+    2300012: Cornice Porta Sceriffo
+    2300014: Cornici Finestre
+    2300016: Cornici Finestre Celle
+    2300018: Cornici Porte
+    2300020: Cornici Porte_11
+    2300022: Cornici Porte_13
+    2300024: Cornici Porte_15
+    2300026: Cornici Porte_17
+    2300028: Cornici Porte_19
+    2300030: Cornici Porte_21
+    2300032: Cornici Porte_23
+    2300034: Cornici Porte_25
+    2300036: Cornici Porte_3
+    2300038: Cornici Porte_5
+    2300040: Cornici Porte_7
+    2300042: Cornici Porte_9
+    2300044: CPD
+    2300046: Finestra Archivio Legno
+    2300048: Finestra Archivio Legno_2
+    2300050: Finestra Archivio Legno_3
+    2300052: Finestra Archivio Legno_4
+    2300054: Finestra Archivio Legno_5
+    2300056: Finestra Archivio Legno_6
+    2300058: Finestra Archivio Vetro
+    2300060: Finestra Archivio Vetro_10
+    2300062: Finestra Archivio Vetro_11
+    2300064: Finestra Archivio Vetro_12
+    2300066: Finestra Archivio Vetro_2
+    2300068: Finestra Archivio Vetro_3
+    2300070: Finestra Archivio Vetro_4
+    2300072: Finestra Archivio Vetro_5
+    2300074: Finestra Archivio Vetro_6
+    2300076: Finestra Archivio Vetro_7
+    2300078: Finestra Archivio Vetro_8
+    2300080: Finestra Archivio Vetro_9
+    2300082: Finestra Legno
+    2300084: Finestra Legno_11
+    2300086: Finestra Legno_13
+    2300088: Finestra Legno_15
+    2300090: Finestra Legno_17
+    2300092: Finestra Legno_19
+    2300094: Finestra Legno_21
+    2300096: Finestra Legno_23
+    2300098: Finestra Legno_25
+    2300100: Finestra Legno_27
+    2300102: Finestra Legno_29
+    2300104: Finestra Legno_3
+    2300106: Finestra Legno_31
+    2300108: Finestra Legno_5
+    2300110: Finestra Legno_7
+    2300112: Finestra Legno_9
+    2300114: Finestra Vetro
+    2300116: Finestra Vetro_11
+    2300118: Finestra Vetro_13
+    2300120: Finestra Vetro_15
+    2300122: Finestra Vetro_17
+    2300124: Finestra Vetro_19
+    2300126: Finestra Vetro_21
+    2300128: Finestra Vetro_23
+    2300130: Finestra Vetro_25
+    2300132: Finestra Vetro_27
+    2300134: Finestra Vetro_29
+    2300136: Finestra Vetro_3
+    2300138: Finestra Vetro_31
+    2300140: Finestra Vetro_5
+    2300142: Finestra Vetro_7
+    2300144: Finestra Vetro_9
+    2300146: Ingresso
+    2300148: Ingresso Sceriffo_2_2
+    2300150: Ingresso Sceriffo_3_2
+    2300152: Ingresso Sceriffo_4_2
+    2300154: Ingresso Sceriffo_5
+    2300156: Ingresso Sceriffo_6
+    2300158: Ingresso Sceriffo_7
+    2300160: Ingresso Sceriffo_9
+    2300162: Lampione Ferro_2
+    2300164: Lampione Ferro_3
+    2300166: Lampione Vetro_2
+    2300168: Lampione Vetro_3
+    2300170: Legno Reception
+    2300172: Maniglioni Ingresso
+    2300174: Manille_11
+    2300176: Manille_27
+    2300178: Manille_27.001
+    2300180: Manille_27.002
+    2300182: Manille_27.003
+    2300184: Manille_27.004
+    2300186: Manille_27.005
+    2300188: Manille_27.006
+    2300190: Manille_27.007
+    2300192: Manille_27.008
+    2300194: Manille_27.009
+    2300196: Manille_27.010
+    2300198: Manille_27.011
+    2300200: Manille_27.012
+    2300202: Medioscopa
+    2300204: Pareti
+    2300206: Pavimento Sopra
+    2300208: Pavimento Sotto
+    2300210: Piani per non far passare luce
+    2300212: Piani per non far passare luce_2
+    2300214: Porta Cella
+    2300216: Porta Cella_2
+    2300218: Porta Cella_2_2
+    2300220: Porta Ingresso
+    2300222: Porte Chiuse Sempre Ingresso
+    2300224: Porte Chiuse Sempre Ingresso_2
+    2300226: Reception_2_2
+    2300228: Reception_3_2
+    2300230: Reception_4
+    2300232: Sbarre Finestre Antro
+    2300234: Sbarre_2
+    2300236: Soffitto Sopra
+    2300238: Soffitto Sotto
+    2300240: veneziana
+    2300242: veneziana_2
+    2300244: veneziana_3
+    2300246: veneziana_4
+    2300248: veneziana_5
+    2300250: veneziana_6
+    2300252: veneziana_7
+    2300254: veneziana_8
+    2300256: Vetro Finestre Antro
+    2300258: Vetro Interrogatorio
+    2300260: Vetro Interrogatorio_2_2
+    2300262: Vetro Sceriffo_2
+    2300264: Vetro Sceriffo_3
+    3300000: Aste Bandiere
+    3300002: Battiscopa_2
+    3300004: Boh, ingresso
+    3300006: Boh, porte ingresso
+    3300008: Boh, roba per l'ingresso
+    3300010: Cornice Interrogatorio
+    3300012: Cornice Porta Sceriffo
+    3300014: Cornici Finestre
+    3300016: Cornici Finestre Celle
+    3300018: Cornici Porte
+    3300020: Cornici Porte_11
+    3300022: Cornici Porte_13
+    3300024: Cornici Porte_15
+    3300026: Cornici Porte_17
+    3300028: Cornici Porte_19
+    3300030: Cornici Porte_21
+    3300032: Cornici Porte_23
+    3300034: Cornici Porte_25
+    3300036: Cornici Porte_3
+    3300038: Cornici Porte_5
+    3300040: Cornici Porte_7
+    3300042: Cornici Porte_9
+    3300044: CPD
+    3300046: Finestra Archivio Legno
+    3300048: Finestra Archivio Legno_2
+    3300050: Finestra Archivio Legno_3
+    3300052: Finestra Archivio Legno_4
+    3300054: Finestra Archivio Legno_5
+    3300056: Finestra Archivio Legno_6
+    3300058: Finestra Archivio Vetro
+    3300060: Finestra Archivio Vetro_10
+    3300062: Finestra Archivio Vetro_11
+    3300064: Finestra Archivio Vetro_12
+    3300066: Finestra Archivio Vetro_2
+    3300068: Finestra Archivio Vetro_3
+    3300070: Finestra Archivio Vetro_4
+    3300072: Finestra Archivio Vetro_5
+    3300074: Finestra Archivio Vetro_6
+    3300076: Finestra Archivio Vetro_7
+    3300078: Finestra Archivio Vetro_8
+    3300080: Finestra Archivio Vetro_9
+    3300082: Finestra Legno
+    3300084: Finestra Legno_11
+    3300086: Finestra Legno_13
+    3300088: Finestra Legno_15
+    3300090: Finestra Legno_17
+    3300092: Finestra Legno_19
+    3300094: Finestra Legno_21
+    3300096: Finestra Legno_23
+    3300098: Finestra Legno_25
+    3300100: Finestra Legno_27
+    3300102: Finestra Legno_29
+    3300104: Finestra Legno_3
+    3300106: Finestra Legno_31
+    3300108: Finestra Legno_5
+    3300110: Finestra Legno_7
+    3300112: Finestra Legno_9
+    3300114: Finestra Vetro
+    3300116: Finestra Vetro_11
+    3300118: Finestra Vetro_13
+    3300120: Finestra Vetro_15
+    3300122: Finestra Vetro_17
+    3300124: Finestra Vetro_19
+    3300126: Finestra Vetro_21
+    3300128: Finestra Vetro_23
+    3300130: Finestra Vetro_25
+    3300132: Finestra Vetro_27
+    3300134: Finestra Vetro_29
+    3300136: Finestra Vetro_3
+    3300138: Finestra Vetro_31
+    3300140: Finestra Vetro_5
+    3300142: Finestra Vetro_7
+    3300144: Finestra Vetro_9
+    3300146: Ingresso
+    3300148: Ingresso Sceriffo_2_2
+    3300150: Ingresso Sceriffo_3_2
+    3300152: Ingresso Sceriffo_4_2
+    3300154: Ingresso Sceriffo_5
+    3300156: Ingresso Sceriffo_6
+    3300158: Ingresso Sceriffo_7
+    3300160: Ingresso Sceriffo_9
+    3300162: Lampione Ferro_2
+    3300164: Lampione Ferro_3
+    3300166: Lampione Vetro_2
+    3300168: Lampione Vetro_3
+    3300170: Legno Reception
+    3300172: Maniglioni Ingresso
+    3300174: Manille_11
+    3300176: Manille_27
+    3300178: Manille_27.001
+    3300180: Manille_27.002
+    3300182: Manille_27.003
+    3300184: Manille_27.004
+    3300186: Manille_27.005
+    3300188: Manille_27.006
+    3300190: Manille_27.007
+    3300192: Manille_27.008
+    3300194: Manille_27.009
+    3300196: Manille_27.010
+    3300198: Manille_27.011
+    3300200: Manille_27.012
+    3300202: Medioscopa
+    3300204: Pareti
+    3300206: Pavimento Sopra
+    3300208: Pavimento Sotto
+    3300210: Piani per non far passare luce
+    3300212: Piani per non far passare luce_2
+    3300214: Porta Cella
+    3300216: Porta Cella_2
+    3300218: Porta Cella_2_2
+    3300220: Porta Ingresso
+    3300222: Porte Chiuse Sempre Ingresso
+    3300224: Porte Chiuse Sempre Ingresso_2
+    3300226: Reception_2_2
+    3300228: Reception_3_2
+    3300230: Reception_4
+    3300232: Sbarre Finestre Antro
+    3300234: Sbarre_2
+    3300236: Soffitto Sopra
+    3300238: Soffitto Sotto
+    3300240: veneziana
+    3300242: veneziana_2
+    3300244: veneziana_3
+    3300246: veneziana_4
+    3300248: veneziana_5
+    3300250: veneziana_6
+    3300252: veneziana_7
+    3300254: veneziana_8
+    3300256: Vetro Finestre Antro
+    3300258: Vetro Interrogatorio
+    3300260: Vetro Interrogatorio_2_2
+    3300262: Vetro Sceriffo_2
+    3300264: Vetro Sceriffo_3
+    4300000: Manille_27.012
+    4300002: Manille_27.011
+    4300004: Manille_27.010
+    4300006: Manille_27.009
+    4300008: Manille_27.008
+    4300010: Manille_27.007
+    4300012: Manille_27.006
+    4300014: Manille_27.005
+    4300016: Manille_27.004
+    4300018: Manille_27.003
+    4300020: Manille_27.002
+    4300022: Manille_27.001
+    4300024: Manille_27
+    4300026: Lampione Ferro_2
+    4300028: Manille_11
+    4300030: Maniglioni Ingresso
+    4300032: Cornici Porte_25
+    4300034: Porta Ingresso
+    4300036: Battiscopa_2
+    4300038: Vetro Sceriffo_2
+    4300040: Ingresso Sceriffo_2_2
+    4300042: Ingresso Sceriffo_3_2
+    4300044: Ingresso Sceriffo_4_2
+    4300046: Ingresso Sceriffo_6
+    4300048: Ingresso Sceriffo_7
+    4300050: Vetro Sceriffo_3
+    4300052: Cornice Interrogatorio
+    4300054: Reception_4
+    4300056: Reception_2_2
+    4300058: Boh, ingresso
+    4300060: Reception_3_2
+    4300062: Cornici Finestre Celle
+    4300064: Porta Cella_2
+    4300066: Porta Cella_2_2
+    4300068: CPD
+    4300070: Boh, roba per l'ingresso
+    4300072: Sbarre Finestre Antro
+    4300074: Lampione Vetro_2
+    4300076: Lampione Ferro_3
+    4300078: Lampione Vetro_3
+    4300080: Aste Bandiere
+    4300082: Vetro Finestre Antro
+    4300084: Legno Reception
+    4300086: Ingresso Sceriffo_9
+    4300088: Boh, porte ingresso
+    4300090: Pavimento Sotto
+    4300092: Cornici Porte_23
+    4300094: Cornici Porte_21
+    4300096: Cornici Porte_19
+    4300098: Cornici Porte_17
+    4300100: Vetro Interrogatorio_2_2
+    4300102: Vetro Interrogatorio
+    4300104: Medioscopa
+    4300106: Cornici Porte_15
+    4300108: Cornici Porte_13
+    4300110: Cornici Porte_11
+    4300112: Cornici Porte_9
+    4300114: Cornici Porte_7
+    4300116: Cornici Porte_5
+    4300118: Soffitto Sopra
+    4300120: Cornice Porta Sceriffo
+    4300122: Cornici Porte_3
+    4300124: Sbarre_2
+    4300126: Cornici Finestre
+    4300128: Pavimento Sopra
+    4300130: Porte Chiuse Sempre Ingresso_2
+    4300132: Porte Chiuse Sempre Ingresso
+    4300134: Piani per non far passare luce_2
+    4300136: Piani per non far passare luce
+    4300138: Finestra Archivio Vetro_12
+    4300140: Finestra Archivio Vetro_11
+    4300142: Finestra Archivio Legno_6
+    4300144: veneziana_8
+    4300146: Finestra Legno_31
+    4300148: Finestra Legno_29
+    4300150: Finestra Archivio Legno_5
+    4300152: Finestra Archivio Vetro_10
+    4300154: Finestra Archivio Vetro_9
+    4300156: Finestra Archivio Legno_4
+    4300158: Finestra Archivio Vetro_8
+    4300160: Finestra Archivio Vetro_7
+    4300162: Finestra Archivio Vetro_6
+    4300164: Finestra Archivio Vetro_5
+    4300166: Finestra Archivio Legno_3
+    4300168: Finestra Archivio Legno_2
+    4300170: Finestra Archivio Vetro_4
+    4300172: Finestra Archivio Vetro_3
+    4300174: Finestra Archivio Legno
+    4300176: Finestra Archivio Vetro_2
+    4300178: Finestra Archivio Vetro
+    4300180: Porta Cella
+    4300182: Finestra Vetro_31
+    4300184: Finestra Vetro_29
+    4300186: Soffitto Sotto
+    4300188: veneziana_7
+    4300190: Finestra Legno_27
+    4300192: Finestra Legno_25
+    4300194: Finestra Vetro_27
+    4300196: Finestra Vetro_25
+    4300198: veneziana_6
+    4300200: Finestra Legno_23
+    4300202: Finestra Legno_21
+    4300204: Finestra Vetro_23
+    4300206: Finestra Vetro_21
+    4300208: Finestra Vetro_19
+    4300210: Finestra Vetro_17
+    4300212: Finestra Legno_19
+    4300214: Finestra Legno_17
+    4300216: veneziana_5
+    4300218: Finestra Vetro_15
+    4300220: Finestra Vetro_13
+    4300222: Finestra Legno_15
+    4300224: Finestra Legno_13
+    4300226: veneziana_4
+    4300228: Finestra Vetro_11
+    4300230: Finestra Vetro_9
+    4300232: Finestra Legno_11
+    4300234: Finestra Legno_9
+    4300236: veneziana_3
+    4300238: veneziana_2
+    4300240: Finestra Legno_7
+    4300242: Finestra Legno_5
+    4300244: Finestra Vetro_7
+    4300246: Finestra Vetro_5
+    4300248: veneziana
+    4300250: Finestra Legno_3
+    4300252: Finestra Legno
+    4300254: Finestra Vetro_3
+    4300256: Finestra Vetro
+    4300258: Ingresso
+    4300260: Ingresso Sceriffo_5
+    4300262: Pareti
+    4300264: Cornici Porte
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
