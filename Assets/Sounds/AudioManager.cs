@@ -29,8 +29,8 @@ public class AudioManager : MonoBehaviour
         m_AudioSource = GetComponent<AudioSource>();
         charAnimator = GetComponent<Animator>();
         soundContainer = GameManager.Self.GetComponent<AudioContainer>();
-        m_FootstepSounds[0] = soundContainer.Footstep1;
-        m_FootstepSounds[1] = soundContainer.Footstep2;
+        m_FootstepSounds[0] = soundContainer.Footstep1Sound;
+        m_FootstepSounds[1] = soundContainer.Footstep2Sound;
     }
 
     void Update()
