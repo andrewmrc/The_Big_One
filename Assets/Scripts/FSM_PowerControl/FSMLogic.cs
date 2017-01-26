@@ -40,27 +40,25 @@ public class FSMLogic : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        if (GameManager.Self.canClick)
+        
+		if (Input.GetKey(KeyCode.Mouse1) && !GameManager.Self.isShowMemory && !GameManager.Self.cantUsePower)
         {
-            if (Input.GetKey(KeyCode.Mouse1) && !GameManager.Self.isShowMemory)
-            {
-                //RaycastHandler();
-                sm.HandleInput(InputTransition.MouseButtonOneDown);
-
-                isAiming = true;
-                UIActivator();
-                AnimationActivator();
-            }
-            else
-            {
-                sm.HandleInput(InputTransition.MouseButtonOneUp);
-                isAiming = false;
-                onEnemy = false;
-                UIActivator();
-                AnimationActivator();
-            }
+            //RaycastHandler();
+            sm.HandleInput(InputTransition.MouseButtonOneDown);
+            
+            isAiming = true;
+			UIActivator();
+			AnimationActivator ();
         }
+        else
+        {
+            sm.HandleInput(InputTransition.MouseButtonOneUp);
+            isAiming = false;
+            onEnemy = false;
+            UIActivator();
+			AnimationActivator ();
+        }
+			
 
 		if (!isAiming && GameManager.Self.isShowMemory && Input.GetKeyDown(KeyCode.F))
 		{

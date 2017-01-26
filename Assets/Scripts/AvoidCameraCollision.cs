@@ -89,20 +89,11 @@ public class AvoidCameraCollision : MonoBehaviour {
 
             }
             //ease camera back to camSpot
-            if (GameManager.Self.canClick)
+            if (Input.GetMouseButton(1) || (Input.GetAxis ("LeftTriggerJoystick") >= 0.001) )
             {
-                if (Input.GetMouseButton(1) || (Input.GetAxis("LeftTriggerJoystick") >= 0.001))
+                if (!isShowMemory)
                 {
-                    if (!isShowMemory)
-                    {
-                        transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(0.4f, -0.4f, -0.7f), 6 * Time.deltaTime);
-
-                    }
-                    else
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position, camSpot.transform.position, returnTime * Time.deltaTime);
-
-                    }
+                    transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(0.4f, -0.4f, -0.7f), 6 * Time.deltaTime);
 
                 }
                 else
@@ -110,8 +101,13 @@ public class AvoidCameraCollision : MonoBehaviour {
                     transform.position = Vector3.MoveTowards(transform.position, camSpot.transform.position, returnTime * Time.deltaTime);
 
                 }
+
             }
-            
+            else 
+            {
+                transform.position = Vector3.MoveTowards(transform.position, camSpot.transform.position, returnTime * Time.deltaTime);
+
+            }
         }
 	}
 }
