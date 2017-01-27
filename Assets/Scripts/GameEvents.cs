@@ -14,7 +14,7 @@ public class GameEvents : MonoBehaviour
 {
 
     public enum Condition { Spawner, PlayAnimationFloat, PlayAnimationBool, LoadScene,
-                            RandomActionSequence,ActionSequence, Patrolling }
+                            RandomActionSequence,ActionSequence, Patrolling, ShowText }
     public Condition whichEvent;
 
     public GameObject objectToUse;
@@ -44,6 +44,10 @@ public class GameEvents : MonoBehaviour
 
 	//Nome scena da caricare
 	public string sceneName;
+
+	//Variabili per lo Show Text
+	public string[] textToShowList;
+
 
     void Spawner()
     {
@@ -103,6 +107,19 @@ public class GameEvents : MonoBehaviour
         patrolingObj.GetComponent<Patrolling>().StartNStopPatrolling(true);
     }
 
+
+	void ShowText (){
+		StartCoroutine(ShowTextCo());
+	}
+
+	IEnumerator ShowTextCo()
+	{
+		for (int i = 0; i < textToShowList.Length; i++) {
+			GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = textToShowList [i];
+			yield return new WaitForSeconds(3f);
+		}
+		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = "";
+	}
 
     IEnumerator SpawnerRoutine()
     {
@@ -189,6 +206,9 @@ public class GameEvents : MonoBehaviour
                     StartPatroling();
                     ExecuteRandomOrSequence();
                     break;
+				case Condition.ShowText:
+					ShowText();
+					break;
                 default:
                     break;
             }

@@ -8,27 +8,27 @@ public class PropertyHolderEventEditor : Editor
     string[] nameSequence;
     string[] nAction;
 
-    public SerializedProperty
-
-
-        condition_Prop,
-        //returnEvent_Prop,
-        objectToUse_Prop,
-        positionToSpawn_Prop,
-        animationName_Prop,
-        animationValueFloat_Prop,
-        int_Prop,
-        sequenceName_Prop,
-        sceneName_Prop,
-        positionArray_Prop,
-        patrolingTransArray_Prop,
-        patrolingObj_Prop,
-        patrolingSpeed_Prop,
-        patrolingStunWait_Prop,
-        isSequenceRandom_Prop,
-        isSequence_Prop,
-        choice_Prop,
-        animationValueBool_Prop;
+    public SerializedProperty 
+		
+		condition_Prop,
+	    //returnEvent_Prop,
+	    objectToUse_Prop,
+	    positionToSpawn_Prop,
+	    animationName_Prop,
+	    animationValueFloat_Prop,
+	    int_Prop,
+	    sequenceName_Prop,
+	    sceneName_Prop,
+	    positionArray_Prop,
+	    patrolingTransArray_Prop,
+	    patrolingObj_Prop,
+	    patrolingSpeed_Prop,
+	    patrolingStunWait_Prop,
+	    isSequenceRandom_Prop,
+	    isSequence_Prop,
+	    choice_Prop,
+	    animationValueBool_Prop,
+		textList_Prop;
 
 
     void OnEnable()
@@ -65,6 +65,8 @@ public class PropertyHolderEventEditor : Editor
         {
             nameRandomSequence[i] = FlowManager.Self.flowRandomGameArray[i].SequenceName;
         }
+
+		textList_Prop = serializedObject.FindProperty ("textToShowList");
 
     }
 
@@ -127,6 +129,18 @@ public class PropertyHolderEventEditor : Editor
 			case GameEvents.Condition.LoadScene:
 				EditorGUILayout.PropertyField(sceneName_Prop, new GUIContent("sceneName"));
 				
+				break;
+
+			case GameEvents.Condition.ShowText:
+				EditorGUILayout.PropertyField (textList_Prop);
+				if (textList_Prop.isExpanded) {
+					EditorGUILayout.PropertyField (textList_Prop.FindPropertyRelative ("Array.size"));
+					EditorGUI.indentLevel += 1;
+					for (int i = 0; i < textList_Prop.arraySize; i++) {
+						EditorGUILayout.PropertyField (textList_Prop.GetArrayElementAtIndex (i));
+					}
+					EditorGUI.indentLevel -= 1;
+				}
 				break;
 
 			case GameEvents.Condition.Patrolling:
