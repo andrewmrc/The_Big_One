@@ -55,14 +55,16 @@ public class Patrolling : MonoBehaviour
 
     void Start()
     {
-        if (patrollingTransform.Length == 0)
+        if (patrollingTransform.Length == 0 && startOnPlay)
         {
             Debug.LogError("Inserire almeno una transform nell'array altrimenti non funziona (Patrolling)");
         }
-        else
+        else if (startOnPlay)
         {
             StartNStopPatrolling(startOnPlay);
-        }
+        }        
+            
+        
 
         if (debug)
         {
@@ -77,11 +79,12 @@ public class Patrolling : MonoBehaviour
 
     IEnumerator PatrolingCO()
     {
+        
         if (inExec)
         {
             yield return new WaitForSeconds(delayStartPatrol);
         }
-        
+        Debug.Log("ENTRATO");
         inExec = true;
         arrayLength = patrollingTransform.Length;
         while (isPatrolling)
@@ -110,7 +113,6 @@ public class Patrolling : MonoBehaviour
             }
 
         }
-        
         inExec = false;
         refNav.enabled = false;
     }
@@ -119,6 +121,7 @@ public class Patrolling : MonoBehaviour
     public void StartNStopPatrolling(bool patrol)
     {
         // controllo tag
+        
         isPatrolling = patrol;
         if (!refNav.enabled)
         {

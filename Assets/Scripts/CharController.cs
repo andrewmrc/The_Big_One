@@ -38,8 +38,12 @@ public class CharController : MonoBehaviour {
 		m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 	}
 
+    void Awake()
+    {
+        m_Animator = GetComponent<Animator>();
+    }
 
-	void Start()
+    void Start()
 	{
 		// get the transform of the main camera
 		if (Camera.main != null)
@@ -54,7 +58,7 @@ public class CharController : MonoBehaviour {
 		}
 
 
-		m_Animator = GetComponent<Animator>();
+		
 		m_Rigidbody = GetComponent<Rigidbody>();
 		m_Capsule = GetComponent<CapsuleCollider>();
 		m_CapsuleHeight = m_Capsule.height;
@@ -257,7 +261,7 @@ public class CharController : MonoBehaviour {
 		transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
 	}
 
-
+    
 	public void OnAnimatorMove()
 	{
 		// we implement this function to override the default root motion.
