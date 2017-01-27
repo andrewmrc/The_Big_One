@@ -151,9 +151,11 @@ public class FSMLogic : MonoBehaviour {
         if (onEnemy)
         {
             refUI.PossessionUI(true);
+            //refUI.TastiUI(true);
         }
         else
         {
+            //refUI.TastiUI(false);
             refUI.PossessionUI(false);
             refUI.PowerUI(false);
             refUI.MemoryUI(false);

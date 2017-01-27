@@ -11,6 +11,7 @@ public class UI : MonoBehaviour {
     public GameObject UI_Memory;
     public GameObject UI_Return;
     public GameObject UI_Hack;
+    public GameObject UI_Tasti;
     public GameObject UI_PowerBar;
     public GameObject memoryImageUI;
     public GameObject cursorFar;
@@ -39,6 +40,11 @@ public class UI : MonoBehaviour {
     public void PossessionUI(bool on)
     {
         UI_Possession.SetActive(on);
+    }
+
+    public void TastiUI(bool on)
+    {
+        UI_Tasti.SetActive(on);
     }
 
     public void PowerUI(bool on)
