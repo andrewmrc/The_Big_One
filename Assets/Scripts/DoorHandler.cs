@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEditor;
 using System;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 [ExecuteInEditMode]
 public class DoorHandler : MonoBehaviour
@@ -42,6 +43,7 @@ public class DoorHandler : MonoBehaviour
     public string[] messageList;
     public float messageSpeed = 2;
 
+    public UnityEvent messageEvent;
 
     void Awake()
     {
@@ -277,7 +279,9 @@ public class DoorHandler : MonoBehaviour
                 isFirstClick = true;
                 yield return null;
             }
-        }
+        }        
+        messageEvent.Invoke();
+        
         GameManager.Self.canvasUI.GetComponent<UI>().VariousDescriptionUI.GetComponent<Text>().text = "";
         GameManager.Self.blockMovement = false;
 
