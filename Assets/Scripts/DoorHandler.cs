@@ -36,7 +36,7 @@ public class DoorHandler : MonoBehaviour
 
     public GameObject[] listOfGo;
     public bool playerCanEnter = false;
-    public bool isLocked;
+    //public bool isLocked;
     public string[] messageList;
     public float messageSpeed = 2;
 
@@ -177,38 +177,43 @@ public class DoorHandler : MonoBehaviour
                 npcFind = true;
             }
         }
-        
 
+        
         if (coll.gameObject.tag == "Player")
         {
+            
             player = coll.gameObject;
-            if (npcFind || playerCanEnter)
+            //if (npcFind /*|| playerCanEnter*/)
             {
                 if (Input.GetKeyDown(KeyCode.C) && !isOpened)
                 {
                     RaycastHit hitInfo;
-
+                    
                     Vector3 modYPlayer = new Vector3(0, 1, 0) + coll.transform.position;
 
                     if (Physics.Raycast(modYPlayer, coll.transform.forward, out hitInfo, 2f))
                     {
-
+                        //Debug.DrawLine(modYPlayer, coll.transform.position, Color.black, 4);
+                        //Debug.Log("entro");
                         Debug.DrawRay(modYPlayer, coll.transform.forward, Color.magenta, 1f);
-                        if (doorOponerCO == null && !isLocked)
+                        if (doorOponerCO == null && playerCanEnter)
                         {                            
                             product = CalculateProduct(coll);
                             doorOponerCO = StartCoroutine(DoorOpener(product));
 
                         }
-                        if (isLocked)
+                        else
                         {
+
                             StartCoroutine(DoorMessage());
+
                         }
                         
                     }
+                    
+
                 }
             }
-            
 
 
             //this.gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -324,9 +329,5 @@ public class DoorHandler : MonoBehaviour
     public void SetPlayerCanEnter(bool change)
     {
         playerCanEnter = change;
-    }
-    public void SetDoorLocked(bool change)
-    {
-        isLocked = change;
     }
 }
