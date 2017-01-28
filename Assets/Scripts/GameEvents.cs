@@ -14,7 +14,7 @@ public class GameEvents : MonoBehaviour
 {
 
     public enum Condition { Spawner, PlayAnimationFloat, PlayAnimationBool, LoadScene,
-                            RandomActionSequence,ActionSequence, Patrolling, ShowText }
+                            RandomActionSequence,ActionSequence, Patrolling, ShowText, UnityEventsActivator}
     public Condition whichEvent;
 
     public GameObject objectToUse;
@@ -47,6 +47,16 @@ public class GameEvents : MonoBehaviour
 
 	//Variabili per lo Show Text
 	public string[] textToShowList;
+
+
+	//Variabili per l'evento player
+	public GameObject character;
+	public UnityEvent eventToActivate;
+
+
+	//Variabili per l'array di UnityEvents con delay
+	public UnityEvent[] unityEventsList;
+	public float delayBetweenEvents = 0.5f;
 
 
     void Spawner()
@@ -120,6 +130,23 @@ public class GameEvents : MonoBehaviour
 		}
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = "";
 	}
+
+
+
+	void EventsActivator (){
+		StartCoroutine(EventActivatorCo());
+	}
+
+
+	IEnumerator EventActivatorCo()
+	{
+		for (int i = 0; i < unityEventsList.Length; i++) {
+			//yield return new WaitForSeconds(delayBetweenEvents);
+			unityEventsList [i].Invoke ();
+			yield return new WaitForSeconds(delayBetweenEvents);
+		}
+	}
+
 
     IEnumerator SpawnerRoutine()
     {
@@ -208,6 +235,9 @@ public class GameEvents : MonoBehaviour
                     break;
 				case Condition.ShowText:
 					ShowText();
+					break;
+				case Condition.UnityEventsActivator:
+					EventsActivator();
 					break;
                 default:
                     break;

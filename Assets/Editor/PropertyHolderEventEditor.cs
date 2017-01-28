@@ -28,7 +28,9 @@ public class PropertyHolderEventEditor : Editor
 	    isSequence_Prop,
 	    choice_Prop,
 	    animationValueBool_Prop,
-		textList_Prop;
+		textList_Prop,
+		unityEvents_Prop,
+		delayBetweenEvents_Props;
 
 
     void OnEnable()
@@ -67,7 +69,8 @@ public class PropertyHolderEventEditor : Editor
         }
 
 		textList_Prop = serializedObject.FindProperty ("textToShowList");
-
+		unityEvents_Prop = serializedObject.FindProperty ("unityEventsList");
+		delayBetweenEvents_Props = serializedObject.FindProperty ("delayBetweenEvents");
     }
 
 
@@ -143,15 +146,30 @@ public class PropertyHolderEventEditor : Editor
 				}
 				break;
 
+
+			case GameEvents.Condition.UnityEventsActivator:
+				EditorGUILayout.PropertyField (unityEvents_Prop);
+
+				if (unityEvents_Prop.isExpanded) {
+					EditorGUILayout.PropertyField (unityEvents_Prop.FindPropertyRelative ("Array.size"));
+					EditorGUI.indentLevel += 1;
+					for (int i = 0; i < unityEvents_Prop.arraySize; i++) {
+						EditorGUILayout.PropertyField (unityEvents_Prop.GetArrayElementAtIndex (i));
+					}
+					EditorGUI.indentLevel -= 1;
+				}
+
+				EditorGUILayout.PropertyField(delayBetweenEvents_Props);
+				break;
+
+
 			case GameEvents.Condition.Patrolling:
                 EditorGUILayout.PropertyField(patrolingTransArray_Prop);
                 
                 if (patrolingTransArray_Prop.isExpanded)
                 {
                     EditorGUILayout.PropertyField(patrolingTransArray_Prop.FindPropertyRelative("Array.size"));
-                    EditorGUI.indentLevel += 1;
-
-                    
+                    EditorGUI.indentLevel += 1;                  
 
                     for (int i = 0; i < patrolingTransArray_Prop.arraySize; i++)
                     {
