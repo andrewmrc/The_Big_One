@@ -13,7 +13,7 @@ public class DoorHandler : MonoBehaviour
     // True = forward == Vector3.forward
     private bool choosedDirection;
 
-    
+
 
     Coroutine doorOponerCO;
     public float doorRotation = 90;
@@ -30,7 +30,7 @@ public class DoorHandler : MonoBehaviour
     Vector3 size;
 
     private GameObject player;
-    [Range (2, 10)]
+    [Range(2, 10)]
     public float distanceToClose = 3;
 
 
@@ -40,7 +40,7 @@ public class DoorHandler : MonoBehaviour
     public string[] messageList;
     public float messageSpeed = 2;
 
-    
+
     void Awake()
     {
 
@@ -76,7 +76,7 @@ public class DoorHandler : MonoBehaviour
                 qualcosa.size = size;
             }
         }
-        
+
         if (this.transform.forward == Vector3.forward)
         {
             choosedDirection = true;
@@ -98,7 +98,7 @@ public class DoorHandler : MonoBehaviour
         }
         if (this.transform.forward == Vector3.up && this.transform.right == Vector3.forward)
         {
-            
+
             choosedDirection = true;
             center = new Vector3(0f, 0.6f, -2.1f);
             size = new Vector3(2.2f, 1.25f, 0f);
@@ -162,58 +162,60 @@ public class DoorHandler : MonoBehaviour
                     }
                 }
             }
-            
+
         }
 
     }
 
     void OnTriggerStay(Collider coll)
     {
-        bool npcFind = false;
-        foreach (var npcGO in listOfGo)
+        //Deprecato da problemi ma può tornare utile
+        //bool npcFind = false;
+        /*foreach (var npcGO in listOfGo)
         {
             if (coll.gameObject == npcGO)
             {
                 npcFind = true;
             }
-        }
+        }*/
 
-        
+
         if (coll.gameObject.tag == "Player")
         {
-            
+
             player = coll.gameObject;
             //if (npcFind /*|| playerCanEnter*/)
+
+            if (Input.GetKeyDown(KeyCode.C) && !isOpened)
             {
-                if (Input.GetKeyDown(KeyCode.C) && !isOpened)
+                RaycastHit hitInfo;
+                Debug.Log("schiaccio");
+                Vector3 modYPlayer = new Vector3(0, 1, 0) + coll.transform.position;
+
+                if (Physics.Raycast(modYPlayer, coll.transform.forward, out hitInfo, 2f))
                 {
-                    RaycastHit hitInfo;
-                    
-                    Vector3 modYPlayer = new Vector3(0, 1, 0) + coll.transform.position;
 
-                    if (Physics.Raycast(modYPlayer, coll.transform.forward, out hitInfo, 2f))
+                    //Debug.DrawLine(modYPlayer, coll.transform.position, Color.black, 4);
+                    //Debug.Log("entro");
+                    Debug.DrawRay(modYPlayer, coll.transform.forward, Color.magenta, 1f);
+                    if (doorOponerCO == null && playerCanEnter)
                     {
-                        //Debug.DrawLine(modYPlayer, coll.transform.position, Color.black, 4);
-                        //Debug.Log("entro");
-                        Debug.DrawRay(modYPlayer, coll.transform.forward, Color.magenta, 1f);
-                        if (doorOponerCO == null && playerCanEnter)
-                        {                            
-                            product = CalculateProduct(coll);
-                            doorOponerCO = StartCoroutine(DoorOpener(product));
+                        product = CalculateProduct(coll);
+                        doorOponerCO = StartCoroutine(DoorOpener(product));
 
-                        }
-                        else
-                        {
-
-                            StartCoroutine(DoorMessage());
-
-                        }
-                        
                     }
-                    
+                    else
+                    {
+
+                        StartCoroutine(DoorMessage());
+
+                    }
 
                 }
+
+
             }
+
 
 
             //this.gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -236,6 +238,7 @@ public class DoorHandler : MonoBehaviour
 
     private IEnumerator DoorMessage()
     {
+        
         GameManager.Self.blockMovement = true;
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>().enabled = false;
         GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
