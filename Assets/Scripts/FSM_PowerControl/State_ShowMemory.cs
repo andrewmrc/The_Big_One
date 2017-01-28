@@ -2,11 +2,13 @@
 using System.Collections;
 using System;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class State_ShowMemory : State {
     UI refUI;
     
 	public Sprite memoryImage;
+	public UnityEvent returnEvent;
 
     public override void StateUpdate()
     {
@@ -21,7 +23,7 @@ public class State_ShowMemory : State {
 		refUI.memoryImageUI.GetComponent<Image>().sprite = memoryImage;
         refUI.memoryImageUI.GetComponent<CanvasGroup>().alpha += Time.deltaTime / 2;
 
-
+		returnEvent.Invoke ();
         
     }
 
