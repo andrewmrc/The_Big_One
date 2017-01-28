@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 using UnityEditor;
 using System;
@@ -13,7 +14,7 @@ public class DoorHandler : MonoBehaviour
     // True = forward == Vector3.forward
     private bool choosedDirection;
 
-
+    bool npcFind = false;
 
     Coroutine doorOponerCO;
     public float doorRotation = 90;
@@ -34,8 +35,9 @@ public class DoorHandler : MonoBehaviour
     public float distanceToClose = 3;
 
 
-    public GameObject[] listOfGo;
+    public List<GameObject> listOfGo;
     public bool playerCanEnter = false;
+    public bool isFreeForNpc = false;
     //public bool isLocked;
     public string[] messageList;
     public float messageSpeed = 2;
@@ -143,7 +145,17 @@ public class DoorHandler : MonoBehaviour
 
     void OnTriggerEnter(Collider coll)
     {
-
+        npcFind = false;
+        if (!npcFind)
+        {            
+            foreach (var npcGO in listOfGo)
+            {
+                if (coll.gameObject == npcGO)
+                {
+                    npcFind = true;
+                }
+            }
+        }
 
         if (!(coll.tag == "Player"))
         {
@@ -162,6 +174,16 @@ public class DoorHandler : MonoBehaviour
                     }
                 }
             }
+            if (isFreeForNpc)
+            {
+                if (doorOponerCO == null && !isOpened)
+                {
+                    product = CalculateProduct(coll);
+                    doorOponerCO = StartCoroutine(DoorOpener(product));
+
+                }
+            }
+
 
         }
 
@@ -169,55 +191,52 @@ public class DoorHandler : MonoBehaviour
 
     void OnTriggerStay(Collider coll)
     {
-        //Deprecato da problemi ma può tornare utile
-        //bool npcFind = false;
-        /*foreach (var npcGO in listOfGo)
-        {
-            if (coll.gameObject == npcGO)
-            {
-                npcFind = true;
-            }
-        }*/
-
-
         if (coll.gameObject.tag == "Player")
         {
 
             player = coll.gameObject;
-            //if (npcFind /*|| playerCanEnter*/)
-
-            if (Input.GetKeyDown(KeyCode.C) && !isOpened)
+            if (npcFind || playerCanEnter)
             {
-                RaycastHit hitInfo;
-                Debug.Log("schiaccio");
-                Vector3 modYPlayer = new Vector3(0, 1, 0) + coll.transform.position;
 
-                if (Physics.Raycast(modYPlayer, coll.transform.forward, out hitInfo, 2f))
+                if (Input.GetKeyDown(KeyCode.C) && !isOpened)
                 {
+                    RaycastHit hitInfo;
+                    Vector3 modYPlayer = new Vector3(0, 1, 0) + coll.transform.position;
 
-                    //Debug.DrawLine(modYPlayer, coll.transform.position, Color.black, 4);
-                    //Debug.Log("entro");
-                    Debug.DrawRay(modYPlayer, coll.transform.forward, Color.magenta, 1f);
-                    if (doorOponerCO == null && playerCanEnter)
+                    if (Physics.Raycast(modYPlayer, coll.transform.forward, out hitInfo, 2f))
                     {
-                        product = CalculateProduct(coll);
-                        doorOponerCO = StartCoroutine(DoorOpener(product));
+                        Debug.DrawRay(modYPlayer, coll.transform.forward, Color.magenta, 1f);
+                        if (doorOponerCO == null)
+                        {
+                            product = CalculateProduct(coll);
+                            doorOponerCO = StartCoroutine(DoorOpener(product));
 
+                        }
+                        /*
+                        else
+                        {
+                            StartCoroutine(DoorMessage());
+                        }
+                        */
                     }
-                    else
-                    {
 
-                        StartCoroutine(DoorMessage());
-
-                    }
 
                 }
 
-
             }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.C) && !isOpened)
+                {
+                    RaycastHit hitInfo;
+                    Vector3 modYPlayer = new Vector3(0, 1, 0) + coll.transform.position;
 
-
-
+                    if (Physics.Raycast(modYPlayer, coll.transform.forward, out hitInfo, 2f))
+                    {
+                        StartCoroutine(DoorMessage());
+                    }
+                }
+            }
             //this.gameObject.GetComponent<BoxCollider>().enabled = false;
 
             /*Debug.Log("APRI PORTA");
@@ -332,5 +351,10 @@ public class DoorHandler : MonoBehaviour
     public void SetPlayerCanEnter(bool change)
     {
         playerCanEnter = change;
+    }
+
+    public void AddOjbect(GameObject otherGo)
+    {
+        listOfGo.Add(otherGo);
     }
 }
