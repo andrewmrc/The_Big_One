@@ -75,4 +75,13 @@ public class GameManager : MonoBehaviour {
 			cameraRig.GetComponent<FreeLookCam> ().cantUsePower = false;
 		}
 	}
+
+	public void StopCameraEffect () {
+		StartCoroutine(StopCameraEffectCO());
+	}
+
+	IEnumerator StopCameraEffectCO () {
+		yield return new WaitForSeconds (0.6f);
+		Camera.main.GetComponentInParent<CameraFilterPack_TV_VHS_Rewind>().enabled = false;
+	}
 }

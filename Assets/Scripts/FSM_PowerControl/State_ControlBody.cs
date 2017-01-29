@@ -58,6 +58,7 @@ public class State_ControlBody : State {
     {
         MyGlobal.ChangeBody(GameManager.Self.playerBody.gameObject);
         //Debug.Log("Return");
+		Camera.main.GetComponentInParent<CameraFilterPack_TV_VHS_Rewind>().enabled = true;
         this.gameObject.tag = "ControllableNPC";
         this.gameObject.transform.GetComponent<FSMLogic>().enabled = false;
         //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
@@ -92,7 +93,7 @@ public class State_ControlBody : State {
         GameManager.Self.playerBody.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 		GameManager.Self.outOfYourBody = false;
 		refUI.ReturnUI(false);
-
+		GameManager.Self.StopCameraEffect();
 		MyPosition();
 
     }

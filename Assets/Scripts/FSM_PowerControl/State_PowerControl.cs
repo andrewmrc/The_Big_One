@@ -20,7 +20,7 @@ public class State_PowerControl : State {
     public Sprite cursorPoint;
     public Sprite cursorFar;
 
-    
+
 
     UI refUI;
 
@@ -31,8 +31,7 @@ public class State_PowerControl : State {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         cursorPoint = Resources.Load("CursorPoint") as Sprite;
         cursorFar = Resources.Load("CursorFar") as Sprite;
-        SetSpaceEvent = new UnityEvent();
-        
+		SetSpaceEvent = new UnityEvent ();
     }
 
     public override void StateUpdate()
@@ -76,23 +75,25 @@ public class State_PowerControl : State {
             {
                 GetComponent<FSMLogic>().onEnemy = false;
                 isNear = true;
-                
+                /*
                 //Controlliamo se il personaggio mirato abbia il componente Field Of View e in caso lo aggiungiamo
                 if (hit.collider.transform.GetComponent<FieldOfView>() == null)
                 {
                     // Può buggare l'UI nel caso in cui non ci fosse lo script
                     hit.collider.gameObject.AddComponent<FieldOfView>();
-                }
+                }*/
 
-                //A questo punto controlliamo se siamo nel Field Of View del personaggio. In caso negativo possiamo usare il potere.
-                if (!hit.collider.gameObject.GetComponent<FieldOfView>().visibleTargets.Contains(this.gameObject.transform))
-                {
+                //A questo punto controlliamo se siamo nel Field Of View del personaggio. In caso negativo possiamo usare il potere. //AL MOMENTO ABBIAMO DECISO CHE POSSIAMO USARE I POTERI ANCHE DA DAVANTI
+                //if (!hit.collider.gameObject.GetComponent<FieldOfView>().visibleTargets.Contains(this.gameObject.transform))
+                //{
                     // Logica per effettuare lo switch del corpo
                     #region Switch Body Condition
                     GetComponent<FSMLogic>().onEnemy = true;
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        spaceListener.Invoke();
+						spaceListener.Invoke();
+						Camera.main.GetComponentInParent<CameraFilterPack_TV_VHS_Rewind>().enabled = true;
+						GameManager.Self.StopCameraEffect();
                         //Debug.LogWarning("Premi Spazio per entrare");
                         this.gameObject.tag = "ControllableNPC";
                         //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
@@ -166,11 +167,11 @@ public class State_PowerControl : State {
                     refUI.cursor.GetComponent<Image>().color = Color.green;
                     
 
-                }
+               /* }
                 else
                 {
                     GetComponent<FSMLogic>().onEnemy = false;
-                }
+                }*/
             }
             else
             {
@@ -206,6 +207,7 @@ public class State_PowerControl : State {
 
     
 
+	
     
 
 }

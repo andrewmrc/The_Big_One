@@ -9,7 +9,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 //[RequireComponent(typeof(State_ShowMemory))]
 public class FSMLogic : MonoBehaviour {
 
-    public float powerRange = Mathf.Infinity;
+    public float powerRange = 7f;
     //public bool isShowMemory = false;
     public bool isAiming = false;
 
@@ -48,7 +48,7 @@ public class FSMLogic : MonoBehaviour {
 			GameManager.Self.mainCamera.GetComponent<CameraFilterPack_Vision_Psycho> ().enabled = true;
             isAiming = true;
 			UIActivator();
-			AnimationActivator ();
+			//AnimationActivator ();
         }
         else
         {
@@ -57,7 +57,7 @@ public class FSMLogic : MonoBehaviour {
             isAiming = false;
             onEnemy = false;
             UIActivator();
-			AnimationActivator ();
+			//AnimationActivator ();
         }
 			
 
@@ -132,6 +132,7 @@ public class FSMLogic : MonoBehaviour {
 		this.GetComponent<Animator>().SetFloat("Forward", 0);
 		//this.GetComponent<Animator>().SetFloat("Turn", 0);
 		Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
+		Camera.main.GetComponentInParent<CameraFilterPack_TV_VHS>().enabled = true;
 	}
 
 
@@ -143,7 +144,7 @@ public class FSMLogic : MonoBehaviour {
 
 		Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
 		GameManager.Self.isShowMemory = false;
-
+		Camera.main.GetComponentInParent<CameraFilterPack_TV_VHS>().enabled = false;
 	}
 
     //Metodo per attivare e disattivare la UI
