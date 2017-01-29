@@ -20,7 +20,7 @@ public class State_PowerControl : State {
     public Sprite cursorPoint;
     public Sprite cursorFar;
 
-
+    
 
     UI refUI;
 
@@ -31,6 +31,8 @@ public class State_PowerControl : State {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         cursorPoint = Resources.Load("CursorPoint") as Sprite;
         cursorFar = Resources.Load("CursorFar") as Sprite;
+        SetSpaceEvent = new UnityEvent();
+        
     }
 
     public override void StateUpdate()
@@ -90,6 +92,7 @@ public class State_PowerControl : State {
                     GetComponent<FSMLogic>().onEnemy = true;
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
+                        spaceListener.Invoke();
                         //Debug.LogWarning("Premi Spazio per entrare");
                         this.gameObject.tag = "ControllableNPC";
                         //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
