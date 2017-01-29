@@ -45,7 +45,7 @@ public class FSMLogic : MonoBehaviour {
         {
             //RaycastHandler();
             sm.HandleInput(InputTransition.MouseButtonOneDown);
-            
+			GameManager.Self.mainCamera.GetComponent<CameraFilterPack_Vision_Psycho> ().enabled = true;
             isAiming = true;
 			UIActivator();
 			AnimationActivator ();
@@ -53,6 +53,7 @@ public class FSMLogic : MonoBehaviour {
         else
         {
             sm.HandleInput(InputTransition.MouseButtonOneUp);
+			GameManager.Self.mainCamera.GetComponent<CameraFilterPack_Vision_Psycho> ().enabled = false;
             isAiming = false;
             onEnemy = false;
             UIActivator();
