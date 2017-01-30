@@ -44,7 +44,7 @@ public class FSMLogic : MonoBehaviour {
         
 
 
-		if (Input.GetKey(KeyCode.Mouse1) && !GameManager.Self.isShowMemory && /*!GameManager.Self.cantUsePower */ (GameManager.Self.ChangePlayerState == GameState.UsePower || GameManager.Self.ChangePlayerState == GameState.OnlyIdea))
+		if (Input.GetMouseButton(1) || (Input.GetAxis("LeftTriggerJoystick") >= 0.001) && !GameManager.Self.isShowMemory && /*!GameManager.Self.cantUsePower */ (GameManager.Self.ChangePlayerState == GameState.UsePower || GameManager.Self.ChangePlayerState == GameState.OnlyIdea))
         {
             
             //RaycastHandler();

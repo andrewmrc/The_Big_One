@@ -96,7 +96,7 @@ public class State_PowerControl : State {
 
 
                     GetComponent<FSMLogic>().onEnemy = true;
-                    if (Input.GetKeyDown(KeyCode.Space))
+					if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Possession"))
                     {
                         spaceListener.Invoke();
                         Camera.main.GetComponentInParent<CameraFilterPack_TV_VHS_Rewind>().enabled = true;

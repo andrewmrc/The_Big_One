@@ -24,7 +24,7 @@ public class TutorialBus : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (GameObject.Find ("NPC_Passenger_Far").tag == "Player" || GameObject.Find ("NPC_Passenger_Mid").tag == "Player") {
+		if (GameObject.Find ("NPC_Passenger_Far").tag == "Player" /*|| GameObject.Find ("NPC_Passenger_Mid").tag == "Player"*/) {
 			pivot.transform.localPosition = new Vector3 (0, 1.8f, 0);
 		} else {
 			pivot.transform.localPosition = new Vector3 (0, 1.6f, 0);
@@ -53,8 +53,8 @@ public class TutorialBus : MonoBehaviour {
 			Debug.DrawLine(ray.origin, hit.point, Color.black);
 			if (hit.collider.name == "NPC_Passenger_Far" && !farTutorial) {
 				StartCoroutine (FarTutorial ());
-			} else if (hit.collider.name == "NPC_Passenger_Mid" && !midTutorial) {
-				StartCoroutine (MidTutorial ());
+				/*} else if (hit.collider.name == "NPC_Passenger_Mid" && !midTutorial) {
+				StartCoroutine (MidTutorial ());*/
 
 			} else if (hit.collider.name == "NPC_Passenger_Near" && !nearTutorial) {
 				StartCoroutine (NearTutorial ());

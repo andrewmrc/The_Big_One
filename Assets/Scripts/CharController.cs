@@ -146,7 +146,7 @@ public class CharController : MonoBehaviour {
             Move(m_Move, crouch);
 
 			//serve a simulare un aumento di velocità (Jog)
-			if (Input.GetKey (KeyCode.LeftShift)) {
+			if (Input.GetKey (KeyCode.LeftShift) || (Input.GetAxis("RightTriggerJoystick") >= 0.001)) {
 				//m_Animator.SetBool ("Run", true);
 				m_AnimSpeedMultiplier = jogSpeed;
 				//m_MoveSpeedMultiplier = JogSpeed;
@@ -162,7 +162,7 @@ public class CharController : MonoBehaviour {
 		//Serve a disattivare il parametro collision quando iniziamo un nuovo movimento. 
 		//Subito dopo controlliamo se in verità non siamo ancora contro una collision e in caso facciamo partire di nuovo la coroutine di blocco.
 		if (this.gameObject.tag == "Player") {
-			if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.D) || Input.GetKeyDown (KeyCode.S)) {
+			if (Input.GetAxis("Horizontal") != 0) {
 				m_Animator.SetBool ("Collision", false);
 				if (stayThere) {
 					StartCoroutine (StopMove (0.5f));
