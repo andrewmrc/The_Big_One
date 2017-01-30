@@ -66,7 +66,7 @@ public class FSMLogic : MonoBehaviour {
         }
 			
 
-		if (!isAiming && GameManager.Self.isShowMemory && Input.GetKeyDown(KeyCode.F))
+		if (!isAiming && GameManager.Self.isShowMemory && (Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("Hack")))
 		{
             //Debug.Log ("Smetti Ricordo");
             //sm.stateShowMemory.memoryListenerOut.Invoke();
@@ -74,7 +74,7 @@ public class FSMLogic : MonoBehaviour {
 		}
 		else if (GameManager.Self.outOfYourBody && this.gameObject.GetComponent<State_ShowMemory> () && !GameManager.Self.isShowMemory && !Input.GetKey(KeyCode.Mouse1)) 
 		{
-			if (Input.GetKeyDown (KeyCode.F) && !GameManager.Self.isShowMemory) {
+			if ((Input.GetKeyDown (KeyCode.F) || Input.GetButtonDown("Hack")) && !GameManager.Self.isShowMemory) {
                 //Debug.Log ("Guarda Ricordo");
                 //sm.stateShowMemory.memoryListenerIn.Invoke();
                 ShowMem ();
