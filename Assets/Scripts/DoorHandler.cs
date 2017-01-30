@@ -359,7 +359,11 @@ public class DoorHandler : MonoBehaviour
 
     public void AddOjbect(GameObject otherGo)
     {
-        listOfGo.Add(otherGo);
+        if (!listOfGo.Contains(otherGo))
+        {
+            listOfGo.Add(otherGo);
+        }
+        
     }
     public void SetFreeNpc(bool change)
     {
