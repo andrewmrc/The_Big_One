@@ -19,7 +19,7 @@ public class FSM_ReturnInPosition : MonoBehaviour {
         GetComponent<FSM_ReturnInPosition>().enabled = false;
         initialPosition = this.transform.position;
 		State_ControlBody bodyControlHandle = GetComponent<State_ControlBody>();
-        bodyControlHandle.returnEvent.AddListener(MyPosition);
+        bodyControlHandle.returnEvent.AddListener(MyPosition);        
     }
 
 

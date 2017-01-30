@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
+[RequireComponent(typeof(UnityEngine.AudioSource))]
 
 public abstract class State : MonoBehaviour {
     [HideInInspector]
@@ -14,6 +15,10 @@ public abstract class State : MonoBehaviour {
     [HideInInspector]
     public UnityEvent memoryListenerOut;
     [HideInInspector]
+
+    private AudioSource m_AudioSource;
+    private AudioContainer soundContainer;
+
     public UnityEvent SetSpaceEvent
     {
         set { spaceListener.AddListener(OnSpacePress); }
@@ -39,19 +44,43 @@ public abstract class State : MonoBehaviour {
         set { memoryListenerOut.AddListener(OnMemoryPressOut); }
     }
 
+    public AudioSource SetAudioSource
+    {
+        set { m_AudioSource = value; }
+    }
+
+    public AudioContainer SetAudioContainer
+    {
+        set { soundContainer = value; }
+    }
+
     public abstract void StateUpdate();
 
+    
+    
+
+
+    void Start()
+    {        
+        soundContainer = GameManager.Self.GetComponent<AudioContainer>();
+        m_AudioSource = GetComponent<AudioSource>();
+    }
 
     void OnSpacePress()
     {
         // Quando schiacci spazio fai cose
         Debug.Log("schiacci spazio");
+        Debug.Log(soundContainer);
+        m_AudioSource.clip = soundContainer.ControlBodyONSound;
+        m_AudioSource.PlayOneShot(m_AudioSource.clip);
     }
 
     void OnReturnPress()
     {
         // Quando ritorni nel tuo corpo fai cose
         Debug.Log("schiacci r");
+        m_AudioSource.clip = soundContainer.ControlBodyOFFSound;
+        m_AudioSource.PlayOneShot(m_AudioSource.clip);
     }
 
     void OnIdeaPress()

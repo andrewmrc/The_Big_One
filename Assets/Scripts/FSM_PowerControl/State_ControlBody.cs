@@ -54,6 +54,8 @@ public class State_ControlBody : State {
         refUI = FindObjectOfType<UI>();
         cameraRig = GameObject.FindGameObjectWithTag("CameraRig");
         SetReturnEvent = new UnityEvent();
+        SetAudioSource = GetComponent<AudioSource>();
+        SetAudioContainer = GameManager.Self.GetComponent<AudioContainer>();
     }
 
 

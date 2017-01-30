@@ -33,7 +33,9 @@ public class State_ShowMemory : State {
         refUI = FindObjectOfType<UI>();
         SetMemoryEventIn = new UnityEvent();
         SetMemoryEventOut = new UnityEvent();
-        
+        SetAudioSource = GetComponent<AudioSource>();
+        SetAudioContainer = GameManager.Self.GetComponent<AudioContainer>();
+
     }
 	
 	// Update is called once per frame

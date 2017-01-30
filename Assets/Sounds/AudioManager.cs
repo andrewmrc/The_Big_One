@@ -41,7 +41,8 @@ public class AudioManager : MonoBehaviour
             
             Debug.Log("AIMING");
             isAiming = true;
-            StopCoroutine(footStepCo);
+            if (footStepCo !=null)
+                StopCoroutine(footStepCo);
             isWalking = false;
             m_AudioSource.Stop();
             m_AudioSource.clip = soundContainer.AimSound;

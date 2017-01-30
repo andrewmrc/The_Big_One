@@ -33,6 +33,8 @@ public class State_PowerControl : State {
         cursorFar = Resources.Load("CursorFar") as Sprite;
 		SetSpaceEvent = new UnityEvent ();
         SetIdeaEvent = new UnityEvent();
+        SetAudioSource = GetComponent<AudioSource>();
+        SetAudioContainer = GameManager.Self.GetComponent<AudioContainer>();
     }
 
     public override void StateUpdate()
