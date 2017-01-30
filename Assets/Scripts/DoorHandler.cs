@@ -14,36 +14,34 @@ public class DoorHandler : MonoBehaviour
     // False = forward == Vector3.up
     // True = forward == Vector3.forward
     private bool choosedDirection;
-
-    bool npcFind = false;
-
-    Coroutine doorOponerCO;
-    public float doorRotation = 90;
-    private Vector3 defaultRot;
-    private Vector3 openRot;
-    bool isClosing = false;
-
-
-    private float product;
-    bool isOpened = false;
-    BoxCollider qualcosa;
-
+    // Varibili utilizzate per l'aggiunta dei collider
     Vector3 center;
     Vector3 size;
+    BoxCollider qualcosa;
+    public bool qualcosaInside = true;
 
-    private GameObject player;
+    // Variabili designer
     [Range(2, 10)]
     public float distanceToClose = 3;
-
-
+    public float doorRotation = 90;
     public List<GameObject> listOfGo;
     public bool playerCanEnter = false;
     public bool isFreeForNpc = false;
     //public bool isLocked;
     public string[] messageList;
     public float messageSpeed = 2;
-
     public UnityEvent messageEvent;
+
+
+    // Varibili utilizzate dal programmatore
+    private GameObject player;
+    private Vector3 defaultRot;
+    private Vector3 openRot;
+    bool npcFind = false;
+    Coroutine doorOponerCO;
+    private float product;
+    bool isOpened = false;
+    bool isClosing = false;
 
     void Awake()
     {
@@ -53,7 +51,7 @@ public class DoorHandler : MonoBehaviour
     void Start()
     {
         defaultRot = transform.eulerAngles;
-
+        qualcosaInside = true;
     }
 
 
@@ -61,24 +59,29 @@ public class DoorHandler : MonoBehaviour
 
     void Update()
     {
+        if (GetComponents<BoxCollider>().Length <= 1)
+        {
+            this.gameObject.AddComponent<BoxCollider>();
+            qualcosaInside = true;
+        }
+        if (qualcosaInside)
+        {
+            DestroyImmediate(this.gameObject.GetComponent<MeshCollider>());
+            qualcosaInside = false;
+        }
 
         if (this.transform.forward == Vector3.up)
         {
             choosedDirection = false;
             center = new Vector3(0, 0.15f, -0.3f);
             size = new Vector3(1, 0.32f, 0.01f);
-            if (!this.gameObject.GetComponent<BoxCollider>())
-            {
 
-                qualcosa = this.gameObject.AddComponent<BoxCollider>();
-            }
-            else
-            {
-                qualcosa = this.gameObject.GetComponent<BoxCollider>();
-                qualcosa.isTrigger = true;
-                qualcosa.center = center;
-                qualcosa.size = size;
-            }
+
+            qualcosa = GetComponents<BoxCollider>()[0];
+            qualcosa.isTrigger = true;
+            qualcosa.center = center;
+            qualcosa.size = size;
+
         }
 
         if (this.transform.forward == Vector3.forward)
@@ -86,18 +89,13 @@ public class DoorHandler : MonoBehaviour
             choosedDirection = true;
             center = new Vector3(0.6f, -0.9f, -0.05f);
             size = new Vector3(1.28f, 0.05f, 2f);
-            if (!this.gameObject.GetComponent<BoxCollider>())
-            {
 
-                qualcosa = this.gameObject.AddComponent<BoxCollider>();
-            }
-            else
-            {
-                qualcosa = this.gameObject.GetComponent<BoxCollider>();
-                qualcosa.isTrigger = true;
-                qualcosa.center = center;
-                qualcosa.size = size;
-            }
+
+            qualcosa = GetComponents<BoxCollider>()[0];
+            qualcosa.isTrigger = true;
+            qualcosa.center = center;
+            qualcosa.size = size;
+
 
         }
         if (this.transform.forward == Vector3.up && this.transform.right == Vector3.forward)
@@ -106,20 +104,16 @@ public class DoorHandler : MonoBehaviour
             choosedDirection = true;
             center = new Vector3(0f, 0.6f, -2.1f);
             size = new Vector3(2.2f, 1.25f, 0f);
-            if (!this.gameObject.GetComponent<BoxCollider>())
-            {
 
-                qualcosa = this.gameObject.AddComponent<BoxCollider>();
-            }
-            else
-            {
-                qualcosa = this.gameObject.GetComponent<BoxCollider>();
-                qualcosa.isTrigger = true;
-                qualcosa.center = center;
-                qualcosa.size = size;
-            }
+
+            qualcosa = GetComponents<BoxCollider>()[0];
+            qualcosa.isTrigger = true;
+            qualcosa.center = center;
+            qualcosa.size = size;
+
 
         }
+
 
 
 
@@ -149,7 +143,7 @@ public class DoorHandler : MonoBehaviour
     {
         npcFind = false;
         if (!npcFind)
-        {            
+        {
             foreach (var npcGO in listOfGo)
             {
                 if (coll.gameObject == npcGO)
@@ -259,7 +253,7 @@ public class DoorHandler : MonoBehaviour
 
     private IEnumerator DoorMessage()
     {
-        
+
         GameManager.Self.blockMovement = true;
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>().enabled = false;
         GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
@@ -279,9 +273,9 @@ public class DoorHandler : MonoBehaviour
                 isFirstClick = true;
                 yield return null;
             }
-        }        
+        }
         messageEvent.Invoke();
-        
+
         GameManager.Self.canvasUI.GetComponent<UI>().VariousDescriptionUI.GetComponent<Text>().text = "";
         GameManager.Self.blockMovement = false;
 
@@ -363,7 +357,7 @@ public class DoorHandler : MonoBehaviour
         {
             listOfGo.Add(otherGo);
         }
-        
+
     }
     public void SetFreeNpc(bool change)
     {
