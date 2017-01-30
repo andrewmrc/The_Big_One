@@ -41,8 +41,11 @@ public class FSMLogic : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-		if (Input.GetKey(KeyCode.Mouse1) && !GameManager.Self.isShowMemory && !GameManager.Self.cantUsePower)
+
+
+		if (Input.GetKey(KeyCode.Mouse1) && !GameManager.Self.isShowMemory && /*!GameManager.Self.cantUsePower */ (GameManager.Self.ChangePlayerState == GameState.UsePower || GameManager.Self.ChangePlayerState == GameState.OnlyIdea))
         {
+            
             //RaycastHandler();
             sm.HandleInput(InputTransition.MouseButtonOneDown);
 			GameManager.Self.mainCamera.GetComponent<CameraFilterPack_Vision_Psycho> ().enabled = true;

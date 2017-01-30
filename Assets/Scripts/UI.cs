@@ -28,7 +28,7 @@ public class UI : MonoBehaviour {
 
 	void Update ()
     {
-		if (!GameManager.Self.cantUsePower) {
+		if ((GameManager.Self.ChangePlayerState == GameState.UsePower || GameManager.Self.ChangePlayerState == GameState.OnlyIdea)) {
 			if (Input.GetMouseButton (1) || (Input.GetAxis ("LeftTriggerJoystick") >= 0.001)) {
 				cursor.SetActive (true);
 			} else {

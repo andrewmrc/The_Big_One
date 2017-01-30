@@ -17,7 +17,8 @@ public class AimingSound : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if (Input.GetKeyDown (KeyCode.Mouse1) && !GameManager.Self.cantUsePower) {
+		if (Input.GetKeyDown (KeyCode.Mouse1) && /*!GameManager.Self.cantUsePower*/(GameManager.Self.ChangePlayerState == GameState.UsePower || GameManager.Self.ChangePlayerState == GameState.OnlyIdea)) {
+            Debug.Log(GameManager.Self.ChangePlayerState);
             Debug.Log("AIMING");
             audio.clip = otherClip;
 			audio.Play ();

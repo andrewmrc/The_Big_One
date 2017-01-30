@@ -2,8 +2,10 @@
 using System.Collections;
 using UnityStandardAssets.Cameras;
 
-public class GameManager : MonoBehaviour {
+public enum GameState { UsePower,NoPower,OnlyIdea }
 
+public class GameManager : MonoBehaviour {
+    public GameState playerState; 
 	// Singleton Implementation
 	protected static GameManager _self;
 	public static GameManager Self
@@ -48,13 +50,27 @@ public class GameManager : MonoBehaviour {
 		cameraRig = GameObject.FindGameObjectWithTag ("CameraRig");
 		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
         MyGlobal.myBody = GameObject.FindGameObjectWithTag("Player");
-
+        /*
 		if (cantUsePower) {
 			HandlePowerActivation (true);
 		} else {
 			HandlePowerActivation (false);
-		}
-	}
+		}*/
+
+        switch (playerState)
+        {   
+            case GameState.UsePower:
+                HandlePowerActivation(false);
+                break;
+            case GameState.NoPower:
+                HandlePowerActivation(true);                
+                break;
+            case GameState.OnlyIdea:
+                break;
+            default:
+                break;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -63,7 +79,21 @@ public class GameManager : MonoBehaviour {
 			outOfYourBody = false;
 			GameObject.FindGameObjectWithTag("Player").GetComponent<State_ControlBody> ().ReturnToYourBody ();
 		}
-	}
+
+        /*switch (playerState)
+        {
+            case GameState.UsePower:
+                HandlePowerActivation(false);
+                break;
+            case GameState.NoPower:
+                HandlePowerActivation(true);
+                break;
+            case GameState.OnlyIdea:
+                break;
+            default:
+                break;
+        }*/
+    }
 
 
 	public void HandlePowerActivation (bool act) {
@@ -84,4 +114,37 @@ public class GameManager : MonoBehaviour {
 		yield return new WaitForSeconds (0.6f);
 		Camera.main.GetComponentInParent<CameraFilterPack_TV_VHS_Rewind>().enabled = false;
 	}
+
+    public GameState ChangePlayerState
+    {
+        get { return playerState; }
+        set
+        {
+            playerState = value;
+            switch (playerState)
+            {
+                case GameState.UsePower:
+                    Debug.Log("posso usare tutto");
+                    HandlePowerActivation(false);
+                    break;
+                case GameState.NoPower:
+                    HandlePowerActivation(true);
+                    Debug.Log("non posso usare niente");
+                    break;
+                case GameState.OnlyIdea:
+                    HandlePowerActivation(false);
+                    Debug.Log("posso usare solo l'idea");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public void SetPlayerState(int change)
+    {
+        ChangePlayerState = (GameState)change;
+    }
+
+
 }

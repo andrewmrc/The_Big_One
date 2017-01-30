@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
+
 namespace UnityStandardAssets.Cameras
 {
     public class FreeLookCam : PivotBasedCameraRig
@@ -11,8 +12,7 @@ namespace UnityStandardAssets.Cameras
 
         // 	Camera Rig
         // 		Pivot
-        // 			Camera
-
+        // 			Camera        
         [SerializeField]
         private float m_MoveSpeed = 1f;                      // How fast the rig will move to keep up with the target's position.
         [Range(0f, 10f)]

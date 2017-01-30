@@ -36,8 +36,9 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !GameManager.Self.cantUsePower)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && /*!GameManager.Self.cantUsePower*/(GameManager.Self.ChangePlayerState == GameState.UsePower || GameManager.Self.ChangePlayerState == GameState.OnlyIdea))
         {
+            
             Debug.Log("AIMING");
             isAiming = true;
             StopCoroutine(footStepCo);
