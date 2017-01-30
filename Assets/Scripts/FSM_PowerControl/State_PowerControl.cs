@@ -32,6 +32,7 @@ public class State_PowerControl : State {
         cursorPoint = Resources.Load("CursorPoint") as Sprite;
         cursorFar = Resources.Load("CursorFar") as Sprite;
 		SetSpaceEvent = new UnityEvent ();
+        SetIdeaEvent = new UnityEvent();
     }
 
     public override void StateUpdate()
@@ -168,6 +169,7 @@ public class State_PowerControl : State {
                         refUI.PowerUI(true);
                         if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Idea") && GameManager.Self.powerQuantity >= mentalPowerCost)
                         {
+                            ideaListener.Invoke();
                             //GameManager.Self.powerQuantity -= mentalPowerCost;
                             MoveNPC(hit, 0);
                         }

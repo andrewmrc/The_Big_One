@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
+using UnityEngine.Events;
 
 
 //[RequireComponent(typeof(State_PowerControl))]
@@ -66,14 +67,16 @@ public class FSMLogic : MonoBehaviour {
 
 		if (!isAiming && GameManager.Self.isShowMemory && Input.GetKeyDown(KeyCode.F))
 		{
-			//Debug.Log ("Smetti Ricordo");
-			UnShowMem ();
+            //Debug.Log ("Smetti Ricordo");
+            sm.stateShowMemory.memoryListenerOut.Invoke();
+            UnShowMem ();
 		}
 		else if (GameManager.Self.outOfYourBody && this.gameObject.GetComponent<State_ShowMemory> () && !GameManager.Self.isShowMemory && !Input.GetKey(KeyCode.Mouse1)) 
 		{
 			if (Input.GetKeyDown (KeyCode.F) && !GameManager.Self.isShowMemory) {
-				//Debug.Log ("Guarda Ricordo");
-				ShowMem ();
+                //Debug.Log ("Guarda Ricordo");
+                sm.stateShowMemory.memoryListenerIn.Invoke();
+                ShowMem ();
 
 			}
 			UIActivator ();
@@ -102,12 +105,12 @@ public class FSMLogic : MonoBehaviour {
                 {
                     refUI.MemoryUI(true);
 					if (Input.GetKeyDown(KeyCode.F) && !GameManager.Self.isShowMemory)
-                    {
+                    {                        
 						ShowMem ();
                     }
 					else if (Input.GetKeyDown(KeyCode.F) && GameManager.Self.isShowMemory)
-                    {
-						UnShowMem ();
+                    {                        
+                        UnShowMem ();
                     }
 
                 }

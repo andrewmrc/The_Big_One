@@ -13,7 +13,7 @@ public class State_ShowMemory : State {
     public override void StateUpdate()
     {
         
-        Debug.LogWarning("Sto vedendo la memoria");
+
 
 		refUI.HackUI (false);
 		refUI.ReturnUI (false);
@@ -24,12 +24,15 @@ public class State_ShowMemory : State {
         refUI.memoryImageUI.GetComponent<CanvasGroup>().alpha += Time.deltaTime / 2;
 
 		returnEvent.Invoke ();
+        //memoryListener.Invoke();
         
     }
 
     // Use this for initialization
     void Start () {
         refUI = FindObjectOfType<UI>();
+        SetMemoryEventIn = new UnityEvent();
+        SetMemoryEventOut = new UnityEvent();
         
     }
 	

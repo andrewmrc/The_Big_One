@@ -12,6 +12,7 @@ public class State_ControlBody : State {
     UI refUI;
     public GameObject cameraRig;
 
+   
     public override void StateUpdate()
     {
         //Debug.LogWarning("Non premi il tasto destro");
@@ -29,7 +30,8 @@ public class State_ControlBody : State {
 		{
 			refUI.ReturnUI(true);
 			if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Return"))
-			{
+			{                
+                rListener.Invoke();
 				ReturnToYourBody();
 			}
 		}
@@ -51,6 +53,7 @@ public class State_ControlBody : State {
     void Start () {
         refUI = FindObjectOfType<UI>();
         cameraRig = GameObject.FindGameObjectWithTag("CameraRig");
+        SetReturnEvent = new UnityEvent();
     }
 
 
