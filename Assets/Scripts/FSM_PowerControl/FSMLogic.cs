@@ -44,15 +44,16 @@ public class FSMLogic : MonoBehaviour {
         
 
 
-		if (Input.GetMouseButton(1) || (Input.GetAxis("LeftTriggerJoystick") >= 0.001) && !GameManager.Self.isShowMemory && /*!GameManager.Self.cantUsePower */ (GameManager.Self.ChangePlayerState == GameState.UsePower || GameManager.Self.ChangePlayerState == GameState.OnlyIdea))
+		if (Input.GetMouseButton(1) || (Input.GetAxis("LeftTriggerJoystick") >= 0.001) && !GameManager.Self.isShowMemory/*!GameManager.Self.cantUsePower */)
         {
-            
-            //RaycastHandler();
-            sm.HandleInput(InputTransition.MouseButtonOneDown);
-			GameManager.Self.mainCamera.GetComponent<CameraFilterPack_Vision_Psycho> ().enabled = true;
-            isAiming = true;
-			UIActivator();
-			//AnimationActivator ();
+			if((GameManager.Self.ChangePlayerState == GameState.UsePower || GameManager.Self.ChangePlayerState == GameState.OnlyIdea)){
+	            //RaycastHandler();
+	            sm.HandleInput(InputTransition.MouseButtonOneDown);
+				GameManager.Self.mainCamera.GetComponent<CameraFilterPack_Vision_Psycho> ().enabled = true;
+	            isAiming = true;
+				UIActivator();
+				//AnimationActivator ();
+			}
         }
         else
         {
