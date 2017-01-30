@@ -146,10 +146,12 @@ public class CharController : MonoBehaviour {
             Move(m_Move, crouch);
 
 			//serve a simulare un aumento di velocità (Jog)
-			if (Input.GetKey (KeyCode.LeftShift) || (Input.GetAxis("RightTriggerJoystick") >= 0.001)) {
+			if (Input.GetKey (KeyCode.LeftShift) || (Input.GetAxis("LeftTriggerJoystick") <= -0.001)) {
+				Debug.Log ("CORRI!");
 				//m_Animator.SetBool ("Run", true);
 				m_AnimSpeedMultiplier = jogSpeed;
 				//m_MoveSpeedMultiplier = JogSpeed;
+				//GameManager.Self.GetComponent<AudioContainer>().d
 			} else {
 				//m_Animator.SetBool ("Run", false);
 				m_AnimSpeedMultiplier = 1f;

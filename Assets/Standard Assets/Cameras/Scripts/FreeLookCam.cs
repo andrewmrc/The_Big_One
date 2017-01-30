@@ -118,7 +118,7 @@ namespace UnityStandardAssets.Cameras
                 // and make sure the new value is within the tilt range
                 m_TiltAngle = Mathf.Clamp(m_TiltAngle, -m_TiltMin, m_TiltMax);
 
-                if (Input.GetMouseButtonDown(1))
+				if (Input.GetMouseButtonDown(1) || (Input.GetAxis("LeftTriggerJoystick") >= 0.001))
                     centerCameraRotation = m_LookAngle;
 
                 if (Input.GetMouseButton(1) || (Input.GetAxis("LeftTriggerJoystick") >= 0.001))

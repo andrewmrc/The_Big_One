@@ -121,7 +121,7 @@ public class DialogueHandler : MonoBehaviour {
 						//Play speech e quando finisce passa al prossimo quindi waitforsecond inserendo la durata dell'audio
 						while (seconds > 0) {
 							seconds -= Time.deltaTime;
-							if(Input.GetKeyDown(KeyCode.E) && isFirstClick){
+							if((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown ("Examine")) && isFirstClick){
 								seconds = 0;
 							}
 							isFirstClick = true;

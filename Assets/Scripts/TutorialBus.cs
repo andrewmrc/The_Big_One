@@ -84,7 +84,7 @@ public class TutorialBus : MonoBehaviour {
 	public IEnumerator NearTutorial(){
 		nearTutorial = true;
 		rig.GetComponent<FreeLookCam> ().enabled = false;
-		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = "Quando sono di spalle percepisco una connessione con queste persone. \n Devo focalizzare i miei pensieri.";
+		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = "Percepisco una connessione con queste persone. \n Devo focalizzare i miei pensieri.";
 		yield return new WaitForSeconds (3f);
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = "";
 		rig.GetComponent<FreeLookCam> ().enabled = true;
