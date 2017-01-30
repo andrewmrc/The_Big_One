@@ -10,6 +10,7 @@ public class FSM_ReturnInPosition : MonoBehaviour {
 	public float waitTime;
 
     Vector3 initialPosition;
+    Vector3 initialRotation;
 
     public bool isWaiting = true;
 
@@ -18,6 +19,7 @@ public class FSM_ReturnInPosition : MonoBehaviour {
         refNav = GetComponent<NavMeshAgent>();
         GetComponent<FSM_ReturnInPosition>().enabled = false;
         initialPosition = this.transform.position;
+        initialRotation = this.transform.eulerAngles;
 		State_ControlBody bodyControlHandle = GetComponent<State_ControlBody>();
         bodyControlHandle.returnEvent.AddListener(MyPosition);        
     }
@@ -93,6 +95,7 @@ public class FSM_ReturnInPosition : MonoBehaviour {
             else
             {
 				isWaiting = false;
+                
                 StartCoroutine(DisableComponents());
             }
 			yield return null;
@@ -111,7 +114,8 @@ public class FSM_ReturnInPosition : MonoBehaviour {
 		//this.GetComponent<ThirdPersonUserControl>().enabled = false;
 		this.GetComponent<CharController>().enabled = false;
 		this.GetComponent<Animator>().SetFloat("Forward", 0);
-		this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        this.transform.eulerAngles = initialRotation;
+        this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
     }
 }
