@@ -8,6 +8,9 @@ public class PropertyHolderEventEditor : Editor
     string[] nameSequence;
     string[] nAction;
 
+    int randomLenght;
+    int sequenceLenght;
+
     public SerializedProperty 
 		
 		condition_Prop,
@@ -55,18 +58,41 @@ public class PropertyHolderEventEditor : Editor
         isSequence_Prop = serializedObject.FindProperty("isSequence");
         choice_Prop = serializedObject.FindProperty("choice");
 
-        nameRandomSequence = new string[FlowManager.Self.flowRandomGameArray.Length];
-        nameSequence = new string[FlowManager.Self.flowGameArray.Count];
-
-        for (int i = 0; i < FlowManager.Self.flowGameArray.Count; i++)
+        if (FindObjectOfType<FlowManager>())
         {
-            nameSequence[i] = FlowManager.Self.flowGameArray[i].SequenceName;
-        }
+            randomLenght = FlowManager.Self.flowRandomGameArray.Length;
+            sequenceLenght = FlowManager.Self.flowGameArray.Count;
 
-        for (int i = 0; i < FlowManager.Self.flowRandomGameArray.Length; i++)
-        {
-            nameRandomSequence[i] = FlowManager.Self.flowRandomGameArray[i].SequenceName;
+            nameRandomSequence = new string[FlowManager.Self.flowRandomGameArray.Length];
+            nameSequence = new string[FlowManager.Self.flowGameArray.Count];
+
+            for (int i = 0; i < FlowManager.Self.flowGameArray.Count; i++)
+            {
+                nameSequence[i] = FlowManager.Self.flowGameArray[i].SequenceName;
+            }
+
+            for (int i = 0; i < FlowManager.Self.flowRandomGameArray.Length; i++)
+            {
+                nameRandomSequence[i] = FlowManager.Self.flowRandomGameArray[i].SequenceName;
+            }
+
+            if (FlowManager.Self.flowGameArray.Count == 0)
+            {
+                nameRandomSequence = new string[1] { "null" };
+            }
+            if (FlowManager.Self.flowRandomGameArray.Length == 0)
+            {
+                nameSequence = new string[1] { "null" };
+                choice_Prop.intValue = 1;
+            }
         }
+        else
+        {
+            nameRandomSequence = new string[1] { "null" };
+            nameSequence = new string[1] { "null" };
+            choice_Prop.intValue = 1;
+        }
+        
 
 		textList_Prop = serializedObject.FindProperty ("textToShowList");
 		unityEvents_Prop = serializedObject.FindProperty ("unityEventsList");
@@ -107,7 +133,11 @@ public class PropertyHolderEventEditor : Editor
             case GameEvents.Condition.RandomActionSequence:
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("Nome Azione");
-                choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameRandomSequence);
+                if (randomLenght > 0)
+                {
+                    choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameRandomSequence);
+                }
+                
                 EditorGUILayout.EndHorizontal();
                 break;
 
@@ -116,17 +146,23 @@ public class PropertyHolderEventEditor : Editor
                 EditorGUILayout.LabelField("Nome Azione");
                 choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameSequence);
                 EditorGUILayout.EndHorizontal();
-                // inizializzo l'array con il numero di 
-                nAction = new string[FlowManager.Self.flowGameArray[choice_Prop.intValue].sequence.Length];
-                for (int i = 0; i < nAction.Length; i++)
+                if (FindObjectOfType<FlowManager>() && sequenceLenght > 0)
                 {
-                    nAction[i] = (i + 1).ToString();
+                    nAction = new string[FlowManager.Self.flowGameArray[choice_Prop.intValue].sequence.Length];
+                    for (int i = 0; i < nAction.Length; i++)
+                    {
+                        nAction[i] = (i + 1).ToString();
+                    }
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("Posizione");
+
+                    positionArray_Prop.intValue = EditorGUILayout.Popup(positionArray_Prop.intValue, nAction);
+                    EditorGUILayout.EndHorizontal();
+
                 }
 
-                EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField("Posizione");
-                positionArray_Prop.intValue = EditorGUILayout.Popup(positionArray_Prop.intValue, nAction);
-                EditorGUILayout.EndHorizontal();
+
+                
                 break;
 
 			case GameEvents.Condition.LoadScene:
@@ -213,7 +249,11 @@ public class PropertyHolderEventEditor : Editor
             isSequence_Prop.boolValue = false;
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Nome Azione");
-            choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameRandomSequence);
+            if (randomLenght > 0)
+            {
+                choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameRandomSequence);
+            }
+            
             EditorGUILayout.EndHorizontal();
         }
         EditorGUILayout.PropertyField(isSequence_Prop, new GUIContent("Sequenza Non Random"));
@@ -230,12 +270,14 @@ public class PropertyHolderEventEditor : Editor
             choice_Prop.intValue = EditorGUILayout.Popup(choice_Prop.intValue, nameSequence);
             EditorGUILayout.EndHorizontal();
             // inizializzo l'array con il numero di 
-            nAction = new string[FlowManager.Self.flowGameArray[choice_Prop.intValue].sequence.Length];
-            for (int i = 0; i < nAction.Length; i++)
+            if (FindObjectOfType<FlowManager>() && sequenceLenght > 0)
             {
-                nAction[i] = (i + 1).ToString();
+                nAction = new string[FlowManager.Self.flowGameArray[choice_Prop.intValue].sequence.Length];
+                for (int i = 0; i < nAction.Length; i++)
+                {
+                    nAction[i] = (i + 1).ToString();
+                }
             }
-
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Posizione");
             positionArray_Prop.intValue = EditorGUILayout.Popup(positionArray_Prop.intValue, nAction);
