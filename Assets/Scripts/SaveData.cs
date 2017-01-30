@@ -14,11 +14,11 @@ public class SaveData : MonoBehaviour
     [Serializable]
     class FlowBoolSave
     {
-        public FlowBoolSave(bool[] _sequence,bool _executed)
+        public FlowBoolSave(bool[] _sequence, bool _executed)
         {
             sequence = _sequence;
             executed = _executed;
-            
+
         }
         public bool[] sequence;
         public bool executed;
@@ -29,12 +29,13 @@ public class SaveData : MonoBehaviour
     {
         public Dictionary<string, Dictionary<string, float>> npcInfo;
         public string playername;
-        public List<FlowBoolSave> sequenceToSave; 
-        
+        public List<FlowBoolSave> sequenceToSave;
+        public Dictionary<string, Dictionary<string, bool>> components;
 
         public PlayerData()
         {
             npcInfo = new Dictionary<string, Dictionary<string, float>>();
+            components = new Dictionary<string, Dictionary<string, bool>>();
         }
 
         public void addNpcInfo(string name, Dictionary<string, float> inf)
@@ -42,19 +43,18 @@ public class SaveData : MonoBehaviour
             npcInfo.Add(name, inf);
         }
 
-        //public void AddFlowManager()
-        //{
-        //    sequenceToSave = new List<FlowBoolSave>();
-        //    foreach (var array in FlowManager.Self.flowRandomGameArray)
-        //    {
-        //        sequenceToSave.Add(new FlowBoolSave(array.sequence,array.executed));                
-        //    }
-        //    foreach (var array in FlowManager.Self.flowGameArray)
-        //    {                
-        //        sequenceToSave.Add(new FlowBoolSave(array.sequence, array.executed));  
-        //    }           
-            
-        //}
+        public void addComponent(string npc, string name, bool enabled)
+        {
+            if (!components.ContainsKey(npc))
+            {
+                components[npc] = new Dictionary<string, bool>();
+
+            }
+
+            if (!components[npc].ContainsKey(name))
+                components[npc].Add(name, enabled);
+
+        }
 
     }
 
@@ -69,7 +69,7 @@ public class SaveData : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             Save();
-            
+
         }
 
         if (Input.GetKeyDown(KeyCode.X))
@@ -100,7 +100,7 @@ public class SaveData : MonoBehaviour
                 data.sequenceToSave.Add(new FlowBoolSave(array.sequence, array.executed));
             }
         }
-        
+
         var npcList = GameObject.FindGameObjectsWithTag("ControllableNPC");
         foreach (var npc in npcList)
         {
@@ -123,6 +123,13 @@ public class SaveData : MonoBehaviour
             }
             data.addNpcInfo(npc.name, npcInfo);
 
+            var compsList = npc.GetComponents<MonoBehaviour>();
+            foreach (var comp in compsList)
+            {
+                //Debug.Log(npc.name + " - " + comp.ToString() + " - " + comp.enabled);
+                data.addComponent(npc.name, comp.ToString(), comp.enabled);
+            }
+
         }
 
         var playerNPC = GameObject.FindGameObjectWithTag("Player");
@@ -135,7 +142,16 @@ public class SaveData : MonoBehaviour
         playerInfo.Add("roty", playerrot.y);
         data.addNpcInfo(playerNPC.name, playerInfo);
         data.playername = playerNPC.name;
-        
+
+        var comps = playerNPC.GetComponents<MonoBehaviour>();
+        foreach (var comp in comps)
+        {
+            //Debug.Log(npc.name + " - " + comp.ToString() + " - " + comp.enabled);
+            data.addComponent(playerNPC.name, comp.ToString(), comp.enabled);
+        }
+
+
+
         bf.Serialize(fs, data);
         fs.Close();
 
@@ -170,7 +186,7 @@ public class SaveData : MonoBehaviour
                     flow.flowGameArray[j].executed = data.sequenceToSave[i].executed;
                     j++;
                 }
-            }            
+            }
 
             //sposto il player
             var allInfo = data.npcInfo;
@@ -181,11 +197,35 @@ public class SaveData : MonoBehaviour
                 Quaternion newrot = new Quaternion(0, playerInfo["roty"], 0, 1);
                 GameObject.Find(playername).transform.position = newpos;
                 GameObject.Find(playername).transform.rotation = newrot;
+
+
+                var comps = GameObject.Find(playername).GetComponents<MonoBehaviour>();
+                for (var i = 0; i < comps.Length; i++)
+                {
+                    var comp = comps[i];
+                    var compname = comp.ToString();
+                    Debug.Log("COMPNAME: " + compname);
+                    if (data.components.ContainsKey(playername))
+                    {
+                        Debug.Log("Componente di " + playername);
+                        var actcomp = data.components[playername];
+                        if (actcomp.ContainsKey(compname))
+                        {
+                            Debug.Log("ENTRATO!");
+                            GameObject.Find(playername).GetComponents<MonoBehaviour>()[i].enabled = actcomp[compname];
+                        }
+                    }
+                }
+
+
+
                 if (playername.Equals(data.playername))
                 {
-                    GameObject.Find(playername).tag = "Player";                    
+                    GameObject.Find(playername).tag = "Player";
                     GameObject.FindObjectOfType<FreeLookCam>().m_Target = GameObject.Find(playername).transform;
                     GameObject.Find(playername).GetComponent<FSMLogic>().enabled = true;
+
+
 
                     //DA SISTEMARE CON IL NOME DELL'NPC PLAYER  <-----------------------------------------!!
                     if (playername != "OliviaRig_Stand")
@@ -206,12 +246,9 @@ public class SaveData : MonoBehaviour
                         if (nva != null && nva.isActiveAndEnabled && nva.isOnNavMesh)
                         {
                             nva.SetDestination(newdest);
-                            //nva.speed = 1.3f;
                         }
                     }
                     GameObject.Find(playername).tag = "ControllableNPC";
-                    GameObject.Find(playername).GetComponent<FSMLogic>().enabled = false;
-                    //GameObject.Find(playername).GetComponent<CharController>().enabled = false;
                 }
             }
         }
