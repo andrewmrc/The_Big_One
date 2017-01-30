@@ -52,5 +52,6 @@ public class MenuController : MonoBehaviour
         Time.timeScale = 1;
         PanelExit.SetActive(false);
         isInExitMenu = false;
+        refCanvasController.ExitHandler(true);
     }
 }
