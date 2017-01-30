@@ -361,4 +361,8 @@ public class DoorHandler : MonoBehaviour
     {
         listOfGo.Add(otherGo);
     }
+    public void SetFreeNpc(bool change)
+    {
+        isFreeForNpc = change;
+    }
 }
