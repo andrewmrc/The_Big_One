@@ -154,6 +154,7 @@ public class ObjectExaminator : MonoBehaviour {
 
 						returnEvent.Invoke ();
 
+						StartCoroutine(StopExamination());
 						/*
 						foreach (var action in Events.List) {
 							action.Execute ();
@@ -199,5 +200,18 @@ public class ObjectExaminator : MonoBehaviour {
 			GetComponent<MeshRenderer>().materials[1].shader = nullMaterial;
 
 		}
+	}
+
+
+	IEnumerator StopExamination () {
+		yield return new WaitForSeconds (3f);
+		isClicked = false;
+		//isLooking = true;
+		this.transform.GetChild(0).gameObject.SetActive(true);
+		refUI.ExamineMemory(memorySprite, false);
+		refUI.TextToShow(text, false);
+		Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
+		GameManager.Self.blockMovement = false;
+		GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().enabled = true;
 	}
 }
