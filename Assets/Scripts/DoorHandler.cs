@@ -194,7 +194,7 @@ public class DoorHandler : MonoBehaviour
             if (npcFind || playerCanEnter)
             {
 
-                if (Input.GetKeyDown(KeyCode.C) && !isOpened)
+                if ((Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("Examine")) && !isOpened)
                 {
                     RaycastHit hitInfo;
                     Vector3 modYPlayer = new Vector3(0, 1, 0) + coll.transform.position;
@@ -222,7 +222,7 @@ public class DoorHandler : MonoBehaviour
             }
             else
             {
-                if (Input.GetKeyDown(KeyCode.C) && !isOpened)
+                if ((Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("Examine") )&& !isOpened)
                 {
                     RaycastHit hitInfo;
                     Vector3 modYPlayer = new Vector3(0, 1, 0) + coll.transform.position;
