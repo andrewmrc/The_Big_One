@@ -1,0 +1,463 @@
+fileFormatVersion: 2
+guid: 6819c8fd5eed7444babfbb3debfd6c6c
+timeCreated: 1485877194
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Aiuola
+    100002: Aiuola.001
+    100004: armadio ospedale.002
+    100006: 'Bottoni '
+    100008: Cavi
+    100010: cavi5
+    100012: Cornice finestre
+    100014: Cornice porta
+    100016: cornici ospedale parete
+    100018: 'Corrimano '
+    100020: Cube.026
+    100022: Cube.045
+    100024: Cube.055
+    100026: entrata ospedale tetto
+    100028: Exit
+    100030: Finestre
+    100032: Floor
+    100034: Floor primo piano
+    100036: //RootNode
+    100038: Luci
+    100040: Mura esterne
+    100042: Muro
+    100044: Muro Primo Piano
+    100046: 'Muro secondo Piano '
+    100048: Palazzo  ponte
+    100050: 'parcheggio '
+    100052: Pavimento
+    100054: 'Pianerottolo '
+    100056: piano scale 1
+    100058: Piano scale 2
+    100060: Plane.027
+    100062: Porta ingresso
+    100064: 'Porta ingresso '
+    100066: Porta posteriore
+    100068: Porta scale2
+    100070: Porta10
+    100072: Porta10.001
+    100074: Porta18
+    100076: Porte
+    100078: Porte ascensore
+    100080: Porte grandi
+    100082: Porte.001
+    100084: Porte.002
+    100086: Porte.003
+    100088: Porte.004
+    100090: Porte.005
+    100092: Porte.006
+    100094: Porte.007
+    100096: Porte.008
+    100098: Porte.009
+    100100: Porte.010
+    100102: Porte.011
+    100104: Porte.012
+    100106: Porte.013
+    100108: Porte.014
+    100110: Porte.015
+    100112: Porte.016
+    100114: Porte.017
+    100116: Porte.018
+    100118: Porte.019
+    100120: Porte.020
+    100122: Reception
+    100124: Scale
+    100126: Secondo palazzo
+    100128: Sedie multiple
+    100130: Soffitto
+    100132: 'Soffitto '
+    100134: Spessore pianerottolo
+    100136: Spffitto1
+    100138: terreno
+    100140: Tetto
+    100142: Text
+    100144: Tubi cavi
+    100146: Vetro
+    100148: Vetro finestre
+    100150: Vetro ingresso
+    100152: 'Vetro piano di sotto '
+    100154: 'Vetro primo piano '
+    100156: Vetro2
+    400000: Aiuola
+    400002: Aiuola.001
+    400004: armadio ospedale.002
+    400006: 'Bottoni '
+    400008: Cavi
+    400010: cavi5
+    400012: Cornice finestre
+    400014: Cornice porta
+    400016: cornici ospedale parete
+    400018: 'Corrimano '
+    400020: Cube.026
+    400022: Cube.045
+    400024: Cube.055
+    400026: entrata ospedale tetto
+    400028: Exit
+    400030: Finestre
+    400032: Floor
+    400034: Floor primo piano
+    400036: //RootNode
+    400038: Luci
+    400040: Mura esterne
+    400042: Muro
+    400044: Muro Primo Piano
+    400046: 'Muro secondo Piano '
+    400048: Palazzo  ponte
+    400050: 'parcheggio '
+    400052: Pavimento
+    400054: 'Pianerottolo '
+    400056: piano scale 1
+    400058: Piano scale 2
+    400060: Plane.027
+    400062: Porta ingresso
+    400064: 'Porta ingresso '
+    400066: Porta posteriore
+    400068: Porta scale2
+    400070: Porta10
+    400072: Porta10.001
+    400074: Porta18
+    400076: Porte
+    400078: Porte ascensore
+    400080: Porte grandi
+    400082: Porte.001
+    400084: Porte.002
+    400086: Porte.003
+    400088: Porte.004
+    400090: Porte.005
+    400092: Porte.006
+    400094: Porte.007
+    400096: Porte.008
+    400098: Porte.009
+    400100: Porte.010
+    400102: Porte.011
+    400104: Porte.012
+    400106: Porte.013
+    400108: Porte.014
+    400110: Porte.015
+    400112: Porte.016
+    400114: Porte.017
+    400116: Porte.018
+    400118: Porte.019
+    400120: Porte.020
+    400122: Reception
+    400124: Scale
+    400126: Secondo palazzo
+    400128: Sedie multiple
+    400130: Soffitto
+    400132: 'Soffitto '
+    400134: Spessore pianerottolo
+    400136: Spffitto1
+    400138: terreno
+    400140: Tetto
+    400142: Text
+    400144: Tubi cavi
+    400146: Vetro
+    400148: Vetro finestre
+    400150: Vetro ingresso
+    400152: 'Vetro piano di sotto '
+    400154: 'Vetro primo piano '
+    400156: Vetro2
+    2300000: Aiuola
+    2300002: Aiuola.001
+    2300004: armadio ospedale.002
+    2300006: 'Bottoni '
+    2300008: Cavi
+    2300010: cavi5
+    2300012: Cornice finestre
+    2300014: Cornice porta
+    2300016: cornici ospedale parete
+    2300018: 'Corrimano '
+    2300020: Cube.026
+    2300022: Cube.045
+    2300024: Cube.055
+    2300026: entrata ospedale tetto
+    2300028: Exit
+    2300030: Finestre
+    2300032: Floor
+    2300034: Floor primo piano
+    2300036: Luci
+    2300038: Mura esterne
+    2300040: Muro
+    2300042: Muro Primo Piano
+    2300044: 'Muro secondo Piano '
+    2300046: Palazzo  ponte
+    2300048: 'parcheggio '
+    2300050: Pavimento
+    2300052: 'Pianerottolo '
+    2300054: piano scale 1
+    2300056: Piano scale 2
+    2300058: Plane.027
+    2300060: Porta ingresso
+    2300062: 'Porta ingresso '
+    2300064: Porta posteriore
+    2300066: Porta scale2
+    2300068: Porta10
+    2300070: Porta10.001
+    2300072: Porta18
+    2300074: Porte
+    2300076: Porte ascensore
+    2300078: Porte grandi
+    2300080: Porte.001
+    2300082: Porte.002
+    2300084: Porte.003
+    2300086: Porte.004
+    2300088: Porte.005
+    2300090: Porte.006
+    2300092: Porte.007
+    2300094: Porte.008
+    2300096: Porte.009
+    2300098: Porte.010
+    2300100: Porte.011
+    2300102: Porte.012
+    2300104: Porte.013
+    2300106: Porte.014
+    2300108: Porte.015
+    2300110: Porte.016
+    2300112: Porte.017
+    2300114: Porte.018
+    2300116: Porte.019
+    2300118: Porte.020
+    2300120: Reception
+    2300122: Scale
+    2300124: Secondo palazzo
+    2300126: Sedie multiple
+    2300128: Soffitto
+    2300130: 'Soffitto '
+    2300132: Spessore pianerottolo
+    2300134: Spffitto1
+    2300136: terreno
+    2300138: Tetto
+    2300140: Text
+    2300142: Tubi cavi
+    2300144: Vetro
+    2300146: Vetro finestre
+    2300148: Vetro ingresso
+    2300150: 'Vetro piano di sotto '
+    2300152: 'Vetro primo piano '
+    2300154: Vetro2
+    3300000: Aiuola
+    3300002: Aiuola.001
+    3300004: armadio ospedale.002
+    3300006: 'Bottoni '
+    3300008: Cavi
+    3300010: cavi5
+    3300012: Cornice finestre
+    3300014: Cornice porta
+    3300016: cornici ospedale parete
+    3300018: 'Corrimano '
+    3300020: Cube.026
+    3300022: Cube.045
+    3300024: Cube.055
+    3300026: entrata ospedale tetto
+    3300028: Exit
+    3300030: Finestre
+    3300032: Floor
+    3300034: Floor primo piano
+    3300036: Luci
+    3300038: Mura esterne
+    3300040: Muro
+    3300042: Muro Primo Piano
+    3300044: 'Muro secondo Piano '
+    3300046: Palazzo  ponte
+    3300048: 'parcheggio '
+    3300050: Pavimento
+    3300052: 'Pianerottolo '
+    3300054: piano scale 1
+    3300056: Piano scale 2
+    3300058: Plane.027
+    3300060: Porta ingresso
+    3300062: 'Porta ingresso '
+    3300064: Porta posteriore
+    3300066: Porta scale2
+    3300068: Porta10
+    3300070: Porta10.001
+    3300072: Porta18
+    3300074: Porte
+    3300076: Porte ascensore
+    3300078: Porte grandi
+    3300080: Porte.001
+    3300082: Porte.002
+    3300084: Porte.003
+    3300086: Porte.004
+    3300088: Porte.005
+    3300090: Porte.006
+    3300092: Porte.007
+    3300094: Porte.008
+    3300096: Porte.009
+    3300098: Porte.010
+    3300100: Porte.011
+    3300102: Porte.012
+    3300104: Porte.013
+    3300106: Porte.014
+    3300108: Porte.015
+    3300110: Porte.016
+    3300112: Porte.017
+    3300114: Porte.018
+    3300116: Porte.019
+    3300118: Porte.020
+    3300120: Reception
+    3300122: Scale
+    3300124: Secondo palazzo
+    3300126: Sedie multiple
+    3300128: Soffitto
+    3300130: 'Soffitto '
+    3300132: Spessore pianerottolo
+    3300134: Spffitto1
+    3300136: terreno
+    3300138: Tetto
+    3300140: Text
+    3300142: Tubi cavi
+    3300144: Vetro
+    3300146: Vetro finestre
+    3300148: Vetro ingresso
+    3300150: 'Vetro piano di sotto '
+    3300152: 'Vetro primo piano '
+    3300154: Vetro2
+    4300000: Sedie multiple
+    4300002: Porte.020
+    4300004: Text
+    4300006: Porte.019
+    4300008: Porte.018
+    4300010: Porte.017
+    4300012: Porte.016
+    4300014: Porte.015
+    4300016: Porte.014
+    4300018: Porte.013
+    4300020: Porte.012
+    4300022: Porte.011
+    4300024: Porte.010
+    4300026: Porte.009
+    4300028: Porte.008
+    4300030: Porte.007
+    4300032: Porte.006
+    4300034: Porte.005
+    4300036: Porte.004
+    4300038: Porte.003
+    4300040: Porte.002
+    4300042: Porte.001
+    4300044: Aiuola.001
+    4300046: terreno
+    4300048: Porte
+    4300050: Porta ingresso
+    4300052: Porta posteriore
+    4300054: 'Porta ingresso '
+    4300056: Porta10.001
+    4300058: Palazzo  ponte
+    4300060: Vetro finestre
+    4300062: 'parcheggio '
+    4300064: Mura esterne
+    4300066: cornici ospedale parete
+    4300068: Vetro2
+    4300070: Floor
+    4300072: Spessore pianerottolo
+    4300074: Floor primo piano
+    4300076: Secondo palazzo
+    4300078: Vetro
+    4300080: Porta scale2
+    4300082: Porta10
+    4300084: Porta18
+    4300086: Cube.055
+    4300088: Cornice porta
+    4300090: Cornice finestre
+    4300092: Cube.045
+    4300094: Tubi cavi
+    4300096: Luci
+    4300098: cavi5
+    4300100: Cavi
+    4300102: 'Vetro primo piano '
+    4300104: 'Vetro piano di sotto '
+    4300106: 'Bottoni '
+    4300108: Tetto
+    4300110: piano scale 1
+    4300112: Muro Primo Piano
+    4300114: 'Pianerottolo '
+    4300116: Exit
+    4300118: armadio ospedale.002
+    4300120: Reception
+    4300122: Plane.027
+    4300124: 'Corrimano '
+    4300126: Scale
+    4300128: Muro
+    4300130: Finestre
+    4300132: Piano scale 2
+    4300134: entrata ospedale tetto
+    4300136: Aiuola
+    4300138: Cube.026
+    4300140: Spffitto1
+    4300142: Pavimento
+    4300144: Vetro ingresso
+    4300146: 'Muro secondo Piano '
+    4300148: Soffitto
+    4300150: Porte ascensore
+    4300152: 'Soffitto '
+    4300154: Porte grandi
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
