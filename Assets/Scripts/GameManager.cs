@@ -97,12 +97,14 @@ public class GameManager : MonoBehaviour {
 
 
 	public void HandlePowerActivation (bool act) {
-		if (act) {
-			cantUsePower = true;
-			cameraRig.GetComponent<FreeLookCam> ().cantUsePower = true;
-		} else {
-			cantUsePower = false;
-			cameraRig.GetComponent<FreeLookCam> ().cantUsePower = false;
+		if (cameraRig != null) {
+			if (act) {
+				cantUsePower = true;
+				cameraRig.GetComponent<FreeLookCam> ().cantUsePower = true;
+			} else {
+				cantUsePower = false;
+				cameraRig.GetComponent<FreeLookCam> ().cantUsePower = false;
+			}
 		}
 	}
 
