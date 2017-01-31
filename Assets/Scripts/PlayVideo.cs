@@ -22,8 +22,8 @@ public class PlayVideo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		seconds = Time.time;
-
+		seconds += Time.deltaTime;
+		Debug.Log ("cutscene");
 		if (Input.GetKeyDown (KeyCode.Space) && movie.isPlaying) {
 			movie.Pause ();
 			audio.Pause ();
@@ -31,8 +31,9 @@ public class PlayVideo : MonoBehaviour {
 			movie.Play ();
 			audio.Play ();
 		}
-
+		Debug.Log (seconds + " " + movie.duration);
 		if (seconds >= movie.duration) {
+			
 			returnEvent.Invoke ();
 		}
 	}
