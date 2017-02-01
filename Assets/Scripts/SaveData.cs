@@ -86,7 +86,6 @@ public class SaveData : MonoBehaviour
 
         PlayerData data = new PlayerData();
 
-        //data.AddFlowManager();
         //salvo il flowmanager
         if (flow)
         {
@@ -104,7 +103,6 @@ public class SaveData : MonoBehaviour
         var npcList = GameObject.FindGameObjectsWithTag("ControllableNPC");
         foreach (var npc in npcList)
         {
-            //Debug.Log ("NOME: "+npc.name+ ", POSIZIONE: "+npc.transform.position);
             Dictionary<string, float> npcInfo = new Dictionary<string, float>();
             var npcpos = npc.transform.position;
             npcInfo.Add("posx", npcpos.x);
@@ -126,7 +124,6 @@ public class SaveData : MonoBehaviour
             var compsList = npc.GetComponents<MonoBehaviour>();
             foreach (var comp in compsList)
             {
-                //Debug.Log(npc.name + " - " + comp.ToString() + " - " + comp.enabled);
                 data.addComponent(npc.name, comp.ToString(), comp.enabled);
             }
 
@@ -146,15 +143,11 @@ public class SaveData : MonoBehaviour
         var comps = playerNPC.GetComponents<MonoBehaviour>();
         foreach (var comp in comps)
         {
-            //Debug.Log(npc.name + " - " + comp.ToString() + " - " + comp.enabled);
             data.addComponent(playerNPC.name, comp.ToString(), comp.enabled);
         }
-
-
-
+        
         bf.Serialize(fs, data);
         fs.Close();
-
     }
 
     public void Load()
