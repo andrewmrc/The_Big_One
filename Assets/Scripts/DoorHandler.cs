@@ -5,9 +5,16 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+// Placeholder per IdGenerator
+public class UniqueIdentifierAttribute : PropertyAttribute { }
+
 [ExecuteInEditMode]
 public class DoorHandler : MonoBehaviour
 {
+    //Generatore di id univoco per ogni porta
+    [UniqueIdentifier]
+    public string uniqueId;
+
     // Variabile utilizzata per capire come sono direzionate
     // grazie artisti
     // False = forward == Vector3.up
@@ -109,12 +116,7 @@ public class DoorHandler : MonoBehaviour
             qualcosa.isTrigger = true;
             qualcosa.center = center;
             qualcosa.size = size;
-
-
         }
-
-
-
 
 
         if (player)
@@ -131,9 +133,7 @@ public class DoorHandler : MonoBehaviour
                     }
                     doorOponerCO = StartCoroutine(DoorOpener(0));
                 }
-
-
-
+                
             }
         }
     }
@@ -244,8 +244,6 @@ public class DoorHandler : MonoBehaviour
 			Debug.Log ("ROT: " + rot);
 			//this.gameObject.transform.rotation = Quaternion.Euler (this.gameObject.transform.rotation.x - 90f, this.gameObject.transform.rotation.y, this.gameObject.transform.rotation.z);
 			this.gameObject.transform.rotation = rot;*/
-
-
 
         }
     }
