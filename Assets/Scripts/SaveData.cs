@@ -198,34 +198,25 @@ public class SaveData : MonoBehaviour
                 GameObject.Find(playername).transform.position = newpos;
                 GameObject.Find(playername).transform.rotation = newrot;
 
-
                 var comps = GameObject.Find(playername).GetComponents<MonoBehaviour>();
                 for (var i = 0; i < comps.Length; i++)
                 {
                     var comp = comps[i];
                     var compname = comp.ToString();
-                    Debug.Log("COMPNAME: " + compname);
                     if (data.components.ContainsKey(playername))
                     {
-                        Debug.Log("Componente di " + playername);
                         var actcomp = data.components[playername];
                         if (actcomp.ContainsKey(compname))
                         {
-                            Debug.Log("ENTRATO!");
                             GameObject.Find(playername).GetComponents<MonoBehaviour>()[i].enabled = actcomp[compname];
                         }
                     }
                 }
 
-
-
                 if (playername.Equals(data.playername))
                 {
                     GameObject.Find(playername).tag = "Player";
                     GameObject.FindObjectOfType<FreeLookCam>().m_Target = GameObject.Find(playername).transform;
-                    GameObject.Find(playername).GetComponent<FSMLogic>().enabled = true;
-
-
 
                     //DA SISTEMARE CON IL NOME DELL'NPC PLAYER  <-----------------------------------------!!
                     if (playername != "OliviaRig_Stand")
