@@ -167,7 +167,7 @@ public class CharController : MonoBehaviour {
 			if (Input.GetAxis("Horizontal") != 0) {
 				m_Animator.SetBool ("Collision", false);
 				if (stayThere) {
-					StartCoroutine (StopMove (0.5f));
+					StartCoroutine (StopMove (1f));
 				}
 			}
 		}
