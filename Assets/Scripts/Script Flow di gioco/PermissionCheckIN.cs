@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class PermissionCheckIN : MonoBehaviour
 {
 
-    public GameObject target;
+    public GameObject target; //inserire un target e attivare la bool target version per permettere l'accesso ad un solo personaggio
 	public string thisPasskey;
-	public bool targetVersion;
-	public string passDescription;
-	public bool useOneTime;
+	public bool targetVersion; // da attivare in caso si metta un unico target
+	public string passDescription; //il testo che deve apparire se un personaggio prova a entrare e non ha il permesso
+	public bool useOneTime; // fa in modo che una volta passato attraverso si spenga il collider
 
     void OnCollisionEnter(Collision collision)
     {
@@ -36,10 +36,8 @@ public class PermissionCheckIN : MonoBehaviour
 				}
 			}
 		}
-
-
-
     }
+
 
     void OnTriggerExit(Collider col)
     {
