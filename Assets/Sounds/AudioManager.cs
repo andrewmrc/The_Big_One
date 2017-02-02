@@ -20,7 +20,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
 
     [Header("[Tempo tra ogni suono di passo]")]
-    public float stepTime;
+    private float stepTime = 0.5f;
 
 
     void Start()
