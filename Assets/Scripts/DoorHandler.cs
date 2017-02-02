@@ -127,7 +127,7 @@ public class DoorHandler : MonoBehaviour
 				choosedDirection = true;
 				center = new Vector3 (0.6f, -2f, -0.05f);
 				size = new Vector3 (1.28f, 0.05f, 2f);
-				Debug.Log ("qualcosaltro");
+
 				qualcosa = GetComponents<BoxCollider> () [0];
 				qualcosa.isTrigger = true;
 				qualcosa.center = center;
@@ -318,7 +318,7 @@ public class DoorHandler : MonoBehaviour
         float calculatedProduct = 0;
         if (!choosedDirection)
         {
-			Debug.Log ("asd");
+			//Debug.Log ("asd");
 			calculatedProduct = Vector3.Dot(-transform.up, coll.transform.forward);
         }
         if (choosedDirection)
