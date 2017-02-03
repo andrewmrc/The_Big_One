@@ -50,7 +50,7 @@ namespace UnityStandardAssets.Cameras
 			player.GetComponent<Animator>().SetFloat("Forward", 0);
 			player.GetComponent<FSMLogic> ().enabled = false;
 			player.GetComponent<CharController> ().enabled = false;
-			player.transform.rotation = new Quaternion (0f, 0f, 0f, 0f);
+			//player.transform.rotation = new Quaternion (0f, 0f, 0f, 0f);
 			refFader.GetComponent<CanvasGroup> ().alpha = 1;
 			StartCoroutine(RailCameraCO());
         }
