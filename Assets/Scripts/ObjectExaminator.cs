@@ -8,13 +8,14 @@ using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.Events;
 
 public class ObjectExaminator : MonoBehaviour {
-
+    
 	public Sprite memorySprite;
 
 	bool isLooking = false;
 	bool isClicked = false;
 
-	UI refUI;
+
+    UI refUI;
 
 	RaycastHit hit;
 	public bool isIn = false;
@@ -33,10 +34,10 @@ public class ObjectExaminator : MonoBehaviour {
 		refUI = FindObjectOfType<UI>();
 		outline = Resources.Load("Outline") as Shader;
 		nullMaterial = Resources.Load("Null") as Shader;
-	}
+                
+    }
 
-
-
+    
 	void OnTriggerEnter(Collider player)
 	{
 		if (player.tag == "Player")
@@ -46,7 +47,9 @@ public class ObjectExaminator : MonoBehaviour {
 			StartCoroutine(ClickMe(0));
 			ChangeMaterial(isIn);
 
-		}       
+		}
+
+        
 
 	}
 

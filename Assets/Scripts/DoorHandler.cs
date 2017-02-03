@@ -19,7 +19,7 @@ public class DoorHandler : MonoBehaviour
     // grazie artisti
     // False = forward == Vector3.up
     // True = forward == Vector3.forward
-    private bool choosedDirection;
+	public bool choosedDirection;
     // Varibili utilizzate per l'aggiunta dei collider
     Vector3 center;
     Vector3 size;
@@ -37,7 +37,7 @@ public class DoorHandler : MonoBehaviour
     public string[] messageList;
     public float messageSpeed = 2;
     public UnityEvent messageEvent;
-
+	public bool setCollider = false;
 
     // Varibili utilizzate dal programmatore
     private GameObject player;
@@ -45,7 +45,7 @@ public class DoorHandler : MonoBehaviour
     private Vector3 openRot;
     bool npcFind = false;
     Coroutine doorOponerCO;
-    private float product;
+	public  float product;
     bool isOpened = false;
     bool isClosing = false;
 
@@ -65,58 +65,92 @@ public class DoorHandler : MonoBehaviour
 
     void Update()
     {
-        if (GetComponents<BoxCollider>().Length <= 1)
-        {
-            this.gameObject.AddComponent<BoxCollider>();
-            qualcosaInside = true;
-        }
-        if (qualcosaInside)
-        {
-            DestroyImmediate(this.gameObject.GetComponent<MeshCollider>());
-            qualcosaInside = false;
-        }
+		if (this.gameObject.name == "Porte.020") {
+			/*Debug.Log ("Forward: " + this.transform.forward);
+			Debug.Log ("Up: " + this.transform.up);
+			Debug.Log ("Right: " + this.transform.right);
+			Debug.Log (this.transform.forward == Vector3.left/* && this.transform.up == Vector3.down*);*/
 
-        if (this.transform.forward == Vector3.up)
-        {
-            choosedDirection = false;
-            center = new Vector3(0, 0.15f, -0.3f);
-            size = new Vector3(1, 0.32f, 0.01f);
+		}
+		if (!setCollider) {
 
+			if (GetComponents<BoxCollider> ().Length <= 1) {
+				this.gameObject.AddComponent<BoxCollider> ();
+				qualcosaInside = true;
+			}
 
-            qualcosa = GetComponents<BoxCollider>()[0];
-            qualcosa.isTrigger = true;
-            qualcosa.center = center;
-            qualcosa.size = size;
+			if (qualcosaInside) {
+				DestroyImmediate (this.gameObject.GetComponent<MeshCollider> ());
+				qualcosaInside = false;
+			}
 
-        }
-
-        if (this.transform.forward == Vector3.forward)
-        {
-            choosedDirection = true;
-            center = new Vector3(0.6f, -0.9f, -0.05f);
-            size = new Vector3(1.28f, 0.05f, 2f);
+			if (this.transform.forward == Vector3.up) {
+				choosedDirection = false;
+				center = new Vector3 (0.25f, 0.01f, -0.3f);
+				size = new Vector3 (0.5f, 0.75f, 0.01f);
 
 
-            qualcosa = GetComponents<BoxCollider>()[0];
-            qualcosa.isTrigger = true;
-            qualcosa.center = center;
-            qualcosa.size = size;
+				qualcosa = GetComponents<BoxCollider> () [0];
+				qualcosa.isTrigger = true;
+				qualcosa.center = center;
+				qualcosa.size = size;
+
+			}
+
+			if (this.transform.forward == Vector3.forward) {
+				choosedDirection = true;
+				center = new Vector3 (0.6f, -0.9f, -0.05f);
+				size = new Vector3 (1.28f, 0.05f, 2f);
 
 
-        }
-        if (this.transform.forward == Vector3.up && this.transform.right == Vector3.forward)
-        {
+				qualcosa = GetComponents<BoxCollider> () [0];
+				qualcosa.isTrigger = true;
+				qualcosa.center = center;
+				qualcosa.size = size;
 
-            choosedDirection = true;
-            center = new Vector3(0f, 0.6f, -2.1f);
-            size = new Vector3(2.2f, 1.25f, 0f);
+			}
 
 
-            qualcosa = GetComponents<BoxCollider>()[0];
-            qualcosa.isTrigger = true;
-            qualcosa.center = center;
-            qualcosa.size = size;
-        }
+			if (this.transform.forward == Vector3.forward && this.transform.up == Vector3.down) {
+				choosedDirection = true;
+				center = new Vector3 (0.6f, -2f, -0.05f);
+				size = new Vector3 (1.28f, 0.05f, 2f);
+
+				qualcosa = GetComponents<BoxCollider> () [0];
+				qualcosa.isTrigger = true;
+				qualcosa.center = center;
+				qualcosa.size = size;
+			}
+
+
+			if (this.transform.forward == Vector3.left && this.transform.up == Vector3.down) {
+				choosedDirection = true;
+				center = new Vector3 (0.6f, -2f, -0.05f);
+				size = new Vector3 (1.28f, 0.05f, 2f);
+
+				qualcosa = GetComponents<BoxCollider> () [0];
+				qualcosa.isTrigger = true;
+				qualcosa.center = center;
+				qualcosa.size = size;
+			}
+
+
+			/*
+			if (this.transform.forward == Vector3.up && this.transform.right == Vector3.forward) {
+
+				choosedDirection = true;
+				center = new Vector3 (0f, 0.6f, -2.1f);
+				size = new Vector3 (2.2f, 1.25f, 0f);
+
+
+				qualcosa = GetComponents<BoxCollider> () [0];
+				qualcosa.isTrigger = true;
+				qualcosa.center = center;
+				qualcosa.size = size;
+			}*/
+
+			setCollider = true;
+		}
 
 
         if (player)
@@ -284,10 +318,12 @@ public class DoorHandler : MonoBehaviour
         float calculatedProduct = 0;
         if (!choosedDirection)
         {
-            calculatedProduct = Vector3.Dot(transform.right, coll.transform.forward);
+			//Debug.Log ("asd");
+			calculatedProduct = Vector3.Dot(-transform.up, coll.transform.forward);
         }
         if (choosedDirection)
         {
+			
             calculatedProduct = Vector3.Dot(transform.forward, coll.transform.forward);
         }
         return calculatedProduct;
