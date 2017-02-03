@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ExamineHandler : MonoBehaviour
 {
 
     public GameObject anchor;
-    public GameObject[] objToExaminate;
-    public float maximumDistance = 3;
+    public List<GameObject> objToExaminate;
+    public float maximumDistanceFromCamera = 3;
+    private float rayDistance = 5;
+    public GameObject tempAnchor;
 
     bool playerIn;
     bool drawGizmo = false;
@@ -25,7 +28,7 @@ public class ExamineHandler : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             playerIn = true;
-            CheckObject = StartCoroutine(RayMeCO(other));
+
             float distance = 100;
             foreach (var obj in objToExaminate)
             {
@@ -36,6 +39,7 @@ public class ExamineHandler : MonoBehaviour
                     anchor = obj;
                 }
             }
+            CheckObject = StartCoroutine(RayMeCO(other));
         }
 
     }
@@ -44,8 +48,13 @@ public class ExamineHandler : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            StopCoroutine(CheckObject);
+            if (CheckObject != null)
+            {
+                StopCoroutine(CheckObject);
+            }
+
             playerIn = false;
+            anchor.GetComponent<Examinable>().StopClickMe();
             anchor = null;
         }
     }
@@ -58,7 +67,7 @@ public class ExamineHandler : MonoBehaviour
         {
 
             ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-            if (Physics.Raycast(ray, out hitInfo, maximumDistance, ~(1 << 8)))
+            if (Physics.Raycast(ray, out hitInfo, rayDistance, ~(1 << 8)))
             {
 
                 drawGizmo = true;
@@ -72,25 +81,38 @@ public class ExamineHandler : MonoBehaviour
                     float tempDist = Vector3.Distance(coll.transform.position, hitInfo.point);
                     if (distance > tempDist)
                     {
-                        distance = tempDist;
-                        anchor = coll.gameObject;
-                        foreach (var item in objToExaminate)
+                        if (anchor != null)
                         {
-                            if (item != anchor)
+                            anchor.GetComponent<Examinable>().StopClickMe();
+                            tempAnchor = coll.gameObject;
+                        }                        
+                        
+                        
+                        if (anchor != null)
+                        {
+                            
+                            float distanceCameraObj = Vector3.Distance(player.transform.position, tempAnchor.transform.position);
+                            if (distanceCameraObj < maximumDistanceFromCamera)
                             {
-                                item.GetComponent<Examinable>().StopClickMe();
+                                anchor = tempAnchor;
+                                anchor.GetComponent<Examinable>().ClickMe();
                             }
+                            else
+                            {
+                                anchor.GetComponent<Examinable>().ClickMe();
+                            }
+                            
                         }
+                        distance = tempDist;
+                        
+                        
                     }
                 }
 
             }
-            if (anchor != null)
-            {
-                anchor.GetComponent<Examinable>().ClickMe();
-            }            
             yield return null;
         }
+
     }
 
     void OnDrawGizmos()
@@ -101,5 +123,10 @@ public class ExamineHandler : MonoBehaviour
             Gizmos.color = new Color(0, 1, 0, 0.2f);
             Gizmos.DrawSphere(hitInfo.point, radius);
         }
+        else
+        {
+            Gizmos.color = new Color(0, 1, 0, 0.0f);
+        }
+        
     }
 }
