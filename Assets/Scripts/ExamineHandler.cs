@@ -85,30 +85,34 @@ public class ExamineHandler : MonoBehaviour
                         {
                             anchor.GetComponent<Examinable>().StopClickMe();
                             tempAnchor = coll.gameObject;
-                        }                        
-                        
-                        
+                        }
+
+
                         if (anchor != null)
                         {
-                            
+
                             float distanceCameraObj = Vector3.Distance(player.transform.position, tempAnchor.transform.position);
                             if (distanceCameraObj < maximumDistanceFromCamera)
                             {
-                                anchor = tempAnchor;
-                                anchor.GetComponent<Examinable>().ClickMe();
+                                if (objToExaminate.Contains(tempAnchor))
+                                {
+                                    anchor = tempAnchor;
+                                    
+                                }
+
                             }
                             else
                             {
-                                anchor.GetComponent<Examinable>().ClickMe();
+                                //anchor.GetComponent<Examinable>().ClickMe();
                             }
-                            
+
                         }
                         distance = tempDist;
                         
                         
                     }
                 }
-
+                anchor.GetComponent<Examinable>().ClickMe();
             }
             yield return null;
         }
@@ -123,10 +127,7 @@ public class ExamineHandler : MonoBehaviour
             Gizmos.color = new Color(0, 1, 0, 0.2f);
             Gizmos.DrawSphere(hitInfo.point, radius);
         }
-        else
-        {
-            Gizmos.color = new Color(0, 1, 0, 0.0f);
-        }
+       
         
     }
 }
