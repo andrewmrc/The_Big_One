@@ -6,10 +6,11 @@ public class ExamineHandler : MonoBehaviour
 {
 
     public GameObject anchor;
+    [HideInInspector]
     public List<GameObject> objToExaminate;
-    public float maximumDistanceFromCamera = 3;
-    private float rayDistance = 5;
-    public GameObject tempAnchor;
+    public float distanceFromPlayer = 2;
+    private float rayDistance = 4;
+    private GameObject tempAnchor;
 
     bool playerIn;
     bool drawGizmo = false;
@@ -20,8 +21,18 @@ public class ExamineHandler : MonoBehaviour
     public float radius = 0.5f;
 
     RaycastHit hitInfo;
-    public Collider[] check;
+    private Collider[] check;
+    private Collider[] _objToExaminate;
 
+
+    void Start()
+    {
+        _objToExaminate = Physics.OverlapBox(this.transform.position, new Vector3(GetComponent<BoxCollider>().size.x, GetComponent<BoxCollider>().size.x, GetComponent<BoxCollider>().size.x),Quaternion.identity ,(1 << 9));
+        foreach (var obj in _objToExaminate)
+        {
+            objToExaminate.Add(obj.gameObject);
+        }
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -92,7 +103,7 @@ public class ExamineHandler : MonoBehaviour
                         {
 
                             float distanceCameraObj = Vector3.Distance(player.transform.position, tempAnchor.transform.position);
-                            if (distanceCameraObj < maximumDistanceFromCamera)
+                            if (distanceCameraObj < distanceFromPlayer)
                             {
                                 if (objToExaminate.Contains(tempAnchor))
                                 {
@@ -113,6 +124,10 @@ public class ExamineHandler : MonoBehaviour
                     }
                 }
                 anchor.GetComponent<Examinable>().ClickMe();
+            }
+            else
+            {
+                anchor.GetComponent<Examinable>().StopClickMe();
             }
             yield return null;
         }
