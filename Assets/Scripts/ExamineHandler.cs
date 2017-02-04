@@ -24,10 +24,12 @@ public class ExamineHandler : MonoBehaviour
     private Collider[] check;
     private Collider[] _objToExaminate;
 
+    public bool gizmoDraw = false;
 
     void Start()
     {
-        _objToExaminate = Physics.OverlapBox(this.transform.position, new Vector3(GetComponent<BoxCollider>().size.x, GetComponent<BoxCollider>().size.x, GetComponent<BoxCollider>().size.x),Quaternion.identity ,(1 << 9));
+
+        _objToExaminate = Physics.OverlapBox(this.transform.position, new Vector3(2,2,2),Quaternion.identity ,(1 << 9));
         foreach (var obj in _objToExaminate)
         {
             objToExaminate.Add(obj.gameObject);
@@ -136,13 +138,16 @@ public class ExamineHandler : MonoBehaviour
 
     void OnDrawGizmos()
     {
-
-        if (drawGizmo)
+        if (gizmoDraw)
         {
-            Gizmos.color = new Color(0, 1, 0, 0.2f);
-            Gizmos.DrawSphere(hitInfo.point, radius);
+            if (drawGizmo)
+            {
+                Gizmos.color = new Color(0, 1, 0, 0.1f);
+                Gizmos.DrawSphere(hitInfo.point, radius);
+            }
+            Gizmos.color = new Color(1, 1, 1, 0.15f);
+            Gizmos.DrawCube(this.transform.position, new Vector3(2, 2, 2));
         }
-       
         
     }
 }
