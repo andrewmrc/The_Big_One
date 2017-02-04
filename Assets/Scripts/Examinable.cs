@@ -34,6 +34,9 @@ public class Examinable : ExamineAbstract {
 	{
 		if (!isClicked) {
 			this.transform.GetChild(0).gameObject.SetActive(true);
+			if (this.transform.childCount == 3) {
+				this.transform.GetChild (2).gameObject.SetActive (true);
+			}
 		}
 
 		if (!isClicked && Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown ("Examine"))
@@ -43,7 +46,9 @@ public class Examinable : ExamineAbstract {
 			isLooking = false;
 
 			this.transform.GetChild(0).gameObject.SetActive(false);
-
+			if (this.transform.childCount == 3) {
+				this.transform.GetChild (2).gameObject.SetActive (false);
+			}
 			//se l'oggetto da esaminare ha un immagine da vedere allora stoppiamo il tempo e blurriamo la camera attivando il pannello UI dedicato e passandogli l'immagine
 			if (imageToShow != null) {
 				Time.timeScale = 0f;
@@ -100,6 +105,9 @@ public class Examinable : ExamineAbstract {
     public override void StopClickMe()
     {
         this.transform.GetChild(0).gameObject.SetActive(false);
+		if (this.transform.childCount == 3) {
+			this.transform.GetChild (2).gameObject.SetActive (false);
+		}
     }
 
 

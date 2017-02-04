@@ -25,14 +25,14 @@ public class FadeMaterialAlpha : MonoBehaviour {
 
             // calcoliamo l'alpha in base alla distanza e ai range settati
             float distance = Vector3.Distance(transform.position, Camera.main.transform.position);
-            distance = (distance / 50) * distance;
-            //float lerpAmt = 1.0f - Mathf.Clamp01((distance - minRange) / (maxRange - minRange));
+            //distance = (distance / 50) * distance;
+            float lerpAmt = 1.0f - Mathf.Clamp01((distance - minRange) / (maxRange - minRange));
 
             // aggiorniamo l'alpha del materiale
 
-            //color.a = lerpAmt;
-            alpha = Mathf.Lerp(1, 0, distance);
-            color.a = alpha;
+            color.a = lerpAmt;
+            //alpha = Mathf.Lerp(1, 0, distance);
+            //color.a = alpha;
             renderer.material.color = color;
 
 
