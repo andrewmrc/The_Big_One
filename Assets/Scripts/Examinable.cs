@@ -6,6 +6,7 @@ using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.Events;
+using UnityStandardAssets.ImageEffects;
 
 public class Examinable : ExamineAbstract {
 
@@ -13,9 +14,10 @@ public class Examinable : ExamineAbstract {
 	UI refUI;
 	bool isLooking = false;
 	bool isClicked = false;
-	public Sprite memorySprite;
+	public Sprite imageToShow;
 	public string descriptionText;
 	public UnityEvent returnEvent;
+	public bool autoClose;
 
     // Use this for initialization
     void Start () {
@@ -39,11 +41,16 @@ public class Examinable : ExamineAbstract {
 			Debug.Log ("Premo Esamina!");
 			isClicked = true;
 			isLooking = false;
-			refUI.ExamineMemory(memorySprite, true);
-			//refUI.ExaminableText(isLooking);
+
 			this.transform.GetChild(0).gameObject.SetActive(false);
 
-			refUI.TextToShow(descriptionText, true);
+			//se l'oggetto da esaminare ha un immagine da vedere allora stoppiamo il tempo e blurriamo la camera attivando il pannello UI dedicato e passandogli l'immagine
+			if (imageToShow != null) {
+				Time.timeScale = 0f;
+				Camera.main.gameObject.GetComponent<VignetteAndChromaticAberration> ().blur = 1f;
+				refUI.ExamineObject(imageToShow, true);
+			}
+
 			Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
 			GameManager.Self.blockMovement = true;
 
@@ -53,19 +60,27 @@ public class Examinable : ExamineAbstract {
 			GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
 			//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Turn", 0);
 
+			refUI.TextToShow(descriptionText, true);
+
 			returnEvent.Invoke ();
 
-			StartCoroutine(StopExamination());
+			//se l'oggetto non ha un immagine da vedere ma solo una descrizione possiamo farla sparire dopo pochi secondi
+			if (imageToShow == null) {
+				StartCoroutine (StopExamination ());
+			}
+
 		} else if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown ("Examine") && isClicked)
 		{
 			isClicked = false;
 			//isLooking = true;
 			StopAllCoroutines();
-			refUI.ExamineMemory(memorySprite, false);
+			refUI.ExamineObject(imageToShow, false);
 			refUI.TextToShow(descriptionText, false);
 			Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
+			Camera.main.gameObject.GetComponent<VignetteAndChromaticAberration> ().blur = 0.3f;
 			GameManager.Self.blockMovement = false;
 			GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().enabled = true;
+			Time.timeScale = 1f;
 		}
 
 
@@ -93,9 +108,10 @@ public class Examinable : ExamineAbstract {
 		isClicked = false;
 
 
-		refUI.ExamineMemory(memorySprite, false);
+		refUI.ExamineMemory(imageToShow, false);
 		refUI.TextToShow(descriptionText, false);
 		Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
+		Camera.main.gameObject.GetComponent<VignetteAndChromaticAberration> ().blur = 0.3f;
 		GameManager.Self.blockMovement = false;
 		GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().enabled = true;
 	}

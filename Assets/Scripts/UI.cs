@@ -15,7 +15,8 @@ public class UI : MonoBehaviour {
     public GameObject UI_PowerBar;
     public GameObject memoryImageUI;
     public GameObject cursorFar;
-    
+	public GameObject examinePanel;
+
     public Text ExaminTextUI, textToShowUI, VariousDescriptionUI;
 
     PowerController refPC;
@@ -94,4 +95,11 @@ public class UI : MonoBehaviour {
         textToShowUI.text = textMemory;
         textToShowUI.gameObject.SetActive(on);
     }
+
+	public void ExamineObject(Sprite imageToShow, bool on)
+	{
+		examinePanel.transform.GetChild(0).GetComponent<Image>().sprite = imageToShow;
+		examinePanel.SetActive(on);        
+	}
+
 }

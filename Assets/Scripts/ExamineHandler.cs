@@ -6,7 +6,7 @@ public class ExamineHandler : MonoBehaviour
 {
 
     public GameObject anchor;
-    [HideInInspector]
+    //[HideInInspector]
     public List<GameObject> objToExaminate;
     public float distanceFromPlayer = 2;
     private float rayDistance = 4;
