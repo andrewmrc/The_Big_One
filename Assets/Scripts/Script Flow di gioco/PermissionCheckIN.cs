@@ -41,8 +41,8 @@ public class PermissionCheckIN : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
-		//gameObject.GetComponent<BoxCollider>().isTrigger = false;
-		gameObject.SetActive(false);
+		gameObject.GetComponent<BoxCollider>().isTrigger = false;
+		//gameObject.SetActive(false);
     }
 
 
