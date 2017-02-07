@@ -8,13 +8,12 @@ public class ExamineHandler : MonoBehaviour
 
     public float distanceFromPlayer = 2;
 
-    public bool gizmoDraw = false;
-
     //[HideInInspector]
-    public List<GameObject> objToExaminate;
+    //public List<GameObject> objToExaminate;
 
     [Range(0, 5)]
     public float radius = 0.5f;
+	public bool gizmoDraw = false;
 
     private Collider[] check;
     private Coroutine CheckObject;
