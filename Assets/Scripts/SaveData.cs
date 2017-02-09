@@ -10,6 +10,24 @@ using System.Collections.Generic;
 public class SaveData : MonoBehaviour
 {
     public FlowManager flow;
+    public DoorHandler[] doorsToSave;
+
+    [Serializable]
+    class DoorData
+    {
+        public bool playerCanEnter;
+        public bool isFreeForNpc;
+        public List<string> listOfGo;
+
+
+        public DoorData()
+        {
+            playerCanEnter = false;
+            isFreeForNpc = false;
+            listOfGo = new List<string>();
+        }
+    }
+
 
     [Serializable]
     class FlowBoolSave
@@ -31,11 +49,13 @@ public class SaveData : MonoBehaviour
         public string playername;
         public List<FlowBoolSave> sequenceToSave;
         public Dictionary<string, Dictionary<string, bool>> components;
+        public Dictionary<string, DoorData> doors;
 
         public PlayerData()
         {
             npcInfo = new Dictionary<string, Dictionary<string, float>>();
             components = new Dictionary<string, Dictionary<string, bool>>();
+            doors = new Dictionary<string, DoorData>();
         }
 
         public void addNpcInfo(string name, Dictionary<string, float> inf)
@@ -56,10 +76,17 @@ public class SaveData : MonoBehaviour
 
         }
 
+        public void addDoor(string uniqueId, DoorData door)
+        {
+            if (!doors.ContainsKey(uniqueId))
+                doors.Add(uniqueId, door);
+        }
+
     }
 
     void Awake()
     {
+        doorsToSave = FindObjectsOfType<DoorHandler>();
         flow = FindObjectOfType<FlowManager>();
     }
 
@@ -129,6 +156,29 @@ public class SaveData : MonoBehaviour
 
         }
 
+
+        if (doorsToSave != null)
+            foreach (DoorHandler doorTmp in doorsToSave)
+            {
+                DoorData dd = new DoorData();
+                Debug.Log("TROVATA PORTA " + doorTmp.uniqueId + " booleani: " + doorTmp.isFreeForNpc + " , " + doorTmp.playerCanEnter);
+                if (doorTmp.uniqueId != null)
+                {
+                    dd.isFreeForNpc = doorTmp.isFreeForNpc;
+                    dd.playerCanEnter = doorTmp.playerCanEnter;
+                    dd.listOfGo = new List<string>();
+                    foreach (GameObject goTmp in doorTmp.listOfGo)
+                    {
+                        if (goTmp != null)
+                        {
+                            Debug.Log("TROVATO GO " + goTmp);
+                            dd.listOfGo.Add(goTmp.name);
+                        }
+                    }
+                    data.addDoor(doorTmp.uniqueId, dd);
+                }
+            }
+
         var playerNPC = GameObject.FindGameObjectWithTag("Player");
         Dictionary<string, float> playerInfo = new Dictionary<string, float>();
         var playerpos = playerNPC.transform.position;
@@ -145,7 +195,7 @@ public class SaveData : MonoBehaviour
         {
             data.addComponent(playerNPC.name, comp.ToString(), comp.enabled);
         }
-        
+
         bf.Serialize(fs, data);
         fs.Close();
     }
@@ -181,6 +231,30 @@ public class SaveData : MonoBehaviour
                 }
             }
 
+            var doorMap = data.doors;
+
+            if (doorsToSave != null && doorMap != null)
+                foreach (DoorHandler doorTmp in doorsToSave)
+                {
+                    if (doorTmp != null && doorTmp.uniqueId != null)
+                    {
+                        DoorData ddTmp = doorMap[doorTmp.uniqueId];
+                        if (ddTmp != null)
+                        {
+                            doorTmp.playerCanEnter = ddTmp.playerCanEnter;
+                            doorTmp.isFreeForNpc = ddTmp.isFreeForNpc;
+                            if (ddTmp.listOfGo != null)
+                            {
+                                doorTmp.listOfGo = new List<GameObject>();
+                                foreach (string goTmp in ddTmp.listOfGo)
+                                {
+                                    doorTmp.listOfGo.Add(GameObject.Find(goTmp));
+                                }
+                            }
+                        }
+                    }
+                }
+
             //sposto il player
             var allInfo = data.npcInfo;
             foreach (string playername in allInfo.Keys)
@@ -190,6 +264,8 @@ public class SaveData : MonoBehaviour
                 Quaternion newrot = new Quaternion(0, playerInfo["roty"], 0, 1);
                 GameObject.Find(playername).transform.position = newpos;
                 GameObject.Find(playername).transform.rotation = newrot;
+
+
 
                 var comps = GameObject.Find(playername).GetComponents<MonoBehaviour>();
                 for (var i = 0; i < comps.Length; i++)
