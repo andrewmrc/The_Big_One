@@ -5,12 +5,14 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 
 public class SaveData : MonoBehaviour
 {
     public FlowManager flow;
     public DoorHandler[] doorsToSave;
+    private static int idSlot = -1;
 
     [Serializable]
     class DoorData
@@ -50,6 +52,7 @@ public class SaveData : MonoBehaviour
         public List<FlowBoolSave> sequenceToSave;
         public Dictionary<string, Dictionary<string, bool>> components;
         public Dictionary<string, DoorData> doors;
+        public string sceneName;
 
         public PlayerData()
         {
@@ -88,6 +91,7 @@ public class SaveData : MonoBehaviour
     {
         doorsToSave = FindObjectsOfType<DoorHandler>();
         flow = FindObjectOfType<FlowManager>();
+        //InvokeRepeating("AutoSave", 0.0f, 20.0f);
     }
 
     void Update()
@@ -95,23 +99,27 @@ public class SaveData : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Save();
+            Save(1);
 
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Load();
+            Load(1);
         }
 
     }
 
-    public void Save()
+    public void Save(int idSave)
     {
+        string saveName = "/" + Convert.ToString(idSave) + ".txt";
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream fs = File.Create(Application.persistentDataPath + "/Playerdata.txt");
+        FileStream fs = File.Create(Application.persistentDataPath + saveName);
 
         PlayerData data = new PlayerData();
+
+        //salvo il nome della scena
+        data.sceneName = SceneManager.GetActiveScene().name;
 
         //salvo il flowmanager
         if (flow)
@@ -139,7 +147,7 @@ public class SaveData : MonoBehaviour
             npcInfo.Add("rotx", npcrot.x);
             npcInfo.Add("roty", npcrot.y);
             npcInfo.Add("rotz", npcrot.z);
-            var nva = npc.GetComponent<NavMeshAgent>();
+            var nva = npc.GetComponent<UnityEngine.NavMeshAgent>();
             if (nva != null)
             {
                 npcInfo.Add("destx", nva.destination.x);
@@ -200,17 +208,37 @@ public class SaveData : MonoBehaviour
         fs.Close();
     }
 
-    public void Load()
+    private void onSceneLoaded(Scene s, LoadSceneMode e)
+    {
+        SceneManager.SetActiveScene(s);
+        Debug.Log("SCENA CARICATA: " + s.name);
+        Load(1);
+    }
+
+    public void Load(int idSave)
     {
         // Set timescale to 1 if Load is called by the UI button
         Time.timeScale = 1;
+        string saveName = Application.persistentDataPath + "/" + Convert.ToString(idSave) + ".txt";
 
-        if (File.Exists(Application.persistentDataPath + "/Playerdata.txt"))
+        if (File.Exists(saveName))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream fs = File.Open(Application.persistentDataPath + "/Playerdata.txt", FileMode.Open);
+            FileStream fs = File.Open(saveName, FileMode.Open);
             PlayerData data = (PlayerData)bf.Deserialize(fs);
             fs.Close();
+
+            var actualScene = SceneManager.GetActiveScene().name;
+
+            //Debug.Log("PRIMA DEL CARICAMENTO SCENA "+actualScene);
+            if (actualScene != data.sceneName)
+            {
+                SceneManager.sceneLoaded += onSceneLoaded;
+                SceneManager.LoadScene(data.sceneName, LoadSceneMode.Single);
+                return;
+            }
+
+            //Debug.Log("DOPO IL CARICAMENTO SCENA "+data.sceneName);
 
             //setto il flow manager
             if (flow)
@@ -238,28 +266,31 @@ public class SaveData : MonoBehaviour
                 {
                     if (doorTmp != null && doorTmp.uniqueId != null)
                     {
-                        DoorData ddTmp = doorMap[doorTmp.uniqueId];
-                        if (ddTmp != null)
+                        if (doorMap.ContainsKey(doorTmp.uniqueId))
                         {
-                            doorTmp.playerCanEnter = ddTmp.playerCanEnter;
-                            doorTmp.isFreeForNpc = ddTmp.isFreeForNpc;
-                            if (ddTmp.listOfGo != null)
+                            DoorData ddTmp = doorMap[doorTmp.uniqueId];
+                            if (ddTmp != null)
                             {
-                                doorTmp.listOfGo = new List<GameObject>();
-                                foreach (string goTmp in ddTmp.listOfGo)
+                                doorTmp.playerCanEnter = ddTmp.playerCanEnter;
+                                doorTmp.isFreeForNpc = ddTmp.isFreeForNpc;
+                                if (ddTmp.listOfGo != null)
                                 {
-                                    doorTmp.listOfGo.Add(GameObject.Find(goTmp));
+                                    doorTmp.listOfGo = new List<GameObject>();
+                                    foreach (string goTmp in ddTmp.listOfGo)
+                                    {
+                                        doorTmp.listOfGo.Add(GameObject.Find(goTmp));
+                                    }
                                 }
                             }
                         }
                     }
                 }
-
             //sposto il player
             var allInfo = data.npcInfo;
             foreach (string playername in allInfo.Keys)
             {
                 var playerInfo = allInfo[playername];
+                Debug.Log("PLAYERNAME " + SceneManager.GetActiveScene().name);
                 Vector3 newpos = new Vector3(playerInfo["posx"], playerInfo["posy"], playerInfo["posz"]);
                 Quaternion newrot = new Quaternion(0, playerInfo["roty"], 0, 1);
                 GameObject.Find(playername).transform.position = newpos;
@@ -302,7 +333,7 @@ public class SaveData : MonoBehaviour
                         var desty = playerInfo["desty"];
                         var destz = playerInfo["destz"];
                         Vector3 newdest = new Vector3(destx, desty, destz);
-                        var nva = GameObject.Find(playername).GetComponent<NavMeshAgent>();
+                        var nva = GameObject.Find(playername).GetComponent<UnityEngine.NavMeshAgent>();
                         if (nva != null && nva.isActiveAndEnabled && nva.isOnNavMesh)
                         {
                             nva.SetDestination(newdest);
