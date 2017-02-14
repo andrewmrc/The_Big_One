@@ -11,8 +11,8 @@ using UnityEngine.SceneManagement;
 public class SaveData : MonoBehaviour
 {
     public FlowManager flow;
-    public DoorHandler[] doorsToSave;
-    private static int idSlot = -1;
+    private DoorHandler[] doorsToSave;
+    public int idSlot = 0;
 
     [Serializable]
     class DoorData
@@ -99,13 +99,13 @@ public class SaveData : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Save(1);
+            Save(idSlot);
 
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Load(1);
+            Load(idSlot);
         }
 
     }
@@ -212,7 +212,7 @@ public class SaveData : MonoBehaviour
     {
         SceneManager.SetActiveScene(s);
         Debug.Log("SCENA CARICATA: " + s.name);
-        Load(1);
+        Load(idSlot);
     }
 
     public void Load(int idSave)
