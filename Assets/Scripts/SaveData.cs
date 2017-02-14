@@ -10,8 +10,9 @@ using UnityEngine.SceneManagement;
 
 public class SaveData : MonoBehaviour
 {
-    public FlowManager flow;
+    private FlowManager flow;
     private DoorHandler[] doorsToSave;
+    //public List<GameObject> severoMaGiusto;
     public int idSlot = 0;
 
     [Serializable]
@@ -54,6 +55,9 @@ public class SaveData : MonoBehaviour
         public Dictionary<string, DoorData> doors;
         public string sceneName;
 
+        public Dictionary<string, bool> superDict;
+
+
         public PlayerData()
         {
             npcInfo = new Dictionary<string, Dictionary<string, float>>();
@@ -76,7 +80,6 @@ public class SaveData : MonoBehaviour
 
             if (!components[npc].ContainsKey(name))
                 components[npc].Add(name, enabled);
-
         }
 
         public void addDoor(string uniqueId, DoorData door)
@@ -91,7 +94,14 @@ public class SaveData : MonoBehaviour
     {
         doorsToSave = FindObjectsOfType<DoorHandler>();
         flow = FindObjectOfType<FlowManager>();
-        //InvokeRepeating("AutoSave", 0.0f, 20.0f);
+        //severoMaGiusto = new List<GameObject>();
+        //foreach (Transform xform in UnityEngine.Object.FindObjectsOfType<Transform>())
+        //{
+        //    if (xform)
+        //    {
+        //        severoMaGiusto.Add(xform.gameObject);
+        //    }
+        //}
     }
 
     void Update()
@@ -120,7 +130,7 @@ public class SaveData : MonoBehaviour
 
         //salvo il nome della scena
         data.sceneName = SceneManager.GetActiveScene().name;
-
+        idSlot = idSave;
         //salvo il flowmanager
         if (flow)
         {
@@ -160,8 +170,7 @@ public class SaveData : MonoBehaviour
             foreach (var comp in compsList)
             {
                 data.addComponent(npc.name, comp.ToString(), comp.enabled);
-            }
-
+            }            
         }
 
 
@@ -212,7 +221,6 @@ public class SaveData : MonoBehaviour
     {
         SceneManager.SetActiveScene(s);
         Debug.Log("SCENA CARICATA: " + s.name);
-        Load(idSlot);
     }
 
     public void Load(int idSave)
@@ -226,8 +234,7 @@ public class SaveData : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             FileStream fs = File.Open(saveName, FileMode.Open);
             PlayerData data = (PlayerData)bf.Deserialize(fs);
-            fs.Close();
-
+            fs.Close();            
             var actualScene = SceneManager.GetActiveScene().name;
 
             //Debug.Log("PRIMA DEL CARICAMENTO SCENA "+actualScene);
@@ -344,4 +351,9 @@ public class SaveData : MonoBehaviour
             }
         }
     }
+    public void setIdSlot(int _idSlot)
+    {
+        idSlot = _idSlot;
+    }
+
 }

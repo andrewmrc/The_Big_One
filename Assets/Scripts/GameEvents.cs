@@ -57,12 +57,12 @@ public class GameEvents : MonoBehaviour
 	//Variabili per l'array di UnityEvents con delay
 	public UnityEvent[] unityEventsList;
 	public float delayBetweenEvents = 0.5f;
-
-
+    
     void Spawner()
     {
         Instantiate(objectToUse).transform.position = new Vector3(positionToSpawn.position.x, positionToSpawn.position.y, positionToSpawn.position.z);
         //StartCoroutine (SpawnerRoutine ());
+        
     }
 
 
