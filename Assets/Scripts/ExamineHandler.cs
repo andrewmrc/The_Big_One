@@ -79,7 +79,7 @@ public class ExamineHandler : MonoBehaviour
                         //Vector3 headPlayerVector = new Vector3(player.transform.position.x, 1, player.transform.position.z);
 						float distanceCameraObj = Vector3.Distance(player.transform.position, tempAnchor.transform.position);
 
-						Debug.Log ("distanceCameraObj:" + distanceCameraObj);
+						//Debug.Log ("distanceCameraObj:" + distanceCameraObj);
 
                         if (distanceCameraObj < distanceFromPlayer)
                         {

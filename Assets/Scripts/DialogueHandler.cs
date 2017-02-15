@@ -33,11 +33,13 @@ public class DialogueHandler : MonoBehaviour {
 			//this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer>().enabled = true;
 			float distanceSqr = (this.transform.position - GameObject.FindGameObjectWithTag ("Player").transform.position).sqrMagnitude;
 			if (distanceSqr < distanceToTalk) { //Within range
+				this.transform.GetChild (0).gameObject.SetActive (true);
 				StopAllCoroutines ();
 				//this.transform.GetChild (0).gameObject.SetActive (true);
 				if (Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) {
 					cantTalk = true;
 					notInitialRotation = true;
+
 					//Debug.Log ("PRESS E TO TALK");
 					Vector3 targetPlayer = new Vector3 (GameObject.FindGameObjectWithTag ("Player").transform.position.x, this.gameObject.transform.position.y, GameObject.FindGameObjectWithTag ("Player").transform.position.z);
 					this.gameObject.transform.LookAt (targetPlayer);
@@ -49,6 +51,7 @@ public class DialogueHandler : MonoBehaviour {
 					StartCoroutine (DPrinter3 ());
 				}
 			} else {
+				this.transform.GetChild (0).gameObject.SetActive (false);
 				if (notInitialRotation) {
 					StartCoroutine (ResetRotation ());
 				}
@@ -112,7 +115,7 @@ public class DialogueHandler : MonoBehaviour {
 
 
 	IEnumerator DPrinter3 () {
-		this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer> ().enabled = false;
+		this.transform.GetChild (0).gameObject.SetActive (false); //.GetComponent<MeshRenderer> ().enabled = false;
 
 		for(int i = 0; i < conversations.Count; i++) {
 			if (conversations [i].npcSpeaker != null) {
@@ -183,7 +186,7 @@ public class DialogueHandler : MonoBehaviour {
 		}
 
 		cantTalk = false;
-		this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer> ().enabled = true;
+		this.transform.GetChild (0).gameObject.SetActive (true); //.GetComponent<MeshRenderer> ().enabled = true;
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = "";
 		GameManager.Self.blockMovement = false;
 		returnEvent.Invoke ();

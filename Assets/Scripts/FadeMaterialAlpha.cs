@@ -19,7 +19,7 @@ public class FadeMaterialAlpha : MonoBehaviour {
 
 	void Update () {
         
-        if (gameObject.transform.parent.tag != "Player")
+		if (gameObject.transform.root.tag != "Player")
         {
             
 
@@ -35,15 +35,17 @@ public class FadeMaterialAlpha : MonoBehaviour {
             //color.a = alpha;
 			renderer.material.color = color;
 			if (lerpAmt > .01f && !animated) {
-				GetComponentInChildren<Animator> ().Play(0);
-				animated = true;
+				if (GetComponentInChildren<Animator> ()) {
+					GetComponentInChildren<Animator> ().Play (0);
+					animated = true;
+				}
 			}				
 
 			if (lerpAmt <= 0) {
 				animated = false;
 			}
            //  = Color.Lerp(Color.white,Color.clear, distance);
-            
+
         }
         else
         {

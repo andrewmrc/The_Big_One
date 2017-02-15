@@ -49,7 +49,7 @@ public class FSMLogic : MonoBehaviour {
 			if((GameManager.Self.ChangePlayerState == GameState.UsePower || GameManager.Self.ChangePlayerState == GameState.OnlyIdea)){
 	            //RaycastHandler();
 	            sm.HandleInput(InputTransition.MouseButtonOneDown);
-				GameManager.Self.mainCamera.GetComponent<CameraFilterPack_Vision_Psycho> ().enabled = true;
+				GameManager.Self.mainCamera.GetComponent<CameraFilterPack_Vision_Tunnel> ().enabled = true;
 	            isAiming = true;
 				UIActivator();
 				//AnimationActivator ();
@@ -58,7 +58,7 @@ public class FSMLogic : MonoBehaviour {
         else
         {
             sm.HandleInput(InputTransition.MouseButtonOneUp);
-			GameManager.Self.mainCamera.GetComponent<CameraFilterPack_Vision_Psycho> ().enabled = false;
+			GameManager.Self.mainCamera.GetComponent<CameraFilterPack_Vision_Tunnel> ().enabled = false;
             isAiming = false;
             onEnemy = false;
             UIActivator();
