@@ -167,7 +167,7 @@ public class FSMLogic : MonoBehaviour {
             //refUI.TastiUI(false);
             refUI.PossessionUI(false);
             refUI.PowerUI(false);
-            refUI.MemoryUI(false);
+            //refUI.MemoryUI(false);
             //refUI.HackUI(false);
             refUI.MemoryImageUI(false);
 

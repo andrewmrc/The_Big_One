@@ -8,7 +8,7 @@ public class FadeMaterialAlpha : MonoBehaviour {
     Renderer renderer;
     Color color;
     float alpha;
-
+	bool animated = true;
 
     void Awake()
     {
@@ -33,11 +33,15 @@ public class FadeMaterialAlpha : MonoBehaviour {
             color.a = lerpAmt;
             //alpha = Mathf.Lerp(1, 0, distance);
             //color.a = alpha;
-            renderer.material.color = color;
+			renderer.material.color = color;
+			if (lerpAmt > .01f && !animated) {
+				GetComponentInChildren<Animator> ().Play(0);
+				animated = true;
+			}				
 
-
-
-
+			if (lerpAmt <= 0) {
+				animated = false;
+			}
            //  = Color.Lerp(Color.white,Color.clear, distance);
             
         }
