@@ -29,7 +29,7 @@ public class ExamineHandler : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             playerIn = true;
-
+			Debug.Log ("Dentro Trigger Esaminabile");
             CheckObject = StartCoroutine(RayMeCO(other));
         }
     }
@@ -72,11 +72,15 @@ public class ExamineHandler : MonoBehaviour
                         if (anchor != null)
                         {
                             anchor.GetComponent<Examinable>().StopClickMe();
+							Debug.Log ("asd");
                         }
                         tempAnchor = coll.gameObject;
 
-                        Vector3 headPlayerVector = new Vector3(player.transform.position.x, 1, player.transform.position.z);
-                        float distanceCameraObj = Vector3.Distance(headPlayerVector, tempAnchor.transform.position);
+                        //Vector3 headPlayerVector = new Vector3(player.transform.position.x, 1, player.transform.position.z);
+						float distanceCameraObj = Vector3.Distance(player.transform.position, tempAnchor.transform.position);
+
+						Debug.Log ("distanceCameraObj:" + distanceCameraObj);
+
                         if (distanceCameraObj < distanceFromPlayer)
                         {
                             anchor = tempAnchor;

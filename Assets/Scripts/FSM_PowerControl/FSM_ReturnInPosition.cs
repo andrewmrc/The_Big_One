@@ -10,7 +10,7 @@ public class FSM_ReturnInPosition : MonoBehaviour {
 	public float waitTime;
 
     Vector3 initialPosition;
-    Vector3 initialRotation;
+    public Vector3 initialRotation;
 
     public bool isWaiting = true;
 
