@@ -12,7 +12,7 @@ public class SaveData : MonoBehaviour
 {
     private FlowManager flow;
     private DoorHandler[] doorsToSave;
-    //public List<GameObject> severoMaGiusto;
+    public List<GameObject> ActiveItemList;
     public int idSlot = 0;
 
     [Serializable]
@@ -63,6 +63,7 @@ public class SaveData : MonoBehaviour
             npcInfo = new Dictionary<string, Dictionary<string, float>>();
             components = new Dictionary<string, Dictionary<string, bool>>();
             doors = new Dictionary<string, DoorData>();
+            superDict = new Dictionary<string, bool>();
         }
 
         public void addNpcInfo(string name, Dictionary<string, float> inf)
@@ -87,6 +88,11 @@ public class SaveData : MonoBehaviour
             if (!doors.ContainsKey(uniqueId))
                 doors.Add(uniqueId, door);
         }
+        public void addItems(string name, bool isActive)
+        {
+            if (!superDict.ContainsKey(name))
+                superDict.Add(name, isActive);
+        }
 
     }
 
@@ -94,14 +100,13 @@ public class SaveData : MonoBehaviour
     {
         doorsToSave = FindObjectsOfType<DoorHandler>();
         flow = FindObjectOfType<FlowManager>();
-        //severoMaGiusto = new List<GameObject>();
-        //foreach (Transform xform in UnityEngine.Object.FindObjectsOfType<Transform>())
-        //{
-        //    if (xform)
-        //    {
-        //        severoMaGiusto.Add(xform.gameObject);
-        //    }
-        //}
+        ActiveItemList = new List<GameObject>();
+        Debug.Log(LayerMask.NameToLayer("Default"));
+        foreach (Transform xform in UnityEngine.Object.FindObjectsOfType<Transform>())
+        {
+            ActiveItemList.Add(xform.gameObject);
+            Debug.Log(xform.gameObject.layer);
+        }
     }
 
     void Update()
@@ -195,6 +200,20 @@ public class SaveData : MonoBehaviour
                     data.addDoor(doorTmp.uniqueId, dd);
                 }
             }
+
+        if (ActiveItemList.Count > 0)
+        {
+            foreach (var item in ActiveItemList)
+            {
+                data.addItems(item.name, item.activeSelf);
+                if (item.activeSelf == false)
+                {
+                    Debug.Log(item.name);
+                }
+                
+            }
+            
+        }
 
         var playerNPC = GameObject.FindGameObjectWithTag("Player");
         Dictionary<string, float> playerInfo = new Dictionary<string, float>();
