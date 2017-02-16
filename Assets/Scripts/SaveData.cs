@@ -70,13 +70,12 @@ public class SaveData : MonoBehaviour
         {
             npcInfo.Add(name, inf);
         }
-
+        
         public void addComponent(string npc, string name, bool enabled)
         {
             if (!components.ContainsKey(npc))
             {
                 components[npc] = new Dictionary<string, bool>();
-
             }
 
             if (!components[npc].ContainsKey(name))
@@ -88,10 +87,10 @@ public class SaveData : MonoBehaviour
             if (!doors.ContainsKey(uniqueId))
                 doors.Add(uniqueId, door);
         }
-        public void addItems(string name, bool isActive)
+        public void addActiveItems(string name, bool enableStatus)
         {
             if (!superDict.ContainsKey(name))
-                superDict.Add(name, isActive);
+                superDict.Add(name, enableStatus);
         }
 
     }
@@ -100,13 +99,6 @@ public class SaveData : MonoBehaviour
     {
         doorsToSave = FindObjectsOfType<DoorHandler>();
         flow = FindObjectOfType<FlowManager>();
-        ActiveItemList = new List<GameObject>();
-        Debug.Log(LayerMask.NameToLayer("Default"));
-        foreach (Transform xform in UnityEngine.Object.FindObjectsOfType<Transform>())
-        {
-            ActiveItemList.Add(xform.gameObject);
-            Debug.Log(xform.gameObject.layer);
-        }
     }
 
     void Update()
@@ -178,12 +170,20 @@ public class SaveData : MonoBehaviour
             }            
         }
 
+        if (ActiveItemList.Count > 0)
+        {
+            foreach (var item in ActiveItemList)
+            {
+                data.superDict.Add(item.name, item.activeSelf);
+                Debug.Log(item.name + item.activeSelf);
+            }
+        }
 
         if (doorsToSave != null)
             foreach (DoorHandler doorTmp in doorsToSave)
             {
                 DoorData dd = new DoorData();
-                Debug.Log("TROVATA PORTA " + doorTmp.uniqueId + " booleani: " + doorTmp.isFreeForNpc + " , " + doorTmp.playerCanEnter);
+                //Debug.Log("TROVATA PORTA " + doorTmp.uniqueId + " booleani: " + doorTmp.isFreeForNpc + " , " + doorTmp.playerCanEnter);
                 if (doorTmp.uniqueId != null)
                 {
                     dd.isFreeForNpc = doorTmp.isFreeForNpc;
@@ -193,27 +193,13 @@ public class SaveData : MonoBehaviour
                     {
                         if (goTmp != null)
                         {
-                            Debug.Log("TROVATO GO " + goTmp);
+                            //Debug.Log("TROVATO GO " + goTmp);
                             dd.listOfGo.Add(goTmp.name);
                         }
                     }
                     data.addDoor(doorTmp.uniqueId, dd);
                 }
             }
-
-        if (ActiveItemList.Count > 0)
-        {
-            foreach (var item in ActiveItemList)
-            {
-                data.addItems(item.name, item.activeSelf);
-                if (item.activeSelf == false)
-                {
-                    Debug.Log(item.name);
-                }
-                
-            }
-            
-        }
 
         var playerNPC = GameObject.FindGameObjectWithTag("Player");
         Dictionary<string, float> playerInfo = new Dictionary<string, float>();
@@ -239,7 +225,7 @@ public class SaveData : MonoBehaviour
     private void onSceneLoaded(Scene s, LoadSceneMode e)
     {
         SceneManager.SetActiveScene(s);
-        Debug.Log("SCENA CARICATA: " + s.name);
+        //Debug.Log("SCENA CARICATA: " + s.name);
     }
 
     public void Load(int idSave)
@@ -311,18 +297,27 @@ public class SaveData : MonoBehaviour
                         }
                     }
                 }
+
+            var itemDict = data.superDict;
+            if (itemDict != null)
+            {
+                foreach (var kvp in itemDict )
+                {
+                    //bool isActive = itemDict[item];
+                    GameObject.Find(kvp.Key).SetActive(kvp.Value);
+                }
+            }
+
             //sposto il player
             var allInfo = data.npcInfo;
             foreach (string playername in allInfo.Keys)
             {
                 var playerInfo = allInfo[playername];
-                Debug.Log("PLAYERNAME " + SceneManager.GetActiveScene().name);
+                //Debug.Log("PLAYERNAME " + SceneManager.GetActiveScene().name);
                 Vector3 newpos = new Vector3(playerInfo["posx"], playerInfo["posy"], playerInfo["posz"]);
                 Quaternion newrot = new Quaternion(0, playerInfo["roty"], 0, 1);
                 GameObject.Find(playername).transform.position = newpos;
                 GameObject.Find(playername).transform.rotation = newrot;
-
-
 
                 var comps = GameObject.Find(playername).GetComponents<MonoBehaviour>();
                 for (var i = 0; i < comps.Length; i++)
@@ -374,5 +369,7 @@ public class SaveData : MonoBehaviour
     {
         idSlot = _idSlot;
     }
+
+
 
 }
