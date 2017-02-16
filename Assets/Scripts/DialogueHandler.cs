@@ -18,6 +18,7 @@ public class DialogueHandler : MonoBehaviour {
 	public UnityEvent returnEvent;
 
 	bool notInitialRotation;
+	int playerPowerState;
 
 	// Use this for initialization
 	void Start () {
@@ -32,14 +33,16 @@ public class DialogueHandler : MonoBehaviour {
 			//this.transform.GetChild (0).gameObject.SetActive (true);
 			//this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer>().enabled = true;
 			float distanceSqr = (this.transform.position - GameObject.FindGameObjectWithTag ("Player").transform.position).sqrMagnitude;
-			if (distanceSqr < distanceToTalk) { //Within range
+			if ((distanceSqr < distanceToTalk) && !GameObject.FindGameObjectWithTag ("Player").gameObject.GetComponent<FSMLogic>().isAiming) { //Within range
 				this.transform.GetChild (0).gameObject.SetActive (true);
 				StopAllCoroutines ();
 				//this.transform.GetChild (0).gameObject.SetActive (true);
 				if (Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) {
 					cantTalk = true;
 					notInitialRotation = true;
-
+					playerPowerState = (int)GameManager.Self.playerState;
+					GameManager.Self.SetPlayerState (1);
+					GameManager.Self.isShowMemory = true;
 					//Debug.Log ("PRESS E TO TALK");
 					Vector3 targetPlayer = new Vector3 (GameObject.FindGameObjectWithTag ("Player").transform.position.x, this.gameObject.transform.position.y, GameObject.FindGameObjectWithTag ("Player").transform.position.z);
 					this.gameObject.transform.LookAt (targetPlayer);
@@ -184,7 +187,8 @@ public class DialogueHandler : MonoBehaviour {
 			}
 
 		}
-
+		GameManager.Self.SetPlayerState (playerPowerState);
+		GameManager.Self.isShowMemory = false;
 		cantTalk = false;
 		this.transform.GetChild (0).gameObject.SetActive (true); //.GetComponent<MeshRenderer> ().enabled = true;
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = "";
