@@ -125,7 +125,10 @@ namespace UnityStandardAssets.Cameras
 				{
 					if (!isTutorial) {
 						if (!cantUsePower) {
-							m_Target.transform.rotation = new Quaternion (0, Camera.main.transform.rotation.y, 0, Camera.main.transform.rotation.w);
+                            if (m_Target != null)
+                            {
+                                m_Target.transform.rotation = new Quaternion(0, Camera.main.transform.rotation.y, 0, Camera.main.transform.rotation.w);
+                            }							
 							m_LookAngle = Mathf.Clamp (m_LookAngle + x * m_TurnSpeed, centerCameraRotation - spazioAperturaCamera, centerCameraRotation + spazioAperturaCamera);
 							visualeNormale = false;
 						}
