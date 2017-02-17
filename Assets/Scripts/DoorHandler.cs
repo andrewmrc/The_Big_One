@@ -4,6 +4,7 @@ using System.Collections;
 using System;
 using UnityEngine.UI;
 using UnityEngine.Events;
+[RequireComponent(typeof(UnityEngine.AudioSource))]
 
 // Placeholder per IdGenerator
 public class UniqueIdentifierAttribute : PropertyAttribute { }
@@ -15,11 +16,14 @@ public class DoorHandler : MonoBehaviour
     [UniqueIdentifier]
     public string uniqueId;
 
+    private AudioSource Audio;
+    private AudioContainer soundContainer;
+
     // Variabile utilizzata per capire come sono direzionate
     // grazie artisti
     // False = forward == Vector3.up
     // True = forward == Vector3.forward
-	public bool choosedDirection;
+    public bool choosedDirection;
     // Varibili utilizzate per l'aggiunta dei collider
     Vector3 center;
     Vector3 size;
@@ -58,6 +62,8 @@ public class DoorHandler : MonoBehaviour
     {
         defaultRot = transform.eulerAngles;
         qualcosaInside = true;
+        Audio = GetComponent<AudioSource>();
+        soundContainer = GameManager.Self.GetComponent<AudioContainer>();
     }
 
 
@@ -239,7 +245,8 @@ public class DoorHandler : MonoBehaviour
                         {
                             product = CalculateProduct(coll);
                             doorOponerCO = StartCoroutine(DoorOpener(product));
-
+                            Audio.clip = soundContainer.OpenDoorSound;
+                            Audio.Play();
                         }
                         /*
                         else
@@ -376,6 +383,8 @@ public class DoorHandler : MonoBehaviour
             doorOponerCO = null;
             isOpened = false;
             isClosing = false;
+            Audio.clip = soundContainer.CloseDoorSound;
+            Audio.Play();
         }
     }
 

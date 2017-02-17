@@ -1,13 +1,13 @@
 fileFormatVersion: 2
 guid: b34dda510453cc54a9bddf5bba93f878
-timeCreated: 1485688709
+timeCreated: 1487349103
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - FatigueSound: {fileID: 8300000, guid: 849033199a6117848b59f8334b426540, type: 3}
   - OpenDoorSound: {fileID: 8300000, guid: 838abd4532ce3fc4da3740a0fc034617, type: 3}
-  - CloseDoorSound: {fileID: 8300000, guid: bccfaf79a63194147a0c42f5acdafb1e, type: 3}
+  - CloseDoorSound: {fileID: 8300000, guid: ff97e8f4ab95b7041851ceb24c6936e1, type: 3}
   - ElevatorSound: {fileID: 8300000, guid: 68da0332da64a7e4a84db58953374878, type: 3}
   - ControlBodyONSound: {fileID: 8300000, guid: afa3bb1a2c3f37244b970c798e727708,
       type: 3}
