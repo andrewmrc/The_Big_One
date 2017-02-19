@@ -9,6 +9,7 @@ public class State_ShowMemory : State {
     
 	public Sprite memoryImage;
 	public UnityEvent returnEvent;
+	public bool executed;
 
     public override void StateUpdate()
     {
@@ -23,7 +24,10 @@ public class State_ShowMemory : State {
 		refUI.memoryImageUI.GetComponent<Image>().sprite = memoryImage;
         refUI.memoryImageUI.GetComponent<CanvasGroup>().alpha += Time.deltaTime / 2;
 
-		returnEvent.Invoke ();
+		if (!executed) {
+			executed = true;
+			returnEvent.Invoke ();
+		}
         //memoryListener.Invoke();
         
     }

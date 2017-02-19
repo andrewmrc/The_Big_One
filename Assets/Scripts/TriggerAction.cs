@@ -12,7 +12,7 @@ public class TriggerAction : MonoBehaviour {
     public UnityEvent triggerExit;
     public string normalConversation;
     public int positionInFlowArray;
-    bool executed;
+    public bool executed;
 
 
     public int secondPosition = 0;

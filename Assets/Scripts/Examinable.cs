@@ -13,6 +13,7 @@ public class Examinable : ExamineAbstract
     public Sprite imageToShow;
     public string descriptionText;
     public UnityEvent returnEvent;
+	public bool executed;
     public bool autoClose;
 
     // Use this for initialization
@@ -67,7 +68,10 @@ public class Examinable : ExamineAbstract
 
             refUI.TextToShow(descriptionText, true);
 
-            returnEvent.Invoke();
+			if (!executed) {
+				executed = true;
+				returnEvent.Invoke ();
+			}
 
             //se l'oggetto non ha un immagine da vedere ma solo una descrizione possiamo farla sparire dopo pochi secondi
             if (imageToShow == null)

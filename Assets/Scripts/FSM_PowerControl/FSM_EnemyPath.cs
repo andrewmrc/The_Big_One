@@ -18,7 +18,7 @@ public class FSM_EnemyPath : MonoBehaviour {
     public bool isReached = false;
     public bool isOnTime = false;
     int nArray;
-
+	public bool executed;
     public UnityEvent destinationEvent;
 	public UnityEvent returnEvent;
 
@@ -50,7 +50,10 @@ public class FSM_EnemyPath : MonoBehaviour {
 
         if (GetComponent<NavMeshAgent>().enabled && refNav.remainingDistance < refNav.stoppingDistance && !isOnTime)
         {
-			destinationEvent.Invoke ();
+			if (!executed) {
+				executed = true;
+				destinationEvent.Invoke ();
+			}
             StartCoroutine(Timer(timeLeft));
             
         }

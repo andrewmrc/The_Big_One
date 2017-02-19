@@ -9,6 +9,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 public class State_ControlBody : State {
 
     public UnityEvent returnEvent;
+	public bool executed;
     UI refUI;
     public GameObject cameraRig;
 
@@ -107,7 +108,10 @@ public class State_ControlBody : State {
     void MyPosition()
     {
         
-        returnEvent.Invoke();
+		if (!executed) {
+			executed = true;
+			returnEvent.Invoke ();
+		}
         
     }
 }

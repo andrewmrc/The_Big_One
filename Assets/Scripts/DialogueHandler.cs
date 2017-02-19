@@ -12,9 +12,9 @@ public class DialogueHandler : MonoBehaviour {
 	//public float smoothSpeed = 1f;
 	//public string mainPhrase;
 	public float dialogueSpeed = 2f;
-
+	GameObject currentPlayer;
 	public List<DialogueItem> conversations;
-
+	public bool executed;
 	public UnityEvent returnEvent;
 
 	bool notInitialRotation;
@@ -32,8 +32,9 @@ public class DialogueHandler : MonoBehaviour {
 		if (/*this.GetComponent<FieldOfView> ().visibleTargets.Contains (GameObject.FindGameObjectWithTag ("Player").transform) && */!cantTalk) {
 			//this.transform.GetChild (0).gameObject.SetActive (true);
 			//this.transform.GetChild (0).gameObject.GetComponent<MeshRenderer>().enabled = true;
-			float distanceSqr = (this.transform.position - GameObject.FindGameObjectWithTag ("Player").transform.position).sqrMagnitude;
-			if ((distanceSqr < distanceToTalk) && !GameObject.FindGameObjectWithTag ("Player").gameObject.GetComponent<FSMLogic>().isAiming) { //Within range
+			currentPlayer = GameObject.FindGameObjectWithTag ("Player");
+			float distanceSqr = (this.transform.position - currentPlayer.transform.position).sqrMagnitude;
+			if ((distanceSqr < distanceToTalk) && !currentPlayer.gameObject.GetComponent<FSMLogic>().isAiming) { //Within range
 				this.transform.GetChild (0).gameObject.SetActive (true);
 				StopAllCoroutines ();
 				//this.transform.GetChild (0).gameObject.SetActive (true);
@@ -44,13 +45,13 @@ public class DialogueHandler : MonoBehaviour {
 					GameManager.Self.SetPlayerState (1);
 					GameManager.Self.isShowMemory = true;
 					//Debug.Log ("PRESS E TO TALK");
-					Vector3 targetPlayer = new Vector3 (GameObject.FindGameObjectWithTag ("Player").transform.position.x, this.gameObject.transform.position.y, GameObject.FindGameObjectWithTag ("Player").transform.position.z);
+					Vector3 targetPlayer = new Vector3 (currentPlayer.transform.position.x, this.gameObject.transform.position.y, currentPlayer.transform.position.z);
 					this.gameObject.transform.LookAt (targetPlayer);
-					Vector3 targetNPC = new Vector3 (this.gameObject.transform.position.x, GameObject.FindGameObjectWithTag ("Player").transform.position.y, this.gameObject.transform.position.z);
-					GameObject.FindGameObjectWithTag ("Player").transform.LookAt (targetNPC);
+					Vector3 targetNPC = new Vector3 (this.gameObject.transform.position.x, currentPlayer.transform.position.y, this.gameObject.transform.position.z);
+					currentPlayer.transform.LookAt (targetNPC);
 					GameManager.Self.blockMovement = true;
-					GameObject.FindGameObjectWithTag ("Player").GetComponent<CharController> ().enabled = false;
-					GameObject.FindGameObjectWithTag ("Player").GetComponent<Animator> ().SetFloat ("Forward", 0);
+					currentPlayer.GetComponent<CharController> ().enabled = false;
+					currentPlayer.GetComponent<Animator> ().SetFloat ("Forward", 0);
 					StartCoroutine (DPrinter3 ());
 				}
 			} else {
@@ -122,7 +123,7 @@ public class DialogueHandler : MonoBehaviour {
 
 		for(int i = 0; i < conversations.Count; i++) {
 			if (conversations [i].npcSpeaker != null) {
-				if (conversations [i].npcSpeaker.name == GameObject.FindGameObjectWithTag ("Player").name) {
+				if (conversations [i].npcSpeaker.name == currentPlayer.name) {
 					for (int j = 0; j < conversations [i].dialogues.Count; j++) {
 						Debug.Log ("i: " + i + ", j: " + j);
 
@@ -175,7 +176,7 @@ public class DialogueHandler : MonoBehaviour {
 					//Play speech e quando finisce passa al prossimo quindi waitforsecond inserendo la durata dell'audio
 					while (seconds > 0) {
 						seconds -= Time.deltaTime;
-						if(Input.GetKeyDown(KeyCode.E) && isFirstClick){
+						if((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown ("Examine")) && isFirstClick){
 							seconds = 0;
 						}
 						isFirstClick = true;
@@ -193,7 +194,10 @@ public class DialogueHandler : MonoBehaviour {
 		this.transform.GetChild (0).gameObject.SetActive (true); //.GetComponent<MeshRenderer> ().enabled = true;
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = "";
 		GameManager.Self.blockMovement = false;
-		returnEvent.Invoke ();
+		if (!executed) {
+			executed = true;
+			returnEvent.Invoke ();
+		}
 
 	}
 }
