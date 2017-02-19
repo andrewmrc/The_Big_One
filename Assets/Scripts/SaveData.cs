@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class SaveData : MonoBehaviour
 {
-    private FlowManager flow;
+    //private FlowManager flow;
     private DoorHandler[] doorsToSave;
     public List<GameObject> ActiveItemList;
     public int idSlot = 0;
@@ -32,25 +32,25 @@ public class SaveData : MonoBehaviour
     }
 
 
-    [Serializable]
-    class FlowBoolSave
-    {
-        public FlowBoolSave(bool[] _sequence, bool _executed)
-        {
-            sequence = _sequence;
-            executed = _executed;
+    //[Serializable]
+    //class FlowBoolSave
+    //{
+    //    public FlowBoolSave(bool[] _sequence, bool _executed)
+    //    {
+    //        sequence = _sequence;
+    //        executed = _executed;
 
-        }
-        public bool[] sequence;
-        public bool executed;
-    }
+    //    }
+    //    public bool[] sequence;
+    //    public bool executed;
+    //}
 
     [Serializable]
     class PlayerData
     {
         public Dictionary<string, Dictionary<string, float>> npcInfo;
         public string playername;
-        public List<FlowBoolSave> sequenceToSave;
+        //public List<FlowBoolSave> sequenceToSave;
         public Dictionary<string, Dictionary<string, bool>> components;
         public Dictionary<string, DoorData> doors;
         public string sceneName;
@@ -98,7 +98,7 @@ public class SaveData : MonoBehaviour
     void Awake()
     {
         doorsToSave = FindObjectsOfType<DoorHandler>();
-        flow = FindObjectOfType<FlowManager>();
+        //flow = FindObjectOfType<FlowManager>();
     }
 
     void Update()
@@ -129,18 +129,18 @@ public class SaveData : MonoBehaviour
         data.sceneName = SceneManager.GetActiveScene().name;
         idSlot = idSave;
         //salvo il flowmanager
-        if (flow)
-        {
-            data.sequenceToSave = new List<FlowBoolSave>();
-            foreach (var array in flow.flowRandomGameArray)
-            {
-                data.sequenceToSave.Add(new FlowBoolSave(array.sequence, array.executed));
-            }
-            foreach (var array in flow.flowGameArray)
-            {
-                data.sequenceToSave.Add(new FlowBoolSave(array.sequence, array.executed));
-            }
-        }
+        //if (flow)
+        //{
+        //    data.sequenceToSave = new List<FlowBoolSave>();
+        //    foreach (var array in flow.flowRandomGameArray)
+        //    {
+        //        data.sequenceToSave.Add(new FlowBoolSave(array.sequence, array.executed));
+        //    }
+        //    foreach (var array in flow.flowGameArray)
+        //    {
+        //        data.sequenceToSave.Add(new FlowBoolSave(array.sequence, array.executed));
+        //    }
+        //}
 
         var npcList = GameObject.FindGameObjectsWithTag("ControllableNPC");
         foreach (var npc in npcList)
@@ -253,23 +253,23 @@ public class SaveData : MonoBehaviour
             //Debug.Log("DOPO IL CARICAMENTO SCENA "+data.sceneName);
 
             //setto il flow manager
-            if (flow)
-            {
-                int i;
-                for (i = 0; i < FlowManager.Self.flowRandomGameArray.Length; i++)
-                {
-                    flow.flowRandomGameArray[i].sequence = data.sequenceToSave[i].sequence;
-                    flow.flowRandomGameArray[i].executed = data.sequenceToSave[i].executed;
-                }
-                int j = 0;
-                for (i = FlowManager.Self.flowRandomGameArray.Length; j < FlowManager.Self.flowGameArray.Count; i++)
-                {
+            //if (flow)
+            //{
+            //    int i;
+            //    for (i = 0; i < FlowManager.Self.flowRandomGameArray.Length; i++)
+            //    {
+            //        flow.flowRandomGameArray[i].sequence = data.sequenceToSave[i].sequence;
+            //        flow.flowRandomGameArray[i].executed = data.sequenceToSave[i].executed;
+            //    }
+            //    int j = 0;
+            //    for (i = FlowManager.Self.flowRandomGameArray.Length; j < FlowManager.Self.flowGameArray.Count; i++)
+            //    {
 
-                    flow.flowGameArray[j].sequence = data.sequenceToSave[i].sequence;
-                    flow.flowGameArray[j].executed = data.sequenceToSave[i].executed;
-                    j++;
-                }
-            }
+            //        flow.flowGameArray[j].sequence = data.sequenceToSave[i].sequence;
+            //        flow.flowGameArray[j].executed = data.sequenceToSave[i].executed;
+            //        j++;
+            //    }
+            //}
 
             var doorMap = data.doors;
 
