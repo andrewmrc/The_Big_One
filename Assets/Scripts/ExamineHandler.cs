@@ -24,14 +24,17 @@ public class ExamineHandler : MonoBehaviour
     private float rayDistance = 4;
     private GameObject tempAnchor;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            playerIn = true;
-			Debug.Log ("Dentro Trigger Esaminabile");
-            CheckObject = StartCoroutine(RayMeCO(other));
-        }
+		if (other.gameObject.tag == "Player") {
+			if (!playerIn) {
+				playerIn = true;
+				Debug.Log ("Dentro Trigger Esaminabile");
+				CheckObject = StartCoroutine (RayMeCO (other));
+			}
+		} else {
+			playerIn = false;
+		}
     }
 
     private void OnTriggerExit(Collider other)
@@ -72,7 +75,7 @@ public class ExamineHandler : MonoBehaviour
                         if (anchor != null)
                         {
                             anchor.GetComponent<Examinable>().StopClickMe();
-							Debug.Log ("asd");
+							//Debug.Log ("asd");
                         }
                         tempAnchor = coll.gameObject;
 
