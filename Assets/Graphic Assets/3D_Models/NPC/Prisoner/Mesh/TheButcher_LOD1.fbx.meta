@@ -179,7 +179,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -211,8 +211,791 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    human: []
-    skeleton: []
+    human:
+    - boneName: thebutcher_hik_Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftFootIndex1
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightFootIndex1
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandThumb1
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandThumb2
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandThumb3
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandIndex3
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandMiddle1
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandMiddle2
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandMiddle3
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandRing1
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandRing2
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandRing3
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandPinky1
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandPinky2
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_LeftHandPinky3
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandThumb1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandThumb2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandThumb3
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandIndex2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandIndex3
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandMiddle1
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandMiddle2
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandMiddle3
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandRing1
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandRing2
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandRing3
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandPinky1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandPinky2
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thebutcher_hik_RightHandPinky3
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: TheButcher_LOD1(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: body
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: eye_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: eye_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: head
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_Reference
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_Hips
+      position: {x: 1.065974e-17, y: 0.9063591, z: 2.131948e-17}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_LeftUpLeg
+      position: {x: -0.12634917, y: -0.0480072, z: 3.479082e-17}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_LeftLeg
+      position: {x: -0.04106966, y: -0.3905208, z: -0.019153502}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_LeftFoot
+      position: {x: -0.034700375, y: -0.38848868, z: -0.08217413}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_LeftFootIndex1
+      position: {x: -0.03936575, y: -0.05976335, z: 0.14394154}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_LeftFootIndex2
+      position: {x: -0.016990032, y: -0.00069826125, z: 0.08205818}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_RightUpLeg
+      position: {x: 0.12634917, y: -0.0480072, z: -2.131948e-17}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_RightLeg
+      position: {x: 0.04106966, y: -0.3905208, z: -0.019153502}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_RightFoot
+      position: {x: 0.034700375, y: -0.38848868, z: -0.08217413}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_RightFootIndex1
+      position: {x: 0.03936575, y: -0.05976335, z: 0.14394154}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_RightFootIndex2
+      position: {x: 0.016990032, y: -0.00069826125, z: 0.08205818}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_Spine
+      position: {x: -0, y: 0.12812018, z: 5.689679e-17}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_Spine1
+      position: {x: -5.01732e-17, y: 0.22596, z: -1.2543299e-16}
+      rotation: {x: 0.21412537, y: -0.33486524, z: -0.4943347, w: 0.77307755}
+      scale: {x: 1.0000006, y: 1.0000005, z: 1.0000001}
+      transformModified: 1
+    - name: thebutcher_hik_LeftShoulder
+      position: {x: -0.19369705, y: -0.000000028535405, z: -8.799654e-11}
+      rotation: {x: -0.13404591, y: 0.29635212, z: 0.5970652, w: 0.7332941}
+      scale: {x: 1.0000001, y: 0.9999998, z: 0.9999998}
+      transformModified: 1
+    - name: thebutcher_hik_LeftArm
+      position: {x: -0.14759998, y: -0.012757857, z: 0.01692349}
+      rotation: {x: 0.767778, y: 0.3886234, z: 0.509317, w: -0.009214517}
+      scale: {x: 1.0000013, y: 1.0000004, z: 1.0000007}
+      transformModified: 1
+    - name: thebutcher_hik_LeftForeArm
+      position: {x: 0.016296808, y: -0.1996828, z: -0.22650474}
+      rotation: {x: -0.59973997, y: -0.7978369, z: -0.00244306, w: 0.06133686}
+      scale: {x: 0.99999976, y: 0.9999995, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHand
+      position: {x: -0.18166478, y: 0.00044572487, z: 0.1669554}
+      rotation: {x: 0.37587446, y: 0.91016537, z: -0.07623267, w: 0.15654428}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000008}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandThumb1
+      position: {x: -0.02342746, y: 0.005697755, z: -0.035737734}
+      rotation: {x: 0.28709173, y: -0.7441262, z: 0.5727648, w: 0.1891959}
+      scale: {x: 1.0000011, y: 1.0000017, z: 1.0000015}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandThumb2
+      position: {x: -0.024065968, y: 0.018577907, z: 0.00078794546}
+      rotation: {x: -0.16708358, y: -0.4856063, z: -0.69457823, w: 0.5038162}
+      scale: {x: 1.0000002, y: 1.0000006, z: 1.0000002}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandThumb3
+      position: {x: 0.0023130344, y: -0.018549096, z: 0.022275593}
+      rotation: {x: -0.2863564, y: -0.52673197, z: 0.7775063, w: -0.18983519}
+      scale: {x: 1.0000002, y: 1.0000002, z: 0.99999994}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandThumb4
+      position: {x: -0.014535514, y: -0.0052231005, z: 0.020750182}
+      rotation: {x: -0.82277924, y: 0.5185963, z: -0.087060474, w: 0.21566778}
+      scale: {x: 1.0000001, y: 1.0000005, z: 0.99999976}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandIndex1
+      position: {x: -0.0012770387, y: -0.024492022, z: -0.09050466}
+      rotation: {x: 0.32081163, y: -0.86303794, z: 0.11033311, w: 0.37426206}
+      scale: {x: 1.000001, y: 1.0000004, z: 1.0000002}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandIndex2
+      position: {x: -0.01845534, y: -0.013377802, z: 0.032522347}
+      rotation: {x: -0.31995, y: 0.16807877, z: -0.8029283, w: 0.47401223}
+      scale: {x: 1.0000012, y: 1.0000006, z: 1.0000008}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandIndex3
+      position: {x: 0.015729805, y: -0.013304248, z: 0.0074706087}
+      rotation: {x: -0.5369121, y: 0.1807303, z: 0.79288214, w: 0.22449917}
+      scale: {x: 1.0000005, y: 1.0000008, z: 0.99999934}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandIndex4
+      position: {x: -0.0137866335, y: 0.0022362415, z: -0.014191011}
+      rotation: {x: -0.10250493, y: -0.26671407, z: 0.45695356, w: 0.8423478}
+      scale: {x: 1.0000005, y: 1.0000007, z: 1.000001}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandMiddle1
+      position: {x: 0.0120689375, y: -0.04127609, z: -0.080624744}
+      rotation: {x: 0.20621729, y: -0.9168109, z: -0.14396603, w: 0.31017098}
+      scale: {x: 1.0000008, y: 0.99999994, z: 1.0000007}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandMiddle2
+      position: {x: -0.007673694, y: -0.034226358, z: 0.024384618}
+      rotation: {x: 0.73072773, y: -0.59181195, z: 0.23801763, w: 0.24319375}
+      scale: {x: 0.99999964, y: 0.9999989, z: 0.99999976}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandMiddle3
+      position: {x: 0.026909526, y: 0.008663034, z: 0.00090654555}
+      rotation: {x: -0.84388435, y: -0.2666548, z: -0.14768384, w: 0.4415245}
+      scale: {x: 1.0000014, y: 1.0000005, z: 0.9999998}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandMiddle4
+      position: {x: 0.018764, y: 0.01000519, z: 0.0047844895}
+      rotation: {x: -0.16777265, y: 0.052345593, z: 0.73537594, w: 0.65447277}
+      scale: {x: 0.99999964, y: 0.9999994, z: 0.99999976}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandRing1
+      position: {x: 0.016554648, y: -0.058336414, z: -0.06346084}
+      rotation: {x: 0.16999963, y: -0.88777065, z: -0.32903257, w: 0.27331495}
+      scale: {x: 1.000001, y: 1, z: 1.0000007}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandRing2
+      position: {x: -0.002836218, y: -0.042856682, z: 0.010648051}
+      rotation: {x: -0.39085007, y: 0.1636396, z: -0.3906281, w: 0.81723195}
+      scale: {x: 1.0000002, y: 0.9999992, z: 0.9999998}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandRing3
+      position: {x: 0.017316794, y: -0.013114552, z: -0.0073979795}
+      rotation: {x: 0.33796114, y: 0.23790142, z: 0.06921259, w: 0.90796196}
+      scale: {x: 1.0000005, y: 1, z: 0.9999995}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandRing4
+      position: {x: 0.012672905, y: -0.011731676, z: 0.011135717}
+      rotation: {x: -0.22216472, y: -0.18705814, z: 0.7004544, w: -0.65193224}
+      scale: {x: 1.0000001, y: 0.9999997, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandPinky1
+      position: {x: 0.018904531, y: -0.07286819, z: -0.04287138}
+      rotation: {x: 0.12791345, y: -0.7022152, z: -0.67166245, w: 0.19849816}
+      scale: {x: 1.0000005, y: 1.0000001, z: 1.0000006}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandPinky2
+      position: {x: 0.0038683347, y: -0.028167542, z: -0.016535114}
+      rotation: {x: 0.5292174, y: 0.73872125, z: 0.3387194, w: -0.24390368}
+      scale: {x: 1.0000007, y: 1.0000002, z: 1.0000006}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandPinky3
+      position: {x: -0.018080367, y: -0.0022996697, z: -0.006393027}
+      rotation: {x: -0.45093572, y: 0.42197114, z: -0.7823558, w: -0.08072643}
+      scale: {x: 1.000001, y: 1.000001, z: 1.0000004}
+      transformModified: 1
+    - name: thebutcher_hik_LeftHandPinky4
+      position: {x: 0.003874598, y: 0.009602309, z: -0.008871486}
+      rotation: {x: 0.123105526, y: -0.5601154, z: 0.6234007, w: 0.53149545}
+      scale: {x: 0.99999994, y: 0.99999976, z: 1.0000002}
+      transformModified: 1
+    - name: thebutcher_hik_RightShoulder
+      position: {x: -0.16178842, y: 0.06903356, z: -0.081101276}
+      rotation: {x: -0.25594804, y: 0.8918653, z: -0.25303203, w: -0.27393743}
+      scale: {x: 1.0000005, y: 0.99999964, z: 1.0000018}
+      transformModified: 1
+    - name: thebutcher_hik_RightArm
+      position: {x: -0.14521766, y: 0.03232112, z: 0.010104316}
+      rotation: {x: -0.5764114, y: -0.79318327, z: 0.17813525, w: 0.08293387}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.9999991}
+      transformModified: 1
+    - name: thebutcher_hik_RightForeArm
+      position: {x: 0.21943218, y: -0.2027111, z: 0.0469142}
+      rotation: {x: 0.39255303, y: -0.28761533, z: 0.15352176, w: 0.8600062}
+      scale: {x: 0.9999997, y: 0.9999999, z: 1.0000014}
+      transformModified: 1
+    - name: thebutcher_hik_RightHand
+      position: {x: 0.17346622, y: -0.16085747, z: 0.0700767}
+      rotation: {x: 0.6055096, y: 0.33236423, z: -0.33978546, w: 0.6383089}
+      scale: {x: 1.0000007, y: 1, z: 0.9999998}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandThumb1
+      position: {x: -0.028085278, y: 0.03268794, z: 0.0011002836}
+      rotation: {x: -0.97912323, y: 0.06670278, z: -0.0004762112, w: 0.19201128}
+      scale: {x: 0.99999994, y: 0.99999976, z: 0.9999998}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandThumb2
+      position: {x: -0.0015332912, y: -0.027224477, z: 0.013468757}
+      rotation: {x: 0.8039157, y: -0.053060587, z: -0.32149217, w: -0.4975409}
+      scale: {x: 1, y: 1.000001, z: 1.0000011}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandThumb3
+      position: {x: -0.0139464475, y: 0.0056990683, z: -0.024872443}
+      rotation: {x: -0.77706677, y: 0.17970479, z: -0.5986185, w: -0.07436022}
+      scale: {x: 0.9999996, y: 1.0000002, z: 0.9999999}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandThumb4
+      position: {x: -0.025156554, y: 0.002559397, z: -0.0054524527}
+      rotation: {x: -0.12894312, y: -0.31313518, z: -0.67591536, w: 0.6545674}
+      scale: {x: 1, y: 0.9999996, z: 0.9999992}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandIndex1
+      position: {x: -0.0125095565, y: 0.08347176, z: 0.04084798}
+      rotation: {x: -0.67697537, y: -0.02528106, z: -0.048068058, w: 0.73399913}
+      scale: {x: 1.0000001, y: 1, z: 1.0000002}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandIndex2
+      position: {x: -0.0039727944, y: -0.019879121, z: 0.034151204}
+      rotation: {x: -0.10155855, y: -0.51137346, z: 0.2549503, w: 0.8143607}
+      scale: {x: 0.99999964, y: 0.99999994, z: 0.99999994}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandIndex3
+      position: {x: 0.007156905, y: -0.016529514, z: 0.012481741}
+      rotation: {x: -0.007927772, y: 0.81876576, z: -0.47480178, w: -0.32268098}
+      scale: {x: 1.0000011, y: 1.0000001, z: 1.0000012}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandIndex4
+      position: {x: -0.002474261, y: -0.019067308, z: 0.0051741875}
+      rotation: {x: 0.10429811, y: 0.40281284, z: 0.7728478, w: 0.4791346}
+      scale: {x: 1, y: 1.0000001, z: 0.99999994}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandMiddle1
+      position: {x: 0.0024885475, y: 0.0725736, z: 0.05546713}
+      rotation: {x: -0.49429747, y: 0.112888984, z: -0.08040194, w: 0.8581734}
+      scale: {x: 1.0000001, y: 1.0000005, z: 1.0000002}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandMiddle2
+      position: {x: -0.014883047, y: -0.010084307, z: 0.038752295}
+      rotation: {x: -0.14900398, y: -0.43599987, z: 0.23942918, w: 0.85462016}
+      scale: {x: 0.99999964, y: 0.99999994, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandMiddle3
+      position: {x: 0.0070097023, y: -0.014408262, z: 0.023307912}
+      rotation: {x: 0.69823444, y: 0.50355595, z: 0.32793254, w: -0.38905063}
+      scale: {x: 1.0000006, y: 1.0000007, z: 1.0000012}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandMiddle4
+      position: {x: 0.012257543, y: 0.0017531819, z: -0.017937714}
+      rotation: {x: -0.27298746, y: 0.35247454, z: -0.32472485, w: 0.83414227}
+      scale: {x: 0.99999905, y: 0.9999997, z: 0.99999976}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandRing1
+      position: {x: 0.009675326, y: 0.05333777, z: 0.06903578}
+      rotation: {x: -0.38191047, y: 0.16268605, z: -0.13150488, w: 0.90021336}
+      scale: {x: 0.9999998, y: 0.99999964, z: 1}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandRing2
+      position: {x: -0.020120915, y: -0.0016754799, z: 0.039375905}
+      rotation: {x: -0.86340976, y: -0.23984678, z: -0.3629749, w: -0.25543353}
+      scale: {x: 0.9999999, y: 1.0000008, z: 1.0000002}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandRing3
+      position: {x: 0.0016012338, y: 0.010821649, z: -0.020172281}
+      rotation: {x: -0.4612982, y: -0.49220812, z: 0.72928214, w: 0.11437983}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000002}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandRing4
+      position: {x: 0.015902821, y: 0.010820032, z: -0.007229533}
+      rotation: {x: -0.13236272, y: -0.62666315, z: 0.6529233, w: -0.40430748}
+      scale: {x: 1.0000002, y: 1.0000006, z: 1.000001}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandPinky1
+      position: {x: 0.015126382, y: 0.030941734, z: 0.07949157}
+      rotation: {x: -0.16169587, y: 0.20732749, z: -0.2781057, w: 0.92386526}
+      scale: {x: 0.9999999, y: 1.0000005, z: 1.000001}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandPinky2
+      position: {x: -0.021521509, y: 0.008338469, z: 0.02343243}
+      rotation: {x: 0.3578675, y: -0.7527994, z: 0.23352383, w: 0.50069004}
+      scale: {x: 1.0000005, y: 1.0000002, z: 0.9999998}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandPinky3
+      position: {x: 0.014342564, y: 0.012936351, z: -0.000023552308}
+      rotation: {x: -0.902765, y: 0.28658772, z: -0.28367487, w: -0.14970466}
+      scale: {x: 1.0000004, y: 1.0000006, z: 1.0000002}
+      transformModified: 1
+    - name: thebutcher_hik_RightHandPinky4
+      position: {x: 0.0034704458, y: -0.013174938, z: -0.00054500956}
+      rotation: {x: -0.17763941, y: 0.5694937, z: -0.63107175, w: 0.49585244}
+      scale: {x: 1.0000012, y: 1.000001, z: 1.0000007}
+      transformModified: 1
+    - name: thebutcher_hik_Neck
+      position: {x: -0.22032444, y: 0.06188778, z: -0.03400578}
+      rotation: {x: -0.8235346, y: 0.38260663, z: -0.0856375, w: 0.40996248}
+      scale: {x: 1.0000004, y: 1.0000007, z: 1.0000008}
+      transformModified: 1
+    - name: thebutcher_hik_Head
+      position: {x: -0.10392656, y: 0.0060862885, z: -0.012576822}
+      rotation: {x: -0.024135012, y: 0.6438997, z: 0.089927725, w: 0.75942326}
+      scale: {x: 1.0000018, y: 0.9999997, z: 1.0000013}
+      transformModified: 1
+    - name: transform19
+      position: {x: -0.08194648, y: -0.7905198, z: 1.3730754}
+      rotation: {x: 0.08506123, y: 0.8572544, z: -0.4983955, w: -0.09737278}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: transform20
+      position: {x: -0.08194648, y: -0.7905198, z: 1.3730754}
+      rotation: {x: 0.08506123, y: 0.8572544, z: -0.4983955, w: -0.09737278}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: transform21
+      position: {x: -0.08194648, y: -0.7905198, z: 1.3730754}
+      rotation: {x: 0.08506123, y: 0.8572544, z: -0.4983955, w: -0.09737278}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: transform22
+      position: {x: -0.08194648, y: -0.7905198, z: 1.3730754}
+      rotation: {x: 0.08506123, y: 0.8572544, z: -0.4983955, w: -0.09737278}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: transform24
+      position: {x: -0.08194648, y: -0.7905198, z: 1.3730754}
+      rotation: {x: 0.08506123, y: 0.8572544, z: -0.4983955, w: -0.09737278}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: transform25
+      position: {x: -0.08194648, y: -0.7905198, z: 1.3730754}
+      rotation: {x: 0.08506123, y: 0.8572544, z: -0.4983955, w: -0.09737278}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -223,7 +1006,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
