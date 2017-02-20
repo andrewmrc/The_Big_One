@@ -53,6 +53,7 @@ public class SaveData : MonoBehaviour
         //public List<FlowBoolSave> sequenceToSave;
         public Dictionary<string, Dictionary<string, bool>> components;
         public Dictionary<string, DoorData> doors;
+        public Dictionary<string, Dictionary<string, bool>> executed_bools;
         public string sceneName;
 
         public Dictionary<string, bool> superDict;
@@ -64,13 +65,14 @@ public class SaveData : MonoBehaviour
             components = new Dictionary<string, Dictionary<string, bool>>();
             doors = new Dictionary<string, DoorData>();
             superDict = new Dictionary<string, bool>();
+            executed_bools = new Dictionary<string, Dictionary<string, bool>>();
         }
 
         public void addNpcInfo(string name, Dictionary<string, float> inf)
         {
             npcInfo.Add(name, inf);
         }
-        
+
         public void addComponent(string npc, string name, bool enabled)
         {
             if (!components.ContainsKey(npc))
@@ -93,6 +95,23 @@ public class SaveData : MonoBehaviour
                 superDict.Add(name, enableStatus);
         }
 
+        public void addExecuted(string obj, string className, bool exec)
+        {
+            if (!executed_bools.ContainsKey(obj))
+            {
+                Dictionary<string, bool> dictTmp = new Dictionary<string, bool>();
+                dictTmp.Add(className, exec);
+                executed_bools.Add(obj, dictTmp);
+            }
+            else
+            {
+                Dictionary<string, bool> dictTmp = executed_bools[obj];
+                if (!dictTmp.ContainsKey(className))
+                {
+                    executed_bools[obj].Add(className, exec);
+                }
+            }
+        }
     }
 
     void Awake()
@@ -142,6 +161,97 @@ public class SaveData : MonoBehaviour
         //    }
         //}
 
+
+        var enemyPaths = GameObject.FindObjectsOfType<FSM_EnemyPath>();
+        foreach (var entmp in enemyPaths)
+        {
+            if (entmp != null)
+            {
+                data.addExecuted("FSM_EnemyPath", entmp.name, entmp.executed);
+                //Debug.Log("AGGIUNTO: " + entmp.name);
+            }
+
+        }
+
+        var examinables = GameObject.FindObjectsOfType<Examinable>();
+        foreach (var entmp in examinables)
+        {
+            if (entmp != null)
+            {
+                data.addExecuted("Examinable", entmp.name, entmp.executed);
+                //Debug.Log("AGGIUNTO: " + entmp.name);
+            }
+
+        }
+
+        var dialogueshandlers = GameObject.FindObjectsOfType<DialogueHandler>();
+        foreach (var entmp in dialogueshandlers)
+        {
+            if (entmp != null)
+            {
+                data.addExecuted("DialogueHandler", entmp.name, entmp.executed);
+                //Debug.Log("AGGIUNTO: " + entmp.name);
+            }
+
+        }
+
+        var statesmemories = GameObject.FindObjectsOfType<State_ShowMemory>();
+        foreach (var entmp in statesmemories)
+        {
+            if (entmp != null)
+            {
+                data.addExecuted("State_ShowMemory", entmp.name, entmp.executed);
+                //Debug.Log("AGGIUNTO: " + entmp.name);
+            }
+
+        }
+
+        var triggeractions = GameObject.FindObjectsOfType<TriggerAction>();
+        foreach (var entmp in triggeractions)
+        {
+            if (entmp != null)
+            {
+                data.addExecuted("TriggerAction", entmp.name, entmp.executed);
+                //Debug.Log("AGGIUNTO: " + entmp.name);
+            }
+
+        }
+
+        var doorhandlersex = GameObject.FindObjectsOfType<DoorHandler>();
+        foreach (var entmp in doorhandlersex)
+        {
+            if (entmp != null)
+            {
+                data.addExecuted("DoorHandler", entmp.name, entmp.executed);
+                //Debug.Log("AGGIUNTO: " + entmp.name);
+            }
+
+        }
+
+        var railcameras = GameObject.FindObjectsOfType<RailCamera>();
+        foreach (var entmp in railcameras)
+        {
+            if (entmp != null)
+            {
+                data.addExecuted("RailCamera", entmp.name, entmp.executed);
+                //Debug.Log("AGGIUNTO: " + entmp.name);
+            }
+
+        }
+
+
+        var gameevents = GameObject.FindObjectsOfType<GameEvents>();
+        foreach (var entmp in gameevents)
+        {
+            if (entmp != null)
+            {
+                data.addExecuted("GameEvents", entmp.name, entmp.executed);
+                //Debug.Log("AGGIUNTO: " + entmp.name);
+            }
+
+        }
+
+
         var npcList = GameObject.FindGameObjectsWithTag("ControllableNPC");
         foreach (var npc in npcList)
         {
@@ -167,7 +277,7 @@ public class SaveData : MonoBehaviour
             foreach (var comp in compsList)
             {
                 data.addComponent(npc.name, comp.ToString(), comp.enabled);
-            }            
+            }
         }
 
         if (ActiveItemList.Count > 0)
@@ -175,6 +285,12 @@ public class SaveData : MonoBehaviour
             foreach (var item in ActiveItemList)
             {
                 data.superDict.Add(item.name, item.activeSelf);
+                foreach (Transform child in item.transform)
+                {
+                    if (!data.superDict.ContainsKey(child.name))
+                        data.superDict.Add(child.name, child.gameObject.activeSelf);
+                    Debug.Log("CHILD: " + child.name);
+                }
                 Debug.Log(item.name + item.activeSelf);
             }
         }
@@ -239,7 +355,7 @@ public class SaveData : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             FileStream fs = File.Open(saveName, FileMode.Open);
             PlayerData data = (PlayerData)bf.Deserialize(fs);
-            fs.Close();            
+            fs.Close();
             var actualScene = SceneManager.GetActiveScene().name;
 
             //Debug.Log("PRIMA DEL CARICAMENTO SCENA "+actualScene);
@@ -301,10 +417,104 @@ public class SaveData : MonoBehaviour
             var itemDict = data.superDict;
             if (itemDict != null)
             {
-                foreach (var kvp in itemDict )
+                foreach (var kvp in itemDict)
                 {
+                    //Debug.Log("KVP: " + kvp);
                     //bool isActive = itemDict[item];
-                    GameObject.Find(kvp.Key).SetActive(kvp.Value);
+                    var goTmp = GameObject.Find(kvp.Key);
+                    Debug.Log("GAME OBJECT ACTIVE: " + goTmp);
+                    if (goTmp != null)
+                        goTmp.SetActive(kvp.Value);
+                }
+            }
+
+            var executedDict = data.executed_bools;
+
+            if (executedDict.ContainsKey("FSM_EnemyPath"))
+            {
+                var enemyPaths = GameObject.FindObjectsOfType<FSM_EnemyPath>();
+                foreach (var entmp in enemyPaths)
+                {
+                    if (executedDict["FSM_EnemyPath"].ContainsKey(entmp.name))
+                        entmp.executed = executedDict["FSM_EnemyPath"][entmp.name];
+
+                }
+            }
+
+            if (executedDict.ContainsKey("Examinable"))
+            {
+                var examinables = GameObject.FindObjectsOfType<Examinable>();
+                foreach (var entmp in examinables)
+                {
+                    if (executedDict["Examinable"].ContainsKey(entmp.name))
+                        entmp.executed = executedDict["Examinable"][entmp.name];
+
+                }
+            }
+
+            if (executedDict.ContainsKey("DialogueHandler"))
+            {
+                var dialogues = GameObject.FindObjectsOfType<DialogueHandler>();
+                foreach (var entmp in dialogues)
+                {
+                    if (executedDict["DialogueHandler"].ContainsKey(entmp.name))
+                        entmp.executed = executedDict["DialogueHandler"][entmp.name];
+
+                }
+            }
+
+            if (executedDict.ContainsKey("State_ShowMemory"))
+            {
+                var statememories = GameObject.FindObjectsOfType<State_ShowMemory>();
+                foreach (var entmp in statememories)
+                {
+                    if (executedDict["State_ShowMemory"].ContainsKey(entmp.name))
+                        entmp.executed = executedDict["State_ShowMemory"][entmp.name];
+
+                }
+            }
+
+            if (executedDict.ContainsKey("TriggerAction"))
+            {
+                var triggers = GameObject.FindObjectsOfType<TriggerAction>();
+                foreach (var entmp in triggers)
+                {
+                    if (executedDict["TriggerAction"].ContainsKey(entmp.name))
+                        entmp.executed = executedDict["TriggerAction"][entmp.name];
+
+                }
+            }
+
+            if (executedDict.ContainsKey("DoorHandler"))
+            {
+                var doorshandlerex = GameObject.FindObjectsOfType<DoorHandler>();
+                foreach (var entmp in doorshandlerex)
+                {
+                    if (executedDict["DoorHandler"].ContainsKey(entmp.name))
+                        entmp.executed = executedDict["DoorHandler"][entmp.name];
+
+                }
+            }
+
+            if (executedDict.ContainsKey("RailCamera"))
+            {
+                var railcameras = GameObject.FindObjectsOfType<RailCamera>();
+                foreach (var entmp in railcameras)
+                {
+                    if (executedDict["RailCamera"].ContainsKey(entmp.name))
+                        entmp.executed = executedDict["RailCamera"][entmp.name];
+
+                }
+            }
+
+            if (executedDict.ContainsKey("GameEvents"))
+            {
+                var gameevents = GameObject.FindObjectsOfType<GameEvents>();
+                foreach (var entmp in gameevents)
+                {
+                    if (executedDict["GameEvents"].ContainsKey(entmp.name))
+                        entmp.executed = executedDict["GameEvents"][entmp.name];
+
                 }
             }
 
@@ -339,6 +549,7 @@ public class SaveData : MonoBehaviour
                     GameObject.Find(playername).tag = "Player";
                     GameObject.FindObjectOfType<FreeLookCam>().m_Target = GameObject.Find(playername).transform;
 
+
                     //DA SISTEMARE CON IL NOME DELL'NPC PLAYER  <-----------------------------------------!!
                     if (playername != "OliviaRig_Stand")
                     {
@@ -369,7 +580,4 @@ public class SaveData : MonoBehaviour
     {
         idSlot = _idSlot;
     }
-
-
-
 }
