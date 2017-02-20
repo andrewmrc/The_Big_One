@@ -22,10 +22,6 @@ public class Examinable : ExamineAbstract
         refUI = FindObjectOfType<UI>();
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-    }
 
     public override void ClickMe()
     {

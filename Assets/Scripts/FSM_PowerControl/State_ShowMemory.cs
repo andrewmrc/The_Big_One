@@ -13,10 +13,7 @@ public class State_ShowMemory : State {
 
     public override void StateUpdate()
     {
-        
-
-
-		refUI.HackUI (false);
+ 		refUI.HackUI (false);
 		refUI.ReturnUI (false);
 
         refUI.cursor.GetComponent<Image>().color = Color.clear;
@@ -42,8 +39,4 @@ public class State_ShowMemory : State {
 
     }
 	
-	// Update is called once per frame
-	void Update () {
-        
-	}
 }
