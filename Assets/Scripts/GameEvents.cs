@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Collections;
@@ -51,6 +52,7 @@ public class GameEvents : MonoBehaviour
 
 	//Variabili per l'evento player
 	public GameObject character;
+	public bool executed;
 	public UnityEvent eventToActivate;
 
 
@@ -134,7 +136,10 @@ public class GameEvents : MonoBehaviour
 
 
 	void EventsActivator (){
-		StartCoroutine(EventActivatorCo());
+		if (!executed) {
+			executed = true;
+			StartCoroutine(EventActivatorCo());
+		}
 	}
 
 

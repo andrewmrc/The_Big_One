@@ -42,6 +42,7 @@ public class DoorHandler : MonoBehaviour
     public float messageSpeed = 2;
     public UnityEvent messageEvent;
 	public bool setCollider = false;
+	public bool executed;
 
     // Varibili utilizzate dal programmatore
     private GameObject player;
@@ -292,9 +293,9 @@ public class DoorHandler : MonoBehaviour
     private IEnumerator DoorMessage()
     {
 
-        GameManager.Self.blockMovement = true;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>().enabled = false;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
+        //GameManager.Self.blockMovement = true;
+        //GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>().enabled = false;
+       //GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
 
         for (int i = 0; i < messageList.Length; i++)
         {
@@ -312,10 +313,14 @@ public class DoorHandler : MonoBehaviour
                 yield return null;
             }
         }
-        messageEvent.Invoke();
+
+		if (!executed) {
+			executed = true;
+			messageEvent.Invoke();
+		}
 
         GameManager.Self.canvasUI.GetComponent<UI>().VariousDescriptionUI.GetComponent<Text>().text = "";
-        GameManager.Self.blockMovement = false;
+        //GameManager.Self.blockMovement = false;
 
 
     }

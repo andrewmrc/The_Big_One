@@ -33,6 +33,7 @@ namespace UnityStandardAssets.Cameras
         public GameObject mainCamera;
 		GameObject realMainCamera;
 		GameObject player;
+		public bool executed;
 		public UnityEvent returnEvent;
         Fader refFader;
 		bool fadeNow;
@@ -135,7 +136,11 @@ namespace UnityStandardAssets.Cameras
 
                 this.gameObject.SetActive (false);
 				player.GetComponent<FSMLogic> ().enabled = true;
-				returnEvent.Invoke ();
+				if (!executed) {
+					executed = true;
+					returnEvent.Invoke ();
+				}
+
 			}
 		}
 
