@@ -45,7 +45,7 @@ public class AudioManager : MonoBehaviour
             isWalking = false;
             m_AudioSource.Stop();
             m_AudioSource.clip = soundContainer.AimSound;
-            m_AudioSource.volume = 1;
+            m_AudioSource.volume = 0.7f;
             m_AudioSource.Play();
         }
         else if (Input.GetKeyUp(KeyCode.Mouse1))
