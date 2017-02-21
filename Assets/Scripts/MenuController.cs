@@ -9,7 +9,7 @@ using UnityStandardAssets.Cameras;
 public class MenuController : MonoBehaviour
 {
 
-    public GameObject ResumeButton, PanelExit, panelSettings;
+    public GameObject ResumeButton, ExitButton, PanelExit, panelSettings;
 
     public CanvasController refCanvasController;
 
@@ -28,12 +28,14 @@ public class MenuController : MonoBehaviour
         {
             Time.timeScale = 0;
             PanelExit.SetActive(true);
+			ResumeButton.GetComponent<Button> ().Select ();
             isInExitMenu = true;
             refCanvasController.ExitHandler(false);
         }
 		else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause") && isInExitMenu)
         {
-            panelSettings.SetActive(false);
+			ExitButton.GetComponent<Button> ().Select();
+			PanelExit.SetActive(false);
             Resume();
             refCanvasController.ExitHandler(true);
 
