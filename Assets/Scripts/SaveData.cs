@@ -212,7 +212,7 @@ public class SaveData : MonoBehaviour
             if (entmp != null)
             {
                 data.addExecuted("TriggerAction", entmp.name, entmp.executed);
-                //Debug.Log("AGGIUNTO: " + entmp.name);
+				//Debug.Log("AGGIUNTO: " + entmp.name + entmp.executed);
             }
 
         }

@@ -24,14 +24,14 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isInExitMenu)
+		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause") && !isInExitMenu)
         {
             Time.timeScale = 0;
             PanelExit.SetActive(true);
             isInExitMenu = true;
             refCanvasController.ExitHandler(false);
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isInExitMenu)
+		else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause") && isInExitMenu)
         {
             panelSettings.SetActive(false);
             Resume();
