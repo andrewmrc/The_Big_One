@@ -13,15 +13,15 @@ public class AudioManager : MonoBehaviour
     private Animator charAnimator;
     private AudioContainer soundContainer;
 
-    
+
     Coroutine footStepCo;
 
     [Space(5)]
-    public AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
+    private AudioClip[] m_FootstepSounds = { null, null};    // an array of footstep sounds that will be randomly selected from.
 
     [Header("[Tempo tra ogni suono di passo]")]
     private float stepTime = 0.5f;
-
+    private float stepTimeRun = 0.3109f;
 
     void Start()
     {
@@ -35,7 +35,6 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Mouse1) && /*!GameManager.Self.cantUsePower*/(GameManager.Self.ChangePlayerState == GameState.UsePower || GameManager.Self.ChangePlayerState == GameState.OnlyIdea))
         {
             
@@ -66,7 +65,9 @@ public class AudioManager : MonoBehaviour
                 //m_AudioSource.Play();
 
                 //Questa coroutine serve se vogliamo passare noi ogni quanto tempo deve sentirsi il rumore di un singolo passo.
+               
                 footStepCo = StartCoroutine(PlayFootStepSound(stepTime));
+                
             }
 
         }
@@ -98,7 +99,14 @@ private IEnumerator PlayFootStepSound(float waitTime)
                 m_FootstepSounds[n] = m_FootstepSounds[0];
                 m_FootstepSounds[0] = m_AudioSource.clip;
             }
-            yield return new WaitForSeconds(waitTime);
+            if (Input.GetKey(KeyCode.LeftShift) || (Input.GetAxis("LeftTriggerJoystick") <= -0.001))
+            {
+                yield return new WaitForSeconds(stepTimeRun);
+            } else
+            {
+                yield return new WaitForSeconds(waitTime);
+            }
+
         }
     }
 
