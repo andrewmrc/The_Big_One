@@ -21,7 +21,7 @@ public class CanvasController : MonoBehaviour
 
     public void QuestHandler(bool On)
     {
-        refMC.enabled = On;
+        //refMC.enabled = On;
         refInventory.enabled = On;
     }
 

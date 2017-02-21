@@ -26,6 +26,7 @@ public class MenuController : MonoBehaviour
     {
 		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause") && !isInExitMenu)
         {
+			Debug.Log ("PAUSA");
             Time.timeScale = 0;
             PanelExit.SetActive(true);
 			ResumeButton.GetComponent<Button> ().Select ();
@@ -34,11 +35,9 @@ public class MenuController : MonoBehaviour
         }
 		else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause") && isInExitMenu)
         {
+			Debug.Log ("SELECT");
 			ExitButton.GetComponent<Button> ().Select();
-			PanelExit.SetActive(false);
             Resume();
-            refCanvasController.ExitHandler(true);
-
         }
     }
 
@@ -51,6 +50,7 @@ public class MenuController : MonoBehaviour
 
     public void Resume()
     {
+		Debug.Log ("RESUME");
         Time.timeScale = 1;
         PanelExit.SetActive(false);
         isInExitMenu = false;
