@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class SaveData : MonoBehaviour
 {
-    //private FlowManager flow;
+
     private DoorHandler[] doorsToSave;
     public List<GameObject> ActiveItemList;
     private Quest refQuest;
@@ -32,26 +32,11 @@ public class SaveData : MonoBehaviour
         }
     }
 
-
-    //[Serializable]
-    //class FlowBoolSave
-    //{
-    //    public FlowBoolSave(bool[] _sequence, bool _executed)
-    //    {
-    //        sequence = _sequence;
-    //        executed = _executed;
-
-    //    }
-    //    public bool[] sequence;
-    //    public bool executed;
-    //}
-
     [Serializable]
     class PlayerData
     {
         public Dictionary<string, Dictionary<string, float>> npcInfo;
         public string playername;
-        //public List<FlowBoolSave> sequenceToSave;
         public Dictionary<string, Dictionary<string, bool>> components;
         public Dictionary<string, DoorData> doors;
         public Dictionary<string, Dictionary<string, bool>> executed_bools;
@@ -121,8 +106,7 @@ public class SaveData : MonoBehaviour
     {
         doorsToSave = FindObjectsOfType<DoorHandler>();
         refQuest = FindObjectOfType<Quest>();
-        //Debug.Log(refQuest.gameObject.name);
-        //flow = FindObjectOfType<FlowManager>();
+
     }
 
     void Update()
@@ -153,21 +137,7 @@ public class SaveData : MonoBehaviour
         data.sceneName = SceneManager.GetActiveScene().name;
         idSlot = idSave;
 
-        //salvo il flowmanager
-        //if (flow)
-        //{
-        //    data.sequenceToSave = new List<FlowBoolSave>();
-        //    foreach (var array in flow.flowRandomGameArray)
-        //    {
-        //        data.sequenceToSave.Add(new FlowBoolSave(array.sequence, array.executed));
-        //    }
-        //    foreach (var array in flow.flowGameArray)
-        //    {
-        //        data.sequenceToSave.Add(new FlowBoolSave(array.sequence, array.executed));
-        //    }
-        //}
-
-
+        #region Executed saving
         var enemyPaths = GameObject.FindObjectsOfType<FSM_EnemyPath>();
         foreach (var entmp in enemyPaths)
         {
@@ -256,7 +226,7 @@ public class SaveData : MonoBehaviour
             }
 
         }
-
+        #endregion
 
         var npcList = GameObject.FindGameObjectsWithTag("ControllableNPC");
         foreach (var npc in npcList)
@@ -297,11 +267,14 @@ public class SaveData : MonoBehaviour
         }
 
         //aggiungo le quest
-        data.questArray = new bool[refQuest.designQuest.Length];
-        for (int i = 0; i < refQuest.designQuest.Length; i++)
+        if (refQuest != null)
         {
-            data.questArray[i] = refQuest.designQuest[i].isComplete;
-            //Debug.Log(data.questArray[i]);
+            data.questArray = new bool[refQuest.designQuest.Length];
+            for (int i = 0; i < refQuest.designQuest.Length; i++)
+            {
+                data.questArray[i] = refQuest.designQuest[i].isComplete;
+                //Debug.Log(data.questArray[i]);
+            }
         }
 
         if (doorsToSave != null)
@@ -378,27 +351,6 @@ public class SaveData : MonoBehaviour
                 return;
             }
 
-            //Debug.Log("DOPO IL CARICAMENTO SCENA "+data.sceneName);
-
-            //setto il flow manager
-            //if (flow)
-            //{
-            //    int i;
-            //    for (i = 0; i < FlowManager.Self.flowRandomGameArray.Length; i++)
-            //    {
-            //        flow.flowRandomGameArray[i].sequence = data.sequenceToSave[i].sequence;
-            //        flow.flowRandomGameArray[i].executed = data.sequenceToSave[i].executed;
-            //    }
-            //    int j = 0;
-            //    for (i = FlowManager.Self.flowRandomGameArray.Length; j < FlowManager.Self.flowGameArray.Count; i++)
-            //    {
-
-            //        flow.flowGameArray[j].sequence = data.sequenceToSave[i].sequence;
-            //        flow.flowGameArray[j].executed = data.sequenceToSave[i].executed;
-            //        j++;
-            //    }
-            //}
-
             var doorMap = data.doors;
 
             if (doorsToSave != null && doorMap != null)
@@ -435,6 +387,7 @@ public class SaveData : MonoBehaviour
                 }
             }
 
+            #region Executed Load
             var executedDict = data.executed_bools;
 
             if (executedDict.ContainsKey("FSM_EnemyPath"))
@@ -524,16 +477,18 @@ public class SaveData : MonoBehaviour
 
                 }
             }
+            #endregion
 
-            //Aggiorno le quest            
-
+            //Aggiorno le quest   
             var questInfo = data.questArray;
-            for (int i = 0; i < refQuest.designQuest.Length; i++)
+            if (refQuest != null)
             {
-                refQuest.designQuest[i].isComplete = questInfo[i];
-                //Debug.Log(questInfo[i]);
-            }
-            
+                for (int i = 0; i < refQuest.designQuest.Length; i++)
+                {
+                    refQuest.designQuest[i].isComplete = questInfo[i];
+                    //Debug.Log(questInfo[i]);
+                }
+            }           
 
             //sposto il player
             var allInfo = data.npcInfo;
@@ -593,6 +548,7 @@ public class SaveData : MonoBehaviour
             }
         }
     }
+
     public void setIdSlot(int _idSlot)
     {
         idSlot = _idSlot;
