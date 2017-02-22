@@ -19,6 +19,7 @@ public class Examinable : ExamineAbstract
     // Use this for initialization
     private void Start()
     {
+		descriptionText = descriptionText.Replace("__", "\n");
         refUI = FindObjectOfType<UI>();
     }
 
@@ -87,6 +88,7 @@ public class Examinable : ExamineAbstract
             GameManager.Self.blockMovement = false;
             GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().enabled = true;
             Time.timeScale = 1f;
+			Debug.Log("Fine Esamina!");
         }
     }
 
