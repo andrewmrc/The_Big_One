@@ -326,6 +326,7 @@ public class SaveData : MonoBehaviour
     private void onSceneLoaded(Scene s, LoadSceneMode e)
     {
         SceneManager.SetActiveScene(s);
+        Load(idSlot);        
         //Debug.Log("SCENA CARICATA: " + s.name);
     }
 
