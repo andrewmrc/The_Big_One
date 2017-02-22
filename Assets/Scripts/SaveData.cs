@@ -147,6 +147,7 @@ public class SaveData : MonoBehaviour
         //salvo il nome della scena
         data.sceneName = SceneManager.GetActiveScene().name;
         idSlot = idSave;
+
         //salvo il flowmanager
         //if (flow)
         //{
@@ -285,12 +286,6 @@ public class SaveData : MonoBehaviour
             foreach (var item in ActiveItemList)
             {
                 data.superDict.Add(item.name, item.activeSelf);
-                foreach (Transform child in item.transform)
-                {
-                    if (!data.superDict.ContainsKey(child.name))
-                        data.superDict.Add(child.name, child.gameObject.activeSelf);
-                    Debug.Log("CHILD: " + child.name);
-                }
                 Debug.Log(item.name + item.activeSelf);
             }
         }
@@ -419,12 +414,7 @@ public class SaveData : MonoBehaviour
             {
                 foreach (var kvp in itemDict)
                 {
-                    //Debug.Log("KVP: " + kvp);
-                    //bool isActive = itemDict[item];
-                    var goTmp = GameObject.Find(kvp.Key);
-                    Debug.Log("GAME OBJECT ACTIVE: " + goTmp);
-                    if (goTmp != null)
-                        goTmp.SetActive(kvp.Value);
+                    GameObject.Find(kvp.Key).SetActive(kvp.Value);
                 }
             }
 
