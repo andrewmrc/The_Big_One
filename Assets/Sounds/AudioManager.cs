@@ -65,7 +65,10 @@ public class AudioManager : MonoBehaviour
                 //m_AudioSource.Play();
 
                 //Questa coroutine serve se vogliamo passare noi ogni quanto tempo deve sentirsi il rumore di un singolo passo.
-               
+               if (footStepCo != null)
+                {
+                    StopCoroutine(footStepCo);
+                }
                 footStepCo = StartCoroutine(PlayFootStepSound(stepTime));
                 
             }
