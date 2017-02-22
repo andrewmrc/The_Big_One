@@ -13,6 +13,7 @@ public class SaveData : MonoBehaviour
     //private FlowManager flow;
     private DoorHandler[] doorsToSave;
     public List<GameObject> ActiveItemList;
+    private Quest refQuest;
     public int idSlot = 0;
 
     [Serializable]
@@ -55,6 +56,7 @@ public class SaveData : MonoBehaviour
         public Dictionary<string, DoorData> doors;
         public Dictionary<string, Dictionary<string, bool>> executed_bools;
         public string sceneName;
+        public bool[] questArray;
 
         public Dictionary<string, bool> superDict;
 
@@ -95,6 +97,7 @@ public class SaveData : MonoBehaviour
                 superDict.Add(name, enableStatus);
         }
 
+
         public void addExecuted(string obj, string className, bool exec)
         {
             if (!executed_bools.ContainsKey(obj))
@@ -117,6 +120,8 @@ public class SaveData : MonoBehaviour
     void Awake()
     {
         doorsToSave = FindObjectsOfType<DoorHandler>();
+        refQuest = FindObjectOfType<Quest>();
+        //Debug.Log(refQuest.gameObject.name);
         //flow = FindObjectOfType<FlowManager>();
     }
 
@@ -286,8 +291,16 @@ public class SaveData : MonoBehaviour
             foreach (var item in ActiveItemList)
             {
                 data.superDict.Add(item.name, item.activeSelf);
-                Debug.Log(item.name + item.activeSelf);
+                //Debug.Log(item.name + item.activeSelf);
             }
+        }
+
+        //aggiungo le quest
+        data.questArray = new bool[refQuest.designQuest.Length];
+        for (int i = 0; i < refQuest.designQuest.Length; i++)
+        {
+            data.questArray[i] = refQuest.designQuest[i].isComplete;
+            //Debug.Log(data.questArray[i]);
         }
 
         if (doorsToSave != null)
@@ -507,6 +520,16 @@ public class SaveData : MonoBehaviour
 
                 }
             }
+
+            //Aggiorno le quest            
+
+            var questInfo = data.questArray;
+            for (int i = 0; i < refQuest.designQuest.Length; i++)
+            {
+                refQuest.designQuest[i].isComplete = questInfo[i];
+                //Debug.Log(questInfo[i]);
+            }
+            
 
             //sposto il player
             var allInfo = data.npcInfo;
