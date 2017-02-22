@@ -26,12 +26,16 @@ public class MenuController : MonoBehaviour
     {
 		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause") && !isInExitMenu)
         {
+            Application.CaptureScreenshot("Assets/Resources/menu.png");
+            Sprite gameTex = Resources.Load("menu.png") as Sprite;
 			Debug.Log ("PAUSA");
             Time.timeScale = 0;
             PanelExit.SetActive(true);
 			ResumeButton.GetComponent<Button> ().Select ();
             isInExitMenu = true;
             refCanvasController.ExitHandler(false);
+            
+
         }
 		else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause") && isInExitMenu)
         {
@@ -55,5 +59,15 @@ public class MenuController : MonoBehaviour
         PanelExit.SetActive(false);
         isInExitMenu = false;
         refCanvasController.ExitHandler(true);
+    }
+    IEnumerator MovingDisplay()
+    {
+        while (true)
+        {
+           
+            yield return null;
+
+        }
+        
     }
 }
