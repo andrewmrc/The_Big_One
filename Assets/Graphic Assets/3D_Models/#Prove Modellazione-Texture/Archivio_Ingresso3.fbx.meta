@@ -1,0 +1,129 @@
+fileFormatVersion: 2
+guid: 1508371f5ed10074da2c0041e76c9161
+timeCreated: 1487756885
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Cornici_Archivio_Ingresso
+    100004: Luce_Archivio_Ingresso
+    100006: Scrivania_Archivio_Ingresso
+    100008: Vetro_Archivio_Ingresso
+    100010: Vetro_Archivio_Ingresso_3
+    400000: //RootNode
+    400002: Cornici_Archivio_Ingresso
+    400004: Luce_Archivio_Ingresso
+    400006: Scrivania_Archivio_Ingresso
+    400008: Vetro_Archivio_Ingresso
+    400010: Vetro_Archivio_Ingresso_3
+    2300000: Cornici_Archivio_Ingresso
+    2300002: Luce_Archivio_Ingresso
+    2300004: Scrivania_Archivio_Ingresso
+    2300006: Vetro_Archivio_Ingresso
+    2300008: Vetro_Archivio_Ingresso_3
+    3300000: Cornici_Archivio_Ingresso
+    3300002: Luce_Archivio_Ingresso
+    3300004: Scrivania_Archivio_Ingresso
+    3300006: Vetro_Archivio_Ingresso
+    3300008: Vetro_Archivio_Ingresso_3
+    4300000: Cornici_Archivio_Ingresso
+    4300002: Scrivania_Archivio_Ingresso
+    4300004: Luce_Archivio_Ingresso
+    4300006: Vetro_Archivio_Ingresso
+    4300008: Vetro_Archivio_Ingresso_3
+    7400000: Cornici_Archivio_Ingresso|Cornici_Archivio_Ingresso|Take 001|BaseLayer
+    7400002: Cornici_Archivio_Ingresso|Luce_Archivio_Ingresso|Take 001|BaseLayer
+    7400004: Cornici_Archivio_Ingresso|Scrivania_Archivio_Ingresso|Take 001|BaseLayer
+    7400006: Cornici_Archivio_Ingresso|Vetro_Archivio_Ingresso_3|Take 001|BaseLayer
+    7400008: Cornici_Archivio_Ingresso|Vetro_Archivio_Ingresso|Take 001|BaseLayer
+    7400010: Cornici_Archivio_Ingresso|Vetro_Archivio_Ingresso|Take 001|BaseLayer.001
+    7400012: Scrivania_Archivio_Ingresso|Cornici_Archivio_Ingresso|Take 001|BaseLayer
+    7400014: Scrivania_Archivio_Ingresso|Luce_Archivio_Ingresso|Take 001|BaseLayer
+    7400016: Scrivania_Archivio_Ingresso|Scrivania_Archivio_Ingresso|Take 001|BaseLayer
+    7400018: Scrivania_Archivio_Ingresso|Vetro_Archivio_Ingresso_3|Take 001|BaseLayer
+    7400020: Scrivania_Archivio_Ingresso|Vetro_Archivio_Ingresso|Take 001|BaseLayer
+    7400022: Scrivania_Archivio_Ingresso|Vetro_Archivio_Ingresso|Take 001|BaseLayer.001
+    7400024: Luce_Archivio_Ingresso|Cornici_Archivio_Ingresso|Take 001|BaseLayer
+    7400026: Luce_Archivio_Ingresso|Luce_Archivio_Ingresso|Take 001|BaseLayer
+    7400028: Luce_Archivio_Ingresso|Scrivania_Archivio_Ingresso|Take 001|BaseLayer
+    7400030: Luce_Archivio_Ingresso|Vetro_Archivio_Ingresso_3|Take 001|BaseLayer
+    7400032: Luce_Archivio_Ingresso|Vetro_Archivio_Ingresso|Take 001|BaseLayer
+    7400034: Luce_Archivio_Ingresso|Vetro_Archivio_Ingresso|Take 001|BaseLayer.001
+    7400036: Vetro_Archivio_Ingresso|Cornici_Archivio_Ingresso|Take 001|BaseLayer
+    7400038: Vetro_Archivio_Ingresso|Luce_Archivio_Ingresso|Take 001|BaseLayer
+    7400040: Vetro_Archivio_Ingresso|Scrivania_Archivio_Ingresso|Take 001|BaseLayer
+    7400042: Vetro_Archivio_Ingresso|Vetro_Archivio_Ingresso_3|Take 001|BaseLayer
+    7400044: Vetro_Archivio_Ingresso|Vetro_Archivio_Ingresso|Take 001|BaseLayer
+    7400046: Vetro_Archivio_Ingresso|Vetro_Archivio_Ingresso|Take 001|BaseLayer.001
+    7400048: Vetro_Archivio_Ingresso_3|Cornici_Archivio_Ingresso|Take 001|BaseLayer
+    7400050: Vetro_Archivio_Ingresso_3|Luce_Archivio_Ingresso|Take 001|BaseLayer
+    7400052: Vetro_Archivio_Ingresso_3|Scrivania_Archivio_Ingresso|Take 001|BaseLayer
+    7400054: Vetro_Archivio_Ingresso_3|Vetro_Archivio_Ingresso_3|Take 001|BaseLayer
+    7400056: Vetro_Archivio_Ingresso_3|Vetro_Archivio_Ingresso|Take 001|BaseLayer
+    7400058: Vetro_Archivio_Ingresso_3|Vetro_Archivio_Ingresso|Take 001|BaseLayer.001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
