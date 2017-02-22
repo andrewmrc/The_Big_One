@@ -14,7 +14,8 @@ public class SaveData : MonoBehaviour
     private DoorHandler[] doorsToSave;
     public List<GameObject> ActiveItemList;
     private Quest refQuest;
-    public int idSlot = 0;
+    private int idSlot;
+    public int testSaveId = 0;
 
     [Serializable]
     class DoorData
@@ -114,19 +115,20 @@ public class SaveData : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Save(idSlot);
+            Save(testSaveId);
 
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Load(idSlot);
+            Load(testSaveId);
         }
 
     }
 
     public void Save(int idSave)
     {
+        idSlot = idSave;
         string saveName = "/" + Convert.ToString(idSave) + ".txt";
         BinaryFormatter bf = new BinaryFormatter();
         FileStream fs = File.Create(Application.persistentDataPath + saveName);
@@ -134,8 +136,7 @@ public class SaveData : MonoBehaviour
         PlayerData data = new PlayerData();
 
         //salvo il nome della scena
-        data.sceneName = SceneManager.GetActiveScene().name;
-        idSlot = idSave;
+        data.sceneName = SceneManager.GetActiveScene().name;        
 
         #region Executed saving
         var enemyPaths = GameObject.FindObjectsOfType<FSM_EnemyPath>();
@@ -334,6 +335,7 @@ public class SaveData : MonoBehaviour
     {
         // Set timescale to 1 if Load is called by the UI button
         Time.timeScale = 1;
+        idSlot = idSave;
         string saveName = Application.persistentDataPath + "/" + Convert.ToString(idSave) + ".txt";
 
         if (File.Exists(saveName))
