@@ -270,6 +270,7 @@ public class SaveData : MonoBehaviour
             npcInfo.Add("rotx", npcrot.x);
             npcInfo.Add("roty", npcrot.y);
             npcInfo.Add("rotz", npcrot.z);
+            npcInfo.Add("rotw", npcrot.w);
             var nva = npc.GetComponent<UnityEngine.NavMeshAgent>();
             if (nva != null)
             {
@@ -333,6 +334,9 @@ public class SaveData : MonoBehaviour
         playerInfo.Add("posz", playerpos.z);
         var playerrot = playerNPC.transform.rotation;
         playerInfo.Add("roty", playerrot.y);
+        playerInfo.Add("rotx", playerrot.x);
+        playerInfo.Add("rotz", playerrot.z);
+        playerInfo.Add("rotw", playerrot.w);
         data.addNpcInfo(playerNPC.name, playerInfo);
         data.playername = playerNPC.name;
 
@@ -538,7 +542,7 @@ public class SaveData : MonoBehaviour
                 var playerInfo = allInfo[playername];
                 //Debug.Log("PLAYERNAME " + SceneManager.GetActiveScene().name);
                 Vector3 newpos = new Vector3(playerInfo["posx"], playerInfo["posy"], playerInfo["posz"]);
-                Quaternion newrot = new Quaternion(0, playerInfo["roty"], 0, 1);
+                Quaternion newrot = new Quaternion(playerInfo["rotx"], playerInfo["roty"], playerInfo["rotz"], playerInfo["rotw"]);
                 GameObject.Find(playername).transform.position = newpos;
                 GameObject.Find(playername).transform.rotation = newrot;
 
