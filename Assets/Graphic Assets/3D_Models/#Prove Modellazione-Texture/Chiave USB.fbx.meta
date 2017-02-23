@@ -1,18 +1,27 @@
 fileFormatVersion: 2
-guid: 3c6cea01ca97c5942be830dbb08f7ea8
-timeCreated: 1484129689
+guid: d426bb4685e883e4c9ab39ceae95aba2
+timeCreated: 1487849468
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Entrata USB
+    100004: Penna USB
+    100006: Tappo
     400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: sedie sala d attesa
-    7400000: Take 001
-    7400002: sedie sala d attesa|sedie sala d attesa|Take 001|BaseLayer
-    9500000: //RootNode
+    400002: Entrata USB
+    400004: Penna USB
+    400006: Tappo
+    2300000: Entrata USB
+    2300002: Penna USB
+    2300004: Tappo
+    3300000: Entrata USB
+    3300002: Penna USB
+    3300004: Tappo
+    4300000: Entrata USB
+    4300002: Penna USB
+    4300004: Tappo
   materials:
     importMaterials: 1
     materialName: 0
@@ -71,7 +80,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
