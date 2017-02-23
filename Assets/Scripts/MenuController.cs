@@ -17,13 +17,13 @@ public class MenuController : MonoBehaviour
     public bool isInExitMenu;
     public Texture gameTex;
     public Sprite prova;
-
+	private GameObject renderCamera;
 
     private void Start()
     {
         refCanvasController = FindObjectOfType<CanvasController>();
-        
-
+		renderCamera = GameObject.FindGameObjectWithTag ("CameraRenderTexture");
+		renderCamera.SetActive (false);
     }
 
     void Update()
@@ -34,26 +34,17 @@ public class MenuController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause") && !isInExitMenu)
         {
+			renderCamera.SetActive(true);
             isInExitMenu = true;
-            
-
-            
-            //prova = Sprite.Create(gameTex, new Rect(0, 0, gameTex.width, gameTex.height), new Vector2(0.5f, 0.5f));
-
-            PanelExit.GetComponentInChildren<RawImage>().texture = gameTex ;
-            
-            
+  
 			Debug.Log ("PAUSA");
-            Time.timeScale = 0;
-            PanelExit.SetActive(true);
 
-            Application.CaptureScreenshot("Assets/Resources/menu.png");
-            gameTex = Resources.Load("menu") as Texture;
             ResumeButton.GetComponent<Button> ().Select ();
             
             refCanvasController.ExitHandler(false);
-            
 
+			PanelExit.SetActive(true);
+			Time.timeScale = 0;  
         }
 		else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause") && isInExitMenu)
         {
@@ -76,6 +67,7 @@ public class MenuController : MonoBehaviour
 		Debug.Log ("RESUME");
         Time.timeScale = 1;
         PanelExit.SetActive(false);
+		renderCamera.SetActive(false);
         isInExitMenu = false;
         refCanvasController.ExitHandler(true);
     }
