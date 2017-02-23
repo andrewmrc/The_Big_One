@@ -16,6 +16,7 @@ ModelImporter:
     100016: Lamp
     100018: Box_Body
     100020: Box_Hat
+    100022: Plane
     400000: Base
     400002: Mesh
     400004: Oggetto_1
@@ -27,18 +28,22 @@ ModelImporter:
     400016: Lamp
     400018: Box_Body
     400020: Box_Hat
+    400022: Plane
     2300000: Oggetto_1
     2300002: Oggetto_2
     2300004: Box_Body
     2300006: Box_Hat
+    2300008: Plane
     3300000: Oggetto_1
     3300002: Oggetto_2
     3300004: Box_Body
     3300006: Box_Hat
+    3300008: Plane
     4300000: Oggetto_1
     4300002: Oggetto_2
     4300004: Box_Body
     4300006: Box_Hat
+    4300008: Plane
   materials:
     importMaterials: 1
     materialName: 0
