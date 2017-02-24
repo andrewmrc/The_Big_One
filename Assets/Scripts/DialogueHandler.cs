@@ -176,6 +176,11 @@ public class DialogueHandler : MonoBehaviour {
 						}
 
 					}
+					if (!conversations[i].executed) {
+						Debug.Log ("eseguito");
+						conversations[i].executed = true;
+						conversations[i].eventToActivate.Invoke ();
+					}
 					break;
 				} else {
 					Debug.Log ("NESSUN DIALOGO ASSEGNATO TROVATO");
