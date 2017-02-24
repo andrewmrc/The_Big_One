@@ -41,6 +41,12 @@ public class DialogueHandler : MonoBehaviour {
 				//this.transform.GetChild (0).gameObject.SetActive (true);
 				if (Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) {
 					cantTalk = true;
+					GameManager.Self.blockMovement = true;
+
+					if (!notInitialRotation) {
+						StartCoroutine (RotateCharAnim ());
+						StartCoroutine (RotatePlayer ());
+					}
 					notInitialRotation = true;
 					playerPowerState = (int)GameManager.Self.playerState;
 					GameManager.Self.SetPlayerState (1);
@@ -50,16 +56,17 @@ public class DialogueHandler : MonoBehaviour {
 					this.gameObject.transform.LookAt (targetPlayer);
 					Vector3 targetNPC = new Vector3 (this.gameObject.transform.position.x, currentPlayer.transform.position.y, this.gameObject.transform.position.z);
 					currentPlayer.transform.LookAt (targetNPC);
-					GameManager.Self.blockMovement = true;
 					currentPlayer.GetComponent<CharController> ().enabled = false;
-					currentPlayer.GetComponent<Animator> ().SetFloat ("Forward", 0);
+					//currentPlayer.GetComponent<Animator> ().SetFloat ("Forward", 0);
 					StartCoroutine (DPrinter3 ());
 				}
 			} else {
 				//Debug.Log("NON PUOI PARLARE: " + (gameObject.name) + distanceSqr);
 				this.transform.GetChild (0).gameObject.SetActive (false);
 				if (notInitialRotation) {
-					StartCoroutine (ResetRotation ());
+					this.GetComponent<FSM_ReturnInPosition>().enabled = true;
+					this.GetComponent<FSM_ReturnInPosition> ().ResetRotation ();
+					notInitialRotation = false;
 				}
 			}
 		} else {
@@ -68,13 +75,28 @@ public class DialogueHandler : MonoBehaviour {
 		}
 
 	}
+		
 
-
-	public IEnumerator ResetRotation () {
-		yield return new WaitForSeconds (2f);
-		this.transform.eulerAngles = this.GetComponent<FSM_ReturnInPosition>().initialRotation;
-		notInitialRotation = false;
+	IEnumerator RotatePlayer () {
+		//Debug.Log ("ROTATE PLAYER");
+		//if(currentPlayer.GetComponent<Animator>().GetFloat("Forward") <= 0.1f){
+			Debug.Log ("ROTATE PLAYER");
+			currentPlayer.GetComponent<Animator>().SetFloat("Forward", 1);
+			yield return new WaitForSeconds(0.1f);
+			currentPlayer.GetComponent<Animator>().SetFloat("Forward", 0);
+		//}
 	}
+
+
+	IEnumerator RotateCharAnim () {
+		Debug.Log ("ROTATE NPC");
+		if(this.GetComponent<Animator>().GetFloat("Forward") < 1){
+			this.GetComponent<Animator>().SetFloat("Forward", 1);
+			yield return new WaitForSeconds(0.1f);
+			this.GetComponent<Animator>().SetFloat("Forward", 0);
+		}
+	}
+
 
 	/*
 	void FixedUpdate () {

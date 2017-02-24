@@ -104,18 +104,28 @@ public class FSM_ReturnInPosition : MonoBehaviour {
 	}
 
 
-    IEnumerator DisableComponents()
+	public void ResetRotation(){
+		StartCoroutine(DisableComponents());
+	}
+
+	IEnumerator DisableComponents()
     {
 		//Debug.Log ("DISABLE COMPONENTS");
 		yield return new WaitForSeconds(0.5f);
-        GetComponent<FSM_ReturnInPosition>().enabled = false;
+        
 		GetComponent<NavMeshAgent>().enabled = false;
 		//this.GetComponent<ThirdPersonCharacter>().enabled = false;
 		//this.GetComponent<ThirdPersonUserControl>().enabled = false;
+		if(this.GetComponent<Animator>().GetFloat("Forward") == 0){
+			this.GetComponent<Animator>().SetFloat("Forward", 1);
+			yield return new WaitForSeconds(0.1f);
+		}
+		this.transform.eulerAngles = initialRotation;
 		this.GetComponent<CharController>().enabled = false;
-		this.GetComponent<Animator>().SetFloat("Forward", 0);
-        this.transform.eulerAngles = initialRotation;
-        this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
+		this.GetComponent<Animator>().SetFloat("Forward", 0);
+        
+        this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+		GetComponent<FSM_ReturnInPosition>().enabled = false;
     }
 }
