@@ -20,7 +20,9 @@ public class State_ControlBody : State {
         //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = enabled;
         //this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = enabled;
 		if (!GameManager.Self.blockMovement) {
-			this.gameObject.transform.GetComponent<CharController> ().enabled = enabled;
+			if(this.gameObject.transform.GetComponent<CharController> ()){
+				this.gameObject.transform.GetComponent<CharController> ().enabled = enabled;
+			}
 		}
 
         refUI.cursorFar.SetActive(false);
@@ -70,8 +72,11 @@ public class State_ControlBody : State {
         //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
        // this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
 
-		this.gameObject.transform.GetComponent<CharController>().enabled = false;
-		this.gameObject.transform.GetComponent<CharController>().stayThere = false;
+		if(this.gameObject.transform.GetComponent<CharController> ()){
+			this.gameObject.transform.GetComponent<CharController> ().enabled = false;
+			this.gameObject.transform.GetComponent<CharController>().stayThere = false;
+		}
+
         this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         this.GetComponent<Animator>().SetFloat("Forward", 0);
         this.GetComponent<Animator>().SetFloat("Turn", 0);

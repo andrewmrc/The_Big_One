@@ -50,7 +50,10 @@ public class State_PowerControl : State {
         this.GetComponent<Animator>().SetFloat("Turn", 0);
         //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
         //this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
-		this.gameObject.transform.GetComponent<CharController>().enabled = false;
+		if(this.gameObject.transform.GetComponent<CharController> ()){
+			this.gameObject.transform.GetComponent<CharController> ().enabled = false;
+		}
+
 
         refUI.cursorFar.SetActive(false);
 
@@ -105,7 +108,9 @@ public class State_PowerControl : State {
                         this.gameObject.tag = "ControllableNPC";
                         //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
                         //this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
-                        this.gameObject.transform.GetComponent<CharController>().enabled = false;
+						if(this.gameObject.transform.GetComponent<CharController> ()){
+							this.gameObject.transform.GetComponent<CharController> ().enabled = false;
+						}
 
                         this.gameObject.transform.GetComponent<FSMLogic>().enabled = false;
                         this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
@@ -135,7 +140,9 @@ public class State_PowerControl : State {
                         //hit.collider.transform.GetComponent<ThirdPersonUserControl>().enabled = true;                        
                         //hit.collider.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
 
-                        hit.collider.transform.GetComponent<CharController>().enabled = true;
+						if(hit.collider.transform.GetComponent<CharController>()){
+                        	hit.collider.transform.GetComponent<CharController>().enabled = true;
+						}
 
                         if (hit.collider.transform.GetComponent<DialogueHandler>())
                         {

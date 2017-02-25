@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3c6cea01ca97c5942be830dbb08f7ea8
-timeCreated: 1484129689
+guid: 5b41ae3b828a1424b86f93184e047a69
+timeCreated: 1488035729
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,12 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: sedie sala d attesa
-    7400000: Take 001
-    7400002: sedie sala d attesa|sedie sala d attesa|Take 001|BaseLayer
-    7400004: sedie sala d attesa|sedie sala d attesa|sedie sala d attesa|sedie sala
-      d attesa|Tak
-    9500000: //RootNode
+    4300000: Bookshelf
   materials:
     importMaterials: 1
     materialName: 0
@@ -24,10 +19,10 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: 
-    animationImportErrors: 
-    animationImportWarnings: 
-    animationRetargetingWarnings: 
+    motionNodeName:
+    animationImportErrors:
+    animationImportWarnings:
+    animationRetargetingWarnings:
     animationDoRetargetingWarnings: 0
     animationCompression: 1
     animationRotationError: 0.5
@@ -70,12 +65,12 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName:
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  userData:
+  assetBundleName:
+  assetBundleVariant:

@@ -84,7 +84,10 @@ public class FSM_ReturnInPosition : MonoBehaviour {
         {
             refNav.enabled = true;
             //this.GetComponent<ThirdPersonCharacter>().enabled = true;
-			this.GetComponent<CharController>().enabled = true;
+
+			if(this.GetComponent<CharController> ()){
+				this.GetComponent<CharController>().enabled = true;
+			}
 
             if (Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance)
             {
