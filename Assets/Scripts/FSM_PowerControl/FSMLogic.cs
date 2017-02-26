@@ -120,7 +120,7 @@ public class FSMLogic : MonoBehaviour {
             }
             else
             {
-                
+				refUI.PowerUI(false);
                 UIActivator();
             }
         }
@@ -157,13 +157,14 @@ public class FSMLogic : MonoBehaviour {
     //Metodo per attivare e disattivare la UI
     void UIActivator()
     {
-        if (onEnemy)
-        {
-            refUI.PossessionUI(true);
-            //refUI.TastiUI(true);
-        }
-        else
-        {
+		if (GameManager.Self.playerState == GameState.UsePower && onEnemy) {
+			refUI.PossessionUI (true);
+			//refUI.PowerUI(true);
+			//refUI.TastiUI(true);
+		} else if (GameManager.Self.playerState == GameState.OnlyIdea && onEnemy) {
+			refUI.PowerUI (true);
+		} else {
+			Debug.Log ("POWER");
             //refUI.TastiUI(false);
             refUI.PossessionUI(false);
             refUI.PowerUI(false);
