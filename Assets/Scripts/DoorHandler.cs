@@ -470,6 +470,14 @@ public class DoorHandler : MonoBehaviour
             listOfGo.Add(otherGo);
         }
 
+		//Vedere se si può fare in maniera migliore
+		//Se vede che il personaggio da aggiungere alla listOfGo è presente in quella di notGo lo rimuove da quest'ultima
+		for (int i = 0; i < listOfNotGo.Count; i++) {
+			if (listOfNotGo[i].npcObject.Equals (otherGo)) {
+				listOfNotGo [i].npcObject = null; 
+			}
+		}
+
     }
     public void SetFreeNpc(bool change)
     {
