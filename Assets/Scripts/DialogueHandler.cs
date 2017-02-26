@@ -16,13 +16,13 @@ public class DialogueHandler : MonoBehaviour {
 	public List<DialogueItem> conversations;
 	public bool executed;
 	public UnityEvent returnEvent;
-
+	GameObject canvasFader;
 	bool notInitialRotation;
 	int playerPowerState;
 
 	// Use this for initialization
 	void Start () {
-	
+		canvasFader = GameObject.FindGameObjectWithTag ("Fader");
 	}
 
 
@@ -42,10 +42,10 @@ public class DialogueHandler : MonoBehaviour {
 				if (Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) {
 					cantTalk = true;
 					GameManager.Self.blockMovement = true;
-
+					//canvasFader.GetComponent<Fader> ().StartFadeOut ();
 					if (!notInitialRotation) {
 						StartCoroutine (RotateCharAnim ());
-						StartCoroutine (RotatePlayer ());
+						//StartCoroutine (RotatePlayer ());
 					}
 					notInitialRotation = true;
 					playerPowerState = (int)GameManager.Self.playerState;

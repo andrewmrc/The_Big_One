@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 48b211024ca845240b462aea5ba7d862
-timeCreated: 1486910398
+timeCreated: 1488131341
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -454,14 +454,6 @@ ModelImporter:
         modified: 0
     - boneName: RightUpEye
       humanName: RightEye
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Jaw
-      humanName: Jaw
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}

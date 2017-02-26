@@ -124,7 +124,9 @@ public class FSM_ReturnInPosition : MonoBehaviour {
 			yield return new WaitForSeconds(0.1f);
 		}
 		this.transform.eulerAngles = initialRotation;
-		this.GetComponent<CharController>().enabled = false;
+		if(this.GetComponent<CharController>()){
+			this.GetComponent<CharController>().enabled = false;
+		}
 
 		this.GetComponent<Animator>().SetFloat("Forward", 0);
         
