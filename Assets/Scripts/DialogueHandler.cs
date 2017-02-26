@@ -144,7 +144,7 @@ public class DialogueHandler : MonoBehaviour {
 
 	IEnumerator DPrinter3 () {
 		this.transform.GetChild (0).gameObject.SetActive (false); //.GetComponent<MeshRenderer> ().enabled = false;
-
+		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (true);
 		for(int i = 0; i < conversations.Count; i++) {
 			if (conversations [i].npcSpeaker != null) {
 				if (conversations [i].npcSpeaker.name == currentPlayer.name) {
@@ -227,6 +227,6 @@ public class DialogueHandler : MonoBehaviour {
 			executed = true;
 			returnEvent.Invoke ();
 		}
-
+		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
 	}
 }

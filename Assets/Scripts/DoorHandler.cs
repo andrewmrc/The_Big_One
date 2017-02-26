@@ -54,6 +54,7 @@ public class DoorHandler : MonoBehaviour
 	public  float product;
     bool isOpened = false;
     bool isClosing = false;
+	bool readingMessage = false;
 
     void Awake()
     {
@@ -211,6 +212,7 @@ public class DoorHandler : MonoBehaviour
                     }
                 }
             }
+
             if (isFreeForNpc)
             {
                 if (doorOponerCO == null && !isOpened)
@@ -230,54 +232,55 @@ public class DoorHandler : MonoBehaviour
     {
         if (coll.gameObject.tag == "Player")
         {
+			foreach (var go in listOfGo) {
+				if (coll.gameObject == go) {
+					npcFind = true;
+				}
+			}
 
-            player = coll.gameObject;
-            if (npcFind || playerCanEnter)
-            {
+			player = coll.gameObject;
 
-				if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Examine")) && !isOpened)
-                {
-                    RaycastHit hitInfo;
-                    Vector3 modYPlayer = new Vector3(0, 1, 0) + coll.transform.position;
+			if (npcFind || playerCanEnter) {
+				//this.transform.GetChild (0).gameObject.SetActive (true);
+				if ((Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) && !isOpened) {
+					RaycastHit hitInfo;
+					Vector3 modYPlayer = new Vector3 (0, 1, 0) + coll.transform.position;
 
-                    if (Physics.Raycast(modYPlayer, coll.transform.forward, out hitInfo, 2f))
-                    {
-                        Debug.DrawRay(modYPlayer, coll.transform.forward, Color.magenta, 1f);
-                        if (doorOponerCO == null)
-                        {
-                            product = CalculateProduct(coll);
-                            doorOponerCO = StartCoroutine(DoorOpener(product));
-                            Audio.clip = soundContainer.OpenDoorSound;
-                            Audio.Play();
-                        }
-                        /*
+					if (Physics.Raycast (modYPlayer, coll.transform.forward, out hitInfo, 2f)) {
+						Debug.DrawRay (modYPlayer, coll.transform.forward, Color.magenta, 1f);
+						if (doorOponerCO == null) {
+							product = CalculateProduct (coll);
+							doorOponerCO = StartCoroutine (DoorOpener (product));
+							Audio.clip = soundContainer.OpenDoorSound;
+							Audio.Play ();
+						}
+						/*
                         else
                         {
                             StartCoroutine(DoorMessage());
                         }
                         */
-                    }
+					}
 
 
-                }
+				}
 
-            }
-            else
-            {
-                if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Examine") )&& !isOpened)
-                {
-                    RaycastHit hitInfo;
-                    Vector3 modYPlayer = new Vector3(0, 1, 0) + coll.transform.position;
+			} else {
+				if ((Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) && !isOpened) {
+					RaycastHit hitInfo;
+					Vector3 modYPlayer = new Vector3 (0, 1, 0) + coll.transform.position;
 
-                    if (Physics.Raycast(modYPlayer, coll.transform.forward, out hitInfo, 2f))
-                    {
-                        StartCoroutine(DoorMessage());
-                    }
-                }
-            }
-            //this.gameObject.GetComponent<BoxCollider>().enabled = false;
+					if (Physics.Raycast (modYPlayer, coll.transform.forward, out hitInfo, 2f)) {
+						if (!readingMessage) {
+							readingMessage = true;
+							StartCoroutine (DoorMessage());
+						}
+					}
+				}
+			}
+			//this.gameObject.GetComponent<BoxCollider>().enabled = false;
 
-            /*Debug.Log("APRI PORTA");
+			/*Debug.Log("APRI PORTA");
 
 			ContactPoint contact = coll.contacts[0];
 			Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
@@ -287,13 +290,36 @@ public class DoorHandler : MonoBehaviour
 			Debug.Log ("ROT: " + rot);
 			//this.gameObject.transform.rotation = Quaternion.Euler (this.gameObject.transform.rotation.x - 90f, this.gameObject.transform.rotation.y, this.gameObject.transform.rotation.z);
 			this.gameObject.transform.rotation = rot;*/
+	
+
+
+			for (int i = 0; i < listOfNotGo.Count; i++) {
+				if (coll.gameObject == listOfNotGo[i].npcObject) {
+					
+					if ((Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) && !isOpened) {
+						RaycastHit hitInfo;
+						Vector3 modYPlayer = new Vector3 (0, 1, 0) + coll.transform.position;
+
+						if (Physics.Raycast (modYPlayer, coll.transform.forward, out hitInfo, 2f)) {
+							if (!readingMessage) {
+								readingMessage = true;
+								StartCoroutine (NewDoorMessage (i));
+							}
+						}
+					}
+					break;
+				}
+				break;
+			}
+
 
         }
     }
 
     private IEnumerator DoorMessage()
     {
-
+		//Debug.Log ("Trovato nella listOfGo");
+		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (true);
         //GameManager.Self.blockMovement = true;
         //GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>().enabled = false;
        //GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
@@ -322,9 +348,47 @@ public class DoorHandler : MonoBehaviour
 
         GameManager.Self.canvasUI.GetComponent<UI>().VariousDescriptionUI.GetComponent<Text>().text = "";
         //GameManager.Self.blockMovement = false;
-
-
+		readingMessage = false;
+		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
     }
+
+
+	private IEnumerator NewDoorMessage(int id)
+	{
+		//Debug.Log ("Trovato nella listOfNotGo");
+		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (true);
+		//GameManager.Self.blockMovement = true;
+		//GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>().enabled = false;
+		//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
+
+		for (int i = 0; i < listOfNotGo[id].returnMessage.Count; i++)
+		{
+			GameManager.Self.canvasUI.GetComponent<UI>().VariousDescriptionUI.GetComponent<Text>().text = listOfNotGo[id].returnMessage[i];
+			bool isFirstClick = false;
+			float seconds = messageSpeed;
+			while (seconds > 0)
+			{
+				seconds -= Time.deltaTime;
+				if((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown ("Examine")) && isFirstClick)
+				{
+					seconds = 0;
+				}
+				isFirstClick = true;
+				yield return null;
+			}
+		}
+
+		if (!executed) {
+			executed = true;
+			messageEvent.Invoke();
+		}
+
+		GameManager.Self.canvasUI.GetComponent<UI>().VariousDescriptionUI.GetComponent<Text>().text = "";
+		//GameManager.Self.blockMovement = false;
+		readingMessage = false;
+		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
+	}
+
 
     private float CalculateProduct(Collider coll)
     {
@@ -344,7 +408,7 @@ public class DoorHandler : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-
+		//this.transform.GetChild (0).gameObject.SetActive (true);
     }
 
     IEnumerator DoorOpener(float product)

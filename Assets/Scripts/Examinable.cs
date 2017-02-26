@@ -40,7 +40,7 @@ public class Examinable : ExamineAbstract
             Debug.Log("Premo Esamina!");
             isClicked = true;
             isLooking = false;
-
+			GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (true);
             this.transform.GetChild(0).gameObject.SetActive(false);
             if (this.transform.childCount == 3)
             {
@@ -52,6 +52,7 @@ public class Examinable : ExamineAbstract
                 Time.timeScale = 0f;
                 Camera.main.gameObject.GetComponent<VignetteAndChromaticAberration>().blur = 1f;
                 refUI.ExamineObject(imageToShow, true);
+				GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
             }
 
             Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
@@ -83,6 +84,7 @@ public class Examinable : ExamineAbstract
             StopAllCoroutines();
             refUI.ExamineObject(imageToShow, false);
             refUI.TextToShow(descriptionText, false);
+			GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
             Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
             Camera.main.gameObject.GetComponent<VignetteAndChromaticAberration>().blur = 0.3f;
             GameManager.Self.blockMovement = false;
@@ -114,7 +116,7 @@ public class Examinable : ExamineAbstract
     {
         yield return new WaitForSeconds(3f);
         isClicked = false;
-
+		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
         refUI.ExamineMemory(imageToShow, false);
         refUI.TextToShow(descriptionText, false);
         Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
