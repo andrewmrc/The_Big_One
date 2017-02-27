@@ -42,26 +42,6 @@ public class TutorialIdea : MonoBehaviour {
 	}
 
 
-	public void RaycastHandler()
-	{
-		Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-		RaycastHit hit;
-
-		if (Physics.Raycast(ray, out hit, 1000))
-		{
-			Debug.DrawLine(ray.origin, hit.point, Color.black);
-			if (hit.collider.name == "NPC_Passenger_Far" && GameObject.FindGameObjectWithTag("Player") == GameManager.Self.playerBody && !farTutorial) {
-				//StartCoroutine (FarTutorial ());
-				/*} else if (hit.collider.name == "NPC_Passenger_Mid" && !secondBody) {
-				StartCoroutine (MidTutorial ());*/
-
-			} else if (hit.collider.name == "NPC_Passenger_Near" && !nearTutorial) {
-				StartCoroutine (NearTutorial ());
-			}
-		}
-	}
-
-
 	public IEnumerator IdeaTutorial(){
 		//farTutorial = true;
 		GameManager.Self.SetPlayerState (1);
@@ -72,47 +52,6 @@ public class TutorialIdea : MonoBehaviour {
 		//rig.GetComponent<FreeLookCam> ().enabled = true;
 		GameManager.Self.SetPlayerState (2);
 		ui_Concentrati.SetActive (true);
-	}
-
-
-	public IEnumerator NearTutorial(){
-		nearTutorial = true;
-		GameManager.Self.SetPlayerState (1);
-		//rig.GetComponent<FreeLookCam> ().enabled = false;
-		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = "Percepisco una connessione con queste persone. \n Devo focalizzare i miei pensieri.";
-		yield return new WaitForSeconds (3f);
-		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = "";
-		//rig.GetComponent<FreeLookCam> ().enabled = true;
-		GameManager.Self.SetPlayerState (0);
-	}
-
-
-	public IEnumerator FirstBodyControl(){
-		firstBody = true;
-		//yield return new WaitForSeconds (1f);
-		GameManager.Self.SetPlayerState (1);
-		//rig.GetComponent<FreeLookCam> ().enabled = false;
-		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Possession.SetActive(false);
-		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = "Incredibile, sono entrata nel corpo di un'altra persona! \n Ci sono davvero riuscita!";
-		yield return new WaitForSeconds (4f);
-		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = "";
-		//rig.GetComponent<FreeLookCam> ().enabled = true;
-		GameManager.Self.SetPlayerState (0);
-	}
-
-
-	public IEnumerator SecondBodyControl(){
-		secondBody = true;
-		canFinish = true;
-		//yield return new WaitForSeconds (1f);
-		GameManager.Self.SetPlayerState (1);
-		//rig.GetComponent<FreeLookCam> ().enabled = false;
-		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Possession.SetActive(false);
-		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = "Anche se riesco a controllare un altro corpo, sono ancora connessa con il mio. \n Questo potere è così strano...";
-		yield return new WaitForSeconds (4f);
-		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = "";
-		//rig.GetComponent<FreeLookCam> ().enabled = true;
-		GameManager.Self.SetPlayerState (0);
 	}
 
 }
