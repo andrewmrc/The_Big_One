@@ -1,0 +1,598 @@
+fileFormatVersion: 2
+guid: 123804da78dac8e459e18114b052aaca
+timeCreated: 1488214787
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Aiuola
+    100002: Aiuola.001
+    100004: 'Bottoni '
+    100006: Cavi
+    100008: cavi5
+    100010: Cornice finestre
+    100012: cornici ospedale parete
+    100014: 'Corrimano '
+    100016: Cube.026
+    100018: Cube.045
+    100020: Cube.055
+    100022: entrata ospedale tetto
+    100024: Exit
+    100026: Finestre
+    100028: Floor
+    100030: Floor primo piano
+    100032: //RootNode
+    100034: Luci.001
+    100036: Luci.002
+    100038: Luci.005
+    100040: Luci.006
+    100042: Luci.009
+    100044: Luci.010
+    100046: Luci.012
+    100048: Luci.013
+    100050: Luci.014
+    100052: Luci.017
+    100054: Luci.018
+    100056: Luci.021
+    100058: Mura esterne
+    100060: Muro
+    100062: Muro Primo Piano
+    100064: Muro Primo Piano.001
+    100066: Muro Primo Piano.002
+    100068: 'Muro secondo Piano '
+    100070: Muro secondo Piano .001
+    100072: Muro secondo Piano .002
+    100074: Palazzo  ponte
+    100076: 'parcheggio '
+    100078: Pavimento
+    100080: 'Pianerottolo '
+    100082: piano scale 1
+    100084: Piano scale 2
+    100086: Plane.027
+    100088: 'Porta ingresso '
+    100090: Porta posteriore
+    100092: Porta posteriore.001
+    100094: Porta posteriore.002
+    100096: Porta posteriore.003
+    100098: Porta posteriore.004
+    100100: Porta scale2
+    100102: Porta10
+    100104: Porta10.001
+    100106: Porte
+    100108: Porte ascensore
+    100110: Porte grandi
+    100112: Porte.001
+    100114: Porte.002
+    100116: Porte.003
+    100118: Porte.004
+    100120: Porte.005
+    100122: Porte.006
+    100124: Porte.007
+    100126: Porte.008
+    100128: Porte.009
+    100130: Porte.010
+    100132: Porte.011
+    100134: Porte.012
+    100136: Porte.013
+    100138: Porte.014
+    100140: Porte.015
+    100142: Porte.016
+    100144: Porte.017
+    100146: Porte.018
+    100148: Porte.019
+    100150: Porte.020
+    100152: Porte.021
+    100154: Porte.022
+    100156: Porte.023
+    100158: Porte.024
+    100160: Porte.025
+    100162: Reception
+    100164: Scale
+    100166: Secondo palazzo
+    100168: Soffitto
+    100170: 'Soffitto '
+    100172: Spessore pianerottolo
+    100174: Spffitto1
+    100176: terreno
+    100178: Tetto
+    100180: Text
+    100182: Tubi cavi
+    100184: Vetro
+    100186: Vetro finestre
+    100188: Vetro ingresso
+    100190: 'Vetro piano di sotto '
+    100192: 'Vetro primo piano '
+    100194: Vetro2
+    100196: Luci.000
+    100198: Luci.003
+    100200: Luci.004
+    100202: Luci.007
+    100204: Luci.008
+    100206: Luci.011
+    100208: Luci.015
+    100210: Porta ingresso .001
+    400000: Aiuola
+    400002: Aiuola.001
+    400004: 'Bottoni '
+    400006: Cavi
+    400008: cavi5
+    400010: Cornice finestre
+    400012: cornici ospedale parete
+    400014: 'Corrimano '
+    400016: Cube.026
+    400018: Cube.045
+    400020: Cube.055
+    400022: entrata ospedale tetto
+    400024: Exit
+    400026: Finestre
+    400028: Floor
+    400030: Floor primo piano
+    400032: //RootNode
+    400034: Luci.001
+    400036: Luci.002
+    400038: Luci.005
+    400040: Luci.006
+    400042: Luci.009
+    400044: Luci.010
+    400046: Luci.012
+    400048: Luci.013
+    400050: Luci.014
+    400052: Luci.017
+    400054: Luci.018
+    400056: Luci.021
+    400058: Mura esterne
+    400060: Muro
+    400062: Muro Primo Piano
+    400064: Muro Primo Piano.001
+    400066: Muro Primo Piano.002
+    400068: 'Muro secondo Piano '
+    400070: Muro secondo Piano .001
+    400072: Muro secondo Piano .002
+    400074: Palazzo  ponte
+    400076: 'parcheggio '
+    400078: Pavimento
+    400080: 'Pianerottolo '
+    400082: piano scale 1
+    400084: Piano scale 2
+    400086: Plane.027
+    400088: 'Porta ingresso '
+    400090: Porta posteriore
+    400092: Porta posteriore.001
+    400094: Porta posteriore.002
+    400096: Porta posteriore.003
+    400098: Porta posteriore.004
+    400100: Porta scale2
+    400102: Porta10
+    400104: Porta10.001
+    400106: Porte
+    400108: Porte ascensore
+    400110: Porte grandi
+    400112: Porte.001
+    400114: Porte.002
+    400116: Porte.003
+    400118: Porte.004
+    400120: Porte.005
+    400122: Porte.006
+    400124: Porte.007
+    400126: Porte.008
+    400128: Porte.009
+    400130: Porte.010
+    400132: Porte.011
+    400134: Porte.012
+    400136: Porte.013
+    400138: Porte.014
+    400140: Porte.015
+    400142: Porte.016
+    400144: Porte.017
+    400146: Porte.018
+    400148: Porte.019
+    400150: Porte.020
+    400152: Porte.021
+    400154: Porte.022
+    400156: Porte.023
+    400158: Porte.024
+    400160: Porte.025
+    400162: Reception
+    400164: Scale
+    400166: Secondo palazzo
+    400168: Soffitto
+    400170: 'Soffitto '
+    400172: Spessore pianerottolo
+    400174: Spffitto1
+    400176: terreno
+    400178: Tetto
+    400180: Text
+    400182: Tubi cavi
+    400184: Vetro
+    400186: Vetro finestre
+    400188: Vetro ingresso
+    400190: 'Vetro piano di sotto '
+    400192: 'Vetro primo piano '
+    400194: Vetro2
+    400196: Luci.000
+    400198: Luci.003
+    400200: Luci.004
+    400202: Luci.007
+    400204: Luci.008
+    400206: Luci.011
+    400208: Luci.015
+    400210: Porta ingresso .001
+    2300000: Aiuola
+    2300002: Aiuola.001
+    2300004: 'Bottoni '
+    2300006: Cavi
+    2300008: cavi5
+    2300010: Cornice finestre
+    2300012: cornici ospedale parete
+    2300014: 'Corrimano '
+    2300016: Cube.026
+    2300018: Cube.045
+    2300020: Cube.055
+    2300022: entrata ospedale tetto
+    2300024: Exit
+    2300026: Finestre
+    2300028: Floor
+    2300030: Floor primo piano
+    2300032: Luci.001
+    2300034: Luci.002
+    2300036: Luci.005
+    2300038: Luci.006
+    2300040: Luci.009
+    2300042: Luci.010
+    2300044: Luci.012
+    2300046: Luci.013
+    2300048: Luci.014
+    2300050: Luci.017
+    2300052: Luci.018
+    2300054: Luci.021
+    2300056: Mura esterne
+    2300058: Muro
+    2300060: Muro Primo Piano
+    2300062: Muro Primo Piano.001
+    2300064: Muro Primo Piano.002
+    2300066: 'Muro secondo Piano '
+    2300068: Muro secondo Piano .001
+    2300070: Muro secondo Piano .002
+    2300072: Palazzo  ponte
+    2300074: 'parcheggio '
+    2300076: Pavimento
+    2300078: 'Pianerottolo '
+    2300080: piano scale 1
+    2300082: Piano scale 2
+    2300084: Plane.027
+    2300086: 'Porta ingresso '
+    2300088: Porta posteriore
+    2300090: Porta posteriore.001
+    2300092: Porta posteriore.002
+    2300094: Porta posteriore.003
+    2300096: Porta posteriore.004
+    2300098: Porta scale2
+    2300100: Porta10
+    2300102: Porta10.001
+    2300104: Porte
+    2300106: Porte ascensore
+    2300108: Porte grandi
+    2300110: Porte.001
+    2300112: Porte.002
+    2300114: Porte.003
+    2300116: Porte.004
+    2300118: Porte.005
+    2300120: Porte.006
+    2300122: Porte.007
+    2300124: Porte.008
+    2300126: Porte.009
+    2300128: Porte.010
+    2300130: Porte.011
+    2300132: Porte.012
+    2300134: Porte.013
+    2300136: Porte.014
+    2300138: Porte.015
+    2300140: Porte.016
+    2300142: Porte.017
+    2300144: Porte.018
+    2300146: Porte.019
+    2300148: Porte.020
+    2300150: Porte.021
+    2300152: Porte.022
+    2300154: Porte.023
+    2300156: Porte.024
+    2300158: Porte.025
+    2300160: Reception
+    2300162: Scale
+    2300164: Secondo palazzo
+    2300166: Soffitto
+    2300168: 'Soffitto '
+    2300170: Spessore pianerottolo
+    2300172: Spffitto1
+    2300174: terreno
+    2300176: Tetto
+    2300178: Text
+    2300180: Tubi cavi
+    2300182: Vetro
+    2300184: Vetro finestre
+    2300186: Vetro ingresso
+    2300188: 'Vetro piano di sotto '
+    2300190: 'Vetro primo piano '
+    2300192: Vetro2
+    2300194: Luci.000
+    2300196: Luci.003
+    2300198: Luci.004
+    2300200: Luci.007
+    2300202: Luci.008
+    2300204: Luci.011
+    2300206: Luci.015
+    2300208: Porta ingresso .001
+    3300000: Aiuola
+    3300002: Aiuola.001
+    3300004: 'Bottoni '
+    3300006: Cavi
+    3300008: cavi5
+    3300010: Cornice finestre
+    3300012: cornici ospedale parete
+    3300014: 'Corrimano '
+    3300016: Cube.026
+    3300018: Cube.045
+    3300020: Cube.055
+    3300022: entrata ospedale tetto
+    3300024: Exit
+    3300026: Finestre
+    3300028: Floor
+    3300030: Floor primo piano
+    3300032: Luci.001
+    3300034: Luci.002
+    3300036: Luci.005
+    3300038: Luci.006
+    3300040: Luci.009
+    3300042: Luci.010
+    3300044: Luci.012
+    3300046: Luci.013
+    3300048: Luci.014
+    3300050: Luci.017
+    3300052: Luci.018
+    3300054: Luci.021
+    3300056: Mura esterne
+    3300058: Muro
+    3300060: Muro Primo Piano
+    3300062: Muro Primo Piano.001
+    3300064: Muro Primo Piano.002
+    3300066: 'Muro secondo Piano '
+    3300068: Muro secondo Piano .001
+    3300070: Muro secondo Piano .002
+    3300072: Palazzo  ponte
+    3300074: 'parcheggio '
+    3300076: Pavimento
+    3300078: 'Pianerottolo '
+    3300080: piano scale 1
+    3300082: Piano scale 2
+    3300084: Plane.027
+    3300086: 'Porta ingresso '
+    3300088: Porta posteriore
+    3300090: Porta posteriore.001
+    3300092: Porta posteriore.002
+    3300094: Porta posteriore.003
+    3300096: Porta posteriore.004
+    3300098: Porta scale2
+    3300100: Porta10
+    3300102: Porta10.001
+    3300104: Porte
+    3300106: Porte ascensore
+    3300108: Porte grandi
+    3300110: Porte.001
+    3300112: Porte.002
+    3300114: Porte.003
+    3300116: Porte.004
+    3300118: Porte.005
+    3300120: Porte.006
+    3300122: Porte.007
+    3300124: Porte.008
+    3300126: Porte.009
+    3300128: Porte.010
+    3300130: Porte.011
+    3300132: Porte.012
+    3300134: Porte.013
+    3300136: Porte.014
+    3300138: Porte.015
+    3300140: Porte.016
+    3300142: Porte.017
+    3300144: Porte.018
+    3300146: Porte.019
+    3300148: Porte.020
+    3300150: Porte.021
+    3300152: Porte.022
+    3300154: Porte.023
+    3300156: Porte.024
+    3300158: Porte.025
+    3300160: Reception
+    3300162: Scale
+    3300164: Secondo palazzo
+    3300166: Soffitto
+    3300168: 'Soffitto '
+    3300170: Spessore pianerottolo
+    3300172: Spffitto1
+    3300174: terreno
+    3300176: Tetto
+    3300178: Text
+    3300180: Tubi cavi
+    3300182: Vetro
+    3300184: Vetro finestre
+    3300186: Vetro ingresso
+    3300188: 'Vetro piano di sotto '
+    3300190: 'Vetro primo piano '
+    3300192: Vetro2
+    3300194: Luci.000
+    3300196: Luci.003
+    3300198: Luci.004
+    3300200: Luci.007
+    3300202: Luci.008
+    3300204: Luci.011
+    3300206: Luci.015
+    3300208: Porta ingresso .001
+    4300000: Luci.021
+    4300002: Luci.018
+    4300004: Luci.017
+    4300006: Luci.014
+    4300008: Luci.013
+    4300010: Luci.012
+    4300012: Luci.010
+    4300014: Luci.009
+    4300016: Luci.006
+    4300018: Luci.005
+    4300020: Luci.002
+    4300022: Luci.001
+    4300024: Muro secondo Piano .002
+    4300026: Muro secondo Piano .001
+    4300028: Porte.025
+    4300030: Porta posteriore.004
+    4300032: Porta posteriore.003
+    4300034: Porta posteriore.001
+    4300036: Porta posteriore.002
+    4300038: Porte.021
+    4300040: Porte.002
+    4300042: Porte.001
+    4300044: Muro Primo Piano.002
+    4300046: Muro Primo Piano.001
+    4300048: Porte.024
+    4300050: Porte.023
+    4300052: Porte.022
+    4300054: Porte grandi
+    4300056: 'Soffitto '
+    4300058: Porte ascensore
+    4300060: Soffitto
+    4300062: 'Muro secondo Piano '
+    4300064: Vetro ingresso
+    4300066: Pavimento
+    4300068: Spffitto1
+    4300070: Cube.026
+    4300072: Aiuola
+    4300074: entrata ospedale tetto
+    4300076: Piano scale 2
+    4300078: Finestre
+    4300080: Muro
+    4300082: Scale
+    4300084: 'Corrimano '
+    4300086: Plane.027
+    4300088: Reception
+    4300090: Exit
+    4300092: 'Pianerottolo '
+    4300094: Muro Primo Piano
+    4300096: piano scale 1
+    4300098: Tetto
+    4300100: 'Bottoni '
+    4300102: 'Vetro piano di sotto '
+    4300104: 'Vetro primo piano '
+    4300106: Cavi
+    4300108: cavi5
+    4300110: Tubi cavi
+    4300112: Cube.045
+    4300114: Cornice finestre
+    4300116: Cube.055
+    4300118: Porta10
+    4300120: Porta scale2
+    4300122: Vetro
+    4300124: Secondo palazzo
+    4300126: Floor primo piano
+    4300128: Spessore pianerottolo
+    4300130: Floor
+    4300132: Vetro2
+    4300134: cornici ospedale parete
+    4300136: Mura esterne
+    4300138: 'parcheggio '
+    4300140: Vetro finestre
+    4300142: Palazzo  ponte
+    4300144: Porta10.001
+    4300146: 'Porta ingresso '
+    4300148: Porta posteriore
+    4300150: Porte
+    4300152: terreno
+    4300154: Aiuola.001
+    4300156: Porte.003
+    4300158: Porte.004
+    4300160: Porte.005
+    4300162: Porte.006
+    4300164: Porte.007
+    4300166: Porte.008
+    4300168: Porte.009
+    4300170: Porte.010
+    4300172: Porte.011
+    4300174: Porte.012
+    4300176: Porte.013
+    4300178: Porte.014
+    4300180: Porte.015
+    4300182: Porte.016
+    4300184: Porte.017
+    4300186: Porte.018
+    4300188: Porte.019
+    4300190: Text
+    4300192: Porte.020
+    4300194: Luci.015
+    4300196: Luci.011
+    4300198: Luci.008
+    4300200: Luci.007
+    4300202: Luci.004
+    4300204: Luci.003
+    4300206: Luci.000
+    4300208: Porta ingresso .001
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
