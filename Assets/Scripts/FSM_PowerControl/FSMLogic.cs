@@ -164,7 +164,7 @@ public class FSMLogic : MonoBehaviour {
 		} else if (GameManager.Self.playerState == GameState.OnlyIdea && onEnemy) {
 			refUI.PowerUI (true);
 		} else {
-			Debug.Log ("POWER");
+			
             //refUI.TastiUI(false);
             refUI.PossessionUI(false);
             refUI.PowerUI(false);

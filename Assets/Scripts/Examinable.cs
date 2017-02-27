@@ -34,12 +34,12 @@ public class Examinable : ExamineAbstract
                 this.transform.GetChild(2).gameObject.SetActive(true);
             }
         }
-		Debug.Log("is clicked: " + isClicked);
+
 
         if (!isClicked)
         {
 			if (Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) {
-				Debug.Log ("Premo Esamina!");
+				//Debug.Log ("Premo Esamina!");
 				isClicked = true;
 				//isLooking = false;
 				GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (true);
@@ -91,7 +91,7 @@ public class Examinable : ExamineAbstract
 				GameObject.FindGameObjectWithTag ("Player").GetComponent<FSMLogic> ().enabled = true;
 				Time.timeScale = 1f;
 				isClicked = false;
-				Debug.Log ("Fine Esamina!");
+				//Debug.Log ("Fine Esamina!");
 			}
         }
     }

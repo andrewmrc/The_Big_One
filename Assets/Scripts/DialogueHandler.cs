@@ -89,7 +89,7 @@ public class DialogueHandler : MonoBehaviour {
 
 
 	IEnumerator RotateCharAnim () {
-		Debug.Log ("ROTATE NPC");
+		//Debug.Log ("ROTATE NPC");
 		if(this.GetComponent<Animator>().GetFloat("Forward") < 1){
 			this.GetComponent<Animator>().SetFloat("Forward", 1);
 			yield return new WaitForSeconds(0.1f);
@@ -187,7 +187,7 @@ public class DialogueHandler : MonoBehaviour {
 				}
 			} else {
 				for (int j = 0; j < conversations [i].dialogues.Count; j++) {
-					Debug.Log ("i: " + i + ", j: " + j);
+					//Debug.Log ("i: " + i + ", j: " + j);
 
 					GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = conversations [i].dialogues [j];
 					float seconds = dialogueSpeed;
