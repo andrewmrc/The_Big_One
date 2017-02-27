@@ -34,63 +34,65 @@ public class Examinable : ExamineAbstract
                 this.transform.GetChild(2).gameObject.SetActive(true);
             }
         }
+		Debug.Log("is clicked: " + isClicked);
 
-        if (!isClicked && Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Examine"))
+        if (!isClicked)
         {
-            Debug.Log("Premo Esamina!");
-            isClicked = true;
-            isLooking = false;
-			GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (true);
-            this.transform.GetChild(0).gameObject.SetActive(false);
-            if (this.transform.childCount == 3)
-            {
-                this.transform.GetChild(2).gameObject.SetActive(false);
-            }
-            //se l'oggetto da esaminare ha un immagine da vedere allora stoppiamo il tempo e blurriamo la camera attivando il pannello UI dedicato e passandogli l'immagine
-            if (imageToShow != null)
-            {
-                Time.timeScale = 0f;
-                Camera.main.gameObject.GetComponent<VignetteAndChromaticAberration>().blur = 1f;
-                refUI.ExamineObject(imageToShow, true);
-				GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
-            }
+			if (Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) {
+				Debug.Log ("Premo Esamina!");
+				isClicked = true;
+				//isLooking = false;
+				GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (true);
+				this.transform.GetChild (0).gameObject.SetActive (false);
+				if (this.transform.childCount == 3) {
+					this.transform.GetChild (2).gameObject.SetActive (false);
+				}
+				//se l'oggetto da esaminare ha un immagine da vedere allora stoppiamo il tempo e blurriamo la camera attivando il pannello UI dedicato e passandogli l'immagine
+				if (imageToShow != null) {
+					Time.timeScale = 0f;
+					Camera.main.gameObject.GetComponent<VignetteAndChromaticAberration> ().blur = 1f;
+					refUI.ExamineObject (imageToShow, true);
+					GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
+				}
 
-            Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
-            GameManager.Self.blockMovement = true;
+				Camera.main.GetComponentInParent<FreeLookCam> ().enabled = false;
+				GameManager.Self.blockMovement = true;
 
-            GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>().enabled = false;
+				GameObject.FindGameObjectWithTag ("Player").GetComponent<CharController> ().enabled = false;
 
-            GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().enabled = false;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Forward", 0);
-            //GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Turn", 0);
+				GameObject.FindGameObjectWithTag ("Player").GetComponent<FSMLogic> ().enabled = false;
+				GameObject.FindGameObjectWithTag ("Player").GetComponent<Animator> ().SetFloat ("Forward", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Turn", 0);
 
-            refUI.TextToShow(descriptionText, true);
+				refUI.TextToShow (descriptionText, true);
 
-			if (!executed) {
-				executed = true;
-				returnEvent.Invoke ();
+				if (!executed) {
+					executed = true;
+					returnEvent.Invoke ();
+				}
+
+				//se l'oggetto non ha un immagine da vedere ma solo una descrizione possiamo farla sparire dopo pochi secondi
+				if (imageToShow == null) {
+					StartCoroutine (StopExamination ());
+				}
 			}
-
-            //se l'oggetto non ha un immagine da vedere ma solo una descrizione possiamo farla sparire dopo pochi secondi
-            if (imageToShow == null)
-            {
-                StartCoroutine(StopExamination());
-            }
         }
-        else if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Examine") && isClicked)
+		else if (isClicked)
         {
-            isClicked = false;
-            //isLooking = true;
-            StopAllCoroutines();
-            refUI.ExamineObject(imageToShow, false);
-            refUI.TextToShow(descriptionText, false);
-			GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
-            Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
-            Camera.main.gameObject.GetComponent<VignetteAndChromaticAberration>().blur = 0.3f;
-            GameManager.Self.blockMovement = false;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().enabled = true;
-            Time.timeScale = 1f;
-			Debug.Log("Fine Esamina!");
+			if (Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) {
+				//isLooking = true;
+				StopAllCoroutines ();
+				refUI.ExamineObject (imageToShow, false);
+				refUI.TextToShow (descriptionText, false);
+				GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
+				Camera.main.GetComponentInParent<FreeLookCam> ().enabled = true;
+				Camera.main.gameObject.GetComponent<VignetteAndChromaticAberration> ().blur = 0.3f;
+				GameManager.Self.blockMovement = false;
+				GameObject.FindGameObjectWithTag ("Player").GetComponent<FSMLogic> ().enabled = true;
+				Time.timeScale = 1f;
+				isClicked = false;
+				Debug.Log ("Fine Esamina!");
+			}
         }
     }
 
