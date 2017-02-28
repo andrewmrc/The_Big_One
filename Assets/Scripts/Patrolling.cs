@@ -84,7 +84,7 @@ public class Patrolling : MonoBehaviour
         {
             yield return new WaitForSeconds(delayStartPatrol);
         }
-        Debug.Log("ENTRATO");
+        //Debug.Log("ENTRATO");
         inExec = true;
         arrayLength = patrollingTransform.Length;
         while (isPatrolling)

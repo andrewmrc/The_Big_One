@@ -11,6 +11,16 @@ public class Fader : MonoBehaviour {
 		StartCoroutine(FadeOut());
 	}
 
+	public void StartFadeIn () {
+		fade.GetComponent<CanvasGroup> ().alpha = 0;
+		StartCoroutine(FadeIn());
+	}
+
+	public void StartFadeOut () {
+		fade.GetComponent<CanvasGroup> ().alpha = 1;
+		StartCoroutine(FadeOut());
+	}
+
     public IEnumerator FadeIn()
     {
         while (fade.GetComponent<CanvasGroup>().alpha < 1)

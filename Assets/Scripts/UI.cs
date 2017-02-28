@@ -16,7 +16,7 @@ public class UI : MonoBehaviour {
     public GameObject memoryImageUI;
     public GameObject cursorFar;
 	public GameObject examinePanel;
-
+	public GameObject UI_Reading;
     public Text ExaminTextUI, textToShowUI, VariousDescriptionUI;
 
     PowerController refPC;

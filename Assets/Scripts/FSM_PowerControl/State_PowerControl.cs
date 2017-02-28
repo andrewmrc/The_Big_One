@@ -50,7 +50,10 @@ public class State_PowerControl : State {
         this.GetComponent<Animator>().SetFloat("Turn", 0);
         //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
         //this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
-		this.gameObject.transform.GetComponent<CharController>().enabled = false;
+		if(this.gameObject.transform.GetComponent<CharController> ()){
+			this.gameObject.transform.GetComponent<CharController> ().enabled = false;
+		}
+
 
         refUI.cursorFar.SetActive(false);
 
@@ -91,7 +94,7 @@ public class State_PowerControl : State {
                 //{
                 // Logica per effettuare lo switch del corpo
                 #region Switch Body Condition
-                if (GameManager.Self.ChangePlayerState == GameState.UsePower)
+				if (GameManager.Self.playerState == GameState.UsePower)
                 {
 
 
@@ -105,7 +108,9 @@ public class State_PowerControl : State {
                         this.gameObject.tag = "ControllableNPC";
                         //this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
                         //this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
-                        this.gameObject.transform.GetComponent<CharController>().enabled = false;
+						if(this.gameObject.transform.GetComponent<CharController> ()){
+							this.gameObject.transform.GetComponent<CharController> ().enabled = false;
+						}
 
                         this.gameObject.transform.GetComponent<FSMLogic>().enabled = false;
                         this.gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
@@ -135,7 +140,9 @@ public class State_PowerControl : State {
                         //hit.collider.transform.GetComponent<ThirdPersonUserControl>().enabled = true;                        
                         //hit.collider.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
 
-                        hit.collider.transform.GetComponent<CharController>().enabled = true;
+						if(hit.collider.transform.GetComponent<CharController>()){
+                        	hit.collider.transform.GetComponent<CharController>().enabled = true;
+						}
 
                         if (hit.collider.transform.GetComponent<DialogueHandler>())
                         {
@@ -163,27 +170,28 @@ public class State_PowerControl : State {
 
                     }
                 }
-                    #endregion
+                #endregion
 
-                    // Logica per effettuare i movimenti in posti precisi agli NPC
-                    if (hit.collider.transform.GetComponent<FSM_EnemyPath>() != null)
-                    {
-                        refUI.PowerUI(true);
-                        if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Idea") && GameManager.Self.powerQuantity >= mentalPowerCost)
-                        {
-                            //ideaListener.Invoke();
-                            //GameManager.Self.powerQuantity -= mentalPowerCost;
-                            MoveNPC(hit, 0);
-                        }
-                    }
-                    refUI.cursor.GetComponent<Image>().color = Color.green;
-                    
+				if (GameManager.Self.playerState == GameState.UsePower || GameManager.Self.playerState == GameState.OnlyIdea) {
+					// Logica per effettuare i movimenti in posti precisi agli NPC
+					if (hit.collider.transform.GetComponent<FSM_EnemyPath> () != null) {
+						GetComponent<FSMLogic> ().onEnemy = true;
+						refUI.PowerUI (true);
+						if (Input.GetKeyDown (KeyCode.Q) || Input.GetButtonDown ("Idea") && GameManager.Self.powerQuantity >= mentalPowerCost) {
+							//ideaListener.Invoke();
+							//GameManager.Self.powerQuantity -= mentalPowerCost;
+							MoveNPC (hit, 0);
+						}
+					}
+					refUI.cursor.GetComponent<Image> ().color = Color.green;
+	                
 
-               /* }
-                else
-                {
-                    GetComponent<FSMLogic>().onEnemy = false;
-                }*/
+					/* }
+	                else
+	                {
+	                    GetComponent<FSMLogic>().onEnemy = false;
+	                }*/
+				}
             }
             else
             {

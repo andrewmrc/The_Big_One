@@ -84,7 +84,10 @@ public class FSM_ReturnInPosition : MonoBehaviour {
         {
             refNav.enabled = true;
             //this.GetComponent<ThirdPersonCharacter>().enabled = true;
-			this.GetComponent<CharController>().enabled = true;
+
+			if(this.GetComponent<CharController> ()){
+				this.GetComponent<CharController>().enabled = true;
+			}
 
             if (Vector3.Distance(initialPosition, this.transform.position) > refNav.stoppingDistance)
             {
@@ -121,7 +124,9 @@ public class FSM_ReturnInPosition : MonoBehaviour {
 			yield return new WaitForSeconds(0.1f);
 		}
 		this.transform.eulerAngles = initialRotation;
-		this.GetComponent<CharController>().enabled = false;
+		if(this.GetComponent<CharController>()){
+			this.GetComponent<CharController>().enabled = false;
+		}
 
 		this.GetComponent<Animator>().SetFloat("Forward", 0);
         

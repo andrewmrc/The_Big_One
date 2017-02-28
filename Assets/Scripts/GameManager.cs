@@ -127,16 +127,16 @@ public class GameManager : MonoBehaviour {
             switch (playerState)
             {
                 case GameState.UsePower:
-                    Debug.Log("posso usare tutto");
+                    //Debug.Log("posso usare tutto");
                     HandlePowerActivation(false);
                     break;
                 case GameState.NoPower:
                     HandlePowerActivation(true);
-                    Debug.Log("non posso usare niente");
+                    //Debug.Log("non posso usare niente");
                     break;
                 case GameState.OnlyIdea:
                     HandlePowerActivation(false);
-                    Debug.Log("posso usare solo l'idea");
+                    //Debug.Log("posso usare solo l'idea");
                     break;
                 default:
                     break;

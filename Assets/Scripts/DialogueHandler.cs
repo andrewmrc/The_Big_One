@@ -16,13 +16,13 @@ public class DialogueHandler : MonoBehaviour {
 	public List<DialogueItem> conversations;
 	public bool executed;
 	public UnityEvent returnEvent;
-
+	GameObject canvasFader;
 	bool notInitialRotation;
 	int playerPowerState;
 
 	// Use this for initialization
 	void Start () {
-	
+		canvasFader = GameObject.FindGameObjectWithTag ("Fader");
 	}
 
 
@@ -42,10 +42,10 @@ public class DialogueHandler : MonoBehaviour {
 				if (Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) {
 					cantTalk = true;
 					GameManager.Self.blockMovement = true;
-
+					//canvasFader.GetComponent<Fader> ().StartFadeOut ();
 					if (!notInitialRotation) {
 						StartCoroutine (RotateCharAnim ());
-						StartCoroutine (RotatePlayer ());
+						//StartCoroutine (RotatePlayer ());
 					}
 					notInitialRotation = true;
 					playerPowerState = (int)GameManager.Self.playerState;
@@ -57,7 +57,7 @@ public class DialogueHandler : MonoBehaviour {
 					Vector3 targetNPC = new Vector3 (this.gameObject.transform.position.x, currentPlayer.transform.position.y, this.gameObject.transform.position.z);
 					currentPlayer.transform.LookAt (targetNPC);
 					currentPlayer.GetComponent<CharController> ().enabled = false;
-					//currentPlayer.GetComponent<Animator> ().SetFloat ("Forward", 0);
+					currentPlayer.GetComponent<Animator> ().SetFloat ("Forward", 0);
 					StartCoroutine (DPrinter3 ());
 				}
 			} else {
@@ -89,7 +89,7 @@ public class DialogueHandler : MonoBehaviour {
 
 
 	IEnumerator RotateCharAnim () {
-		Debug.Log ("ROTATE NPC");
+		//Debug.Log ("ROTATE NPC");
 		if(this.GetComponent<Animator>().GetFloat("Forward") < 1){
 			this.GetComponent<Animator>().SetFloat("Forward", 1);
 			yield return new WaitForSeconds(0.1f);
@@ -144,7 +144,7 @@ public class DialogueHandler : MonoBehaviour {
 
 	IEnumerator DPrinter3 () {
 		this.transform.GetChild (0).gameObject.SetActive (false); //.GetComponent<MeshRenderer> ().enabled = false;
-
+		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (true);
 		for(int i = 0; i < conversations.Count; i++) {
 			if (conversations [i].npcSpeaker != null) {
 				if (conversations [i].npcSpeaker.name == currentPlayer.name) {
@@ -187,7 +187,7 @@ public class DialogueHandler : MonoBehaviour {
 				}
 			} else {
 				for (int j = 0; j < conversations [i].dialogues.Count; j++) {
-					Debug.Log ("i: " + i + ", j: " + j);
+					//Debug.Log ("i: " + i + ", j: " + j);
 
 					GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = conversations [i].dialogues [j];
 					float seconds = dialogueSpeed;
@@ -227,6 +227,6 @@ public class DialogueHandler : MonoBehaviour {
 			executed = true;
 			returnEvent.Invoke ();
 		}
-
+		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
 	}
 }
