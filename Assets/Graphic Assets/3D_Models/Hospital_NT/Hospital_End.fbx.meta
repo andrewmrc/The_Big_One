@@ -111,6 +111,10 @@ ModelImporter:
     100206: Luci.011
     100208: Luci.015
     100210: Porta ingresso .001
+    100212: Luci.016
+    100214: Porte.026
+    100216: Porte.027
+    100218: Vetro piano superiore
     400000: Aiuola
     400002: Aiuola.001
     400004: 'Bottoni '
@@ -217,6 +221,10 @@ ModelImporter:
     400206: Luci.011
     400208: Luci.015
     400210: Porta ingresso .001
+    400212: Luci.016
+    400214: Porte.026
+    400216: Porte.027
+    400218: Vetro piano superiore
     2300000: Aiuola
     2300002: Aiuola.001
     2300004: 'Bottoni '
@@ -322,6 +330,10 @@ ModelImporter:
     2300204: Luci.011
     2300206: Luci.015
     2300208: Porta ingresso .001
+    2300210: Luci.016
+    2300212: Porte.026
+    2300214: Porte.027
+    2300216: Vetro piano superiore
     3300000: Aiuola
     3300002: Aiuola.001
     3300004: 'Bottoni '
@@ -427,6 +439,10 @@ ModelImporter:
     3300204: Luci.011
     3300206: Luci.015
     3300208: Porta ingresso .001
+    3300210: Luci.016
+    3300212: Porte.026
+    3300214: Porte.027
+    3300216: Vetro piano superiore
     4300000: Luci.021
     4300002: Luci.018
     4300004: Luci.017
@@ -532,6 +548,10 @@ ModelImporter:
     4300204: Luci.003
     4300206: Luci.000
     4300208: Porta ingresso .001
+    4300210: Vetro piano superiore
+    4300212: Luci.016
+    4300214: Porte.027
+    4300216: Porte.026
   materials:
     importMaterials: 1
     materialName: 0

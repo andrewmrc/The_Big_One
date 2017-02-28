@@ -206,6 +206,9 @@ public class DoorHandler : MonoBehaviour
                 {
                     if (doorOponerCO == null && !isOpened)
                     {
+						if (this.GetComponent<NavMeshObstacle> ()) {
+							this.GetComponent<NavMeshObstacle> ().carving = true;
+						}
                         product = CalculateProduct(coll);
                         doorOponerCO = StartCoroutine(DoorOpener(product));
 
@@ -217,6 +220,9 @@ public class DoorHandler : MonoBehaviour
             {
                 if (doorOponerCO == null && !isOpened)
                 {
+					if (this.GetComponent<NavMeshObstacle> ()) {
+						this.GetComponent<NavMeshObstacle> ().carving = true;
+					}
                     product = CalculateProduct(coll);
                     doorOponerCO = StartCoroutine(DoorOpener(product));
 
@@ -230,8 +236,7 @@ public class DoorHandler : MonoBehaviour
 
     void OnTriggerStay(Collider coll)
     {
-        if (coll.gameObject.tag == "Player")
-        {
+		if (coll.gameObject.tag == "Player") {
 			foreach (var go in listOfGo) {
 				if (coll.gameObject == go) {
 					npcFind = true;
@@ -273,7 +278,7 @@ public class DoorHandler : MonoBehaviour
 					if (Physics.Raycast (modYPlayer, coll.transform.forward, out hitInfo, 2f)) {
 						if (!readingMessage) {
 							readingMessage = true;
-							StartCoroutine (DoorMessage());
+							StartCoroutine (DoorMessage ());
 						}
 					}
 				}
@@ -294,7 +299,7 @@ public class DoorHandler : MonoBehaviour
 
 
 			for (int i = 0; i < listOfNotGo.Count; i++) {
-				if (coll.gameObject == listOfNotGo[i].npcObject) {
+				if (coll.gameObject == listOfNotGo [i].npcObject) {
 					
 					if ((Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) && !isOpened) {
 						RaycastHit hitInfo;
@@ -313,7 +318,11 @@ public class DoorHandler : MonoBehaviour
 			}
 
 
-        }
+		} else {
+			if (this.GetComponent<NavMeshObstacle> ()) {
+				this.GetComponent<NavMeshObstacle> ().carving = true;
+			}
+		}
     }
 
     private IEnumerator DoorMessage()
@@ -409,10 +418,14 @@ public class DoorHandler : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
 		//this.transform.GetChild (0).gameObject.SetActive (true);
+		if (this.GetComponent<NavMeshObstacle> ()) {
+			this.GetComponent<NavMeshObstacle> ().carving = false;
+		}
     }
 
     IEnumerator DoorOpener(float product)
     {
+		
         float count = 0;
         if (!isOpened)
         {
@@ -455,6 +468,7 @@ public class DoorHandler : MonoBehaviour
             isClosing = false;
             Audio.clip = soundContainer.CloseDoorSound;
             Audio.Play();
+
         }
     }
 
