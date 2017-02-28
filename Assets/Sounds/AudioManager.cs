@@ -58,7 +58,7 @@ public class AudioManager : MonoBehaviour
         {
             if (!isWalking)
             {
-                Debug.Log("WALK");
+                //Debug.Log("WALK");
                 isWalking = true;
                 //Facendo così la clip viene fatta partire ma non seguirà nè i movimenti precisi del personaggio nè qualche tipo di variabile temporale imposta da noi.
                 //m_AudioSource.clip = otherClip;

@@ -72,11 +72,14 @@ public class ExamineHandler : MonoBehaviour
                     float tempDist = Vector3.Distance(coll.transform.position, hitInfo.point);
                     if (distance > tempDist)
                     {
+						/*
+						Debug.Log ("DISTANCE");
                         if (anchor != null)
                         {
+							Debug.Log ("STOP0");
                             anchor.GetComponent<Examinable>().StopClickMe();
 							//Debug.Log ("asd");
-                        }
+                        }*/
                         tempAnchor = coll.gameObject;
 
                         //Vector3 headPlayerVector = new Vector3(player.transform.position.x, 1, player.transform.position.z);
@@ -91,16 +94,19 @@ public class ExamineHandler : MonoBehaviour
 
                         distance = tempDist;
                     }
+
                 }
-                if (anchor != null)
-                {
-                    anchor.GetComponent<Examinable>().ClickMe();
-                }
+				if (anchor != null)
+				{
+					//Debug.Log ("CLICKME");
+					anchor.GetComponent<Examinable>().ClickMe();
+				}
             }
             else
             {
                 if (anchor != null)
                 {
+					//Debug.Log ("STOPCLICK");
                     anchor.GetComponent<Examinable>().StopClickMe();
                 }
             }
