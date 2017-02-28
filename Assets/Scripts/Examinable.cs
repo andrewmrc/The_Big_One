@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityStandardAssets.Cameras;
@@ -15,6 +16,8 @@ public class Examinable : ExamineAbstract
     public UnityEvent returnEvent;
 	public bool executed;
     public bool autoClose;
+	public List<MultiUseItem> personalNPC;
+	private bool findSpecial = false;
 
     // Use this for initialization
     private void Start()
@@ -64,12 +67,26 @@ public class Examinable : ExamineAbstract
 				GameObject.FindGameObjectWithTag ("Player").GetComponent<Animator> ().SetFloat ("Forward", 0);
 				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("Turn", 0);
 
-				refUI.TextToShow (descriptionText, true);
+				if (personalNPC.Count != 0) {
+					for (int i = 0; i < personalNPC.Count; i++) {
+						if (GameObject.FindGameObjectWithTag ("Player") == personalNPC [i].npcObject) {
+							refUI.TextToShow (personalNPC [i].returnMessage[0], true);
+							personalNPC [i].eventToActivate.Invoke ();
+							findSpecial = true;
+						}
+					}
+				} 
 
-				if (!executed) {
-					executed = true;
-					returnEvent.Invoke ();
+				//Se non è stato trovato un npc nella lista che ha un comportamento particolare stampiamo il messaggio di default
+				if (!findSpecial) {
+					refUI.TextToShow (descriptionText, true);
+					if (!executed) {
+						executed = true;
+						returnEvent.Invoke ();
+					}
 				}
+
+
 
 				//se l'oggetto non ha un immagine da vedere ma solo una descrizione possiamo farla sparire dopo pochi secondi
 				if (imageToShow == null) {
@@ -91,6 +108,7 @@ public class Examinable : ExamineAbstract
 				GameObject.FindGameObjectWithTag ("Player").GetComponent<FSMLogic> ().enabled = true;
 				Time.timeScale = 1f;
 				isClicked = false;
+				findSpecial = false;
 				//Debug.Log ("Fine Esamina!");
 			}
         }

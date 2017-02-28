@@ -35,7 +35,7 @@ public class DoorHandler : MonoBehaviour
     public float distanceToClose = 3;
     public float doorRotation = 90;
     public List<GameObject> listOfGo;
-	public List<DoorItem> listOfNotGo;
+	public List<MultiUseItem> listOfNotGo;
     public bool playerCanEnter = false;
     public bool isFreeForNpc = false;
     //public bool isLocked;

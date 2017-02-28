@@ -57,7 +57,7 @@ public class DialogueHandler : MonoBehaviour {
 					Vector3 targetNPC = new Vector3 (this.gameObject.transform.position.x, currentPlayer.transform.position.y, this.gameObject.transform.position.z);
 					currentPlayer.transform.LookAt (targetNPC);
 					currentPlayer.GetComponent<CharController> ().enabled = false;
-					//currentPlayer.GetComponent<Animator> ().SetFloat ("Forward", 0);
+					currentPlayer.GetComponent<Animator> ().SetFloat ("Forward", 0);
 					StartCoroutine (DPrinter3 ());
 				}
 			} else {
