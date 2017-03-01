@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b34dda510453cc54a9bddf5bba93f878
-timeCreated: 1487349103
+timeCreated: 1488366792
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -26,6 +26,7 @@ MonoImporter:
   - CoughSound: {fileID: 8300000, guid: 419bcc49a7a0a2f458b7482c01c7434a, type: 3}
   - BreakingWindowSound: {fileID: 8300000, guid: f4f4cebd35695d54ebf7b76c86649773,
       type: 3}
+  - Bus: {fileID: 8300000, guid: 132ef5efa1789a44caeb9f3ef3a2ac98, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

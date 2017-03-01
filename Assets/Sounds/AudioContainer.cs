@@ -20,5 +20,6 @@ public class AudioContainer : MonoBehaviour {
     public AudioClip MagneticCardSound;
     public AudioClip CoughSound;
     public AudioClip BreakingWindowSound;
+    public AudioClip Bus;
 
 }
