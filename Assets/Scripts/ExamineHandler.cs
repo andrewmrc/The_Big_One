@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ExamineHandler : MonoBehaviour
@@ -13,7 +12,8 @@ public class ExamineHandler : MonoBehaviour
 
     [Range(0, 5)]
     public float radius = 0.5f;
-	public bool gizmoDraw = false;
+
+    public bool gizmoDraw = false;
 
     private Collider[] check;
     private Coroutine CheckObject;
@@ -26,15 +26,19 @@ public class ExamineHandler : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-		if (other.gameObject.tag == "Player") {
-			if (!playerIn) {
-				playerIn = true;
-				Debug.Log ("Dentro Trigger Esaminabile");
-				CheckObject = StartCoroutine (RayMeCO (other));
-			}
-		} else {
-			playerIn = false;
-		}
+        if (other.gameObject.tag == "Player")
+        {
+            if (!playerIn)
+            {
+                playerIn = true;
+                Debug.Log("Dentro Trigger Esaminabile");
+                CheckObject = StartCoroutine(RayMeCO(other));
+            }
+        }
+        else
+        {
+            playerIn = false;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -66,47 +70,56 @@ public class ExamineHandler : MonoBehaviour
                 drawGizmo = true;
                 Debug.DrawLine(ray.origin, hitInfo.point);
                 check = Physics.OverlapSphere(hitInfo.point, radius, (1 << 9));
+
                 distance = 100;
+
                 foreach (var coll in check)
                 {
                     float tempDist = Vector3.Distance(coll.transform.position, hitInfo.point);
                     if (distance > tempDist)
-                    {
-						/*
-						Debug.Log ("DISTANCE");
+                    { /*
+                        Debug.Log("DISTANCE");
                         if (anchor != null)
                         {
-							Debug.Log ("STOP0");
-                            anchor.GetComponent<Examinable>().StopClickMe();
-							//Debug.Log ("asd");
+                            Debug.Log("STOP0");
+                            //anchor.GetComponent<Examinable>().StopClickMe();
+                            
+                            //Debug.Log ("asd");
                         }*/
                         tempAnchor = coll.gameObject;
 
                         //Vector3 headPlayerVector = new Vector3(player.transform.position.x, 1, player.transform.position.z);
-						float distanceCameraObj = Vector3.Distance(player.transform.position, tempAnchor.transform.position);
+                        float distanceCameraObj = Vector3.Distance(player.transform.position, tempAnchor.transform.position);
 
-						//Debug.Log ("distanceCameraObj:" + distanceCameraObj);
+                        //Debug.Log ("distanceCameraObj:" + distanceCameraObj);
 
                         if (distanceCameraObj < distanceFromPlayer)
                         {
+                            if (anchor != null && anchor != tempAnchor )
+                            {
+                                anchor.GetComponent<Examinable>().StopClickMe();
+                            }
+                            
                             anchor = tempAnchor;
+                            
                         }
 
                         distance = tempDist;
                     }
-
                 }
-				if (anchor != null)
-				{
-					//Debug.Log ("CLICKME");
-					anchor.GetComponent<Examinable>().ClickMe();
-				}
+
+                if (anchor != null)
+                {
+                    //Debug.Log ("CLICKME");
+                    anchor.GetComponent<Examinable>().ClickMe();
+                    
+                }
             }
             else
             {
                 if (anchor != null)
                 {
-					//Debug.Log ("STOPCLICK");
+                    //Debug.Log ("STOPCLICK");
                     anchor.GetComponent<Examinable>().StopClickMe();
                 }
             }
