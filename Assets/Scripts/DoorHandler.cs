@@ -250,7 +250,7 @@ public class DoorHandler : MonoBehaviour
 				if ((Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) && !isOpened) {
 					RaycastHit hitInfo;
 					Vector3 modYPlayer = new Vector3 (0, 1, 0) + coll.transform.position;
-
+					Debug.Log ("1");
 					if (Physics.Raycast (modYPlayer, coll.transform.forward, out hitInfo, 2f)) {
 						Debug.DrawRay (modYPlayer, coll.transform.forward, Color.magenta, 1f);
 						if (doorOponerCO == null) {
@@ -274,11 +274,28 @@ public class DoorHandler : MonoBehaviour
 				if ((Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) && !isOpened) {
 					RaycastHit hitInfo;
 					Vector3 modYPlayer = new Vector3 (0, 1, 0) + coll.transform.position;
-
+					Debug.Log ("boh");
 					if (Physics.Raycast (modYPlayer, coll.transform.forward, out hitInfo, 2f)) {
 						if (!readingMessage) {
-							readingMessage = true;
-							StartCoroutine (DoorMessage ());
+							
+							if (listOfNotGo.Count != null) {
+								for (int i = 0; i < listOfNotGo.Count; i++) {
+									if (coll.gameObject == listOfNotGo [i].npcObject) {
+										Debug.Log ("not");
+										readingMessage = true;
+										StartCoroutine (NewDoorMessage (i));
+										//break;
+									} 
+									//break;
+								}
+							}
+								
+							
+						}
+
+						if (!readingMessage) {
+								Debug.Log ("yes");
+								StartCoroutine (DoorMessage ());
 						}
 					}
 				}
@@ -297,10 +314,10 @@ public class DoorHandler : MonoBehaviour
 			this.gameObject.transform.rotation = rot;*/
 	
 
-
+			/*
 			for (int i = 0; i < listOfNotGo.Count; i++) {
 				if (coll.gameObject == listOfNotGo [i].npcObject) {
-					
+					Debug.Log ("Trovato");
 					if ((Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) && !isOpened) {
 						RaycastHit hitInfo;
 						Vector3 modYPlayer = new Vector3 (0, 1, 0) + coll.transform.position;
@@ -315,7 +332,7 @@ public class DoorHandler : MonoBehaviour
 					break;
 				}
 				break;
-			}
+			}*/
 
 
 		} else {
@@ -389,7 +406,8 @@ public class DoorHandler : MonoBehaviour
 
 		if (!executed) {
 			executed = true;
-			messageEvent.Invoke();
+			//messageEvent.Invoke();
+			listOfNotGo[id].eventToActivate.Invoke();
 		}
 
 		GameManager.Self.canvasUI.GetComponent<UI>().VariousDescriptionUI.GetComponent<Text>().text = "";
