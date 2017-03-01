@@ -41,7 +41,7 @@ public class State_ControlBody : State {
         #endregion
 
 		#region Memory check
-		if (this.gameObject.GetComponent<State_ShowMemory> ()) {
+		if (this.gameObject.GetComponent<State_ShowMemory> () && this.gameObject.GetComponent<State_ShowMemory> ().enabled) {
 			refUI.HackUI (true);
 
 		} else {

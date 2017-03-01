@@ -72,7 +72,7 @@ public class FSMLogic : MonoBehaviour {
             //sm.stateShowMemory.memoryListenerOut.Invoke();
             UnShowMem ();
 		}
-		else if (GameManager.Self.outOfYourBody && this.gameObject.GetComponent<State_ShowMemory> () && !GameManager.Self.isShowMemory && !Input.GetKey(KeyCode.Mouse1)) 
+		else if (GameManager.Self.outOfYourBody && this.gameObject.GetComponent<State_ShowMemory> () && this.gameObject.GetComponent<State_ShowMemory> ().enabled && !GameManager.Self.isShowMemory && !Input.GetKey(KeyCode.Mouse1)) 
 		{
 			if ((Input.GetKeyDown (KeyCode.F) || Input.GetButtonDown("Hack")) && !GameManager.Self.isShowMemory) {
                 //Debug.Log ("Guarda Ricordo");
