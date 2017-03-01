@@ -27,17 +27,17 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
+        
         if (!isInExitMenu)
         {
             
         }
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause") && !isInExitMenu)
+        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause")) && !isInExitMenu)
         {
 			renderCamera.SetActive(true);
             isInExitMenu = true;
   
 			Debug.Log ("PAUSA");
-
             ResumeButton.GetComponent<Button> ().Select ();
             
             refCanvasController.ExitHandler(false);
@@ -45,7 +45,7 @@ public class MenuController : MonoBehaviour
 			PanelExit.SetActive(true);
 			Time.timeScale = 0;  
         }
-		else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause") && isInExitMenu)
+		else if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause")) && isInExitMenu)
         {
 			Debug.Log ("SELECT");
 			ExitButton.GetComponent<Button> ().Select();
