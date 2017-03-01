@@ -136,7 +136,7 @@ public class SaveData : MonoBehaviour
         PlayerData data = new PlayerData();
 
         //salvo il nome della scena
-        data.sceneName = SceneManager.GetActiveScene().name;        
+        data.sceneName = SceneManager.GetActiveScene().name;
 
         #region Executed saving
         var enemyPaths = GameObject.FindObjectsOfType<FSM_EnemyPath>();
@@ -167,6 +167,15 @@ public class SaveData : MonoBehaviour
             if (entmp != null)
             {
                 data.addExecuted("DialogueHandler", entmp.name, entmp.executed);
+                if (entmp.conversations != null)
+                    for (var idx = 0; idx < entmp.conversations.Count; idx++)
+                    {
+                        var exectmp = entmp.conversations[idx].executed;
+                        data.addExecuted("DialogueItem" + entmp.name, "" + idx, exectmp);
+
+                    }
+
+
                 //Debug.Log("AGGIUNTO: " + entmp.name);
             }
 
@@ -189,7 +198,7 @@ public class SaveData : MonoBehaviour
             if (entmp != null)
             {
                 data.addExecuted("TriggerAction", entmp.name, entmp.executed);
-				//Debug.Log("AGGIUNTO: " + entmp.name + entmp.executed);
+                //Debug.Log("AGGIUNTO: " + entmp.name + entmp.executed);
             }
 
         }
@@ -327,7 +336,7 @@ public class SaveData : MonoBehaviour
     private void onSceneLoaded(Scene s, LoadSceneMode e)
     {
         SceneManager.SetActiveScene(s);
-        Load(idSlot);        
+        Load(idSlot);
         //Debug.Log("SCENA CARICATA: " + s.name);
     }
 
@@ -421,7 +430,22 @@ public class SaveData : MonoBehaviour
                 foreach (var entmp in dialogues)
                 {
                     if (executedDict["DialogueHandler"].ContainsKey(entmp.name))
+                    {
                         entmp.executed = executedDict["DialogueHandler"][entmp.name];
+                        if (executedDict.ContainsKey("DialogueItem" + entmp.name))
+                        {
+
+                            for (var idx = 0; idx < entmp.conversations.Count; idx++)
+                            {
+                                if (entmp.conversations[idx] != null && executedDict["DialogueItem" + entmp.name].ContainsKey("" + idx))
+                                {
+                                    entmp.conversations[idx].executed = executedDict["DialogueItem" + entmp.name]["" + idx];
+                                }
+                                else
+                                    break;
+                            }
+                        }
+                    }
 
                 }
             }
@@ -491,7 +515,7 @@ public class SaveData : MonoBehaviour
                     refQuest.designQuest[i].isComplete = questInfo[i];
                     //Debug.Log(questInfo[i]);
                 }
-            }           
+            }
 
             //sposto il player
             var allInfo = data.npcInfo;
