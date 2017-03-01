@@ -515,4 +515,10 @@ public class DoorHandler : MonoBehaviour
     {
         isFreeForNpc = change;
     }
+
+
+	public void ResetExecuted () {
+		executed = false;
+	}
+
 }
