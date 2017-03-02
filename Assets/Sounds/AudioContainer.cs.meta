@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b34dda510453cc54a9bddf5bba93f878
-timeCreated: 1488366792
+timeCreated: 1488452690
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -17,7 +17,7 @@ MonoImporter:
   - OfficeNoiseSound: {fileID: 8300000, guid: f36085e26638f0d48a3ebddb60eba3e2, type: 3}
   - Footstep1Sound: {fileID: 8300000, guid: 443dd45fafcd2e44ba36eeb97ff4d1dd, type: 3}
   - Footstep2Sound: {fileID: 8300000, guid: ed6d54429d5b96c40b18351dc51e127e, type: 3}
-  - KeyboardTypingSound: {fileID: 8300000, guid: 70e2487ed5a9b634785ae2cb5253b34f,
+  - LongKeyboardTypingSound: {fileID: 8300000, guid: 70e2487ed5a9b634785ae2cb5253b34f,
       type: 3}
   - InsertCDSound: {fileID: 8300000, guid: 4d89b9776d2e4634884de90ee1dea52d, type: 3}
   - AimSound: {fileID: 8300000, guid: 09a384e11ea04cc4ba389843df49f406, type: 3}
@@ -26,7 +26,12 @@ MonoImporter:
   - CoughSound: {fileID: 8300000, guid: 419bcc49a7a0a2f458b7482c01c7434a, type: 3}
   - BreakingWindowSound: {fileID: 8300000, guid: f4f4cebd35695d54ebf7b76c86649773,
       type: 3}
-  - Bus: {fileID: 8300000, guid: 132ef5efa1789a44caeb9f3ef3a2ac98, type: 3}
+  - Bus: {fileID: 8300000, guid: 7aafc602ddd30104da35794d45705d1f, type: 3}
+  - BreakingWindow: {fileID: 8300000, guid: f4f4cebd35695d54ebf7b76c86649773, type: 3}
+  - ShortKeyboardTypingSound: {fileID: 8300000, guid: a4b86ef64592db0459612c8a26922dfb,
+      type: 3}
+  - MacchinaBipBip: {fileID: 8300000, guid: 20b18a98cd6cefe43b3daa1ec71ff839, type: 3}
+  - NewsPaperFruscio: {fileID: 8300000, guid: 8165ff98f8d91584fb1099d9e24f18e1, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
