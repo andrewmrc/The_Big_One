@@ -12,21 +12,30 @@ public class CheatCode : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Alpha2)){
+		if (Input.GetKeyDown(KeyCode.Alpha1)){
+			refFader.StartCoroutine(refFader.FadeIn());
+			StartCoroutine (LoadScene (0));
+		} else if(Input.GetKeyDown(KeyCode.Alpha2)) {
 			refFader.StartCoroutine(refFader.FadeIn());
 			StartCoroutine (LoadScene (2));
 		} else if(Input.GetKeyDown(KeyCode.Alpha3)) {
 			refFader.StartCoroutine(refFader.FadeIn());
-			StartCoroutine (LoadScene (7));
-		} else if(Input.GetKeyDown(KeyCode.Alpha1)) {
-			refFader.StartCoroutine(refFader.FadeIn());
-			StartCoroutine (LoadScene (0));
+			StartCoroutine (LoadScene (4));
 		} else if(Input.GetKeyDown(KeyCode.Alpha4)) {
 			refFader.StartCoroutine(refFader.FadeIn());
-			StartCoroutine (LoadScene (13));
+			StartCoroutine (LoadScene (6));
 		} else if(Input.GetKeyDown(KeyCode.Alpha5)) {
 			refFader.StartCoroutine(refFader.FadeIn());
-			StartCoroutine (LoadScene (4));
+			StartCoroutine (LoadScene (7));
+		} else if(Input.GetKeyDown(KeyCode.Alpha6)) {
+			refFader.StartCoroutine(refFader.FadeIn());
+			StartCoroutine (LoadScene (8));
+		} else if(Input.GetKeyDown(KeyCode.Alpha7)) {
+			refFader.StartCoroutine(refFader.FadeIn());
+			StartCoroutine (LoadScene (10));
+		} else if(Input.GetKeyDown(KeyCode.Alpha8)) {
+			refFader.StartCoroutine(refFader.FadeIn());
+			StartCoroutine (LoadScene (13));
 		} else if(Input.GetKeyDown(KeyCode.Alpha9)) {
 			refFader.StartCoroutine(refFader.FadeIn());
 			StartCoroutine (LoadScene (SceneManager.GetActiveScene().buildIndex));
