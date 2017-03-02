@@ -274,14 +274,14 @@ public class DoorHandler : MonoBehaviour
 				if ((Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) && !isOpened) {
 					RaycastHit hitInfo;
 					Vector3 modYPlayer = new Vector3 (0, 1, 0) + coll.transform.position;
-					Debug.Log ("boh");
+					//Debug.Log ("boh");
 					if (Physics.Raycast (modYPlayer, coll.transform.forward, out hitInfo, 2f)) {
 						if (!readingMessage) {
 							
 							if (listOfNotGo.Count != null) {
 								for (int i = 0; i < listOfNotGo.Count; i++) {
 									if (coll.gameObject == listOfNotGo [i].npcObject) {
-										Debug.Log ("not");
+										//Debug.Log ("not");
 										readingMessage = true;
 										StartCoroutine (NewDoorMessage (i));
 										//break;
@@ -294,8 +294,9 @@ public class DoorHandler : MonoBehaviour
 						}
 
 						if (!readingMessage) {
-								Debug.Log ("yes");
-								StartCoroutine (DoorMessage ());
+							//Debug.Log ("yes");
+							readingMessage = true;
+							StartCoroutine (DoorMessage ());
 						}
 					}
 				}
@@ -511,6 +512,8 @@ public class DoorHandler : MonoBehaviour
 		}
 
     }
+
+
     public void SetFreeNpc(bool change)
     {
         isFreeForNpc = change;

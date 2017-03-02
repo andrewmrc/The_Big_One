@@ -43,28 +43,25 @@ public class FSMLogic : MonoBehaviour {
 	void Update () {
         
 
-
-		if ((Input.GetMouseButton(1) || (Input.GetAxis("LeftTriggerJoystick") >= 0.001) && !GameManager.Self.isShowMemory)/*!GameManager.Self.cantUsePower */)
-        {
-			if((GameManager.Self.ChangePlayerState == GameState.UsePower || GameManager.Self.ChangePlayerState == GameState.OnlyIdea)){
-	            //RaycastHandler();
-	            sm.HandleInput(InputTransition.MouseButtonOneDown);
-				GameManager.Self.mainCamera.GetComponent<CameraFilterPack_Vision_Tunnel> ().enabled = true;
-	            isAiming = true;
-				UIActivator();
+		if (!GameManager.Self.isShowMemory) {
+			if ((Input.GetMouseButton (1) || (Input.GetAxis ("LeftTriggerJoystick") >= 0.001))/*!GameManager.Self.cantUsePower */) {
+				if ((GameManager.Self.ChangePlayerState == GameState.UsePower || GameManager.Self.ChangePlayerState == GameState.OnlyIdea)) {
+					//RaycastHandler();
+					sm.HandleInput (InputTransition.MouseButtonOneDown);
+					GameManager.Self.mainCamera.GetComponent<CameraFilterPack_Vision_Tunnel> ().enabled = true;
+					isAiming = true;
+					UIActivator ();
+					//AnimationActivator ();
+				}
+			} else {
+				sm.HandleInput (InputTransition.MouseButtonOneUp);
+				GameManager.Self.mainCamera.GetComponent<CameraFilterPack_Vision_Tunnel> ().enabled = false;
+				isAiming = false;
+				onEnemy = false;
+				UIActivator ();
 				//AnimationActivator ();
 			}
-        }
-        else
-        {
-            sm.HandleInput(InputTransition.MouseButtonOneUp);
-			GameManager.Self.mainCamera.GetComponent<CameraFilterPack_Vision_Tunnel> ().enabled = false;
-            isAiming = false;
-            onEnemy = false;
-            UIActivator();
-			//AnimationActivator ();
-        }
-			
+		}
 
 		if (!isAiming && GameManager.Self.isShowMemory && (Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("Hack")))
 		{
@@ -72,12 +69,13 @@ public class FSMLogic : MonoBehaviour {
             //sm.stateShowMemory.memoryListenerOut.Invoke();
             UnShowMem ();
 		}
-		else if (GameManager.Self.outOfYourBody && this.gameObject.GetComponent<State_ShowMemory> () && this.gameObject.GetComponent<State_ShowMemory> ().enabled && !GameManager.Self.isShowMemory && !Input.GetKey(KeyCode.Mouse1)) 
+		else if (!isAiming && GameManager.Self.outOfYourBody && this.gameObject.GetComponent<State_ShowMemory> () && this.gameObject.GetComponent<State_ShowMemory> ().enabled && !GameManager.Self.isShowMemory && !Input.GetKey(KeyCode.Mouse1)) 
 		{
 			if ((Input.GetKeyDown (KeyCode.F) || Input.GetButtonDown("Hack")) && !GameManager.Self.isShowMemory) {
                 //Debug.Log ("Guarda Ricordo");
                 //sm.stateShowMemory.memoryListenerIn.Invoke();
-                ShowMem ();
+				//GameManager.Self.isShowMemory = true;
+				ShowMem ();
 
 			}
 			UIActivator ();
@@ -90,7 +88,7 @@ public class FSMLogic : MonoBehaviour {
 
 	}
 
-
+	/*
     public void RaycastHandler()
     {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -124,7 +122,7 @@ public class FSMLogic : MonoBehaviour {
                 UIActivator();
             }
         }
-    }
+    }*/
 
 
 

@@ -128,7 +128,7 @@ public class GameEvents : MonoBehaviour
 	{
 		for (int i = 0; i < textToShowList.Length; i++) {
 			GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = textToShowList [i];
-			yield return new WaitForSeconds(4f);
+			yield return new WaitForSeconds(5f);
 		}
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.GetComponent<Text> ().text = "";
 	}
