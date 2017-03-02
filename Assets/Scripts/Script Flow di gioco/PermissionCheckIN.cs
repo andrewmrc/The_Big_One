@@ -53,7 +53,7 @@ public class PermissionCheckIN : MonoBehaviour
 
 
 	IEnumerator DeactivateDescriptionUI () {
-		yield return new WaitForSeconds (3f);
+		yield return new WaitForSeconds (4f);
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = null;
 		if (useOneTime) {
 			gameObject.SetActive (false);
