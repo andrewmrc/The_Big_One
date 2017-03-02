@@ -27,8 +27,13 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-        
-        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause")) && !isInExitMenu)
+		/*
+		if (Input.GetKeyDown(KeyCode.JoystickButton0)) {
+			Debug.Log ("asd");
+			//ResumeButton.GetComponent<Button>().
+		}*/
+
+        if (Input.GetButtonDown("Pause") && !isInExitMenu)
         {            
             renderCamera.SetActive(true);            
             isInExitMenu = true;            
@@ -39,7 +44,7 @@ public class MenuController : MonoBehaviour
             Time.timeScale = 0;
 
         }
-		else if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Pause")) && isInExitMenu)
+		else if (Input.GetButtonDown("Pause") && isInExitMenu)
         {
 			Debug.Log ("SELECT");
 
@@ -57,10 +62,12 @@ public class MenuController : MonoBehaviour
 
     public void Resume()
     {
-        
+		ExitButton.GetComponent<Button> ().Select ();
 		Debug.Log ("RESUME");
         Time.timeScale = 1;
         PanelExit.SetActive(false);
+		panelSettings.SetActive (false);
+		PanelExit.transform.GetChild(0).gameObject.SetActive (true);
 		renderCamera.SetActive(false);
         isInExitMenu = false;
         refCanvasController.ExitHandler(true);

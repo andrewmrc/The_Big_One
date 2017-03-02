@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityStandardAssets.Cameras;
 using UnityStandardAssets.ImageEffects;
+using UnityEngine.UI;
 
 public class Examinable : ExamineAbstract
 {
@@ -18,6 +19,7 @@ public class Examinable : ExamineAbstract
     public bool autoClose;
 	public List<MultiUseItem> personalNPC;
 	private bool findSpecial = false;
+	private int indexSpecial;
 
     // Use this for initialization
     private void Start()
@@ -70,8 +72,11 @@ public class Examinable : ExamineAbstract
 				if (personalNPC.Count != 0) {
 					for (int i = 0; i < personalNPC.Count; i++) {
 						if (GameObject.FindGameObjectWithTag ("Player") == personalNPC [i].npcObject) {
-							refUI.TextToShow (personalNPC [i].returnMessage[0], true);
-							personalNPC [i].eventToActivate.Invoke ();
+							//refUI.TextToShow (personalNPC [i].returnMessage[0], true);
+							GameManager.Self.canvasUI.GetComponent<UI>().VariousDescriptionUI.GetComponent<Text>().text = personalNPC [i].returnMessage[0];
+							indexSpecial = i;
+							//personalNPC [i].eventToActivate.Invoke ();
+							StartCoroutine (StopExaminationSpecial ());
 							findSpecial = true;
 						}
 					}
@@ -79,11 +84,12 @@ public class Examinable : ExamineAbstract
 
 				//Se non è stato trovato un npc nella lista che ha un comportamento particolare stampiamo il messaggio di default
 				if (!findSpecial) {
-					refUI.TextToShow (descriptionText, true);
-					if (!executed) {
+					//refUI.TextToShow (descriptionText, true);
+					GameManager.Self.canvasUI.GetComponent<UI>().VariousDescriptionUI.GetComponent<Text>().text = descriptionText;
+					/*if (!executed) {
 						executed = true;
 						returnEvent.Invoke ();
-					}
+					}*/
 				}
 
 
@@ -100,7 +106,8 @@ public class Examinable : ExamineAbstract
 				//isLooking = true;
 				StopAllCoroutines ();
 				refUI.ExamineObject (imageToShow, false);
-				refUI.TextToShow (descriptionText, false);
+				//refUI.TextToShow (descriptionText, false);
+				GameManager.Self.canvasUI.GetComponent<UI>().VariousDescriptionUI.GetComponent<Text>().text = "";
 				GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
 				Camera.main.GetComponentInParent<FreeLookCam> ().enabled = true;
 				Camera.main.gameObject.GetComponent<VignetteAndChromaticAberration> ().blur = 0.3f;
@@ -109,6 +116,13 @@ public class Examinable : ExamineAbstract
 				Time.timeScale = 1f;
 				isClicked = false;
 				findSpecial = false;
+				if (!executed) {
+					executed = true;
+					returnEvent.Invoke ();
+					if (findSpecial) {
+						personalNPC [indexSpecial].eventToActivate.Invoke ();
+					}
+				}
 				//Debug.Log ("Fine Esamina!");
 			}
         }
@@ -135,13 +149,43 @@ public class Examinable : ExamineAbstract
     private IEnumerator StopExamination()
     {
         yield return new WaitForSeconds(3f);
+		if (!executed) {
+			executed = true;
+			returnEvent.Invoke ();
+		}
         isClicked = false;
 		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
         refUI.ExamineMemory(imageToShow, false);
-        refUI.TextToShow(descriptionText, false);
-        Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
+        //refUI.TextToShow(descriptionText, false);
+		GameManager.Self.canvasUI.GetComponent<UI>().VariousDescriptionUI.GetComponent<Text>().text = "";
+		Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
         Camera.main.gameObject.GetComponent<VignetteAndChromaticAberration>().blur = 0.3f;
         GameManager.Self.blockMovement = false;
         GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().enabled = true;
     }
+
+
+	private IEnumerator StopExaminationSpecial()
+	{
+		yield return new WaitForSeconds(3f);
+		if (!executed) {
+			executed = true;
+			personalNPC [indexSpecial].eventToActivate.Invoke ();
+		}
+		isClicked = false;
+		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
+		refUI.ExamineMemory(imageToShow, false);
+		//refUI.TextToShow(descriptionText, false);
+		GameManager.Self.canvasUI.GetComponent<UI>().VariousDescriptionUI.GetComponent<Text>().text = "";
+		Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
+		Camera.main.gameObject.GetComponent<VignetteAndChromaticAberration>().blur = 0.3f;
+		GameManager.Self.blockMovement = false;
+		GameObject.FindGameObjectWithTag("Player").GetComponent<FSMLogic>().enabled = true;
+	}
+
+
+	public void ResetExecuted () {
+		executed = false;
+	}
+
 }

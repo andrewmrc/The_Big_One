@@ -2,17 +2,21 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
 
 	Fader refFader;
+	public Button newGameButton;
 
 	public void Start () {
 		refFader = FindObjectOfType<Fader>();
+		newGameButton.Select ();
 	}
 
 	public void NewGameBtn(string newGameLevel)
     {
+		refFader.GetComponent<Canvas> ().sortingOrder = 10;
 		refFader.StartCoroutine(refFader.FadeIn());
 		StartCoroutine (LoadScene (newGameLevel));
     }
