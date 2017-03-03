@@ -27,12 +27,6 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-		/*
-		if (Input.GetKeyDown(KeyCode.JoystickButton0)) {
-			Debug.Log ("asd");
-			//ResumeButton.GetComponent<Button>().
-		}*/
-
         if (Input.GetButtonDown("Pause") && !isInExitMenu)
         {            
             renderCamera.SetActive(true);            
@@ -72,13 +66,12 @@ public class MenuController : MonoBehaviour
         isInExitMenu = false;
         refCanvasController.ExitHandler(true);
     }
+
     IEnumerator MovingDisplay()
     {
         while (gameTex != null)
-        {
-           
+        {          
             yield return null;
-
         }
         
     }

@@ -32,5 +32,10 @@ namespace UnityStandardAssets.ImageEffects
                     break;
             }          
         }
+
+        public void ButtonSwitch(Toggle tog)
+        {
+            tog.isOn = !tog.isOn;
+        }
     }
 }
