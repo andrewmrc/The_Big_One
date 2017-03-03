@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class SaveData : MonoBehaviour
 {
-
+    public bool isFirstTime = true;
     private DoorHandler[] doorsToSave;
     public List<GameObject> ActiveItemList;
     private Quest refQuest;
@@ -335,13 +335,18 @@ public class SaveData : MonoBehaviour
 
     private void onSceneLoaded(Scene s, LoadSceneMode e)
     {
+        SceneManager.sceneLoaded -= onSceneLoaded;
+        isFirstTime = false;
         SceneManager.SetActiveScene(s);
+        
         Load(idSlot);
         //Debug.Log("SCENA CARICATA: " + s.name);
+        
     }
 
     public void Load(int idSave)
     {
+        Debug.Log(isFirstTime);
         // Set timescale to 1 if Load is called by the UI button
         Time.timeScale = 1;
         idSlot = idSave;
@@ -356,13 +361,13 @@ public class SaveData : MonoBehaviour
             var actualScene = SceneManager.GetActiveScene().name;
 
             //Debug.Log("PRIMA DEL CARICAMENTO SCENA "+actualScene);
-            if (actualScene != data.sceneName)
+            if (isFirstTime == true)
             {
                 SceneManager.sceneLoaded += onSceneLoaded;
-                SceneManager.LoadScene(data.sceneName, LoadSceneMode.Single);
+                SceneManager.LoadScene(data.sceneName,LoadSceneMode.Single);
                 return;
             }
-
+            
             var doorMap = data.doors;
 
             if (doorsToSave != null && doorMap != null)
