@@ -9,12 +9,16 @@ namespace UnityStandardAssets.ImageEffects
         public VignetteAndChromaticAberration refVignette;
         public ScreenSpaceAmbientOcclusion refSSAO;
         public BloomOptimized refBloom;
+		public Slider audioSlider;
+		public GameObject gameManager;
 
         private void Start()
         {
-            refVignette = FindObjectOfType<VignetteAndChromaticAberration>();
-            refSSAO = FindObjectOfType<ScreenSpaceAmbientOcclusion>();
-            refBloom = FindObjectOfType<BloomOptimized>();
+			refVignette = Camera.main.GetComponent<VignetteAndChromaticAberration>();
+			refSSAO = Camera.main.GetComponent<ScreenSpaceAmbientOcclusion>();
+			refBloom = Camera.main.GetComponent<BloomOptimized>();
+			AudioListener.volume = audioSlider.value;
+			gameManager = GameManager.Self.gameObject;
         }
 
         public void ActiveEffect(int _index)
@@ -37,5 +41,19 @@ namespace UnityStandardAssets.ImageEffects
         {
             tog.isOn = !tog.isOn;
         }
+
+		public void MusicVolume () {
+			AudioListener.volume = audioSlider.value;
+		}
+
+
+		public void SaveFunction (int slotN) {
+			GameManager.Self.transform.GetComponent<SaveData> ().Save (slotN);
+		}
+
+
+		public void LoadFunction (int slotN) {
+			GameManager.Self.transform.GetComponent<SaveData> ().Load (slotN);
+		}
     }
 }
