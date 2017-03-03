@@ -133,11 +133,12 @@ public class FSMLogic : MonoBehaviour {
 		//this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = false;
 		//this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = false;
 		this.gameObject.transform.GetComponent<CharController>().enabled = false;
-
+		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Esci_Ricordo.SetActive (true);
 		this.GetComponent<Animator>().SetFloat("Forward", 0);
 		//this.GetComponent<Animator>().SetFloat("Turn", 0);
 		Camera.main.GetComponentInParent<FreeLookCam>().enabled = false;
 		Camera.main.GetComponentInParent<CameraFilterPack_TV_VHS>().enabled = true;
+
 	}
 
 
@@ -146,7 +147,7 @@ public class FSMLogic : MonoBehaviour {
 		//this.gameObject.transform.GetComponent<ThirdPersonUserControl>().enabled = true;
 		//this.gameObject.transform.GetComponent<ThirdPersonCharacter>().enabled = true;
 		this.gameObject.transform.GetComponent<CharController>().enabled = true;
-
+		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Esci_Ricordo.SetActive (false);
 		Camera.main.GetComponentInParent<FreeLookCam>().enabled = true;
 		GameManager.Self.isShowMemory = false;
 		Camera.main.GetComponentInParent<CameraFilterPack_TV_VHS>().enabled = false;

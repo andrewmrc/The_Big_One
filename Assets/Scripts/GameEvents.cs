@@ -208,7 +208,7 @@ public class GameEvents : MonoBehaviour
 
         if (i < n)
         {
-            i++;
+            //i++;
             switch (whichEvent)
             {
 

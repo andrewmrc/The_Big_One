@@ -48,6 +48,8 @@ public class Examinable : ExamineAbstract
 				isClicked = true;
 				//isLooking = false;
 				GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (true);
+				GameManager.Self.canvasUI.GetComponent<UI> ().HackUI (false);
+				GameManager.Self.canvasUI.GetComponent<UI> ().ReturnUI (false);
 				this.transform.GetChild (0).gameObject.SetActive (false);
 				if (this.transform.childCount == 3) {
 					this.transform.GetChild (2).gameObject.SetActive (false);
