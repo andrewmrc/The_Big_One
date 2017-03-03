@@ -117,7 +117,6 @@ public class Examinable : ExamineAbstract
 				GameObject.FindGameObjectWithTag ("Player").GetComponent<FSMLogic> ().enabled = true;
 				Time.timeScale = 1f;
 				isClicked = false;
-				findSpecial = false;
 				if (!executed) {
 					executed = true;
 					returnEvent.Invoke ();
@@ -125,6 +124,7 @@ public class Examinable : ExamineAbstract
 						personalNPC [indexSpecial].eventToActivate.Invoke ();
 					}
 				}
+				findSpecial = false;
 				//Debug.Log ("Fine Esamina!");
 			}
         }
