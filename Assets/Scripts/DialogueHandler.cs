@@ -36,9 +36,9 @@ public class DialogueHandler : MonoBehaviour {
 			float distanceSqr = (this.transform.position - currentPlayer.transform.position).sqrMagnitude;
 			if ((distanceSqr < distanceToTalk) && !currentPlayer.gameObject.GetComponent<FSMLogic>().isAiming && currentPlayer != this.gameObject) { //Within range
 				//Debug.Log("PUOI PARLARE: " + (gameObject.name) + distanceSqr);
-				this.transform.GetChild (0).gameObject.SetActive (true);
-				StopAllCoroutines ();
 				//this.transform.GetChild (0).gameObject.SetActive (true);
+				StopAllCoroutines ();
+				this.transform.GetChild (0).gameObject.SetActive (true);
 				if (Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) {
 					cantTalk = true;
 					GameManager.Self.blockMovement = true;

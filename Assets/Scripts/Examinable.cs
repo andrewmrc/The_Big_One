@@ -59,6 +59,7 @@ public class Examinable : ExamineAbstract
 					Time.timeScale = 0f;
 					Camera.main.gameObject.GetComponent<VignetteAndChromaticAberration> ().blur = 1f;
 					refUI.ExamineObject (imageToShow, true);
+					refUI.examinePanel.transform.GetChild (0).GetComponent<Image> ().SetNativeSize ();
 					GameManager.Self.canvasUI.GetComponent<UI> ().UI_Reading.SetActive (false);
 				}
 
