@@ -7,10 +7,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: Indicazioni_Hospital_2
+    100004: Oggetto_2
+    100006: Predefinito
+    100008: Predefinito.001
     400000: //RootNode
     400002: Indicazioni_Hospital_2
+    400004: Oggetto_2
+    400006: Predefinito
+    400008: Predefinito.001
     2300000: Indicazioni_Hospital_2
+    2300002: //RootNode
     3300000: Indicazioni_Hospital_2
+    3300002: //RootNode
     4300000: Indicazioni_Hospital_2
   materials:
     importMaterials: 1

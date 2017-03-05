@@ -12,7 +12,9 @@ ModelImporter:
     400002: Indicazioni_Hospital
     400004: Oggetto_2
     2300000: Indicazioni_Hospital
+    2300002: //RootNode
     3300000: Indicazioni_Hospital
+    3300002: //RootNode
     4300000: Indicazioni_Hospital
   materials:
     importMaterials: 1
