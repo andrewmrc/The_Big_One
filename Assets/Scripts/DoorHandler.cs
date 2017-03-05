@@ -257,6 +257,7 @@ public class DoorHandler : MonoBehaviour
 							product = CalculateProduct (coll);
 							doorOponerCO = StartCoroutine (DoorOpener (product));
 							Audio.clip = soundContainer.OpenDoorSound;
+							Audio.volume = 0.6f;
 							Audio.Play ();
 						}
 						/*
@@ -486,6 +487,7 @@ public class DoorHandler : MonoBehaviour
             isOpened = false;
             isClosing = false;
             Audio.clip = soundContainer.CloseDoorSound;
+			Audio.volume = 0.6f;
             Audio.Play();
 
         }
