@@ -201,7 +201,7 @@ public class CharController : MonoBehaviour {
 			//Blocca il personaggio quando collide con qualsiasi cosa che non sia il pavimento così da evitare che continui a camminare contro una parete ad es.
 			if (collision.transform.tag != "Floor") {
 				//Debug.Log ("COLLISION");
-				StartCoroutine (StopMove (0.2f));
+				StartCoroutine (StopMove (1f));
 				stayThere = true;
 			}
 
