@@ -556,7 +556,7 @@ public class SaveData : MonoBehaviour
 
 
                     //DA SISTEMARE CON IL NOME DELL'NPC PLAYER  <-----------------------------------------!!
-                    if (playername != "OliviaRig_Stand")
+                    if (playername != "OliviaRigCorretta")
                     {
                         GameManager.Self.outOfYourBody = true;
                     }
