@@ -180,6 +180,8 @@ public class State_PowerControl : State {
 						if (Input.GetKeyDown (KeyCode.Q) || Input.GetButtonDown ("Idea") && GameManager.Self.powerQuantity >= mentalPowerCost) {
 							//ideaListener.Invoke();
 							//GameManager.Self.powerQuantity -= mentalPowerCost;
+							Camera.main.GetComponentInParent<CameraFilterPack_Edge_Sobel>().enabled = true;
+							StartCoroutine(StopCameraEffect());
 							MoveNPC (hit, 0);
 						}
 					}
@@ -226,7 +228,10 @@ public class State_PowerControl : State {
     }
 
     
-
+	public IEnumerator StopCameraEffect () {
+		yield return new WaitForSeconds (0.25f);
+		Camera.main.GetComponentInParent<CameraFilterPack_Edge_Sobel>().enabled = false;
+	}
 	
     
 
