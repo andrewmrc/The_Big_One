@@ -110,6 +110,7 @@ public class SaveData : MonoBehaviour
 
     }
 
+	/*
     void Update()
     {
 
@@ -124,7 +125,7 @@ public class SaveData : MonoBehaviour
             Load(testSaveId);
         }
 
-    }
+    }*/
 
     public void Save(int idSave)
     {
@@ -346,7 +347,7 @@ public class SaveData : MonoBehaviour
 
     public void Load(int idSave)
     {
-        Debug.Log(isFirstTime);
+        //Debug.Log(isFirstTime);
         // Set timescale to 1 if Load is called by the UI button
         Time.timeScale = 1;
         idSlot = idSave;
