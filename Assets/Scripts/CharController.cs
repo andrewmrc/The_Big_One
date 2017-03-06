@@ -253,6 +253,7 @@ public class CharController : MonoBehaviour {
 		if (stayThere) {
 			m_Animator.SetBool ("Collision", true);
 		}
+		ResetStay ();
 	}
 
 
@@ -276,6 +277,11 @@ public class CharController : MonoBehaviour {
 			v.y = m_Rigidbody.velocity.y;
 			m_Rigidbody.velocity = v;
 		}
+	}
+
+
+	public void ResetStay () {
+		stayThere = false;
 	}
 
 }

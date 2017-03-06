@@ -11,6 +11,8 @@ namespace UnityStandardAssets.ImageEffects
         public BloomOptimized refBloom;
 		public Slider audioSlider;
 		public GameObject gameManager;
+		public GameObject saveText;
+		public GameObject loadText;
 
         private void Start()
         {
@@ -19,6 +21,7 @@ namespace UnityStandardAssets.ImageEffects
 			refBloom = Camera.main.GetComponent<BloomOptimized>();
 			AudioListener.volume = audioSlider.value;
 			gameManager = GameManager.Self.gameObject;
+			loadText = GameObject.FindGameObjectWithTag ("Fader").transform.GetChild (1).gameObject;
         }
 
         public void ActiveEffect(int _index)
@@ -49,11 +52,32 @@ namespace UnityStandardAssets.ImageEffects
 
 		public void SaveFunction (int slotN) {
 			GameManager.Self.transform.GetComponent<SaveData> ().Save (slotN);
+			saveText.gameObject.SetActive (true);
+			this.gameObject.GetComponent<MenuController> ().Resume ();
+			StartCoroutine(EndSave());
+		}
+
+
+		public IEnumerator EndSave () {
+			yield return new WaitForSeconds (3f);
+			saveText.gameObject.SetActive (false);
 		}
 
 
 		public void LoadFunction (int slotN) {
+
+			GameObject.FindGameObjectWithTag ("Fader").GetComponent<Fader> ().StartFadeOut ();
+			loadText.SetActive (true);
 			GameManager.Self.transform.GetComponent<SaveData> ().Load (slotN);
+
 		}
+
+		/*
+		public IEnumerator EndLoad () {
+			yield return new WaitForSeconds (2f);
+			loadText.gameObject.SetActive (false);
+		}*/
+
+
     }
 }
