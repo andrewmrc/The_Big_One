@@ -38,7 +38,7 @@ public class CheatCode : MonoBehaviour {
 			StartCoroutine (LoadScene (13));
 		} else if(Input.GetKeyDown(KeyCode.Alpha9)) {
 			refFader.StartCoroutine(refFader.FadeIn());
-			StartCoroutine (LoadScene (15));
+			StartCoroutine (LoadScene (14));
 		} else if(Input.GetKeyDown(KeyCode.Alpha0)) {
 			refFader.StartCoroutine(refFader.FadeIn());
 			StartCoroutine (LoadScene (SceneManager.GetActiveScene().buildIndex));
