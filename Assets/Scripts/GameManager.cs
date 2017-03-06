@@ -58,6 +58,15 @@ public class GameManager : MonoBehaviour {
 			HandlePowerActivation (false);
 		}*/
 
+        if (Input.GetJoystickNames().Length > 0)
+        {
+            if (cameraRig)
+            {
+                cameraRig.GetComponent<FreeLookCam>().m_TurnSpeed = 5;
+            }
+            
+        }
+
         switch (playerState)
         {   
             case GameState.UsePower:
