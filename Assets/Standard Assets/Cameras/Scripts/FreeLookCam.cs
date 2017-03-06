@@ -17,7 +17,7 @@ namespace UnityStandardAssets.Cameras
         private float m_MoveSpeed = 1f;                      // How fast the rig will move to keep up with the target's position.
         [Range(0f, 10f)]
         [SerializeField]
-        private float m_TurnSpeed = 1.5f;   // How fast the rig will rotate from user input.
+        public float m_TurnSpeed = 1.5f;   // How fast the rig will rotate from user input.
         [SerializeField]
         private float m_TurnSmoothing = 0.0f;                // How much smoothing to apply to the turn input, to reduce mouse-turn jerkiness
         [SerializeField]
