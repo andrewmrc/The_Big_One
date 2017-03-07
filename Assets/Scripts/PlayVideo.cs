@@ -18,7 +18,8 @@ public class PlayVideo : MonoBehaviour {
 		audio = GetComponent<AudioSource> ();
 		audio.clip = movie.audioClip;
 		movie.Play ();
-	}
+        audio.volume = 0.4f;
+    }
 	
 	// Update is called once per frame
 	void Update () {
