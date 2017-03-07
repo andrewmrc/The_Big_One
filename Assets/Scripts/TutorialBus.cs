@@ -101,11 +101,11 @@ public class TutorialBus : MonoBehaviour {
 
 	public IEnumerator FirstBodyControl(){
 		firstBody = true;
+		quest.transform.GetComponent<Quest>().SetQuestCompleted();
 		//yield return new WaitForSeconds (1f);
 		GameManager.Self.SetPlayerState (1);
 		//rig.GetComponent<FreeLookCam> ().enabled = false;
 		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Possession.SetActive(false);
-        //quest.transform.GetComponent<Quest>().SetQuestCompleted();
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = "Incredibile, sono nel corpo di un'altra persona! \n Ci sono davvero riuscita!";
 		yield return new WaitForSeconds (4f);
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = "";
@@ -118,6 +118,7 @@ public class TutorialBus : MonoBehaviour {
 		secondBody = true;
 		canFinish = true;
 		//yield return new WaitForSeconds (1f);
+		quest.transform.GetComponent<Quest>().SetQuestCompleted();
 		GameManager.Self.SetPlayerState (1);
 		//rig.GetComponent<FreeLookCam> ().enabled = false;
 		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Possession.SetActive(false);
