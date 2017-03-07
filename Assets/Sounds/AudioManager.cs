@@ -35,24 +35,32 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-		if (!GameManager.Self.isShowMemory) {
-			if (Input.GetKeyDown (KeyCode.Mouse1) && /*!GameManager.Self.cantUsePower*/(GameManager.Self.ChangePlayerState == GameState.UsePower || GameManager.Self.ChangePlayerState == GameState.OnlyIdea)) {
-	            
-				Debug.Log ("AIMING");
-				isAiming = true;
-				if (footStepCo != null)
-					StopCoroutine (footStepCo);
-				isWalking = false;
-				m_AudioSource.Stop ();
-				m_AudioSource.clip = soundContainer.AimSound;
-				m_AudioSource.volume = 0.015f;
-				m_AudioSource.spatialBlend = 0.0f;
-				m_AudioSource.Play ();
-			} else if (Input.GetKeyUp (KeyCode.Mouse1)) {
-				m_AudioSource.Stop ();
-				isAiming = false;
-			}
-		}
+        if (this.gameObject.tag == "Player")
+        {
+            if (!GameManager.Self.isShowMemory)
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse1) && /*!GameManager.Self.cantUsePower*/(GameManager.Self.ChangePlayerState == GameState.UsePower || GameManager.Self.ChangePlayerState == GameState.OnlyIdea))
+                {
+
+                    Debug.Log("AIMING");
+                    isAiming = true;
+                    if (footStepCo != null)
+                        StopCoroutine(footStepCo);
+                    isWalking = false;
+                    m_AudioSource.Stop();
+                    m_AudioSource.clip = soundContainer.AimSound;
+                    m_AudioSource.volume = 0.12f;
+                    m_AudioSource.Play();
+                }
+                else if (Input.GetKeyUp(KeyCode.Mouse1))
+                {
+
+                    m_AudioSource.Stop();
+                    isAiming = false;
+                }
+
+            }
+        }
 
         if (charAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
         {
