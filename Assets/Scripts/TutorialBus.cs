@@ -16,6 +16,7 @@ public class TutorialBus : MonoBehaviour {
 
 	public GameObject ui_Concentrati;
 	public GameObject finalEvent;
+    public GameObject quest;
 
 	// Use this for initialization
 	void Start () {
@@ -104,7 +105,8 @@ public class TutorialBus : MonoBehaviour {
 		GameManager.Self.SetPlayerState (1);
 		//rig.GetComponent<FreeLookCam> ().enabled = false;
 		GameManager.Self.canvasUI.GetComponent<UI> ().UI_Possession.SetActive(false);
-		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = "Incredibile, sono entrata nel corpo di un'altra persona! \n Ci sono davvero riuscita!";
+        //quest.transform.GetComponent<Quest>().SetQuestCompleted();
+		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = "Incredibile, sono nel corpo di un'altra persona! \n Ci sono davvero riuscita!";
 		yield return new WaitForSeconds (4f);
 		GameManager.Self.canvasUI.GetComponent<UI> ().VariousDescriptionUI.text = "";
 		//rig.GetComponent<FreeLookCam> ().enabled = true;
