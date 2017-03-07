@@ -72,6 +72,7 @@ public abstract class State : MonoBehaviour {
         Debug.Log("schiacci spazio");
         Debug.Log(soundContainer);
         m_AudioSource.clip = soundContainer.ControlBodyONSound;
+		m_AudioSource.volume = 0.05f;
         m_AudioSource.PlayOneShot(m_AudioSource.clip);
     }
 
@@ -80,6 +81,7 @@ public abstract class State : MonoBehaviour {
         // Quando ritorni nel tuo corpo fai cose
         Debug.Log("schiacci r");
         m_AudioSource.clip = soundContainer.ControlBodyOFFSound;
+		m_AudioSource.volume = 0.05f;
         m_AudioSource.PlayOneShot(m_AudioSource.clip);
     }
 

@@ -101,7 +101,7 @@ public class State_PowerControl : State {
                     GetComponent<FSMLogic>().onEnemy = true;
 					if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Possession"))
                     {
-                        //spaceListener.Invoke();
+                        spaceListener.Invoke();
                         Camera.main.GetComponentInParent<CameraFilterPack_TV_VHS_Rewind>().enabled = true;
                         GameManager.Self.StopCameraEffect();
                         //Debug.LogWarning("Premi Spazio per entrare");
