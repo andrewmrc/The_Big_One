@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Cameras;
+using System.IO;
 
 public class MenuController : MonoBehaviour
 {
 
-    public GameObject ResumeButton, ExitButton, PanelExit, panelSettings;
+    public GameObject ResumeButton, ExitButton, LoadButton, PanelExit, panelSettings;
 
     public CanvasController refCanvasController;
 
@@ -29,6 +30,7 @@ public class MenuController : MonoBehaviour
     {
         if (Input.GetButtonDown("Pause") && !isInExitMenu)
         {            
+			CheckContinua ();
             renderCamera.SetActive(true);            
             isInExitMenu = true;            
             Debug.Log ("PAUSA");
@@ -46,6 +48,17 @@ public class MenuController : MonoBehaviour
             Resume();
         }
     }
+
+
+	public void CheckContinua () {
+		string saveName = Application.persistentDataPath + "/" + 0 + ".txt";
+		if (File.Exists (saveName)) {
+			LoadButton.GetComponent<Button>().interactable = true;
+		} else {
+			LoadButton.GetComponent<Button>().interactable = false;
+		}
+	}
+
 
     public void Exit()
     {

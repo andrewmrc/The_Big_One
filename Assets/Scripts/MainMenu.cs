@@ -25,7 +25,9 @@ public class MainMenu : MonoBehaviour {
 
 		if (File.Exists (saveName)) {
 			loadGameButton.interactable = true;
-		} 
+		} else {
+			loadGameButton.interactable = false;
+		}
 
 	}
 

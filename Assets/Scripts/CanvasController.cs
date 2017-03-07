@@ -6,9 +6,12 @@ public class CanvasController : MonoBehaviour
     Inventory refInventory;
     Quest refQuest;
 
+	void Awake () {
+		refInventory = FindObjectOfType<Inventory>();
+	}
+
 	void Start ()
     {
-        refInventory = FindObjectOfType<Inventory>();
         refMC = FindObjectOfType<MenuController>();
         refQuest = FindObjectOfType<Quest>();
 	}
