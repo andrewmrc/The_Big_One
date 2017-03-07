@@ -15,7 +15,7 @@ public class ShakeCamera : MonoBehaviour {
 	void Update () {
 		if (shakeTime == true)
 		{
-			Camera.main.transform.root.position = Random.onUnitSphere * shakeAmount;
+			Camera.main.transform.localPosition = Random.insideUnitCircle * shakeAmount;
 		}else{
 			//Camera.main.transform.localPosition = Vector3.zero;
 		}

@@ -4,17 +4,31 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityStandardAssets.ImageEffects;
+using System.IO;
 
 public class MainMenu : MonoBehaviour {
 
 	Fader refFader;
 	public Button newGameButton;
+	public Button loadGameButton;
 	public GameObject mainMenuCanvas;
+	private string saveName;
 
 	public void Start () {
 		refFader = FindObjectOfType<Fader>();
 		newGameButton.Select ();
+		saveName = Application.persistentDataPath + "/" + 0 + ".txt";
 	}
+
+
+	public void Update () {
+
+		if (File.Exists (saveName)) {
+			loadGameButton.interactable = true;
+		} 
+
+	}
+
 
 	public void NewGameBtn(string newGameLevel)
     {
@@ -26,10 +40,14 @@ public class MainMenu : MonoBehaviour {
 
 	public void LoadGameBtn()
 	{
-		refFader.GetComponent<Canvas> ().sortingOrder = 10;
-		mainMenuCanvas.transform.GetComponent<Settings> ().loadText.SetActive (true);
-		refFader.StartCoroutine(refFader.FadeIn());
-		StartCoroutine(EndLoad());
+		string saveName = Application.persistentDataPath + "/" + 0 + ".txt";
+
+		if (File.Exists (saveName)) {
+			refFader.GetComponent<Canvas> ().sortingOrder = 10;
+			mainMenuCanvas.transform.GetComponent<Settings> ().loadText.SetActive (true);
+			refFader.StartCoroutine(refFader.FadeIn());
+			StartCoroutine(EndLoad());
+		}
 	}
 
 

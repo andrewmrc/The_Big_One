@@ -52,13 +52,7 @@ public class Quest : MonoBehaviour
             refCanvasController.QuestHandler(true);
         }*/
 	}
-
-	IEnumerator DeactivateCanvas(){
-		yield return new WaitForSeconds (5f);
-		isInQuest = false;
-		panelQuest.SetActive(false);
-		refCanvasController.QuestHandler(true);
-	}
+		
 
     public void SetQuestCompleted()
     {
@@ -91,4 +85,13 @@ public class Quest : MonoBehaviour
 		refCanvasController.QuestHandler(false);
 		StartCoroutine(DeactivateCanvas());
 	}
+
+
+	IEnumerator DeactivateCanvas(){
+		yield return new WaitForSeconds (5f);
+		isInQuest = false;
+		panelQuest.SetActive(false);
+		refCanvasController.QuestHandler(true);
+	}
+
 }

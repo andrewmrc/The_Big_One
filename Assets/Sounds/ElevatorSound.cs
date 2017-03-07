@@ -11,13 +11,11 @@ public class ElevatorSound : MonoBehaviour {
 	void Start () {
 		soundContainer = GameManager.Self.GetComponent<AudioContainer>();
 		Audio = GetComponent<AudioSource>();
-	}
-	
-	// Update is called once per frame
-	void Awake () {
 		Audio.clip = soundContainer.ElevatorSound;
 		Audio.volume = 0.1f;
 		Audio.PlayOneShot (Audio.clip);
-	
+
 	}
+	
+
 }
