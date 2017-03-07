@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b34dda510453cc54a9bddf5bba93f878
-timeCreated: 1488452690
+timeCreated: 1488861018
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -9,9 +9,9 @@ MonoImporter:
   - OpenDoorSound: {fileID: 8300000, guid: 838abd4532ce3fc4da3740a0fc034617, type: 3}
   - CloseDoorSound: {fileID: 8300000, guid: ff97e8f4ab95b7041851ceb24c6936e1, type: 3}
   - ElevatorSound: {fileID: 8300000, guid: 68da0332da64a7e4a84db58953374878, type: 3}
-  - ControlBodyONSound: {fileID: 8300000, guid: afa3bb1a2c3f37244b970c798e727708,
+  - ControlBodyONSound: {fileID: 8300000, guid: 36fda5c815c926e4aa2520a8accce193,
       type: 3}
-  - ControlBodyOFFSound: {fileID: 8300000, guid: 4d0dbcc56b04a7b4a9db0fab966c9a12,
+  - ControlBodyOFFSound: {fileID: 8300000, guid: f92434b630b7d5448ba79c36e7c8e4cb,
       type: 3}
   - SwitchSound: {fileID: 8300000, guid: 7241d8fa7e990d64b847a961fc7adbd4, type: 3}
   - OfficeNoiseSound: {fileID: 8300000, guid: f36085e26638f0d48a3ebddb60eba3e2, type: 3}
