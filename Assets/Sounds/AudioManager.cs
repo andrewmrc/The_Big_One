@@ -52,7 +52,7 @@ public class AudioManager : MonoBehaviour
                     m_AudioSource.volume = 0.12f;
                     m_AudioSource.Play();
                 }
-                else if (Input.GetKeyUp(KeyCode.Mouse1))
+                else if (Input.GetKeyUp(KeyCode.Mouse1)) //|| (Input.GetAxis("LeftTriggerJoystick") < 0.001))
                 {
 
                     m_AudioSource.Stop();

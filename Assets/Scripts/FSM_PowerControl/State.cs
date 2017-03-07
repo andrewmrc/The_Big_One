@@ -89,12 +89,18 @@ public abstract class State : MonoBehaviour {
     {
         // Quando imprimi un'idea fai cose
         Debug.Log("schiacci la q");
+        m_AudioSource.clip = soundContainer.ideaControl;
+        m_AudioSource.volume = 0.05f;
+        m_AudioSource.PlayOneShot(m_AudioSource.clip);
     }
     
     void OnMemoryPressIn()
     {
         // Quando guardi un ricordo fai cose
         Debug.Log("schiacci la f");
+        m_AudioSource.clip = soundContainer.memoryControl;
+        m_AudioSource.volume = 0.05f;
+        m_AudioSource.PlayOneShot(m_AudioSource.clip);
     }
 
     void OnMemoryPressOut()

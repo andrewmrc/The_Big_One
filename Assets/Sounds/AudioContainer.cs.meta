@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b34dda510453cc54a9bddf5bba93f878
-timeCreated: 1488861018
+timeCreated: 1488873531
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -32,6 +32,8 @@ MonoImporter:
       type: 3}
   - MacchinaBipBip: {fileID: 8300000, guid: 20b18a98cd6cefe43b3daa1ec71ff839, type: 3}
   - NewsPaperFruscio: {fileID: 8300000, guid: 8165ff98f8d91584fb1099d9e24f18e1, type: 3}
+  - ideaControl: {fileID: 8300000, guid: 2e71e25a90cd17842aa407f3845420e2, type: 3}
+  - memoryControl: {fileID: 8300000, guid: 3b510c32025eaf94993cb6435a89ea2e, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

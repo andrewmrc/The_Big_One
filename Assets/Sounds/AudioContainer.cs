@@ -25,4 +25,6 @@ public class AudioContainer : MonoBehaviour {
     public AudioClip ShortKeyboardTypingSound;
     public AudioClip MacchinaBipBip;
     public AudioClip NewsPaperFruscio;
+    public AudioClip ideaControl;
+    public AudioClip memoryControl;
 }
