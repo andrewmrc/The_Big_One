@@ -250,7 +250,6 @@ public class DoorHandler : MonoBehaviour
 				if ((Input.GetKeyDown (KeyCode.E) || Input.GetButtonDown ("Examine")) && !isOpened) {
 					RaycastHit hitInfo;
 					Vector3 modYPlayer = new Vector3 (0, 1, 0) + coll.transform.position;
-					Debug.Log ("1");
 					if (Physics.Raycast (modYPlayer, coll.transform.forward, out hitInfo, 2f)) {
 						Debug.DrawRay (modYPlayer, coll.transform.forward, Color.magenta, 1f);
 						if (doorOponerCO == null) {

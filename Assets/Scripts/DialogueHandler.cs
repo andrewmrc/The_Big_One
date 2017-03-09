@@ -183,7 +183,6 @@ public class DialogueHandler : MonoBehaviour {
 					}
 					break;
 				} else {
-					Debug.Log ("NESSUN DIALOGO ASSEGNATO TROVATO");
 				}
 			} else {
 				for (int j = 0; j < conversations [i].dialogues.Count; j++) {

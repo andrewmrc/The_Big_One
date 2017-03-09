@@ -69,8 +69,6 @@ public abstract class State : MonoBehaviour {
     void OnSpacePress()
     {
         // Quando schiacci spazio fai cose
-        Debug.Log("schiacci spazio");
-        Debug.Log(soundContainer);
         m_AudioSource.clip = soundContainer.ControlBodyONSound;
 		m_AudioSource.volume = 0.05f;
         m_AudioSource.PlayOneShot(m_AudioSource.clip);
@@ -79,7 +77,6 @@ public abstract class State : MonoBehaviour {
     void OnReturnPress()
     {
         // Quando ritorni nel tuo corpo fai cose
-        Debug.Log("schiacci r");
         m_AudioSource.clip = soundContainer.ControlBodyOFFSound;
 		m_AudioSource.volume = 0.05f;
         m_AudioSource.PlayOneShot(m_AudioSource.clip);
@@ -88,7 +85,6 @@ public abstract class State : MonoBehaviour {
     void OnIdeaPress()
     {
         // Quando imprimi un'idea fai cose
-        Debug.Log("schiacci la q");
         m_AudioSource.clip = soundContainer.ideaControl;
         m_AudioSource.volume = 0.05f;
         m_AudioSource.PlayOneShot(m_AudioSource.clip);
@@ -97,7 +93,6 @@ public abstract class State : MonoBehaviour {
     void OnMemoryPressIn()
     {
         // Quando guardi un ricordo fai cose
-        Debug.Log("schiacci la f");
         m_AudioSource.clip = soundContainer.memoryControl;
         m_AudioSource.volume = 0.05f;
         m_AudioSource.PlayOneShot(m_AudioSource.clip);
@@ -106,6 +101,5 @@ public abstract class State : MonoBehaviour {
     void OnMemoryPressOut()
     {
         // Quando smetti di guardare un ricordo fai cose
-        Debug.Log("schiacci la f");
     }
 }

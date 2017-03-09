@@ -84,7 +84,6 @@ public class GameEvents : MonoBehaviour
 
 	void LoadScene()
 	{
-		Debug.Log ("SceneName: " + sceneName);
 		Fader refFader;
 		refFader = FindObjectOfType<Fader>();
 		refFader.StartCoroutine(refFader.FadeIn());

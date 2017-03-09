@@ -28,7 +28,6 @@ public class PermissionCheckIN : MonoBehaviour
 		if (!targetVersion && colObject.GetComponent<PermissionHandler> () != null) {
 			for (int i = 0; i < colObject.GetComponent<PermissionHandler> ().personalPasskeys.Count; i++) {
 				if (collision.gameObject.GetComponent<PermissionHandler> ().personalPasskeys [i] == thisPasskey) {
-					Debug.Log ("Tu puoi passare!!!");
 					gameObject.GetComponent<BoxCollider> ().isTrigger = true;
 					isFound = true;
 					break;

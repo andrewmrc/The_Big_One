@@ -31,7 +31,6 @@ public class ExamineHandler : MonoBehaviour
             if (!playerIn)
             {
                 playerIn = true;
-                Debug.Log("Dentro Trigger Esaminabile");
                 CheckObject = StartCoroutine(RayMeCO(other));
             }
         }
