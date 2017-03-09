@@ -1,22 +1,15 @@
 fileFormatVersion: 2
-guid: 65a608336e34bd04daf63f93e2a4551c
-timeCreated: 1489074275
+guid: 5bc3e0b66c806dd4cb4e908bd80a6cd6
+timeCreated: 1489074774
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Cylinder002
-    100004: Cylinder003
     400000: //RootNode
-    400002: Cylinder002
-    400004: Cylinder003
-    2300000: Cylinder002
-    2300002: Cylinder003
-    3300000: Cylinder002
-    3300002: Cylinder003
-    4300000: Cylinder002
-    4300002: Cylinder003
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Alarm
   materials:
     importMaterials: 1
     materialName: 0
